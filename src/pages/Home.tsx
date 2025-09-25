@@ -31,89 +31,90 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background pb-24">
-              {/* Hero Section - Spotify Style */}
-              <div className="relative overflow-hidden">
-                {/* Gradient Background with Organic Shapes */}
-                <div className="absolute inset-0 bg-gradient-to-br from-green-600/20 via-purple-600/10 to-blue-600/20">
-                  <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/30 rounded-full blur-3xl"></div>
-                  <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
-                </div>
-                
-                <div className="relative pt-12 pb-8 px-6">
-                  <div className="flex items-center justify-between mb-8">
-                    <div className="flex items-center gap-6">
-                      {/* Large Profile Image with Spotify-style frame */}
-                      <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        className="relative"
-                      >
-                        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 p-1">
-                          <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
-                            <span className="text-2xl font-bold text-white">PK</span>
-                          </div>
-                        </div>
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                          <Play className="w-3 h-3 text-black ml-0.5" />
-                        </div>
-                      </motion.div>
-                      
-                      <div>
-                        <motion.p
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="text-sm text-muted-foreground mb-1"
-                        >
-                          Good morning,
-                        </motion.p>
-                        <motion.h1
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.1 }}
-                          className="text-4xl font-bold mb-2"
-                        >
-                          Prachi Kotadia
-                        </motion.h1>
-                        <motion.p
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.2 }}
-                          className="text-lg text-muted-foreground"
-                        >
-                          Full Stack Developer & Tech Enthusiast
-                        </motion.p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-3">
-                      <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
-                        <Bell className="w-5 h-5" />
-                      </Button>
-                      <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
-                        <Clock className="w-5 h-5" />
-                      </Button>
-                    </div>
+      {/* Hero Section - Spotify Style */}
+      <div className="relative overflow-hidden">
+        {/* Gradient Background with Organic Shapes */}
+        <div className="absolute inset-0 bg-gradient-to-br from-green-600/20 via-purple-600/10 to-blue-600/20">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative pt-12 pb-8 px-6">
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-6">
+              {/* Large Profile Image with Spotify-style frame */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="relative"
+              >
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 p-1">
+                  <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">PK</span>
                   </div>
-                  
-                  {/* Spotify-style Quick Actions */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="flex gap-4 mb-8"
-                  >
-                    <Button className="bg-green-500 hover:bg-green-600 text-black font-semibold px-8 py-3 rounded-full">
-                      <Play className="w-4 h-4 mr-2" />
-                      View Portfolio
-                    </Button>
-                    <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-6 py-3 rounded-full">
-                      <Heart className="w-4 h-4 mr-2" />
-                      Follow
-                    </Button>
-                  </motion.div>
                 </div>
+                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                  <Play className="w-3 h-3 text-black ml-0.5" />
+                </div>
+              </motion.div>
+              
+              <div>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-sm text-muted-foreground mb-1"
+                >
+                  Good morning,
+                </motion.p>
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="text-4xl font-bold mb-2"
+                >
+                  Prachi Kotadia
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-lg text-muted-foreground"
+                >
+                  Full Stack Developer & Tech Enthusiast
+                </motion.p>
               </div>
+            </div>
+            
+            <div className="flex gap-3">
+              <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
+                <Bell className="w-5 h-5" />
+              </Button>
+              <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
+                <Clock className="w-5 h-5" />
+              </Button>
+            </div>
+          </div>
+          
+          {/* Spotify-style Quick Actions */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex gap-4 mb-8"
+          >
+            <Button className="bg-green-500 hover:bg-green-600 text-black font-semibold px-8 py-3 rounded-full">
+              <Play className="w-4 h-4 mr-2" />
+              View Portfolio
+            </Button>
+            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-6 py-3 rounded-full">
+              <Heart className="w-4 h-4 mr-2" />
+              Follow
+            </Button>
+          </motion.div>
+        </div>
+      </div>
 
+      <div className="px-6">
         {/* Quick Access Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -143,9 +144,7 @@ const Home = () => {
             </motion.div>
           ))}
         </motion.div>
-      </div>
 
-      <div className="px-6">
         {/* Welcome Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -289,34 +288,30 @@ const Home = () => {
               See All
             </Button>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-3">
             {workExperience.slice(0, 3).map((exp, index) => (
               <motion.div
                 key={exp.id}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.0 + index * 0.1 }}
-                className="spotify-card p-4 hover:bg-white/10 transition-all duration-300 group"
+                className="glass-card p-4 hover:bg-white/10 transition-all duration-300 cursor-pointer group"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center">
                     <Briefcase className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-white group-hover:text-primary transition-colors">
+                    <h3 className="font-semibold text-sm group-hover:text-green-400 transition-colors">
                       {exp.position}
                     </h3>
-                    <p className="text-sm text-muted-foreground">{exp.company}</p>
-                    <p className="text-xs text-muted-foreground">{exp.duration}</p>
+                    <p className="text-xs text-muted-foreground truncate">
+                      {exp.company} • {exp.duration}
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Play className="w-4 h-4" />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity">
-                      <MoreHorizontal className="w-4 h-4" />
-                    </Button>
-                  </div>
+                  <Button size="sm" className="opacity-0 group-hover:opacity-100 transition-opacity bg-green-500 hover:bg-green-600 text-black rounded-full p-2">
+                    <Play className="w-4 h-4" />
+                  </Button>
                 </div>
               </motion.div>
             ))}
@@ -339,35 +334,32 @@ const Home = () => {
               See All
             </Button>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            {blogPosts.slice(0, 4).map((blog, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {blogPosts.slice(0, 2).map((post, index) => (
               <motion.div
-                key={blog.id}
+                key={post.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
-                className="spotify-card p-4 hover:bg-white/10 transition-all duration-300 group"
+                className="glass-card p-4 hover:bg-white/10 transition-all duration-300 cursor-pointer group"
               >
-                <div className="flex items-start gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Code className="w-6 h-6 text-white" />
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MessageSquare className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-white group-hover:text-primary transition-colors mb-1">
-                      {blog.title}
+                    <h3 className="font-semibold text-sm group-hover:text-purple-400 transition-colors mb-1">
+                      {post.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
-                      {blog.excerpt}
+                    <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
+                      {post.excerpt}
                     </p>
-                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <span>{blog.readTime}</span>
-                      <span>•</span>
-                      <span>{new Date(blog.date).toLocaleDateString()}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-muted-foreground">{post.readTime}</span>
+                      <span className="text-xs text-muted-foreground">•</span>
+                      <span className="text-xs text-muted-foreground">{post.date}</span>
                     </div>
                   </div>
-                  <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="w-4 h-4" />
-                  </Button>
                 </div>
               </motion.div>
             ))}
@@ -397,24 +389,25 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.4 + index * 0.05 }}
-                className="spotify-card p-3 hover:bg-white/10 transition-all duration-300 group text-center"
+                className="glass-card p-3 hover:bg-white/10 transition-all duration-300 cursor-pointer group"
               >
-                <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary/60 rounded-lg flex items-center justify-center mx-auto mb-2">
-                  <Code className="w-4 h-4 text-white" />
-                </div>
-                <h3 className="font-semibold text-sm text-white group-hover:text-primary transition-colors">
-                  {skill.name}
-                </h3>
-                <p className="text-xs text-muted-foreground">{skill.category}</p>
-                <div className="flex justify-center mt-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-3 h-3 ${
-                        i < skill.level ? 'text-yellow-400 fill-current' : 'text-gray-600'
-                      }`}
-                    />
-                  ))}
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <Code className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-sm group-hover:text-green-400 transition-colors">
+                    {skill.name}
+                  </h3>
+                  <div className="flex justify-center mt-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-3 h-3 ${
+                          i < skill.level ? 'text-yellow-400 fill-current' : 'text-gray-600'
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -437,38 +430,42 @@ const Home = () => {
               See All
             </Button>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            {testimonials.slice(0, 4).map((testimonial, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {testimonials.slice(0, 3).map((testimonial, index) => (
               <motion.div
                 key={testimonial.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.6 + index * 0.1 }}
-                className="spotify-card p-4 hover:bg-white/10 transition-all duration-300 group"
+                className="glass-card p-4 hover:bg-white/10 transition-all duration-300 cursor-pointer group"
               >
                 <div className="flex items-start gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MessageSquare className="w-6 h-6 text-white" />
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white font-bold text-sm">
+                      {testimonial.name.charAt(0)}
+                    </span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="font-semibold text-white group-hover:text-primary transition-colors">
-                        {testimonial.name}
-                      </h3>
-                      <div className="flex">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-3 h-3 text-yellow-400 fill-current" />
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-1">{testimonial.role}</p>
-                    <p className="text-xs text-muted-foreground line-clamp-2">
+                    <h3 className="font-semibold text-sm group-hover:text-blue-400 transition-colors">
+                      {testimonial.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground mb-2">
+                      {testimonial.role} at {testimonial.company}
+                    </p>
+                    <p className="text-xs text-muted-foreground line-clamp-3">
                       "{testimonial.content}"
                     </p>
+                    <div className="flex items-center gap-1 mt-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-3 h-3 ${
+                            i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-600'
+                          }`}
+                        />
+                      ))}
+                    </div>
                   </div>
-                  <Button variant="ghost" size="icon" className="opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="w-4 h-4" />
-                  </Button>
                 </div>
               </motion.div>
             ))}
@@ -491,48 +488,28 @@ const Home = () => {
               See All
             </Button>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {awards.slice(0, 6).map((award, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {awards.slice(0, 4).map((award, index) => (
               <motion.div
                 key={award.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.8 + index * 0.05 }}
-                className="spotify-card p-3 hover:bg-white/10 transition-all duration-300 group"
+                transition={{ delay: 1.8 + index * 0.1 }}
+                className="glass-card p-3 hover:bg-white/10 transition-all duration-300 cursor-pointer group"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center">
-                    <Award className="w-5 h-5 text-white" />
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <Award className="w-6 h-6 text-white" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-sm text-white group-hover:text-primary transition-colors truncate">
-                      {award.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground truncate">{award.organization}</p>
-                  </div>
+                  <h3 className="font-semibold text-sm group-hover:text-yellow-400 transition-colors">
+                    {award.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    {award.organization}
+                  </p>
                 </div>
               </motion.div>
             ))}
-          </div>
-        </motion.div>
-
-        {/* Create Playlist Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.9 }}
-          className="mb-8"
-        >
-          <div className="spotify-card p-6 text-center hover:bg-white/10 transition-all duration-300 group cursor-pointer">
-            <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-              <Plus className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors mb-2">
-              Create New Project
-            </h3>
-            <p className="text-muted-foreground">
-              Start building something amazing
-            </p>
           </div>
         </motion.div>
       </div>
