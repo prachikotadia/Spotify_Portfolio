@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Shuffle, Clock, Bell, Heart, Star, TrendingUp, Code, Briefcase, Award, MessageSquare, Plus, MoreHorizontal, Search, Home, FolderOpen, User } from 'lucide-react';
+import { Play, Shuffle, Clock, Bell, Heart, Star, TrendingUp, Code, Briefcase, Award, MessageSquare, Plus, MoreHorizontal, Search, Home as HomeIcon, FolderOpen, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -589,7 +589,7 @@ const Home = () => {
               className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
               onClick={() => console.log('Home')}
             >
-              <Home className="w-5 h-5" />
+              <HomeIcon className="w-5 h-5" />
               <span className="text-xs">Home</span>
             </Button>
 
