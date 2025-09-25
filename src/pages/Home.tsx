@@ -40,99 +40,135 @@ const Home = () => {
         </div>
         
         <div className="relative pt-12 pb-8 px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
-            <div className="flex items-center gap-4 sm:gap-6">
-              {/* Large Profile Image with Spotify-style frame */}
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="relative"
-              >
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 p-1">
-                  <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
-                    <span className="text-xl sm:text-2xl font-bold text-white">PK</span>
-                  </div>
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                  <Play className="w-3 h-3 text-black ml-0.5" />
-                </div>
-              </motion.div>
-              
-              <div className="min-w-0">
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-sm text-muted-foreground mb-1"
-                >
-                  Good morning,
-                </motion.p>
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="text-2xl sm:text-4xl font-bold mb-2 truncate"
-                >
-                  Prachi Kotadia
-                </motion.h1>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-sm sm:text-lg text-muted-foreground"
-                >
-                  Full Stack Developer & Tech Enthusiast
-                </motion.p>
-              </div>
+          {/* Spotify-style Header */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-4">
+              <Search className="w-6 h-6 text-white" />
+              <SpotifyLogo size="lg" />
             </div>
-            
-            <div className="flex gap-2 sm:gap-3">
+            <div className="flex items-center gap-3">
               <Button 
                 variant="ghost" 
                 size="icon" 
                 className="glass hover:bg-white/20"
                 onClick={() => console.log('Notifications clicked')}
               >
-                <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Bell className="w-5 h-5" />
               </Button>
               <Button 
                 variant="ghost" 
                 size="icon" 
                 className="glass hover:bg-white/20"
-                onClick={() => console.log('Recently played clicked')}
+                onClick={() => console.log('Menu clicked')}
               >
-                <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
+                <MoreHorizontal className="w-5 h-5" />
               </Button>
             </div>
           </div>
+
+          {/* Featured Profile Card - Spotify Style */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-green-600 p-8 mb-8"
+          >
+            {/* Background Pattern */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-green-600/20">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
+            </div>
+
+            <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-end gap-6">
+              {/* Profile Photo */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="relative"
+              >
+                <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden shadow-2xl">
+                  <img
+                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
+                    alt="Prachi Kotadia"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <Play className="w-4 h-4 text-green-600 ml-0.5" />
+                </div>
+              </motion.div>
+
+              {/* Profile Info */}
+              <div className="flex-1 min-w-0">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-green-100 text-sm font-medium mb-2"
+                >
+                  Featured Developer
+                </motion.p>
+                <motion.h1
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-4xl sm:text-6xl font-bold text-white mb-2"
+                >
+                  Prachi Kotadia
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                  className="text-green-100 text-lg sm:text-xl mb-4"
+                >
+                  Full Stack Developer & Tech Enthusiast
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  className="flex flex-wrap gap-2"
+                >
+                  <span className="text-green-100 text-sm">React</span>
+                  <span className="text-green-100 text-sm">•</span>
+                  <span className="text-green-100 text-sm">TypeScript</span>
+                  <span className="text-green-100 text-sm">•</span>
+                  <span className="text-green-100 text-sm">Node.js</span>
+                  <span className="text-green-100 text-sm">•</span>
+                  <span className="text-green-100 text-sm">Full Stack</span>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
           
           {/* Spotify-style Quick Actions */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
           >
             <Button 
-              className="bg-green-500 hover:bg-green-600 text-black font-semibold px-6 sm:px-8 py-3 rounded-full w-full sm:w-auto"
+              className="bg-white hover:bg-white/90 text-black font-semibold px-8 py-4 rounded-full text-lg"
               onClick={() => {
                 console.log('View Portfolio clicked');
-                // Scroll to projects section
                 document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              <Play className="w-4 h-4 mr-2" />
+              <Play className="w-5 h-5 mr-2" />
               View Portfolio
             </Button>
             <Button 
               variant="outline" 
-              className="border-white/20 text-white hover:bg-white/10 px-4 sm:px-6 py-3 rounded-full w-full sm:w-auto"
+              className="border-white/30 text-white hover:bg-white/10 px-6 py-4 rounded-full text-lg"
               onClick={() => {
                 console.log('Follow clicked');
-                // Add follow functionality
                 alert('Thanks for following! 🎵');
               }}
             >
-              <Heart className="w-4 h-4 mr-2" />
+              <Heart className="w-5 h-5 mr-2" />
               Follow
             </Button>
           </motion.div>
