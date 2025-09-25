@@ -93,16 +93,34 @@ const Search = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80 pb-24">
-      {/* Spotify-style Header with Glass Effect */}
-      <div className="sticky top-0 z-30 bg-black/80 backdrop-blur-xl border-b border-white/10">
-        <div className="px-6 pt-12 pb-6">
-          <motion.h1
+      {/* Enhanced Spotify-style Header */}
+      <div className="sticky top-0 z-30 bg-black/90 backdrop-blur-xl border-b border-white/10">
+        <div className="px-6 pt-12 pb-8">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+            className="flex items-center justify-between mb-8"
           >
-            Search
-          </motion.h1>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                <SearchIcon className="w-6 h-6 text-black" />
+              </div>
+              <div>
+                <h1 className="text-4xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
+                  Search
+                </h1>
+                <p className="text-muted-foreground text-sm">Discover amazing projects and content</p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
+                <TrendingUp className="w-5 h-5" />
+              </Button>
+              <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
+                <Clock className="w-5 h-5" />
+              </Button>
+            </div>
+          </motion.div>
 
           {/* Enhanced Search Bar */}
           <motion.div

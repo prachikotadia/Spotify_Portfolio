@@ -31,47 +31,88 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background pb-24">
-      {/* Hero Section */}
-      <div className="hero-gradient pt-12 pb-8 px-6">
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-4">
-            {/* Spotify Logo */}
-            <SpotifyLogo size="xl" animated={true} />
-            <div>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-lg text-muted-foreground mb-2"
-              >
-                Good morning,
-              </motion.p>
-                      <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-3xl font-bold"
+              {/* Hero Section - Spotify Style */}
+              <div className="relative overflow-hidden">
+                {/* Gradient Background with Organic Shapes */}
+                <div className="absolute inset-0 bg-gradient-to-br from-green-600/20 via-purple-600/10 to-blue-600/20">
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/30 rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
+                </div>
+                
+                <div className="relative pt-12 pb-8 px-6">
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-6">
+                      {/* Large Profile Image with Spotify-style frame */}
+                      <motion.div
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="relative"
                       >
-                        Prachi Kotadia
-                      </motion.h1>
-                      <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-lg text-muted-foreground"
-                      >
-                        Full Stack Developer & Tech Enthusiast
-                      </motion.p>
-            </div>
-          </div>
-          <div className="flex gap-3">
-            <Button variant="ghost" size="icon" className="glass">
-              <Bell className="w-5 h-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="glass">
-              <Clock className="w-5 h-5" />
-            </Button>
-          </div>
-        </div>
+                        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 p-1">
+                          <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
+                            <span className="text-2xl font-bold text-white">PK</span>
+                          </div>
+                        </div>
+                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                          <Play className="w-3 h-3 text-black ml-0.5" />
+                        </div>
+                      </motion.div>
+                      
+                      <div>
+                        <motion.p
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-sm text-muted-foreground mb-1"
+                        >
+                          Good morning,
+                        </motion.p>
+                        <motion.h1
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 }}
+                          className="text-4xl font-bold mb-2"
+                        >
+                          Prachi Kotadia
+                        </motion.h1>
+                        <motion.p
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.2 }}
+                          className="text-lg text-muted-foreground"
+                        >
+                          Full Stack Developer & Tech Enthusiast
+                        </motion.p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-3">
+                      <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
+                        <Bell className="w-5 h-5" />
+                      </Button>
+                      <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
+                        <Clock className="w-5 h-5" />
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  {/* Spotify-style Quick Actions */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex gap-4 mb-8"
+                  >
+                    <Button className="bg-green-500 hover:bg-green-600 text-black font-semibold px-8 py-3 rounded-full">
+                      <Play className="w-4 h-4 mr-2" />
+                      View Portfolio
+                    </Button>
+                    <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-6 py-3 rounded-full">
+                      <Heart className="w-4 h-4 mr-2" />
+                      Follow
+                    </Button>
+                  </motion.div>
+                </div>
+              </div>
 
         {/* Quick Access Grid */}
         <motion.div
@@ -130,24 +171,47 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Categories */}
+        {/* Categories - Enhanced Spotify Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="mb-8"
         >
-          <h2 className="text-xl font-bold mb-4">Browse Categories</h2>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <SpotifyLogo size="md" />
+              <h2 className="text-2xl font-bold">Browse Categories</h2>
+            </div>
+            <Button variant="ghost" className="text-muted-foreground hover:text-white">
+              Show all
+            </Button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {categories.map((category, index) => (
               <motion.div
                 key={category.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
-                className={`category-card p-6 bg-gradient-to-br ${category.gradient}`}
+                whileHover={{ scale: 1.05, y: -2 }}
+                className={`relative overflow-hidden rounded-xl p-6 bg-gradient-to-br ${category.gradient} cursor-pointer group`}
               >
-                <h3 className="text-white font-bold text-lg">{category.name}</h3>
+                {/* Organic shape overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5"></div>
+                <div className="absolute top-0 right-0 w-16 h-16 bg-white/20 rounded-full blur-xl"></div>
+                <div className="absolute bottom-0 left-0 w-12 h-12 bg-white/10 rounded-full blur-lg"></div>
+                
+                <div className="relative z-10">
+                  <h3 className="text-white font-bold text-lg group-hover:text-white/90 transition-colors">
+                    {category.name}
+                  </h3>
+                  <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white rounded-full p-2">
+                      <Play className="w-3 h-3" />
+                    </Button>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
