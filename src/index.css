@@ -2,41 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Spotify-inspired design system with exact colors and beautiful tokens */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Spotify Dark Theme Colors */
+    --background: 210 11% 7%; /* #121212 */
+    --foreground: 0 0% 100%; /* #FFFFFF */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 210 11% 9%; /* #1C1C1C */
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 210 11% 7%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 141 76% 48%; /* #1DB954 Spotify Green */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 11% 15%; /* #282828 */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 11% 13%; /* #212121 */
+    --muted-foreground: 0 0% 63%; /* #A1A1A1 */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 141 76% 48%; /* Spotify Green */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 210 11% 20%; /* #333333 */
+    --input: 210 11% 15%;
+    --ring: 141 76% 48%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
+
+    /* Spotify-specific tokens */
+    --spotify-green: 141 76% 48%; /* #1DB954 */
+    --spotify-green-hover: 141 76% 43%; /* #1ED760 */
+    --spotify-dark: 210 11% 7%; /* #121212 */
+    --spotify-darker: 0 0% 0%; /* #000000 */
+    --spotify-gray: 210 11% 15%; /* #282828 */
+    --spotify-light-gray: 0 0% 63%; /* #A1A1A1 */
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--spotify-green)), hsl(141 76% 55%));
+    --gradient-dark: linear-gradient(180deg, hsl(var(--spotify-dark)), hsl(var(--spotify-darker)));
+    
+    /* Shadows */
+    --shadow-card: 0 8px 24px hsl(0 0% 0% / 0.15);
+    --shadow-hover: 0 16px 40px hsl(0 0% 0% / 0.25);
+    --shadow-green: 0 0 40px hsl(var(--spotify-green) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -55,43 +75,7 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
+  /* We use the dark theme as default for Spotify style */
 }
 
 @layer base {
@@ -100,6 +84,70 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-medium antialiased;
+    font-family: 'Circular', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+
+  /* Spotify-style scrollbars */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer components {
+  /* Spotify-style hover effects */
+  .hover-lift {
+    @apply transition-all duration-200 hover:scale-105;
+  }
+
+  .hover-green {
+    @apply transition-colors duration-200 hover:text-primary;
+  }
+
+  .spotify-card {
+    @apply bg-card rounded-md p-4 transition-all duration-300 hover:bg-secondary cursor-pointer;
+    box-shadow: var(--shadow-card);
+  }
+
+  .spotify-card:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .spotify-button {
+    @apply bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold;
+    @apply transition-all duration-200 hover:scale-105;
+    background: var(--gradient-primary);
+  }
+
+  .spotify-button:hover {
+    box-shadow: var(--shadow-green);
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-4 p-3 rounded-md text-muted-foreground;
+    @apply transition-all duration-200 hover:text-foreground hover:bg-secondary/50;
+  }
+
+  .sidebar-item.active {
+    @apply text-foreground bg-secondary;
+  }
+
+  .now-playing-bar {
+    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4;
+    @apply flex items-center justify-between;
+    backdrop-filter: blur(10px);
   }
 }
