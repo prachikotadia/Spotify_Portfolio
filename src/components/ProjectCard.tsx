@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import { Play, Github, ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Play } from 'lucide-react';
 
 interface Project {
   id: string;
@@ -18,95 +18,54 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, onView }: ProjectCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.div
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      className="group cursor-pointer"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -5 }}
+      className="bg-card/80 backdrop-blur-sm rounded-xl p-4 border border-white/5 hover:bg-secondary/80 cursor-pointer group relative transition-all duration-300"
       onClick={() => onView(project)}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
-      <div className="spotify-card relative overflow-hidden">
-        {/* Project Image */}
-        <div className="relative mb-4 overflow-hidden rounded-md">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-          />
-          
-          {/* Hover Overlay with Play Button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileHover={{ opacity: 1 }}
-            className="absolute inset-0 bg-black/60 flex items-center justify-center"
-          >
+      <div className="relative mb-4 overflow-hidden rounded-xl">
+        <div className="w-full aspect-square bg-gradient-to-br from-primary to-primary/60 rounded-xl flex items-center justify-center">
+          <div className="w-16 h-16 bg-white/20 rounded-lg" />
+        </div>
+        
+        <AnimatePresence>
+          {isHovered && (
             <motion.div
-              initial={{ scale: 0 }}
-              whileHover={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              whileHover={{ scale: 1.1 }}
+              className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-xl backdrop-blur-sm"
             >
-              <Play className="w-6 h-6 text-black ml-1" fill="currentColor" />
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Project Info */}
-        <div className="space-y-2">
-          <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">
-            {project.title}
-          </h3>
-          <p className="text-sm text-muted-foreground line-clamp-2">
-            {project.description}
-          </p>
-          
-          {/* Tech Stack */}
-          <div className="flex flex-wrap gap-1">
-            {project.techStack.slice(0, 3).map((tech, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 text-xs bg-secondary text-muted-foreground rounded-full"
+              <motion.div
+                whileTap={{ scale: 0.95 }}
+                className="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-lg"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onView(project);
+                }}
               >
-                {tech}
-              </span>
-            ))}
-            {project.techStack.length > 3 && (
-              <span className="px-2 py-1 text-xs bg-secondary text-muted-foreground rounded-full">
-                +{project.techStack.length - 3}
-              </span>
-            )}
-          </div>
-        </div>
+                <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
-        {/* Quick Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileHover={{ opacity: 1, y: 0 }}
-          className="absolute top-4 right-4 flex gap-2"
-        >
-          <Button
-            size="icon"
-            variant="secondary"
-            className="w-8 h-8 backdrop-blur-sm bg-black/50 hover:bg-black/70"
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(project.githubUrl, '_blank');
-            }}
-          >
-            <Github className="w-4 h-4" />
-          </Button>
-          <Button
-            size="icon"
-            variant="secondary"
-            className="w-8 h-8 backdrop-blur-sm bg-black/50 hover:bg-black/70"
-            onClick={(e) => {
-              e.stopPropagation();
-              window.open(project.liveUrl, '_blank');
-            }}
-          >
-            <ExternalLink className="w-4 h-4" />
-          </Button>
-        </motion.div>
+      <div className="space-y-2">
+        <h3 className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors truncate">
+          {project.title}
+        </h3>
+        <p className="text-xs text-muted-foreground truncate">
+          {project.techStack.slice(0, 2).join(', ')}
+        </p>
       </div>
     </motion.div>
   );

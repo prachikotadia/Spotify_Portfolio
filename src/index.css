@@ -108,6 +108,26 @@
 }
 
 @layer components {
+  /* Glass morphism effects */
+  .glass {
+    backdrop-filter: blur(20px);
+    background: rgba(18, 18, 18, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-light {
+    backdrop-filter: blur(20px);
+    background: rgba(18, 18, 18, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card {
+    backdrop-filter: blur(20px);
+    background: rgba(40, 40, 40, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+  }
+
   /* Spotify-style hover effects */
   .hover-lift {
     @apply transition-all duration-200 hover:scale-105;
@@ -118,12 +138,14 @@
   }
 
   .spotify-card {
-    @apply bg-card rounded-md p-4 transition-all duration-300 hover:bg-secondary cursor-pointer;
+    @apply bg-card/80 backdrop-blur-sm rounded-xl p-4 border border-white/10;
+    @apply transition-all duration-300 hover:bg-secondary/80 cursor-pointer;
     box-shadow: var(--shadow-card);
   }
 
   .spotify-card:hover {
     box-shadow: var(--shadow-hover);
+    backdrop-filter: blur(20px);
   }
 
   .spotify-button {
@@ -136,18 +158,65 @@
     box-shadow: var(--shadow-green);
   }
 
-  .sidebar-item {
-    @apply flex items-center gap-4 p-3 rounded-md text-muted-foreground;
-    @apply transition-all duration-200 hover:text-foreground hover:bg-secondary/50;
+  .category-card {
+    @apply relative overflow-hidden rounded-2xl cursor-pointer;
+    @apply transition-all duration-300 hover:scale-105;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary)/0.7));
   }
 
-  .sidebar-item.active {
-    @apply text-foreground bg-secondary;
+  .category-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
   }
 
-  .now-playing-bar {
-    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border p-4;
-    @apply flex items-center justify-between;
-    backdrop-filter: blur(10px);
+  .category-card:hover::before {
+    opacity: 0.1;
+  }
+
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 z-50;
+    @apply bg-background/95 backdrop-blur-xl border-t border-white/10;
+    @apply flex items-center justify-around px-4 py-3;
+  }
+
+  .nav-item {
+    @apply flex flex-col items-center gap-1 px-4 py-2 rounded-lg;
+    @apply transition-all duration-200 hover:bg-white/5;
+  }
+
+  .nav-item.active {
+    @apply text-primary;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(180deg, 
+      hsl(var(--primary)/0.3) 0%, 
+      hsl(var(--background)) 60%,
+      hsl(var(--background)) 100%
+    );
+  }
+
+  .welcome-card {
+    @apply relative overflow-hidden rounded-3xl p-8;
+    background: linear-gradient(135deg, 
+      hsl(var(--primary)) 0%, 
+      hsl(var(--primary)/0.8) 50%,
+      hsl(var(--primary)/0.6) 100%
+    );
+  }
+
+  .welcome-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+    background-size: 200px 200px;
+    opacity: 0.3;
   }
 }
