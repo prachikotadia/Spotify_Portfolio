@@ -8,7 +8,15 @@ import {
   Award, 
   Mail, 
   Menu,
-  X 
+  X,
+  Search,
+  Briefcase,
+  GraduationCap,
+  Code,
+  MessageSquare,
+  Star,
+  Heart,
+  Info
 } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 
@@ -16,8 +24,14 @@ const navigation = [
   { name: 'Home', href: '/', icon: Home },
   { name: 'About Me', href: '/about', icon: User },
   { name: 'Projects', href: '/projects', icon: FolderOpen },
-  { name: 'Blogs', href: '/blogs', icon: BookOpen },
-  { name: 'Certificates', href: '/certificates', icon: Award },
+  { name: 'Work Experience', href: '/experience', icon: Briefcase },
+  { name: 'Education', href: '/education', icon: GraduationCap },
+  { name: 'Skills', href: '/skills', icon: Code },
+  { name: 'Blog', href: '/blog', icon: BookOpen },
+  { name: 'Testimonials', href: '/testimonials', icon: MessageSquare },
+  { name: 'Awards', href: '/awards', icon: Star },
+  { name: 'Extras', href: '/extras', icon: Heart },
+  { name: 'Search', href: '/search', icon: Search },
   { name: 'Contact', href: '/contact', icon: Mail },
 ];
 
