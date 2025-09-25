@@ -38,11 +38,27 @@ const ProjectCard = ({ project, onView }: ProjectCardProps) => {
       
       <div className="relative bg-card/90 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-300">
         <div className="relative mb-4 overflow-hidden rounded-lg">
-          <div className="w-full aspect-square bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center relative">
+          <div className="w-full aspect-square bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center relative overflow-hidden">
+            {/* Demo Image Background */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=400&fit=crop&crop=center')`
+              }}
+            >
+              <div className="absolute inset-0 bg-black/40"></div>
+            </div>
+            
             {/* Organic shape overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent"></div>
             <div className="absolute top-2 right-2 w-12 h-12 bg-white/20 rounded-full blur-sm"></div>
-            <div className="w-16 h-16 bg-white/20 rounded-lg relative z-10" />
+            
+            {/* Play Button Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                <Play className="w-8 h-8 text-white" />
+              </div>
+            </div>
           </div>
           
           <AnimatePresence>

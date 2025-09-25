@@ -19,6 +19,9 @@ import type { Project } from '@/data/mockData';
 
 const Home = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState('Spotify-Style Portfolio');
+  const [volume, setVolume] = useState(75);
 
   const categories = [
     { name: 'Frontend', gradient: 'from-purple-500 to-pink-500' },
@@ -39,26 +42,35 @@ const Home = () => {
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
         </div>
         
-        <div className="relative pt-12 pb-8 px-6">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-6">
+        <div className="relative pt-12 pb-8 px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+            <div className="flex items-center gap-4 sm:gap-6">
               {/* Large Profile Image with Spotify-style frame */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 className="relative"
               >
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 p-1">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-green-400 to-green-600 p-1">
                   <div className="w-full h-full rounded-full bg-black flex items-center justify-center">
-                    <span className="text-2xl font-bold text-white">PK</span>
+                    <span className="text-xl sm:text-2xl font-bold text-white">PK</span>
                   </div>
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                  <Play className="w-3 h-3 text-black ml-0.5" />
-                </div>
+                <motion.div 
+                  className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center cursor-pointer"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsPlaying(!isPlaying)}
+                >
+                  {isPlaying ? (
+                    <div className="w-3 h-3 bg-black rounded-sm"></div>
+                  ) : (
+                    <Play className="w-3 h-3 text-black ml-0.5" />
+                  )}
+                </motion.div>
               </motion.div>
               
-              <div>
+              <div className="min-w-0">
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -70,7 +82,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="text-4xl font-bold mb-2"
+                  className="text-2xl sm:text-4xl font-bold mb-2 truncate"
                 >
                   Prachi Kotadia
                 </motion.h1>
@@ -78,19 +90,29 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-lg text-muted-foreground"
+                  className="text-sm sm:text-lg text-muted-foreground"
                 >
                   Full Stack Developer & Tech Enthusiast
                 </motion.p>
               </div>
             </div>
             
-            <div className="flex gap-3">
-              <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
-                <Bell className="w-5 h-5" />
+            <div className="flex gap-2 sm:gap-3">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="glass hover:bg-white/20"
+                onClick={() => console.log('Notifications clicked')}
+              >
+                <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
-                <Clock className="w-5 h-5" />
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="glass hover:bg-white/20"
+                onClick={() => console.log('Recently played clicked')}
+              >
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
             </div>
           </div>
@@ -100,13 +122,28 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="flex gap-4 mb-8"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
           >
-            <Button className="bg-green-500 hover:bg-green-600 text-black font-semibold px-8 py-3 rounded-full">
+            <Button 
+              className="bg-green-500 hover:bg-green-600 text-black font-semibold px-6 sm:px-8 py-3 rounded-full w-full sm:w-auto"
+              onClick={() => {
+                console.log('View Portfolio clicked');
+                // Scroll to projects section
+                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               <Play className="w-4 h-4 mr-2" />
               View Portfolio
             </Button>
-            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-6 py-3 rounded-full">
+            <Button 
+              variant="outline" 
+              className="border-white/20 text-white hover:bg-white/10 px-4 sm:px-6 py-3 rounded-full w-full sm:w-auto"
+              onClick={() => {
+                console.log('Follow clicked');
+                // Add follow functionality
+                alert('Thanks for following! 🎵');
+              }}
+            >
               <Heart className="w-4 h-4 mr-2" />
               Follow
             </Button>
@@ -114,13 +151,13 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="px-6">
+      <div className="px-4 sm:px-6">
         {/* Quick Access Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="grid grid-cols-2 gap-3 mb-8"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8"
         >
           {featuredProjects.slice(0, 6).map((project, index) => (
             <motion.div
@@ -129,12 +166,17 @@ const Home = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3 + index * 0.1 }}
               className="glass-card p-3 hover:scale-105 transition-all duration-200 cursor-pointer"
+              onClick={() => {
+                console.log(`Playing ${project.title}`);
+                setCurrentTrack(project.title);
+                setIsPlaying(true);
+              }}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/60 rounded-lg flex items-center justify-center">
+              <div className="flex flex-col sm:flex-row items-center gap-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/60 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Play className="w-5 h-5 text-white" fill="currentColor" />
                 </div>
-                <div className="min-w-0 flex-1">
+                <div className="min-w-0 flex-1 text-center sm:text-left">
                   <p className="font-semibold text-sm truncate">{project.title}</p>
                   <p className="text-xs text-muted-foreground truncate">
                     {project.techStack[0]}
@@ -186,7 +228,7 @@ const Home = () => {
               Show all
             </Button>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
             {categories.map((category, index) => (
               <motion.div
                 key={category.name}
@@ -194,19 +236,31 @@ const Home = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className={`relative overflow-hidden rounded-xl p-6 bg-gradient-to-br ${category.gradient} cursor-pointer group`}
+                className={`relative overflow-hidden rounded-xl p-4 sm:p-6 bg-gradient-to-br ${category.gradient} cursor-pointer group`}
+                onClick={() => {
+                  console.log(`Browsing ${category.name} category`);
+                  // Filter projects by category
+                  alert(`Exploring ${category.name} projects! 🎵`);
+                }}
               >
                 {/* Organic shape overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5"></div>
-                <div className="absolute top-0 right-0 w-16 h-16 bg-white/20 rounded-full blur-xl"></div>
-                <div className="absolute bottom-0 left-0 w-12 h-12 bg-white/10 rounded-full blur-lg"></div>
+                <div className="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-full blur-xl"></div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 sm:w-12 sm:h-12 bg-white/10 rounded-full blur-lg"></div>
                 
                 <div className="relative z-10">
-                  <h3 className="text-white font-bold text-lg group-hover:text-white/90 transition-colors">
+                  <h3 className="text-white font-bold text-sm sm:text-lg group-hover:text-white/90 transition-colors">
                     {category.name}
                   </h3>
                   <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Button size="sm" className="bg-white/20 hover:bg-white/30 text-white rounded-full p-2">
+                    <Button 
+                      size="sm" 
+                      className="bg-white/20 hover:bg-white/30 text-white rounded-full p-2"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log(`Playing ${category.name} playlist`);
+                      }}
+                    >
                       <Play className="w-3 h-3" />
                     </Button>
                   </div>
@@ -513,6 +567,102 @@ const Home = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Spotify-style Bottom Player */}
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.8 }}
+        className="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur-xl border-t border-white/10 z-50"
+      >
+        <div className="flex items-center justify-between px-4 py-3">
+          {/* Track Info */}
+          <div className="flex items-center gap-3 min-w-0 flex-1">
+            <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-700 rounded flex items-center justify-center flex-shrink-0">
+              <Play className="w-6 h-6 text-black" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-medium text-white truncate">{currentTrack}</p>
+              <p className="text-xs text-muted-foreground">Prachi Kotadia</p>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/10"
+              onClick={() => setIsPlaying(!isPlaying)}
+            >
+              {isPlaying ? (
+                <div className="w-4 h-4 bg-white rounded-sm"></div>
+              ) : (
+                <Play className="w-4 h-4" />
+              )}
+            </Button>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="hidden sm:flex items-center gap-2 flex-1 max-w-md mx-4">
+            <span className="text-xs text-muted-foreground">0:30</span>
+            <div className="flex-1 h-1 bg-white/20 rounded-full overflow-hidden">
+              <div className="h-full bg-green-500 w-1/3 rounded-full"></div>
+            </div>
+            <span className="text-xs text-muted-foreground">2:45</span>
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/10"
+              onClick={() => console.log('Shuffle')}
+            >
+              <Shuffle className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/10"
+              onClick={() => console.log('Previous')}
+            >
+              <Play className="w-4 h-4 rotate-180" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/10"
+              onClick={() => setIsPlaying(!isPlaying)}
+            >
+              {isPlaying ? (
+                <div className="w-6 h-6 bg-white rounded-sm"></div>
+              ) : (
+                <Play className="w-6 h-6" />
+              )}
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/10"
+              onClick={() => console.log('Next')}
+            >
+              <Play className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/10"
+              onClick={() => console.log('Repeat')}
+            >
+              <Play className="w-4 h-4" />
+            </Button>
+            <div className="w-16 h-1 bg-white/20 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-green-500 rounded-full transition-all duration-200"
+                style={{ width: `${volume}%` }}
+              ></div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };

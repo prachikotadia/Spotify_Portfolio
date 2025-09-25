@@ -25,7 +25,7 @@ export const mockProjects: Project[] = [
     title: 'Spotify-Style Portfolio',
     description: 'Modern portfolio website with Spotify-inspired design',
     longDescription: 'A comprehensive portfolio website built with React, TypeScript, and Tailwind CSS. Features a Spotify-inspired design with glass morphism effects, responsive layout, and interactive components. Includes sections for projects, experience, skills, and more.',
-    image: ecommerceProject,
+    image: '/api/placeholder/400/400',
     techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
     githubUrl: 'https://github.com/prachikotadia/Spotify_Portfolio',
     liveUrl: 'https://prachikotadia.netlify.app',
