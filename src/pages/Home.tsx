@@ -73,30 +73,59 @@ const Home = () => {
             transition={{ delay: 0.2 }}
             className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-green-600 p-8 mb-8"
           >
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-green-600/20">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
+            {/* Depth Background - Subtle and Professional */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-400/30 to-green-600/30">
+              {/* Soft depth blur elements */}
+              <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+              <div className="absolute bottom-1/4 left-1/4 w-24 h-24 bg-white/3 rounded-full blur-xl"></div>
+              
+              {/* Subtle depth lines */}
+              <div className="absolute top-0 left-0 w-full h-px bg-white/10"></div>
+              <div className="absolute bottom-0 left-0 w-full h-px bg-white/5"></div>
             </div>
 
             <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-end gap-6">
-              {/* Profile Photo */}
+              {/* Profile Photo with Depth Effect */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3 }}
                 className="relative"
               >
-                <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden shadow-2xl">
-                  <img
-                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
-                    alt="Prachi Kotadia"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden depth-photo portrait-depth rim-light">
+                  {/* Professional depth background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
+                  
+                  {/* Main subject - sharp focus with professional lighting */}
+                  <div className="relative z-10 w-full h-full">
+                    <img
+                      src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
+                      alt="Prachi Kotadia"
+                      className="w-full h-full object-cover object-center"
+                      style={{
+                        filter: 'contrast(1.15) brightness(1.1) saturate(1.05)',
+                        transform: 'scale(1.01)',
+                        boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.1)'
+                      }}
+                    />
+                  </div>
+                  
+                  {/* Professional depth overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-white/5"></div>
+                  
+                  {/* Subtle professional rim lighting */}
+                  <div className="absolute inset-0 rounded-2xl" style={{
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.2)'
+                  }}></div>
                 </div>
-                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
+                
+                {/* Play button with depth */}
+                <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-xl ring-2 ring-white/20">
                   <Play className="w-4 h-4 text-green-600 ml-0.5" />
                 </div>
+                
+                {/* Subtle depth shadow */}
+                <div className="absolute -inset-1 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-2xl blur-lg -z-10"></div>
               </motion.div>
 
               {/* Profile Info */}

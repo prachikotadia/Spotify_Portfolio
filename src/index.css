@@ -459,3 +459,45 @@
 .floating-element:nth-child(3) {
   animation-delay: 1s;
 }
+
+/* Professional depth effect styles */
+.depth-photo {
+  position: relative;
+  isolation: isolate;
+}
+
+.depth-photo::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(8px);
+}
+
+.depth-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Professional portrait depth */
+.portrait-depth {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.3),
+    0 0 0 1px rgba(255,255,255,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* Rim lighting effect */
+.rim-light {
+  box-shadow: 
+    0 0 0 1px rgba(255,255,255,0.2),
+    0 0 20px rgba(255,255,255,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+}
