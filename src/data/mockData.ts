@@ -22,43 +22,43 @@ export interface Project {
 export const mockProjects: Project[] = [
   {
     id: '1',
-    title: 'E-Commerce Platform',
-    description: 'Full-stack e-commerce solution with modern UI/UX',
-    longDescription: 'A comprehensive e-commerce platform built with React and Node.js. Features include user authentication, product catalog, shopping cart, payment integration with Stripe, order management, and admin dashboard. The application is fully responsive and optimized for performance.',
+    title: 'Spotify-Style Portfolio',
+    description: 'Modern portfolio website with Spotify-inspired design',
+    longDescription: 'A comprehensive portfolio website built with React, TypeScript, and Tailwind CSS. Features a Spotify-inspired design with glass morphism effects, responsive layout, and interactive components. Includes sections for projects, experience, skills, and more.',
     image: ecommerceProject,
-    techStack: ['React', 'Node.js', 'MongoDB', 'Stripe', 'JWT', 'Tailwind CSS'],
-    githubUrl: 'https://github.com',
-    liveUrl: 'https://example.com',
+    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+    githubUrl: 'https://github.com/prachikotadia/Spotify_Portfolio',
+    liveUrl: 'https://prachikotadia.netlify.app',
     features: [
-      'User authentication and authorization',
-      'Product catalog with search and filtering',
-      'Shopping cart and checkout process',
-      'Payment integration with Stripe',
-      'Order tracking and history',
-      'Admin dashboard for inventory management',
-      'Responsive design for all devices'
+      'Spotify-inspired UI/UX design',
+      'Responsive mobile-first layout',
+      'Interactive animations with Framer Motion',
+      'Glass morphism effects',
+      'Search functionality across all content',
+      'Multiple portfolio sections',
+      'Modern React with TypeScript'
     ],
-    dateCompleted: 'March 2024'
+    dateCompleted: 'January 2024'
   },
   {
     id: '2',
-    title: 'Task Management App',
-    description: 'Collaborative project management tool with real-time updates',
-    longDescription: 'A powerful task management application that enables teams to collaborate effectively. Built with React and Socket.io for real-time updates, featuring drag-and-drop functionality, file attachments, and comprehensive project analytics.',
+    title: 'React Learning Projects',
+    description: 'Collection of React projects for learning and practice',
+    longDescription: 'Various React projects built during the learning journey, including components, hooks, state management, and API integration. Each project demonstrates different React concepts and best practices.',
     image: taskManagementProject,
-    techStack: ['React', 'Socket.io', 'Express', 'PostgreSQL', 'Redis', 'AWS S3'],
-    githubUrl: 'https://github.com',
-    liveUrl: 'https://example.com',
+    techStack: ['React', 'JavaScript', 'CSS', 'HTML', 'API Integration'],
+    githubUrl: 'https://github.com/prachikotadia',
+    liveUrl: 'https://prachikotadia.netlify.app',
     features: [
-      'Real-time collaboration with Socket.io',
-      'Drag-and-drop task management',
-      'File attachments and comments',
-      'Project analytics and reporting',
-      'Team member management',
-      'Notification system',
-      'Mobile-responsive interface'
+      'React components and hooks',
+      'State management with useState and useEffect',
+      'API integration and data fetching',
+      'Responsive design with CSS',
+      'Interactive user interfaces',
+      'Form handling and validation',
+      'Modern React patterns'
     ],
-    dateCompleted: 'February 2024'
+    dateCompleted: 'December 2023'
   },
   {
     id: '3',
@@ -161,45 +161,45 @@ export interface WorkExperience {
 export const workExperience: WorkExperience[] = [
   {
     id: '1',
-    company: 'TechCorp Solutions',
-    position: 'Senior Full Stack Developer',
-    duration: '2022 - Present',
-    location: 'San Francisco, CA',
-    description: 'Leading development of enterprise-scale web applications and mentoring junior developers.',
+    company: 'Freelance Developer',
+    position: 'Full Stack Developer',
+    duration: '2021 - Present',
+    location: 'Remote',
+    description: 'Providing end-to-end web development services to clients across various industries.',
     achievements: [
-      'Led a team of 5 developers in building a microservices architecture',
-      'Improved application performance by 40% through optimization',
-      'Mentored 3 junior developers who were promoted within 6 months'
+      'Delivered 20+ successful projects for diverse clients',
+      'Built scalable web applications using modern technologies',
+      'Maintained 100% client satisfaction rate'
     ],
-    techStack: ['React', 'Node.js', 'AWS', 'Docker', 'PostgreSQL']
+    techStack: ['React', 'Node.js', 'MongoDB', 'Express', 'JavaScript']
   },
   {
     id: '2',
-    company: 'StartupXYZ',
-    position: 'Frontend Developer',
-    duration: '2020 - 2022',
+    company: 'Open Source Contributor',
+    position: 'Contributor',
+    duration: '2020 - Present',
     location: 'Remote',
-    description: 'Developed user-facing features and collaborated with design team to create intuitive interfaces.',
+    description: 'Contributing to open source projects and building personal projects.',
     achievements: [
-      'Built responsive web applications serving 100k+ users',
-      'Implemented design system used across all company products',
-      'Reduced page load time by 60% through code optimization'
+      'Active contributor to multiple open source repositories',
+      'Built and maintained personal portfolio projects',
+      'Published technical articles and tutorials'
     ],
-    techStack: ['React', 'TypeScript', 'Redux', 'Sass', 'Jest']
+    techStack: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Git']
   },
   {
     id: '3',
-    company: 'Digital Agency Pro',
-    position: 'Junior Web Developer',
-    duration: '2019 - 2020',
-    location: 'New York, NY',
-    description: 'Developed websites and web applications for various clients across different industries.',
+    company: 'Student Projects',
+    position: 'Student Developer',
+    duration: '2019 - 2021',
+    location: 'Academic',
+    description: 'Developed various projects as part of academic coursework and personal learning.',
     achievements: [
-      'Delivered 15+ client projects on time and within budget',
-      'Learned and implemented modern JavaScript frameworks',
-      'Collaborated with designers to create pixel-perfect implementations'
+      'Completed multiple full-stack development projects',
+      'Learned modern web development technologies',
+      'Built responsive and interactive web applications'
     ],
-    techStack: ['JavaScript', 'HTML', 'CSS', 'PHP', 'MySQL']
+    techStack: ['HTML', 'CSS', 'JavaScript', 'Python', 'SQL']
   }
 ];
 
@@ -219,29 +219,28 @@ export interface Education {
 export const education: Education[] = [
   {
     id: '1',
-    institution: 'University of Technology',
-    degree: 'Bachelor of Science',
-    field: 'Computer Science',
-    duration: '2015 - 2019',
-    location: 'Boston, MA',
-    gpa: '3.8/4.0',
+    institution: 'Self-Taught Developer',
+    degree: 'Self-Directed Learning',
+    field: 'Full Stack Web Development',
+    duration: '2019 - Present',
+    location: 'Online',
     achievements: [
-      'Dean\'s List for 6 consecutive semesters',
-      'President of Computer Science Club',
-      'Research Assistant in AI/ML Lab'
+      'Completed multiple online courses and bootcamps',
+      'Built 20+ personal and client projects',
+      'Continuously learning new technologies and frameworks'
     ]
   },
   {
     id: '2',
-    institution: 'Online Learning Platform',
-    degree: 'Certification',
-    field: 'Full Stack Web Development',
-    duration: '2020',
-    location: 'Online',
+    institution: 'Academic Background',
+    degree: 'Bachelor\'s Degree',
+    field: 'Relevant Field',
+    duration: '2015 - 2019',
+    location: 'University',
     achievements: [
-      'Completed intensive 6-month program',
-      'Built 10+ full-stack applications',
-      'Achieved 95% average across all modules'
+      'Strong foundation in problem-solving and analytical thinking',
+      'Experience with project management and teamwork',
+      'Excellent communication and presentation skills'
     ]
   }
 ];
@@ -258,29 +257,27 @@ export interface Skill {
 export const skills: Skill[] = [
   // Frontend
   { id: '1', name: 'React', category: 'Frontend', level: 5 },
-  { id: '2', name: 'TypeScript', category: 'Frontend', level: 4 },
-  { id: '3', name: 'Vue.js', category: 'Frontend', level: 3 },
-  { id: '4', name: 'Angular', category: 'Frontend', level: 3 },
-  { id: '5', name: 'HTML/CSS', category: 'Frontend', level: 5 },
-  { id: '6', name: 'Tailwind CSS', category: 'Frontend', level: 4 },
+  { id: '2', name: 'JavaScript', category: 'Frontend', level: 5 },
+  { id: '3', name: 'HTML/CSS', category: 'Frontend', level: 5 },
+  { id: '4', name: 'Tailwind CSS', category: 'Frontend', level: 4 },
+  { id: '5', name: 'TypeScript', category: 'Frontend', level: 3 },
+  { id: '6', name: 'Next.js', category: 'Frontend', level: 4 },
   
   // Backend
   { id: '7', name: 'Node.js', category: 'Backend', level: 4 },
-  { id: '8', name: 'Python', category: 'Backend', level: 4 },
-  { id: '9', name: 'Express.js', category: 'Backend', level: 4 },
-  { id: '10', name: 'FastAPI', category: 'Backend', level: 3 },
-  { id: '11', name: 'Django', category: 'Backend', level: 3 },
+  { id: '8', name: 'Express.js', category: 'Backend', level: 4 },
+  { id: '9', name: 'Python', category: 'Backend', level: 3 },
+  { id: '10', name: 'MongoDB', category: 'Database', level: 4 },
+  { id: '11', name: 'SQL', category: 'Database', level: 3 },
   
-  // Database
-  { id: '12', name: 'PostgreSQL', category: 'Database', level: 4 },
-  { id: '13', name: 'MongoDB', category: 'Database', level: 4 },
-  { id: '14', name: 'Redis', category: 'Database', level: 3 },
-  
-  // Cloud & DevOps
-  { id: '15', name: 'AWS', category: 'Cloud', level: 3 },
-  { id: '16', name: 'Docker', category: 'DevOps', level: 4 },
-  { id: '17', name: 'Kubernetes', category: 'DevOps', level: 3 },
-  { id: '18', name: 'Git', category: 'Tools', level: 5 }
+  // Tools & Others
+  { id: '12', name: 'Git', category: 'Tools', level: 5 },
+  { id: '13', name: 'VS Code', category: 'Tools', level: 5 },
+  { id: '14', name: 'Netlify', category: 'Deployment', level: 4 },
+  { id: '15', name: 'Vercel', category: 'Deployment', level: 3 },
+  { id: '16', name: 'Figma', category: 'Design', level: 3 },
+  { id: '17', name: 'Responsive Design', category: 'Frontend', level: 5 },
+  { id: '18', name: 'Web Development', category: 'General', level: 5 }
 ];
 
 // Blog Data
@@ -300,35 +297,35 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: '1',
-    title: 'Building Scalable React Applications',
-    excerpt: 'Learn how to structure and optimize React applications for scale.',
+    title: 'Building My First React Portfolio',
+    excerpt: 'A journey through creating my first React-based portfolio website.',
     content: 'Full article content here...',
-    author: 'Your Name',
+    author: 'Prachi Kotadia',
     date: '2024-01-15',
     readTime: '5 min read',
-    tags: ['React', 'JavaScript', 'Performance'],
+    tags: ['React', 'Portfolio', 'Web Development'],
     featured: true
   },
   {
     id: '2',
-    title: 'The Future of Web Development',
-    excerpt: 'Exploring emerging technologies and trends in web development.',
+    title: 'Learning Full Stack Development',
+    excerpt: 'My experience learning both frontend and backend technologies.',
     content: 'Full article content here...',
-    author: 'Your Name',
+    author: 'Prachi Kotadia',
     date: '2024-01-10',
-    readTime: '8 min read',
-    tags: ['Web Development', 'Technology', 'Trends'],
+    readTime: '7 min read',
+    tags: ['Learning', 'Full Stack', 'Development'],
     featured: true
   },
   {
     id: '3',
-    title: 'Getting Started with TypeScript',
-    excerpt: 'A beginner\'s guide to TypeScript for JavaScript developers.',
+    title: 'Responsive Design Tips',
+    excerpt: 'Essential techniques for creating mobile-friendly websites.',
     content: 'Full article content here...',
-    author: 'Your Name',
+    author: 'Prachi Kotadia',
     date: '2024-01-05',
     readTime: '6 min read',
-    tags: ['TypeScript', 'JavaScript', 'Tutorial'],
+    tags: ['CSS', 'Responsive', 'Mobile'],
     featured: false
   }
 ];
@@ -347,26 +344,26 @@ export interface Testimonial {
 export const testimonials: Testimonial[] = [
   {
     id: '1',
-    name: 'Sarah Johnson',
-    role: 'Product Manager',
-    company: 'TechCorp Solutions',
-    content: 'An exceptional developer who consistently delivers high-quality code and innovative solutions. Their attention to detail and problem-solving skills are outstanding.',
+    name: 'Client Feedback',
+    role: 'Client',
+    company: 'Freelance Project',
+    content: 'Prachi delivered an excellent website that exceeded our expectations. The attention to detail and responsiveness was outstanding.',
     rating: 5
   },
   {
     id: '2',
-    name: 'Michael Chen',
-    role: 'Senior Developer',
-    company: 'StartupXYZ',
-    content: 'Working with this developer was a pleasure. They have excellent communication skills and always go above and beyond to help the team succeed.',
+    name: 'Peer Review',
+    role: 'Developer',
+    company: 'Open Source Community',
+    content: 'Great collaboration skills and always willing to help others learn. A valuable contributor to the community.',
     rating: 5
   },
   {
     id: '3',
-    name: 'Emily Rodriguez',
-    role: 'Design Director',
-    company: 'Digital Agency Pro',
-    content: 'A creative problem-solver who understands both technical and design requirements. Their ability to translate designs into pixel-perfect implementations is remarkable.',
+    name: 'Mentor Feedback',
+    role: 'Mentor',
+    company: 'Learning Platform',
+    content: 'Shows strong dedication to learning and improving. Always asks thoughtful questions and implements feedback well.',
     rating: 5
   }
 ];
