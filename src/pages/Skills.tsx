@@ -134,24 +134,25 @@ const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipe
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         </div>
         
-        {/* Category level badge */}
-        <motion.div 
-          className={`absolute top-2 right-2 sm:top-4 sm:right-4 ${isActive ? 'w-10 h-10 sm:w-12 sm:h-12' : 'w-6 h-6 sm:w-8 sm:h-8'} bg-green-500 rounded-full flex items-center justify-center shadow-lg`}
-          whileHover={{ scale: 1.1, rotate: 360 }}
-          transition={{ duration: 0.3 }}
-        >
-          <span className={`text-white font-bold ${isActive ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'}`}>{category.skillsCount}</span>
-        </motion.div>
-        
-        {/* Category badge */}
-        <div className={`absolute top-2 left-2 sm:top-4 sm:left-4 bg-black/70 backdrop-blur-sm rounded-full ${isActive ? 'px-3 py-2 sm:px-4 sm:py-2' : 'px-2 py-1 sm:px-3 sm:py-1'}`}>
-          <span className={`text-white font-semibold ${isActive ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'}`}>{category.name.split(' ')[0]}</span>
-        </div>
-
         {/* Category title at bottom */}
         <div className={`absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 ${isActive ? 'bottom-4 sm:bottom-6' : ''}`}>
-          <h3 className={`text-white font-bold ${isActive ? 'text-lg sm:text-xl' : 'text-sm sm:text-base'} mb-1`}>{category.name}</h3>
-          <p className={`text-green-300 ${isActive ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'}`}>{category.skillsCount} Skills</p>
+          <h3 className={`text-white font-bold ${isActive ? 'text-lg sm:text-xl' : 'text-sm sm:text-base'} mb-2`}>{category.name}</h3>
+          {/* Skills list */}
+          <div className="flex flex-wrap gap-1">
+            {category.skills.slice(0, isActive ? 4 : 2).map((skill, index) => (
+              <span 
+                key={skill}
+                className={`text-white bg-black/50 backdrop-blur-sm rounded px-2 py-1 ${isActive ? 'text-xs sm:text-sm' : 'text-xs'} font-medium`}
+              >
+                {skill}
+              </span>
+            ))}
+            {category.skills.length > (isActive ? 4 : 2) && (
+              <span className={`text-white bg-black/50 backdrop-blur-sm rounded px-2 py-1 ${isActive ? 'text-xs sm:text-sm' : 'text-xs'} font-medium`}>
+                +{category.skills.length - (isActive ? 4 : 2)}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Active indicator */}
@@ -413,87 +414,28 @@ const Skills = () => {
             className="text-white bg-black/40 backdrop-blur-md rounded-2xl p-3 sm:p-6 border border-green-500/20"
           >
             <motion.h2 
-              className="text-xl sm:text-3xl font-bold mb-2 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent"
-              animate={{ 
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
+              className="text-xl sm:text-3xl font-bold mb-4 text-white"
             >
-              {activeCategory.name.toUpperCase()}
+              {activeCategory.name}
             </motion.h2>
-            <div className="flex items-center justify-center gap-2 sm:gap-4 mb-3 sm:mb-4">
-              <span className="text-sm sm:text-lg font-semibold">{activeCategorySkills.length} Skills</span>
-              <span className="text-sm sm:text-lg">•</span>
-              <span className="text-sm sm:text-lg font-semibold">Expert Level</span>
-            </div>
             <div className="flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
-              <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
-                {activeCategory.name.split(' ')[0].toUpperCase()}
-              </motion.span>
-              <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
-                PROGRAMMING
-              </motion.span>
-              <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
-                DEVELOPMENT
-              </motion.span>
-              <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium shadow-lg"
-                whileHover={{ scale: 1.05 }}
-              >
-                TECHNOLOGY
-              </motion.span>
+              {activeCategorySkills.map((skill, index) => (
+                <motion.span 
+                  key={skill}
+                  className="bg-gradient-to-r from-green-500/20 to-green-600/20 text-green-300 px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium border border-green-500/30"
+                  whileHover={{ scale: 1.05 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {skill}
+                </motion.span>
+              ))}
             </div>
           </motion.div>
         </div>
       )}
 
-      {/* Sub-categories (Skills) */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-black/50 backdrop-blur-md border-t border-green-500/20 p-2 sm:p-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.h3 
-            className="text-white font-bold mb-2 sm:mb-4 text-center text-sm sm:text-lg"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Skills in {activeCategory?.name}
-          </motion.h3>
-          <div className="flex flex-wrap justify-center gap-1 sm:gap-2 max-h-16 sm:max-h-20 overflow-y-auto">
-            {activeCategorySkills.slice(0, 6).map((skill, index) => (
-              <motion.div
-                key={skill}
-                initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -2,
-                  boxShadow: "0 10px 25px rgba(34, 197, 94, 0.3)"
-                }}
-                className="bg-gradient-to-r from-green-500/20 to-green-600/20 hover:from-green-500/30 hover:to-green-600/30 text-green-300 hover:text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium cursor-pointer transition-all duration-300 border border-green-500/30 hover:border-green-400/50"
-              >
-                {skill}
-              </motion.div>
-            ))}
-            {activeCategorySkills.length > 6 && (
-              <motion.div 
-                className="bg-gradient-to-r from-gray-600/20 to-gray-700/20 text-gray-400 px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium border border-gray-600/30"
-                whileHover={{ scale: 1.05 }}
-              >
-                +{activeCategorySkills.length - 6} more
-              </motion.div>
-            )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
