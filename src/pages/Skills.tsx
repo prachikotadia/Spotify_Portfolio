@@ -6,7 +6,7 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { skills } from '@/data/mockData';
 import type { Skill } from '@/data/mockData';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 // Helper functions
 const getLevelColor = (level: number) => {
@@ -53,27 +53,32 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
   const rotateY = useTransform(x, [-200, 0, 200], [15, 0, -15]);
 
   const handleDragEnd = (event: any, info: any) => {
-    const threshold = 50;
-    if (info.offset.x > threshold) {
+    const threshold = 30; // Lower threshold for more responsive swiping
+    const velocity = info.velocity.x;
+    
+    // Check both offset and velocity for more responsive swiping
+    if (info.offset.x > threshold || velocity > 500) {
       // Swiped right - go to previous
       onSwipeRight();
-    } else if (info.offset.x < -threshold) {
+    } else if (info.offset.x < -threshold || velocity < -500) {
       // Swiped left - go to next
       onSwipeLeft();
     }
-    // Reset position
+    // Reset position with smooth animation
     x.set(0);
   };
 
   return (
     <motion.div
       drag="x"
-      dragConstraints={{ left: -200, right: 200 }}
-      dragElastic={0.1}
+      dragConstraints={{ left: -150, right: 150 }}
+      dragElastic={0.2}
+      dragMomentum={false}
       onDragEnd={handleDragEnd}
       style={{ x, scale, opacity, rotateY }}
-      className={`relative cursor-pointer ${isActive ? 'z-10' : 'z-0'}`}
+      className={`relative cursor-grab active:cursor-grabbing ${isActive ? 'z-10' : 'z-0'}`}
       onClick={onSelect}
+      whileDrag={{ scale: 1.05 }}
     >
       <motion.div
         className={`relative ${isActive ? 'w-64 h-96' : 'w-48 h-72'} rounded-2xl overflow-hidden shadow-2xl`}
@@ -172,21 +177,66 @@ const Skills = () => {
     handlePrevious();
   };
 
+  // Add keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === 'ArrowLeft') {
+        handlePrevious();
+      } else if (event.key === 'ArrowRight') {
+        handleNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-900/20 to-black">
+      <style>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
       {/* Header */}
       <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
             <h1 className="text-2xl font-bold text-green-500">skillsk</h1>
+            <div className="flex items-center gap-2 text-sm text-gray-400">
+              <span>← Swipe or use arrows →</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Main Content - Horizontal Skill Carousel */}
       <div className="relative h-[calc(100vh-200px)] flex items-center justify-center overflow-hidden px-4">
+        {/* Navigation Arrows */}
+        <motion.button
+          onClick={handlePrevious}
+          className="absolute left-4 z-30 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </motion.button>
+        
+        <motion.button
+          onClick={handleNext}
+          className="absolute right-4 z-30 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <ChevronRight className="w-6 h-6" />
+        </motion.button>
+
         {/* Horizontal Skill Carousel */}
-        <div className="flex items-center justify-center gap-8">
+        <div className="flex items-center justify-center gap-8 overflow-x-auto scrollbar-hide">
           {skillCategories.map((category, index) => (
             <CategoryCard
               key={category.name}
