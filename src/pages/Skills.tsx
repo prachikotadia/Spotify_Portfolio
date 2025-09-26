@@ -82,7 +82,7 @@ const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipe
     >
       <motion.div
         className={`relative ${isActive ? 'w-56 h-80 sm:w-64 sm:h-96' : isAdjacent ? 'w-40 h-60 sm:w-48 sm:h-72' : 'w-32 h-48 sm:w-40 sm:h-60'} rounded-2xl overflow-hidden shadow-2xl border-2 ${isActive ? 'border-green-500 shadow-green-500/50' : 'border-gray-600'} transition-all duration-500 hover:opacity-90`}
-        whileHover={{ scale: isActive ? 1.02 : 1.05 }}
+        whileHover={{ scale: isActive ? 0.07 : 0.07 }}
         whileTap={{ scale: 0.98 }}
         style={{ transformStyle: "preserve-3d" }}
         animate={isActive ? {
@@ -306,13 +306,7 @@ const Skills = () => {
       <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-3 max-w-7xl mx-auto">
           <div className="flex items-center gap-2 sm:gap-3">
-            <h1 className="text-lg sm:text-xl font-bold text-green-500">Skills Carousel</h1>
-            <div className="hidden sm:flex items-center gap-1 text-xs text-gray-400">
-              <span>← Swipe or use arrows →</span>
-            </div>
-            <div className="sm:hidden text-xs text-gray-400">
-              <span>← Swipe →</span>
-            </div>
+            <h1 className="text-lg sm:text-xl font-bold text-green-500">Skills</h1>
           </div>
         </div>
       </div>
