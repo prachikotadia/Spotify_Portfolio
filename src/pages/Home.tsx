@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Play, Shuffle, Clock, Bell, Heart, Star, TrendingUp, Code, Briefcase, Award, MessageSquare, Plus, MoreHorizontal, Search, Home as HomeIcon, FolderOpen, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -19,6 +20,7 @@ import type { Project } from '@/data/mockData';
 
 const Home = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const navigate = useNavigate();
 
   const categories = [
     { name: 'Frontend', gradient: 'from-purple-500 to-pink-500' },
@@ -628,55 +630,55 @@ const Home = () => {
       >
         <div className="flex items-center justify-center px-2 py-3">
           <div className="flex items-center justify-between w-full max-w-md">
-            {/* Work */}
-            <Button
-              variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
-              onClick={() => console.log('Work')}
-            >
-              <Briefcase className="w-5 h-5" />
-              <span className="text-xs">Work</span>
-            </Button>
+                    {/* Work */}
+                    <Button
+                      variant="ghost"
+                      className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
+                      onClick={() => navigate('/experience')}
+                    >
+                      <Briefcase className="w-5 h-5" />
+                      <span className="text-xs">Work</span>
+                    </Button>
 
-            {/* Project */}
-            <Button
-              variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
-              onClick={() => console.log('Project')}
-            >
-              <FolderOpen className="w-5 h-5" />
-              <span className="text-xs">Project</span>
-            </Button>
+                    {/* Project */}
+                    <Button
+                      variant="ghost"
+                      className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
+                      onClick={() => navigate('/library')}
+                    >
+                      <FolderOpen className="w-5 h-5" />
+                      <span className="text-xs">Project</span>
+                    </Button>
 
-            {/* Home */}
-            <Button
-              variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
-              onClick={() => console.log('Home')}
-            >
-              <HomeIcon className="w-5 h-5" />
-              <span className="text-xs">Home</span>
-            </Button>
+                    {/* Home */}
+                    <Button
+                      variant="ghost"
+                      className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
+                      onClick={() => navigate('/')}
+                    >
+                      <HomeIcon className="w-5 h-5" />
+                      <span className="text-xs">Home</span>
+                    </Button>
 
-            {/* Search */}
-            <Button
-              variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
-              onClick={() => console.log('Search')}
-            >
-              <Search className="w-5 h-5" />
-              <span className="text-xs">Search</span>
-            </Button>
+                    {/* Search */}
+                    <Button
+                      variant="ghost"
+                      className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
+                      onClick={() => navigate('/search')}
+                    >
+                      <Search className="w-5 h-5" />
+                      <span className="text-xs">Search</span>
+                    </Button>
 
-            {/* Skill */}
-            <Button
-              variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
-              onClick={() => console.log('Skill')}
-            >
-              <Code className="w-5 h-5" />
-              <span className="text-xs">Skill</span>
-            </Button>
+                    {/* Skill */}
+                    <Button
+                      variant="ghost"
+                      className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
+                      onClick={() => navigate('/skills')}
+                    >
+                      <Code className="w-5 h-5" />
+                      <span className="text-xs">Skill</span>
+                    </Button>
           </div>
         </div>
       </motion.div>
