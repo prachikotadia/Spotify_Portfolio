@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Grid3X3, List, ArrowUpDown, Search, Play, Heart, MoreHorizontal, Code, Award, BookOpen } from 'lucide-react';
@@ -17,40 +17,6 @@ const Library = () => {
   const [sortBy, setSortBy] = useState('recent');
   const [searchQuery, setSearchQuery] = useState('');
   const [likedItems, setLikedItems] = useState<Set<string>>(new Set());
-
-  // Component for conditional marquee
-  const ConditionalMarquee = ({ text, className }: { text: string; className: string }) => {
-    const textRef = useRef<HTMLDivElement>(null);
-    const [needsMarquee, setNeedsMarquee] = useState(false);
-    const [isHovered, setIsHovered] = useState(false);
-
-    useEffect(() => {
-      if (textRef.current) {
-        const element = textRef.current;
-        const parent = element.parentElement;
-        if (parent) {
-          setNeedsMarquee(element.scrollWidth > parent.clientWidth);
-        }
-      }
-    }, [text]);
-
-    return (
-      <div 
-        className={`relative overflow-hidden ${className}`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div
-          ref={textRef}
-          className={`whitespace-nowrap transition-transform duration-300 ${
-            needsMarquee && isHovered ? 'animate-marquee' : ''
-          }`}
-        >
-          {text}
-        </div>
-      </div>
-    );
-  };
 
   const tabs = [
     { id: 'projects', label: 'Projects', icon: Code },
@@ -100,15 +66,6 @@ const Library = () => {
 
   return (
     <div className="min-h-screen bg-[#121212] pb-24">
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-100%); }
-        }
-        .animate-marquee {
-          animation: marquee 8s linear infinite;
-        }
-      `}</style>
       {/* Header */}
       <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-4 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
@@ -204,10 +161,9 @@ const Library = () => {
                   />
                 </div>
                 <div className="flex-1 w-full">
-                  <ConditionalMarquee 
-                    text={item.title}
-                    className="font-semibold text-white"
-                  />
+                  <h3 className="font-semibold text-white truncate">
+                    {item.title}
+                  </h3>
                   <p className="text-sm text-gray-400 truncate">
                     {activeTab === 'projects' && 'Project'}
                     {activeTab === 'certificates' && 'Certificate'}
@@ -239,12 +195,9 @@ const Library = () => {
                       />
                     </div>
                   </div>
-                  <div className="mb-2">
-                    <ConditionalMarquee 
-                      text={item.title}
-                      className="font-bold text-white text-sm"
-                    />
-                  </div>
+                  <h3 className="font-bold text-white text-sm mb-2 truncate">
+                    {item.title}
+                  </h3>
                   <p className="text-gray-400 text-xs mb-3 truncate">
                     {activeTab === 'projects' && item.description}
                     {activeTab === 'certificates' && item.issuer}
