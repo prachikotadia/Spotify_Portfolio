@@ -65,6 +65,7 @@ const Education = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 + index * 0.1 }}
                 className="flex-shrink-0 w-36 bg-[#181818] rounded-lg p-3 hover:bg-[#282828] transition-all duration-300 cursor-pointer group"
+                onClick={() => navigate(index === 0 ? '/education/masters' : '/education/bachelors')}
               >
                 <div className="relative mb-3">
                   <div className="w-full aspect-square bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center overflow-hidden">
@@ -101,6 +102,7 @@ const Education = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
               className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 cursor-pointer group"
+              onClick={() => navigate('/education/masters')}
             >
               <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <img
@@ -147,6 +149,7 @@ const Education = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 }}
               className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 cursor-pointer group"
+              onClick={() => navigate('/education/bachelors')}
             >
               <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <img
