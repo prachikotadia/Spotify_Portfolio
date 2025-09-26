@@ -21,6 +21,8 @@ import ProjectDetail from "./pages/ProjectDetail";
 import ProjectsAI from "./pages/ProjectsAI";
 import ProjectsFullStack from "./pages/ProjectsFullStack";
 import Certificates from "./pages/Certificates";
+import CertificateDetail from "./pages/CertificateDetail";
+import ResearchDetail from "./pages/ResearchDetail";
 import NotFound from "./pages/NotFound";
 import BottomNavigation from "./components/BottomNavigation";
 
@@ -52,6 +54,8 @@ const App = () => (
             <Route path="/projects/ai-ml" element={<ProjectsAI />} />
             <Route path="/projects/fullstack" element={<ProjectsFullStack />} />
             <Route path="/certificates" element={<Certificates />} />
+            <Route path="/certificate/:id" element={<CertificateDetail />} />
+            <Route path="/research/:id" element={<ResearchDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

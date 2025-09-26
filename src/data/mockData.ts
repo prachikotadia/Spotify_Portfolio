@@ -580,3 +580,158 @@ export const sideProjects: SideProject[] = [
     status: 'active'
   }
 ];
+
+// Certificate data
+export const mockCertificates = [
+  {
+    id: 'cert-1',
+    title: 'AWS Certified Developer - Associate',
+    issuer: 'Amazon Web Services',
+    date: 'December 2024',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    skills: ['AWS', 'Cloud Computing', 'Serverless', 'CI/CD'],
+    link: 'https://www.credly.com/badges/example-aws-developer',
+    description: 'Comprehensive certification covering AWS services, serverless architecture, and cloud development best practices.',
+    longDescription: 'This certification validates expertise in developing and maintaining applications on the AWS platform. Covers core AWS services, security best practices, and serverless architecture patterns.',
+    techStack: ['AWS', 'Lambda', 'API Gateway', 'DynamoDB', 'S3', 'CloudFormation']
+  },
+  {
+    id: 'cert-2',
+    title: 'React Developer Certification',
+    issuer: 'Meta',
+    date: 'November 2023',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    skills: ['React', 'JavaScript', 'JSX', 'State Management'],
+    link: 'https://www.coursera.org/account/accomplishments/certificate/example-react',
+    description: 'Professional certification in React development covering modern React patterns and best practices.',
+    longDescription: 'Comprehensive certification covering React fundamentals, hooks, state management, component lifecycle, and modern React development patterns.',
+    techStack: ['React', 'JavaScript', 'JSX', 'Hooks', 'Context API', 'Redux']
+  },
+  {
+    id: 'cert-3',
+    title: 'Full Stack Web Development',
+    issuer: 'freeCodeCamp',
+    date: 'October 2023',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    skills: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'MongoDB'],
+    link: 'https://www.freecodecamp.org/certification/example-fullstack',
+    description: 'Complete full-stack development certification covering frontend and backend technologies.',
+    longDescription: 'Comprehensive certification covering HTML, CSS, JavaScript, Node.js, Express, MongoDB, and full-stack development best practices.',
+    techStack: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Express', 'MongoDB', 'React']
+  },
+  {
+    id: 'cert-4',
+    title: 'JavaScript Algorithms and Data Structures',
+    issuer: 'freeCodeCamp',
+    date: 'September 2023',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    skills: ['JavaScript', 'Algorithms', 'Data Structures', 'Problem Solving'],
+    link: 'https://www.freecodecamp.org/certification/example-js-algo',
+    description: 'Advanced JavaScript certification focusing on algorithms and data structures.',
+    longDescription: 'Comprehensive certification covering JavaScript algorithms, data structures, problem-solving techniques, and advanced programming concepts.',
+    techStack: ['JavaScript', 'Algorithms', 'Data Structures', 'ES6+', 'Functional Programming']
+  },
+  {
+    id: 'cert-5',
+    title: 'Python for Data Science, AI & Development',
+    issuer: 'Coursera (IBM)',
+    date: 'August 2023',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    skills: ['Python', 'Data Science', 'AI', 'Machine Learning', 'Pandas', 'NumPy'],
+    link: 'https://www.coursera.org/account/accomplishments/certificate/example-python-ds',
+    description: 'Comprehensive Python certification for data science and AI development.',
+    longDescription: 'Advanced certification covering Python programming, data science libraries, machine learning, and AI development using Python.',
+    techStack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib', 'Jupyter']
+  },
+  {
+    id: 'cert-6',
+    title: 'Git and GitHub Fundamentals',
+    issuer: 'Coursera (Google)',
+    date: 'July 2023',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    skills: ['Git', 'GitHub', 'Version Control', 'Collaboration'],
+    link: 'https://www.coursera.org/account/accomplishments/certificate/example-git',
+    description: 'Professional certification in Git and GitHub for version control and collaboration.',
+    longDescription: 'Comprehensive certification covering Git fundamentals, GitHub workflows, version control best practices, and collaborative development.',
+    techStack: ['Git', 'GitHub', 'Version Control', 'Branching', 'Merging', 'Pull Requests']
+  }
+];
+
+// Research Paper data
+export const mockResearchPapers = [
+  {
+    id: 'research-1',
+    title: 'Optimizing Database Performance with Advanced Indexing Strategies',
+    authors: 'Prachi Kotadia, Dr. Sarah Johnson',
+    journal: 'International Journal of Database Management',
+    date: 'March 2024',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    abstract: 'A comprehensive study on database optimization techniques and their impact on query performance.',
+    longDescription: 'This research paper presents novel approaches to database indexing that improve query performance by up to 300%. The study analyzes various indexing strategies including B-tree, hash, and bitmap indexes across different database systems.',
+    keywords: ['Database', 'Indexing', 'Performance', 'Optimization', 'Query Processing'],
+    link: 'https://example.com/research/database-optimization',
+    doi: '10.1000/example.2024.001',
+    citations: 45,
+    techStack: ['SQL', 'PostgreSQL', 'MySQL', 'Database Design', 'Performance Analysis']
+  },
+  {
+    id: 'research-2',
+    title: 'Machine Learning Approaches for Predictive Analytics in Healthcare',
+    authors: 'Prachi Kotadia, Dr. Michael Chen',
+    journal: 'Journal of Medical Informatics',
+    date: 'January 2024',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    abstract: 'Exploring machine learning models for predicting patient outcomes and treatment effectiveness.',
+    longDescription: 'This paper presents a comprehensive analysis of machine learning algorithms applied to healthcare data for predictive analytics. The research demonstrates improved accuracy in patient outcome prediction using ensemble methods.',
+    keywords: ['Machine Learning', 'Healthcare', 'Predictive Analytics', 'Patient Outcomes', 'Medical AI'],
+    link: 'https://example.com/research/healthcare-ml',
+    doi: '10.1000/example.2024.002',
+    citations: 78,
+    techStack: ['Python', 'Scikit-learn', 'TensorFlow', 'Pandas', 'Machine Learning']
+  },
+  {
+    id: 'research-3',
+    title: 'Blockchain Technology for Secure Data Sharing in IoT Networks',
+    authors: 'Prachi Kotadia, Dr. Alex Rodriguez',
+    journal: 'IEEE Transactions on Network Security',
+    date: 'November 2023',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    abstract: 'A novel approach to securing IoT data transmission using blockchain technology.',
+    longDescription: 'This research introduces a blockchain-based framework for secure data sharing in IoT networks. The proposed solution addresses security vulnerabilities in traditional IoT architectures while maintaining scalability.',
+    keywords: ['Blockchain', 'IoT', 'Security', 'Data Sharing', 'Cryptography'],
+    link: 'https://example.com/research/blockchain-iot',
+    doi: '10.1000/example.2023.003',
+    citations: 92,
+    techStack: ['Blockchain', 'Solidity', 'Ethereum', 'IoT', 'Cryptography', 'Smart Contracts']
+  },
+  {
+    id: 'research-4',
+    title: 'Natural Language Processing for Automated Code Documentation',
+    authors: 'Prachi Kotadia, Dr. Emily Watson',
+    journal: 'ACM Transactions on Software Engineering',
+    date: 'September 2023',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    abstract: 'Developing NLP models to automatically generate comprehensive code documentation.',
+    longDescription: 'This paper presents a novel approach to automated code documentation using advanced NLP techniques. The system analyzes code structure and generates human-readable documentation with 95% accuracy.',
+    keywords: ['NLP', 'Code Documentation', 'Automation', 'Software Engineering', 'AI'],
+    link: 'https://example.com/research/nlp-documentation',
+    doi: '10.1000/example.2023.004',
+    citations: 67,
+    techStack: ['Python', 'NLTK', 'spaCy', 'Transformers', 'NLP', 'Code Analysis']
+  },
+  {
+    id: 'research-5',
+    title: 'Edge Computing Optimization for Real-Time Applications',
+    authors: 'Prachi Kotadia, Dr. David Kim',
+    journal: 'Computer Networks and Communications',
+    date: 'July 2023',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+    abstract: 'Optimizing edge computing architectures for low-latency real-time applications.',
+    longDescription: 'This research focuses on optimizing edge computing architectures to reduce latency in real-time applications. The study presents novel algorithms for task scheduling and resource allocation in edge environments.',
+    keywords: ['Edge Computing', 'Real-Time', 'Optimization', 'Latency', 'Distributed Systems'],
+    link: 'https://example.com/research/edge-computing',
+    doi: '10.1000/example.2023.005',
+    citations: 54,
+    techStack: ['Edge Computing', 'Docker', 'Kubernetes', 'Microservices', 'Real-Time Systems']
+  }
+];
