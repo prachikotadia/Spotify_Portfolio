@@ -99,39 +99,35 @@ const Home = () => {
           className="mb-8"
         >
           <h2 className="text-xl font-bold text-white mb-4">Recently played</h2>
-          <div className="flex gap-4 overflow-x-auto pb-2">
-            {[
-              { 
-                title: "About Me", 
-                artist: "Prachi Kotadia", 
-                image: "/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png",
-                type: "song"
-              }
-            ].map((item, index) => (
-            <motion.div
-                key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 * index }}
-                className="flex-shrink-0 w-48 bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-colors cursor-pointer group"
-                onClick={() => navigate('/lyrics')}
-              >
-                <div className="relative mb-3">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-48 object-cover rounded-lg shadow-lg group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                      <Play className="w-6 h-6 text-white ml-1" />
-                    </div>
-                  </div>
-                </div>
-                <h3 className="font-semibold text-white text-sm mb-1 truncate">{item.title}</h3>
-                <p className="text-gray-400 text-xs truncate">{item.artist}</p>
-              </motion.div>
-            ))}
+          <div className="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-colors cursor-pointer group"
+               onClick={() => navigate('/lyrics')}>
+            <div className="flex items-center gap-4">
+              {/* Album Art */}
+              <div className="w-16 h-16 flex-shrink-0">
+                <img
+                  src="/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png"
+                  alt="About Me"
+                  className="w-full h-full object-cover rounded"
+                />
+              </div>
+              
+              {/* Song Info */}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-white font-semibold text-lg mb-1">About Me</h3>
+                <p className="text-gray-400 text-sm">Prachi Kotadia</p>
+              </div>
+              
+              {/* More Options */}
+              <div className="flex-shrink-0">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
+                >
+                  <MoreHorizontal className="w-5 h-5" />
+                </Button>
+              </div>
+            </div>
           </div>
         </motion.div>
 
