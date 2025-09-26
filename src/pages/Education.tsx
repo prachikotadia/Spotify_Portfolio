@@ -211,7 +211,7 @@ const Education = () => {
               { 
                 title: "Research Focus", 
                 subtitle: "Cutting-edge technology",
-                image: "/src/assets/image.png",
+                image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=400&fit=crop&crop=center",
                 type: "Research"
               },
               { 
