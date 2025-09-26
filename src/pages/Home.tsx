@@ -100,7 +100,7 @@ const Home = () => {
           <div className="flex justify-center">
             <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/src/assets/Add_a_subheading__1_-removebg-preview.jpg"
+                  src="/src/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png"
                   alt="Prachi Kotadia - Full Stack Developer"
                   className="w-full h-auto object-cover"
                 />
