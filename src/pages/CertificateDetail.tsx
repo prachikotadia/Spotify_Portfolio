@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ChevronDown, Play, Pause, Heart, Share2, ExternalLink, Award, Calendar, Download, Shuffle, SkipBack, SkipForward, Repeat, List, Tv } from 'lucide-react';
+import { ChevronDown, Play, Pause, Heart, Share2, ExternalLink, Award, Calendar, Shuffle, SkipBack, SkipForward, Repeat, List, Tv } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -199,13 +199,6 @@ const CertificateDetail = () => {
               View Credential
             </Button>
           )}
-          <Button
-            variant="outline"
-            className="border-white/30 text-white hover:bg-white/10 flex items-center gap-2"
-          >
-            <Download className="w-4 h-4" />
-            Download PDF
-          </Button>
         </div>
       </motion.div>
     </div>
