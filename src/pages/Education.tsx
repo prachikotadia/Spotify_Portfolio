@@ -49,7 +49,7 @@ const Education = () => {
               { 
                 title: "Master's in Computer Science", 
                 subtitle: "Illinois Institute of Technology",
-                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=400&fit=crop&crop=center",
+                image: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=400&fit=crop&crop=center",
                 duration: "2 years"
               },
               { 
@@ -106,7 +106,7 @@ const Education = () => {
             >
               <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=400&fit=crop&crop=center"
+                  src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=400&fit=crop&crop=center"
                   alt="Master's Degree"
                   className="w-full h-full object-cover"
                 />

@@ -20,7 +20,7 @@ const EducationDetail = () => {
       university: 'Illinois Institute of Technology',
       location: 'Chicago, IL, USA',
       duration: 'August 2023 - May 2025',
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=400&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=400&fit=crop&crop=center',
       description: 'Advanced graduate program focusing on cutting-edge computer science concepts and practical applications.',
       longDescription: 'This comprehensive Master\'s program provides deep knowledge in computer science fundamentals, advanced algorithms, software engineering principles, and modern development practices. The curriculum emphasizes hands-on learning through projects, research opportunities, and industry collaborations.',
       courses: [
