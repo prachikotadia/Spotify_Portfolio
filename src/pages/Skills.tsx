@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft } from 'lucide-react';
+import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft, Globe, Server, Database, Smartphone, Cpu, Wrench } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -23,8 +23,8 @@ const getLevelText = (level: number) => {
   return 'Beginner';
 };
 
-// Swipeable Card Component
-const SwipeableCard = ({ skill, category, index }: { skill: Skill; category: any; index: number }) => {
+// Circular Swipeable Card Component
+const CircularSwipeableCard = ({ skill, category, index, isBackend = false }: { skill: Skill; category: any; index: number; isBackend?: boolean }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useTransform(y, [-300, 300], [30, -30]);
@@ -42,6 +42,18 @@ const SwipeableCard = ({ skill, category, index }: { skill: Skill; category: any
     }
   };
 
+  const getCategoryIcon = (categoryName: string) => {
+    switch (categoryName) {
+      case 'Programming Languages': return <Code className="w-8 h-8 text-white" />;
+      case 'Web Development': return <Globe className="w-8 h-8 text-white" />;
+      case 'Databases & Cloud': return <Database className="w-8 h-8 text-white" />;
+      case 'Embedded & Systems': return <Cpu className="w-8 h-8 text-white" />;
+      case 'Mobile & AI/ML': return <Smartphone className="w-8 h-8 text-white" />;
+      case 'DevOps & Tools': return <Wrench className="w-8 h-8 text-white" />;
+      default: return <Code className="w-8 h-8 text-white" />;
+    }
+  };
+
   return (
     <motion.div
       drag
@@ -56,35 +68,35 @@ const SwipeableCard = ({ skill, category, index }: { skill: Skill; category: any
         scale,
         perspective: 1000,
       }}
-      className="cursor-grab active:cursor-grabbing"
+      className={`cursor-grab active:cursor-grabbing ${isBackend ? 'opacity-60' : ''}`}
     >
       <motion.div
         whileHover={{ 
-          scale: 1.05,
-          rotateY: 5,
-          rotateX: 5,
+          scale: 1.1,
+          rotateY: 15,
+          rotateX: 10,
           z: 50,
-          boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
+          boxShadow: "0 25px 50px rgba(0,0,0,0.4)"
         }}
         whileTap={{ scale: 0.95 }}
-        className="bg-[#181818] rounded-xl p-4 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+        className={`bg-[#181818] rounded-full p-6 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden ${isBackend ? 'w-32 h-32' : 'w-40 h-40'}`}
         style={{
           transformStyle: "preserve-3d",
         }}
       >
         {/* 3D Background Effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
-        <div className="flex flex-col items-center text-center relative z-10">
+        <div className="flex flex-col items-center justify-center text-center relative z-10 h-full">
           <motion.div 
-            className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
-            whileHover={{ rotateY: 180 }}
+            className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-full flex items-center justify-center mb-3 group-hover:scale-125 transition-transform duration-300 shadow-lg`}
+            whileHover={{ rotateY: 360 }}
             style={{ transformStyle: "preserve-3d" }}
           >
-            <Code className="w-8 h-8 text-white" />
+            {getCategoryIcon(category.name)}
           </motion.div>
           
-          <h3 className="text-white font-bold text-lg mb-2 group-hover:text-green-400 transition-colors duration-300">
+          <h3 className="text-white font-bold text-sm mb-2 group-hover:text-green-400 transition-colors duration-300 text-center">
             {skill.name}
           </h3>
           
@@ -97,7 +109,7 @@ const SwipeableCard = ({ skill, category, index }: { skill: Skill; category: any
                 transition={{ delay: i * 0.1 }}
               >
                 <Star
-                  className={`w-4 h-4 ${
+                  className={`w-3 h-3 ${
                     i < skill.level ? 'text-yellow-400 fill-current' : 'text-gray-600'
                   }`}
                 />
@@ -105,17 +117,108 @@ const SwipeableCard = ({ skill, category, index }: { skill: Skill; category: any
             ))}
           </div>
           
-          <p className="text-xs text-gray-400 mb-3">{getLevelText(skill.level)}</p>
-          
-          {/* Progress Bar with 3D effect */}
-          <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-            <motion.div
-              className={`h-full bg-gradient-to-r ${category.color} rounded-full`}
-              initial={{ width: 0 }}
-              animate={{ width: `${(skill.level / 5) * 100}%` }}
-              transition={{ delay: 0.5 + index * 0.1, duration: 0.8 }}
-            />
+          <p className="text-xs text-gray-400">{getLevelText(skill.level)}</p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+// Main Category Card Component
+const MainCategoryCard = ({ category, skills, index }: { category: any; skills: Skill[]; index: number }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      className="mb-8"
+    >
+      {/* Main Category Card */}
+      <motion.div
+        whileHover={{ 
+          scale: 1.02,
+          rotateY: 5,
+          boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
+        }}
+        className="bg-[#181818] rounded-2xl p-6 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+        style={{ transformStyle: "preserve-3d" }}
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        {/* 3D Background Effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        <div className="flex items-center justify-between relative z-10">
+          <div className="flex items-center gap-4">
+            <motion.div 
+              className={`w-20 h-20 bg-gradient-to-br ${category.color} rounded-2xl flex items-center justify-center shadow-lg`}
+              whileHover={{ rotateY: 180, scale: 1.1 }}
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <span className="text-3xl">{category.emoji}</span>
+            </motion.div>
+            <div>
+              <h2 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors duration-300">
+                {category.name}
+              </h2>
+              <p className="text-gray-400">{skills.length} skills</p>
+            </div>
           </div>
+          <motion.div
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ChevronRight className="w-6 h-6 text-gray-400" />
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Subcategories */}
+      <motion.div
+        initial={false}
+        animate={{ 
+          height: isExpanded ? "auto" : 0,
+          opacity: isExpanded ? 1 : 0
+        }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden"
+      >
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-4">
+          {skills.slice(0, 8).map((skill, skillIndex) => (
+            <motion.div
+              key={skill.id}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: skillIndex * 0.05 }}
+              whileHover={{ 
+                scale: 1.05,
+                rotateY: 10,
+                boxShadow: "0 15px 30px rgba(0,0,0,0.3)"
+              }}
+              className="bg-[#181818] rounded-xl p-3 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className={`w-12 h-12 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <Code className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-white font-semibold text-sm mb-1 group-hover:text-green-400 transition-colors duration-300">
+                  {skill.name}
+                </h3>
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-3 h-3 ${
+                        i < skill.level ? 'text-yellow-400 fill-current' : 'text-gray-600'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </motion.div>
@@ -135,6 +238,11 @@ const Skills = () => {
   const getSkillsByCategory = (category: string) => {
     return skills.filter(skill => skill.category === category);
   };
+
+  // Frontend categories (main cards)
+  const frontendCategories = skillCategories.slice(0, 3);
+  // Backend categories (half-visible circular cards)
+  const backendCategories = skillCategories.slice(3);
 
   return (
     <div className="min-h-screen bg-[#121212] pb-24">
@@ -180,48 +288,95 @@ const Skills = () => {
           </div>
         </motion.div>
 
-        {/* Skills by Category - Spotify Style */}
-        {skillCategories.map((category, categoryIndex) => {
-          const categorySkills = getSkillsByCategory(category.name);
-          
-          return (
+        {/* Main Layout: Frontend Cards + Backend Circular Cards */}
+        <div className="relative">
+          {/* Frontend Skills - Main Cards */}
+          <div className="lg:w-2/3">
+            {frontendCategories.map((category, categoryIndex) => {
+              const categorySkills = getSkillsByCategory(category.name);
+              return (
+                <MainCategoryCard
+                  key={category.name}
+                  category={category}
+                  skills={categorySkills}
+                  index={categoryIndex}
+                />
+              );
+            })}
+          </div>
+
+          {/* Backend Skills - Half-visible Circular Cards */}
+          <div className="absolute top-0 right-0 lg:w-1/3 hidden lg:block">
             <motion.div
-              key={category.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + categoryIndex * 0.1 }}
-              className="mb-8"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+              className="sticky top-24"
             >
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                  <span className="text-2xl">{category.emoji}</span>
-                  {category.name}
-                </h2>
-                <Button variant="link" className="text-green-500 hover:text-green-400 text-sm">
-                  See all
-                </Button>
+              <h3 className="text-lg font-bold text-white mb-6 text-right">Backend & Systems</h3>
+              <div className="space-y-6">
+                {backendCategories.map((category, categoryIndex) => {
+                  const categorySkills = getSkillsByCategory(category.name);
+                  return (
+                    <div key={category.name} className="relative">
+                      {/* Half-visible circular cards */}
+                      <div className="flex justify-end gap-4 overflow-hidden">
+                        {categorySkills.slice(0, 3).map((skill, skillIndex) => (
+                          <motion.div
+                            key={skill.id}
+                            initial={{ opacity: 0, scale: 0.8, x: 100 }}
+                            animate={{ opacity: 0.6, scale: 1, x: 0 }}
+                            transition={{ delay: 0.7 + skillIndex * 0.1 }}
+                            className="transform translate-x-8"
+                          >
+                            <CircularSwipeableCard
+                              skill={skill}
+                              category={category}
+                              index={skillIndex}
+                              isBackend={true}
+                            />
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                {categorySkills.slice(0, 10).map((skill, skillIndex) => (
-                  <SwipeableCard
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Mobile Backend Skills */}
+        <div className="lg:hidden mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+          >
+            <h3 className="text-lg font-bold text-white mb-6">Backend & Systems</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {backendCategories.map((category, categoryIndex) => {
+                const categorySkills = getSkillsByCategory(category.name);
+                return categorySkills.slice(0, 6).map((skill, skillIndex) => (
+                  <CircularSwipeableCard
                     key={skill.id}
                     skill={skill}
                     category={category}
                     index={skillIndex}
+                    isBackend={false}
                   />
-                ))}
-              </div>
-            </motion.div>
-          );
-        })}
+                ));
+              })}
+            </div>
+          </motion.div>
+        </div>
 
         {/* Skill Highlights */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="mb-8"
+          className="mb-8 mt-12"
         >
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-white">Skill Highlights</h2>
@@ -322,60 +477,6 @@ const Skills = () => {
                 </div>
               </div>
             </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Currently Learning */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          className="mb-8"
-        >
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-white">Currently Learning</h2>
-            <Button variant="link" className="text-green-500 hover:text-green-400 text-sm">
-              See all
-            </Button>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              'Machine Learning',
-              'Blockchain Development',
-              'Rust Programming',
-              'GraphQL',
-              'Microservices',
-              'DevOps Automation'
-            ].map((skill, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.3 + index * 0.05 }}
-                whileHover={{ 
-                  scale: 1.05,
-                  rotateY: 5,
-                  rotateX: 5,
-                  z: 30,
-                  boxShadow: "0 15px 30px rgba(0,0,0,0.3)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-[#181818] rounded-xl p-4 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden"
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-500/10 to-slate-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="flex flex-col items-center text-center relative z-10">
-                  <motion.div 
-                    className="w-12 h-12 bg-gradient-to-br from-gray-500 to-slate-500 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg"
-                    whileHover={{ rotateY: 180 }}
-                    style={{ transformStyle: "preserve-3d" }}
-                  >
-                    <Code className="w-6 h-6 text-white" />
-                  </motion.div>
-                  <h3 className="text-white font-semibold text-sm group-hover:text-gray-300 transition-colors duration-300">{skill}</h3>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
       </div>
