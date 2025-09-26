@@ -71,7 +71,7 @@ const Lyrics = () => {
           }
           return newTime;
         });
-      }, 100); // Update every 100ms for smoother transitions
+      }, 1000); // Update every 100ms for smoother transitions
     } else {
       stopSpeech();
       if (intervalRef.current) {
@@ -214,51 +214,54 @@ const Lyrics = () => {
           className="space-y-6 max-h-[60vh] overflow-y-auto scrollbar-hide"
         >
           {[
-            { text: "I'm a passionate Software Engineer", progress: 0 },
-            { text: "with a Master's in Computer Science", progress: 6.25 },
-            { text: "from Illinois Institute of Technology", progress: 12.5 },
-            { text: "Currently working as a Software Engineer", progress: 18.75 },
-            { text: "at GroupedIn in New Jersey", progress: 25 },
-            { text: "My journey in technology spans", progress: 31.25 },
-            { text: "Across multiple domains including", progress: 37.5 },
-            { text: "web development, mobile applications", progress: 43.75 },
-            { text: "AI/ML, and embedded systems", progress: 50 },
-            { text: "With expertise in React, Flutter", progress: 56.25 },
-            { text: "Python, C++, and cloud technologies", progress: 62.5 },
-            { text: "I've built scalable applications", progress: 68.75 },
-            { text: "Serving thousands of users", progress: 75 },
-            { text: "I'm particularly passionate about", progress: 81.25 },
-            { text: "AI-driven solutions", progress: 87.5 },
-            { text: "Having integrated NLP and machine learning", progress: 93.75 },
-            { text: "models to enhance user experiences", progress: 100 }
-          ].map((line, index) => {
-            const isRead = readProgress >= line.progress;
-            const isCurrent = readProgress >= line.progress && readProgress < (line.progress + 6.25);
+            { 
+              text: "I'm a passionate Software Engineer with a Master's in Computer Science from Illinois Institute of Technology. Currently working as a Software Engineer at GroupedIn in New Jersey. My journey in technology spans across multiple domains including web development, mobile applications, AI/ML, and embedded systems.", 
+              progress: 0 
+            },
+            { 
+              text: "With expertise in React, Flutter, Python, C++, and cloud technologies like AWS, I've built scalable applications serving thousands of users. I'm particularly passionate about AI-driven solutions, having integrated NLP and machine learning models to enhance user experiences and boost engagement by 25%.", 
+              progress: 25 
+            },
+            { 
+              text: "My work involves full-stack development, from designing e-commerce systems handling 500+ daily transactions to building high-performance Linux kernel modules that reduce latency by 15%. I'm also experienced in IoT integration, real-time data processing, and automated CI/CD pipelines.", 
+              progress: 50 
+            },
+            { 
+              text: "Beyond technical skills, I'm a continuous learner who stays updated with the latest technologies. I believe in the power of open-source collaboration and have contributed to various projects. When I'm not coding, you'll find me exploring new technologies, contributing to research, or curating the perfect coding playlist on Spotify.", 
+              progress: 75 
+            },
+            { 
+              text: "I'm always excited to work on challenging problems, learn new technologies, and contribute to innovative projects that make a real impact. Let's connect and build something amazing together!", 
+              progress: 100 
+            }
+          ].map((paragraph, index) => {
+            const isRead = readProgress >= paragraph.progress;
+            const isCurrent = readProgress >= paragraph.progress && readProgress < (paragraph.progress + 25);
             const opacity = isRead ? 1 : 0.4;
-            const scale = isCurrent ? 1.02 : 1;
+            const scale = isCurrent ? 1.01 : 1;
             
             return (
               <motion.div 
                 key={index}
-                className={`text-2xl font-bold leading-relaxed transition-all duration-300 ease-in-out ${
+                className={`text-lg leading-relaxed transition-all duration-500 ease-in-out ${
                   isRead ? 'text-white' : 'text-gray-400'
                 }`}
                 style={{
                   opacity,
                   transform: `scale(${scale})`,
-                  textShadow: isRead ? '0 0 10px rgba(255, 255, 255, 0.3)' : 'none'
+                  textShadow: isRead ? '0 0 8px rgba(255, 255, 255, 0.2)' : 'none'
                 }}
                 animate={{
                   opacity: isRead ? 1 : 0.4,
-                  scale: isCurrent ? 1.02 : 1,
-                  y: isCurrent ? -2 : 0
+                  scale: isCurrent ? 1.01 : 1,
+                  y: isCurrent ? -1 : 0
                 }}
                 transition={{
-                  duration: 0.3,
+                  duration: 0.5,
                   ease: "easeInOut"
                 }}
               >
-                <div>{line.text}</div>
+                <p className="mb-4">{paragraph.text}</p>
               </motion.div>
             );
           })}
