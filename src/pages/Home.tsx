@@ -91,24 +91,21 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Search Bar */}
+        {/* Search Icon */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="mb-8"
+          className="mb-8 flex justify-center"
         >
-          <div className="relative">
-            <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search here..."
-              className="w-full pl-12 pr-12 py-4 bg-[#181818] border-none rounded-xl text-white placeholder-gray-400 focus:bg-[#282828] focus:ring-2 focus:ring-green-500/20 transition-all duration-300"
-            />
-            <Button variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#282828] hover:bg-[#3a3a3a] rounded-lg">
-              <MoreHorizontal className="w-4 h-4 text-white" />
-            </Button>
-          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate('/search')}
+            className="w-12 h-12 bg-gray-800/50 border border-gray-700 rounded-full hover:bg-gray-700/50 text-white hover:text-white transition-all duration-200"
+          >
+            <SearchIcon className="w-6 h-6" />
+          </Button>
         </motion.div>
 
         {/* Browse All Section - First Priority */}
