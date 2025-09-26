@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye, Code, Github, Linkedin, Mail, Globe } from 'lucide-react';
+import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye, Code, Github, Linkedin, Mail, Globe, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -125,31 +125,23 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Recent Activity */}
+        {/* Download Resume */}
         <div className="mb-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Recent Activity</h3>
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
-              <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
-                <ListMusic className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1">
-                <div className="text-white font-medium">Added new project</div>
-                <div className="text-gray-400 text-sm">AI Chat Application</div>
-              </div>
-              <div className="text-gray-400 text-sm">2h ago</div>
-            </div>
-            
-            <div className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
-              <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-                <Eye className="w-5 h-5 text-white" />
-              </div>
-              <div className="flex-1">
-                <div className="text-white font-medium">Viewed certificate</div>
-                <div className="text-gray-400 text-sm">AWS Certified Developer</div>
-              </div>
-              <div className="text-gray-400 text-sm">1d ago</div>
-            </div>
+          <h3 className="text-lg font-semibold text-white mb-4">Resume</h3>
+          <div className="flex justify-center">
+            <Button 
+              className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full"
+              onClick={() => {
+                // You can add your resume download logic here
+                const link = document.createElement('a');
+                link.href = '/resume.pdf'; // Replace with your actual resume path
+                link.download = 'Prachi_Kotadia_Resume.pdf';
+                link.click();
+              }}
+            >
+              <Download className="w-5 h-5 mr-2" />
+              Download Resume
+            </Button>
           </div>
         </div>
 
