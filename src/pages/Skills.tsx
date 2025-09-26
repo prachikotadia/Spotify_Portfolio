@@ -293,7 +293,7 @@ const Skills = () => {
   // }, [isTransitioning]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-900/20 to-black">
+    <div className="min-h-screen bg-gradient-to-b from-green-900/20 to-black pb-20 sm:pb-32">
       <style>{`
         .scrollbar-hide {
           -ms-overflow-style: none;
@@ -314,7 +314,7 @@ const Skills = () => {
       </div>
 
       {/* Main Content - Horizontal Skill Carousel */}
-      <div className="relative h-[calc(100vh-250px)] sm:h-[calc(100vh-300px)] flex flex-col items-center justify-center overflow-hidden px-2 sm:px-8">
+      <div className="relative h-[calc(100vh-300px)] sm:h-[calc(100vh-350px)] flex flex-col items-center justify-center overflow-hidden px-2 sm:px-8">
         {/* Background gradient effects */}
         <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-transparent to-green-500/5 pointer-events-none" />
         
@@ -414,11 +414,11 @@ const Skills = () => {
 
       {/* Category Details */}
       {activeCategory && (
-        <div className="absolute bottom-32 sm:bottom-40 left-1/2 transform -translate-x-1/2 text-center z-10 w-full max-w-4xl px-2 sm:px-4">
+        <div className="absolute bottom-16 sm:bottom-20 left-1/2 transform -translate-x-1/2 text-center z-10 w-full max-w-4xl px-2 sm:px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-white bg-black/40 backdrop-blur-md rounded-2xl p-3 sm:p-6 border border-green-500/20"
+            className="text-white bg-black/40 backdrop-blur-md rounded-2xl p-3 sm:p-6 border border-green-500/20 mb-4"
           >
             <motion.h2 
               className="text-xl sm:text-3xl font-bold mb-4 text-white"
@@ -429,7 +429,7 @@ const Skills = () => {
               {activeCategorySkills.map((skill, index) => (
                 <motion.span 
                   key={skill}
-                  className="bg-gradient-to-r from-green-500/20 to-green-600/20 text-green-300 px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium border border-green-500/30"
+                  className="bg-gradient-to-r from-green-500/20 to-green-600/20 text-green-300 px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium border border-green-500/30 mb-2"
                   whileHover={{ scale: 1.05 }}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
