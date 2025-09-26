@@ -11,10 +11,52 @@ const Lyrics = () => {
   const [totalTime] = useState(450); // 7:30 in seconds
   const lyricsRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
+
+  // Text-to-speech functionality
+  const startSpeech = () => {
+    if ('speechSynthesis' in window) {
+      const fullText = `I'm a passionate Software Engineer with a Master's in Computer Science from Illinois Institute of Technology. Currently working as a Software Engineer at GroupedIn in New Jersey. My journey in technology spans across multiple domains including web development, mobile applications, AI/ML, and embedded systems. With expertise in React, Flutter, Python, C++, and cloud technologies like AWS, I've built scalable applications serving thousands of users. I'm particularly passionate about AI-driven solutions, having integrated NLP and machine learning models to enhance user experiences and boost engagement by 25%. My work involves full-stack development, from designing e-commerce systems handling 500+ daily transactions to building high-performance Linux kernel modules that reduce latency by 15%. I'm also experienced in IoT integration, real-time data processing, and automated CI/CD pipelines. Beyond technical skills, I'm a continuous learner who stays updated with the latest technologies. I believe in the power of open-source collaboration and have contributed to various projects. When I'm not coding, you'll find me exploring new technologies, contributing to research, or curating the perfect coding playlist on Spotify. I'm always excited to work on challenging problems, learn new technologies, and contribute to innovative projects that make a real impact. Let's connect and build something amazing together!`;
+      
+      const utterance = new SpeechSynthesisUtterance(fullText);
+      utterance.rate = 0.8; // Slightly slower for better comprehension
+      utterance.pitch = 1.0;
+      utterance.volume = 0.8;
+      
+      // Try to use a female voice for better experience
+      const voices = speechSynthesis.getVoices();
+      const femaleVoice = voices.find(voice => 
+        voice.name.includes('Female') || 
+        voice.name.includes('Samantha') || 
+        voice.name.includes('Karen') ||
+        voice.name.includes('Susan')
+      );
+      
+      if (femaleVoice) {
+        utterance.voice = femaleVoice;
+      }
+      
+      speechRef.current = utterance;
+      
+      utterance.onend = () => {
+        setIsPlaying(false);
+        setCurrentTime(totalTime);
+      };
+      
+      speechSynthesis.speak(utterance);
+    }
+  };
+
+  const stopSpeech = () => {
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+    }
+  };
 
   // Auto-scroll functionality
   useEffect(() => {
     if (isPlaying) {
+      startSpeech();
       intervalRef.current = setInterval(() => {
         setCurrentTime(prev => {
           const newTime = prev + 1;
@@ -26,6 +68,7 @@ const Lyrics = () => {
         });
       }, 1000);
     } else {
+      stopSpeech();
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
@@ -52,6 +95,13 @@ const Lyrics = () => {
     }
   }, [currentTime, totalTime, isPlaying]);
 
+  // Cleanup speech on unmount
+  useEffect(() => {
+    return () => {
+      stopSpeech();
+    };
+  }, []);
+
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
@@ -59,15 +109,36 @@ const Lyrics = () => {
   };
 
   const handlePlayPause = () => {
-    setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      stopSpeech();
+      setIsPlaying(false);
+    } else {
+      setIsPlaying(true);
+    }
   };
 
   const handleSkipBack = () => {
-    setCurrentTime(Math.max(0, currentTime - 30));
+    stopSpeech();
+    const newTime = Math.max(0, currentTime - 30);
+    setCurrentTime(newTime);
+    if (isPlaying) {
+      // Restart speech from new position
+      setTimeout(() => {
+        startSpeech();
+      }, 100);
+    }
   };
 
   const handleSkipForward = () => {
-    setCurrentTime(Math.min(totalTime, currentTime + 30));
+    stopSpeech();
+    const newTime = Math.min(totalTime, currentTime + 30);
+    setCurrentTime(newTime);
+    if (isPlaying) {
+      // Restart speech from new position
+      setTimeout(() => {
+        startSpeech();
+      }, 100);
+    }
   };
 
   return (
