@@ -177,73 +177,89 @@ const Home = () => {
                 name: 'AI/ML Projects', 
                 gradient: 'from-purple-500 to-pink-500',
                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/ai-ml'
+                link: '/library',
+                count: '5 Projects',
+                description: 'Machine Learning & AI'
               },
               { 
                 name: 'Full Stack Apps', 
                 gradient: 'from-blue-500 to-cyan-500',
                 image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/fullstack'
+                link: '/library',
+                count: '8 Projects',
+                description: 'React, Node.js, APIs'
               },
               { 
                 name: 'Mobile Apps', 
                 gradient: 'from-green-500 to-emerald-500',
                 image: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/mobile'
+                link: '/library',
+                count: '3 Apps',
+                description: 'Flutter, React Native'
               },
               { 
                 name: 'System Programming', 
                 gradient: 'from-orange-500 to-red-500',
                 image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/systems'
+                link: '/library',
+                count: '4 Projects',
+                description: 'C++, Linux, Embedded'
               },
               { 
                 name: 'Data Engineering', 
                 gradient: 'from-indigo-500 to-purple-500',
                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/data'
+                link: '/library',
+                count: '6 Projects',
+                description: 'Python, SQL, Analytics'
               },
               { 
                 name: 'Certificates', 
                 gradient: 'from-yellow-500 to-orange-500',
                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/certificates'
+                link: '/library',
+                count: '9 Certificates',
+                description: 'Google, Meta, AWS'
               },
               { 
                 name: 'Work Experience', 
                 gradient: 'from-teal-500 to-cyan-500',
                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/experience'
+                link: '/experience',
+                count: '5 Positions',
+                description: 'Software Engineer'
               },
               { 
                 name: 'Skills', 
                 gradient: 'from-violet-500 to-purple-500',
                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/skills'
+                link: '/skills',
+                count: '25+ Skills',
+                description: 'Programming & Tools'
               },
               { 
                 name: 'Education', 
                 gradient: 'from-emerald-500 to-green-500',
                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/education'
+                link: '/education',
+                count: '2 Degrees',
+                description: 'Masters & Bachelors'
               },
               { 
-                name: 'Blog', 
+                name: 'Research Papers', 
                 gradient: 'from-rose-500 to-pink-500',
                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/blog'
-              },
-              { 
-                name: 'Testimonials', 
-                gradient: 'from-amber-500 to-yellow-500',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/testimonials'
+                link: '/library',
+                count: '3 Papers',
+                description: 'Academic Research'
               },
               { 
                 name: 'About Me', 
                 gradient: 'from-pink-500 to-rose-500',
-                image: '/assets/2025-09-25_21-10-04.jpg',
-                link: '/lyrics'
+                image: '/assets/image copy 7.png',
+                link: '/lyrics',
+                count: 'Professional Bio',
+                description: 'Get to know me'
               }
             ].map((category, index) => (
             <motion.div
@@ -255,7 +271,11 @@ const Home = () => {
                 onClick={() => category.link && navigate(category.link)}
             >
                 <div className="relative z-10 h-full flex flex-col justify-between">
-                  <h3 className="text-white font-bold text-sm">{category.name}</h3>
+                  <div>
+                    <h3 className="text-white font-bold text-sm mb-1">{category.name}</h3>
+                    <p className="text-white/80 text-xs mb-1">{category.count}</p>
+                    <p className="text-white/60 text-xs">{category.description}</p>
+                  </div>
                 </div>
                 {/* Background Image */}
                 <div className="absolute inset-0 opacity-20">
