@@ -287,7 +287,7 @@ const Home = () => {
               See all
             </Button>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
             {[
               {
                 name: 'Data Structures & Algorithms',
@@ -367,10 +367,10 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="text-center">
-                  <h3 className="text-white font-semibold text-sm mb-1 truncate group-hover:text-green-400 transition-colors">
+                  <h3 className="text-white font-semibold text-xs sm:text-sm mb-1 truncate group-hover:text-green-400 transition-colors">
                     {course.name}
             </h3>
-                  <p className="text-gray-400 text-xs line-clamp-2">
+                  <p className="text-gray-400 text-xs line-clamp-2 hidden sm:block">
                     {course.description}
                   </p>
                 </div>
