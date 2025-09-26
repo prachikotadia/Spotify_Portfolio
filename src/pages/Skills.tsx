@@ -27,6 +27,7 @@ const getLevelText = (level: number) => {
 const getCategoryImage = (categoryName: string) => {
   const categoryImages = {
     'Programming Languages': [
+      '/src/assets/image copy 4.png',
       'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=600&fit=crop&crop=center',
       'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=600&fit=crop&crop=center',
       'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop&crop=center',
