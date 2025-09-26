@@ -496,7 +496,7 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Projects Section - Spotify Style */}
+        {/* Projects Section - Spotify "Made For You" Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -504,15 +504,10 @@ const Home = () => {
           className="mb-8"
         >
           <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <Code className="w-4 h-4 text-black" />
-              </div>
-              <h2 className="text-2xl font-bold text-white">Made For You</h2>
-            </div>
+            <h2 className="text-2xl font-bold text-white">Made for you</h2>
             <Button 
               variant="ghost" 
-              className="text-green-500 hover:text-green-400 text-sm font-bold hover:bg-white/10 px-3 py-2 rounded-full"
+              className="text-gray-400 hover:text-white text-sm font-semibold hover:bg-white/10 px-3 py-2 rounded-full"
               onClick={() => navigate('/library?tab=projects')}
             >
               Show all
@@ -524,37 +519,37 @@ const Home = () => {
                 title: "AI Chat Assistant",
                 subtitle: "Full Stack Application",
                 image: "/assets/ai-chat-project.jpg",
-                gradient: "from-purple-500 to-pink-500"
+                type: "Playlist"
               },
               {
                 title: "E-commerce Platform",
                 subtitle: "React & Node.js",
                 image: "/assets/ecommerce-project.jpg",
-                gradient: "from-blue-500 to-cyan-500"
+                type: "Playlist"
               },
               {
                 title: "Fitness Tracker",
                 subtitle: "Mobile App",
                 image: "/assets/fitness-tracker-project.jpg",
-                gradient: "from-green-500 to-emerald-500"
+                type: "Playlist"
               },
               {
                 title: "Social Analytics",
                 subtitle: "Data Visualization",
                 image: "/assets/social-analytics-project.jpg",
-                gradient: "from-orange-500 to-red-500"
+                type: "Playlist"
               },
               {
                 title: "Task Management",
                 subtitle: "Productivity App",
                 image: "/assets/task-management-project.jpg",
-                gradient: "from-indigo-500 to-purple-500"
+                type: "Playlist"
               },
               {
                 title: "Weather Dashboard",
                 subtitle: "Real-time Data",
                 image: "/assets/weather-dashboard-project.jpg",
-                gradient: "from-yellow-500 to-orange-500"
+                type: "Playlist"
               }
             ].map((project, index) => (
               <motion.div
@@ -571,8 +566,8 @@ const Home = () => {
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
+                />
+              </div>
                   <Button
                     size="icon"
                     className="absolute bottom-2 right-2 w-10 h-10 bg-green-500 hover:bg-green-600 text-black rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
@@ -593,7 +588,7 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Certificates Section - Spotify Style */}
+        {/* Certificates Section - Spotify "Recently Played" Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -601,57 +596,58 @@ const Home = () => {
           className="mb-8"
         >
           <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <Award className="w-4 h-4 text-black" />
-              </div>
-              <h2 className="text-2xl font-bold text-white">Recently Played</h2>
-            </div>
+            <h2 className="text-2xl font-bold text-white">Recently played</h2>
             <Button 
               variant="ghost" 
-              className="text-green-500 hover:text-green-400 text-sm font-bold hover:bg-white/10 px-3 py-2 rounded-full"
+              className="text-gray-400 hover:text-white text-sm font-semibold hover:bg-white/10 px-3 py-2 rounded-full"
               onClick={() => navigate('/library?tab=certificates')}
             >
               Show all
             </Button>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="flex gap-4 overflow-x-auto pb-2">
             {[
               {
                 title: "AWS Certified Developer",
                 subtitle: "Amazon Web Services",
                 image: "/assets/2025-09-25_21-10-04.jpg",
-                gradient: "from-orange-500 to-red-500"
+                type: "Album",
+                year: "2024"
               },
               {
                 title: "Google Cloud Professional",
                 subtitle: "Google Cloud Platform",
                 image: "/assets/ai-chat-project.jpg",
-                gradient: "from-blue-500 to-cyan-500"
+                type: "Album",
+                year: "2024"
               },
               {
                 title: "Microsoft Azure",
                 subtitle: "Cloud Computing",
                 image: "/assets/ecommerce-project.jpg",
-                gradient: "from-purple-500 to-pink-500"
+                type: "Album",
+                year: "2023"
               },
               {
                 title: "Docker Certified",
                 subtitle: "Containerization",
                 image: "/assets/fitness-tracker-project.jpg",
-                gradient: "from-green-500 to-emerald-500"
+                type: "Album",
+                year: "2024"
               },
               {
                 title: "Kubernetes Admin",
                 subtitle: "Container Orchestration",
                 image: "/assets/social-analytics-project.jpg",
-                gradient: "from-indigo-500 to-purple-500"
+                type: "Album",
+                year: "2023"
               },
               {
                 title: "React Developer",
                 subtitle: "Frontend Development",
                 image: "/assets/task-management-project.jpg",
-                gradient: "from-yellow-500 to-orange-500"
+                type: "Album",
+                year: "2024"
               }
             ].map((cert, index) => (
               <motion.div
@@ -659,31 +655,33 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
-                className="group cursor-pointer"
+                className="flex-shrink-0 w-48 bg-gradient-to-br rounded-2xl p-5 cursor-pointer hover:scale-105 transition-all duration-300 group relative overflow-hidden"
+                style={{ 
+                  background: `linear-gradient(135deg, ${index % 3 === 0 ? '#1db954' : index % 3 === 1 ? '#1ed760' : '#1aa34a'}, ${index % 3 === 0 ? '#1ed760' : index % 3 === 1 ? '#1db954' : '#1aa34a'})` 
+                }}
                 onClick={() => navigate('/library?tab=certificates')}
               >
-                <div className="relative mb-3">
-                  <div className="w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-green-500 to-green-700 shadow-lg group-hover:shadow-2xl transition-all duration-300">
-                    <img
-                      src={cert.image}
-                      alt={cert.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-                  <Button
-                    size="icon"
-                    className="absolute bottom-2 right-2 w-10 h-10 bg-green-500 hover:bg-green-600 text-black rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
-                  >
-                    <Play className="w-5 h-5" />
-                  </Button>
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold text-sm mb-1 truncate group-hover:text-green-400 transition-colors">
-                    {cert.title}
-                  </h3>
-                  <p className="text-gray-400 text-xs line-clamp-2">
-                    {cert.subtitle}
-                  </p>
+                {/* Background Blur Elements */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
+                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/5 rounded-full blur-lg"></div>
+                
+                <div className="relative z-10">
+                  <div className="relative mb-4">
+                    <div className="w-full aspect-square bg-white/20 rounded-xl flex items-center justify-center overflow-hidden shadow-2xl">
+                      <img
+                        src={cert.image}
+                        alt={cert.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    {/* Play Button Overlay */}
+                    <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Play className="w-4 h-4 text-white ml-0.5" />
+                    </div>
+                  </div>
+                  <h3 className="text-white font-bold text-base mb-2 line-clamp-2">{cert.title}</h3>
+                  <p className="text-white/90 text-sm mb-1">{cert.subtitle}</p>
+                  <p className="text-white/70 text-xs">{cert.year}</p>
                 </div>
               </motion.div>
             ))}
