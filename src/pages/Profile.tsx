@@ -72,8 +72,8 @@ const Profile = () => {
             <div className="text-sm text-white">Certificates</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-500 mb-1">10</div>
-            <div className="text-sm text-white">Skills</div>
+            <div className="text-2xl font-bold text-green-500 mb-1">34</div>
+            <div className="text-sm text-white">Repositories</div>
           </div>
         </div>
 
