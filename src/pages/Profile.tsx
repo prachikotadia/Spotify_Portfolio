@@ -4,13 +4,21 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import SpotifyLogo from '@/components/SpotifyLogo';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-[#121212]">
       {/* Status Bar */}
       <div className="flex items-center px-4 py-2 text-white text-sm">
-        <ArrowLeft className="w-4 h-4" />
+        <button 
+          onClick={() => navigate('/')}
+          className="hover:bg-white/10 rounded-full p-1 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+        </button>
       </div>
 
       {/* Header */}
