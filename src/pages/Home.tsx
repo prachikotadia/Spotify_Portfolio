@@ -51,7 +51,8 @@ import {
   blogPosts, 
   testimonials, 
   awards,
-  skills 
+  skills,
+  mockCertificates 
 } from '@/data/mockData';
 import type { Project } from '@/data/mockData';
 
@@ -606,50 +607,7 @@ const Home = () => {
             </Button>
           </div>
           <div className="flex gap-4 overflow-x-auto pb-2">
-            {[
-              {
-                title: "AWS Certified Developer",
-                subtitle: "Amazon Web Services",
-                image: "/assets/2025-09-25_21-10-04.jpg",
-                type: "Album",
-                year: "2024"
-              },
-              {
-                title: "Google Cloud Professional",
-                subtitle: "Google Cloud Platform",
-                image: "/assets/ai-chat-project.jpg",
-                type: "Album",
-                year: "2024"
-              },
-              {
-                title: "Microsoft Azure",
-                subtitle: "Cloud Computing",
-                image: "/assets/ecommerce-project.jpg",
-                type: "Album",
-                year: "2023"
-              },
-              {
-                title: "Docker Certified",
-                subtitle: "Containerization",
-                image: "/assets/fitness-tracker-project.jpg",
-                type: "Album",
-                year: "2024"
-              },
-              {
-                title: "Kubernetes Admin",
-                subtitle: "Container Orchestration",
-                image: "/assets/social-analytics-project.jpg",
-                type: "Album",
-                year: "2023"
-              },
-              {
-                title: "React Developer",
-                subtitle: "Frontend Development",
-                image: "/assets/task-management-project.jpg",
-                type: "Album",
-                year: "2024"
-              }
-            ].map((cert, index) => (
+            {mockCertificates.map((cert, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -680,8 +638,8 @@ const Home = () => {
                     </div>
                   </div>
                   <h3 className="text-white font-bold text-base mb-2 line-clamp-2">{cert.title}</h3>
-                  <p className="text-white/90 text-sm mb-1">{cert.subtitle}</p>
-                  <p className="text-white/70 text-xs">{cert.year}</p>
+                  <p className="text-white/90 text-sm mb-1">{cert.issuer}</p>
+                  <p className="text-white/70 text-xs">{cert.date}</p>
                 </div>
               </motion.div>
             ))}
