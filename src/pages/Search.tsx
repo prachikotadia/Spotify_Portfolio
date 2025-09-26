@@ -4,6 +4,7 @@ import { Search as SearchIcon, Clock } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { mockCertificates } from '@/data/mockData';
+import SpotifyLogo from '@/components/SpotifyLogo';
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,13 +22,7 @@ const Search = () => {
       <div className="sticky top-0 z-10 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full overflow-hidden">
-              <img
-                src="/src/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png"
-                alt="Prachi Kotadia"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <SpotifyLogo size="md" />
             <div>
               <h1 className="text-xl font-bold text-white">Search</h1>
               <p className="text-sm text-gray-400">Find your next project</p>
