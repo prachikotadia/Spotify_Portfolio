@@ -99,14 +99,17 @@ const Home = () => {
           className="mb-8"
         >
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-white">Browse all</h2>
+            <div className="flex items-center gap-3">
+              <SpotifyLogo size="sm" />
+              <h2 className="text-xl font-bold text-white">Browse all</h2>
+            </div>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => navigate('/search')}
               className="w-10 h-10 bg-gray-800/50 border border-gray-700 rounded-full hover:bg-gray-700/50 text-white hover:text-white transition-all duration-200"
             >
-              <SearchIcon className="w-5 h-5" />
+              <SearchIcon />
             </Button>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">

@@ -4,6 +4,7 @@ import { GraduationCap, Calendar, MapPin, Award, BookOpen, ExternalLink, Buildin
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import SpotifyLogo from '@/components/SpotifyLogo';
 
 const Education = () => {
   const navigate = useNavigate();
@@ -24,7 +25,8 @@ const Education = () => {
           </Button>
           
           {/* Center: Title */}
-          <div className="text-center">
+          <div className="text-center flex items-center justify-center gap-2">
+            <SpotifyLogo size="sm" />
             <h1 className="text-lg font-bold text-white">Education</h1>
           </div>
           

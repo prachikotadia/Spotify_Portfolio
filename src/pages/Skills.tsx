@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft, Globe, Server, Database, Smartphone, Cpu, Wrench } from 'lucide-react';
+import SpotifyLogo from '@/components/SpotifyLogo';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -306,6 +307,7 @@ const Skills = () => {
       <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-3 max-w-7xl mx-auto">
           <div className="flex items-center gap-2 sm:gap-3">
+            <SpotifyLogo size="sm" />
             <h1 className="text-lg sm:text-xl font-bold text-green-500">Skills</h1>
           </div>
         </div>

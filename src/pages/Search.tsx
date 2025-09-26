@@ -31,7 +31,7 @@ const Search = () => {
       <div className="sticky top-0 z-10 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
-            <SpotifyLogo size="md" />
+            <SpotifyLogo size="sm" />
             <div>
               <h1 className="text-xl font-bold text-white">Search</h1>
               <p className="text-sm text-gray-400">Find your next project</p>

@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { workExperience } from '@/data/mockData';
 import type { WorkExperience } from '@/data/mockData';
 import { useNavigate } from 'react-router-dom';
+import SpotifyLogo from '@/components/SpotifyLogo';
 
 const Experience = () => {
   const navigate = useNavigate();
@@ -18,7 +19,10 @@ const Experience = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center"
         >
-          <h1 className="text-4xl font-bold mb-4">Work Experience</h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <SpotifyLogo size="sm" />
+            <h1 className="text-4xl font-bold">Work Experience</h1>
+          </div>
           <p className="text-xl text-muted-foreground">
             My professional journey and career milestones
           </p>

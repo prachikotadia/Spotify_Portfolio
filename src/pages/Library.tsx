@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import ProjectCard from '@/components/ProjectCard';
+import SpotifyLogo from '@/components/SpotifyLogo';
 import { mockProjects, mockCertificates, mockResearchPapers } from '@/data/mockData';
 import type { Project } from '@/data/mockData';
 
@@ -68,13 +69,14 @@ const Library = () => {
       {/* Header */}
       <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-4 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-3xl font-bold text-white"
+            className="flex items-center gap-3"
           >
-            Your Library
-          </motion.h1>
+            <SpotifyLogo size="sm" />
+            <h1 className="text-3xl font-bold text-white">Your Library</h1>
+          </motion.div>
           <div className="flex gap-2">
             <Button
               variant="ghost"
