@@ -1,11 +1,111 @@
-import { motion } from 'framer-motion';
-import { Code, Star, TrendingUp, Zap, ChevronRight } from 'lucide-react';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { skills } from '@/data/mockData';
 import type { Skill } from '@/data/mockData';
+import { useState, useRef } from 'react';
+
+// Swipeable Card Component
+const SwipeableCard = ({ skill, category, index }: { skill: Skill; category: any; index: number }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-300, 300], [30, -30]);
+  const rotateY = useTransform(x, [-300, 300], [-30, 30]);
+  const scale = useSpring(useTransform(x, [-300, 300], [0.8, 1.2]));
+
+  const handleDragEnd = (event: any, info: any) => {
+    if (Math.abs(info.offset.x) > 100) {
+      // Card was swiped significantly
+      x.set(info.offset.x > 0 ? 300 : -300);
+    } else {
+      // Return to center
+      x.set(0);
+      y.set(0);
+    }
+  };
+
+  return (
+    <motion.div
+      drag
+      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+      dragElastic={0.2}
+      onDragEnd={handleDragEnd}
+      style={{
+        x,
+        y,
+        rotateX,
+        rotateY,
+        scale,
+        perspective: 1000,
+      }}
+      className="cursor-grab active:cursor-grabbing"
+    >
+      <motion.div
+        whileHover={{ 
+          scale: 1.05,
+          rotateY: 5,
+          rotateX: 5,
+          z: 50,
+          boxShadow: "0 20px 40px rgba(0,0,0,0.3)"
+        }}
+        whileTap={{ scale: 0.95 }}
+        className="bg-[#181818] rounded-xl p-4 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+        style={{
+          transformStyle: "preserve-3d",
+        }}
+      >
+        {/* 3D Background Effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        <div className="flex flex-col items-center text-center relative z-10">
+          <motion.div 
+            className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}
+            whileHover={{ rotateY: 180 }}
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <Code className="w-8 h-8 text-white" />
+          </motion.div>
+          
+          <h3 className="text-white font-bold text-lg mb-2 group-hover:text-green-400 transition-colors duration-300">
+            {skill.name}
+          </h3>
+          
+          <div className="flex items-center gap-1 mb-2">
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <Star
+                  className={`w-4 h-4 ${
+                    i < skill.level ? 'text-yellow-400 fill-current' : 'text-gray-600'
+                  }`}
+                />
+              </motion.div>
+            ))}
+          </div>
+          
+          <p className="text-xs text-gray-400 mb-3">{getLevelText(skill.level)}</p>
+          
+          {/* Progress Bar with 3D effect */}
+          <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
+            <motion.div
+              className={`h-full bg-gradient-to-r ${category.color} rounded-full`}
+              initial={{ width: 0 }}
+              animate={{ width: `${(skill.level / 5) * 100}%` }}
+              transition={{ delay: 0.5 + index * 0.1, duration: 0.8 }}
+            />
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const Skills = () => {
   const skillCategories = [
@@ -101,33 +201,14 @@ const Skills = () => {
                 </Button>
               </div>
               
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                 {categorySkills.slice(0, 10).map((skill, skillIndex) => (
-                  <motion.div
+                  <SwipeableCard
                     key={skill.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 + categoryIndex * 0.1 + skillIndex * 0.05 }}
-                    className="bg-[#181818] rounded-lg p-4 hover:bg-[#282828] transition-colors duration-300 cursor-pointer group"
-                  >
-                    <div className="flex flex-col items-center text-center">
-                      <div className={`w-12 h-12 bg-gradient-to-br ${category.color} rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
-                        <Code className="w-6 h-6 text-white" />
-                      </div>
-                      <h3 className="text-white font-semibold text-sm mb-1 truncate w-full">{skill.name}</h3>
-                      <div className="flex items-center gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-3 h-3 ${
-                              i < skill.level ? 'text-yellow-400 fill-current' : 'text-gray-600'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <p className="text-xs text-gray-400 mt-1">{getLevelText(skill.level)}</p>
-                    </div>
-                  </motion.div>
+                    skill={skill}
+                    category={category}
+                    index={skillIndex}
+                  />
                 ))}
               </div>
             </motion.div>
@@ -147,19 +228,33 @@ const Skills = () => {
               See all
             </Button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.9 }}
-              className="bg-[#181818] rounded-lg p-4 hover:bg-[#282828] transition-colors duration-300 cursor-pointer"
+              whileHover={{ 
+                scale: 1.05,
+                rotateY: 10,
+                rotateX: 5,
+                z: 50,
+                boxShadow: "0 25px 50px rgba(0,0,0,0.4)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#181818] rounded-xl p-6 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                  <TrendingUp className="w-6 h-6 text-white" />
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="flex items-center gap-4 relative z-10">
+                <motion.div 
+                  className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center shadow-lg"
+                  whileHover={{ rotateY: 180, scale: 1.1 }}
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </motion.div>
                 <div>
-                  <h3 className="text-white font-semibold">Rapid Learning</h3>
+                  <h3 className="text-white font-bold text-lg group-hover:text-blue-400 transition-colors duration-300">Rapid Learning</h3>
                   <p className="text-sm text-gray-400">Quick to adapt and learn new technologies</p>
                 </div>
               </div>
@@ -169,14 +264,28 @@ const Skills = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.0 }}
-              className="bg-[#181818] rounded-lg p-4 hover:bg-[#282828] transition-colors duration-300 cursor-pointer"
+              whileHover={{ 
+                scale: 1.05,
+                rotateY: 10,
+                rotateX: 5,
+                z: 50,
+                boxShadow: "0 25px 50px rgba(0,0,0,0.4)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#181818] rounded-xl p-6 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-white" />
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-teal-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="flex items-center gap-4 relative z-10">
+                <motion.div 
+                  className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg"
+                  whileHover={{ rotateY: 180, scale: 1.1 }}
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <Zap className="w-8 h-8 text-white" />
+                </motion.div>
                 <div>
-                  <h3 className="text-white font-semibold">Problem Solving</h3>
+                  <h3 className="text-white font-bold text-lg group-hover:text-green-400 transition-colors duration-300">Problem Solving</h3>
                   <p className="text-sm text-gray-400">Strong analytical and debugging skills</p>
                 </div>
               </div>
@@ -186,14 +295,28 @@ const Skills = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.1 }}
-              className="bg-[#181818] rounded-lg p-4 hover:bg-[#282828] transition-colors duration-300 cursor-pointer"
+              whileHover={{ 
+                scale: 1.05,
+                rotateY: 10,
+                rotateX: 5,
+                z: 50,
+                boxShadow: "0 25px 50px rgba(0,0,0,0.4)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#181818] rounded-xl p-6 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-                  <Code className="w-6 h-6 text-white" />
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="flex items-center gap-4 relative z-10">
+                <motion.div 
+                  className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center shadow-lg"
+                  whileHover={{ rotateY: 180, scale: 1.1 }}
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <Code className="w-8 h-8 text-white" />
+                </motion.div>
                 <div>
-                  <h3 className="text-white font-semibold">Clean Code</h3>
+                  <h3 className="text-white font-bold text-lg group-hover:text-orange-400 transition-colors duration-300">Clean Code</h3>
                   <p className="text-sm text-gray-400">Focus on maintainable and scalable solutions</p>
                 </div>
               </div>
@@ -214,7 +337,7 @@ const Skills = () => {
               See all
             </Button>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
               'Machine Learning',
               'Blockchain Development',
@@ -228,13 +351,27 @@ const Skills = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.3 + index * 0.05 }}
-                className="bg-[#181818] rounded-lg p-4 hover:bg-[#282828] transition-colors duration-300 cursor-pointer group"
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 5,
+                  rotateX: 5,
+                  z: 30,
+                  boxShadow: "0 15px 30px rgba(0,0,0,0.3)"
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#181818] rounded-xl p-4 hover:bg-[#282828] transition-all duration-300 cursor-pointer group relative overflow-hidden"
+                style={{ transformStyle: "preserve-3d" }}
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-gray-500 to-slate-500 rounded-full flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-500/10 to-slate-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="flex flex-col items-center text-center relative z-10">
+                  <motion.div 
+                    className="w-12 h-12 bg-gradient-to-br from-gray-500 to-slate-500 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg"
+                    whileHover={{ rotateY: 180 }}
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
                     <Code className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="text-white font-semibold text-sm">{skill}</h3>
+                  </motion.div>
+                  <h3 className="text-white font-semibold text-sm group-hover:text-gray-300 transition-colors duration-300">{skill}</h3>
                 </div>
               </motion.div>
             ))}
