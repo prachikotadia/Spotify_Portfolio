@@ -70,10 +70,11 @@ const getCategoryImage = (categoryName: string) => {
 };
 
 // Category Card Component (Main Flashcard)
-const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwipeRight, imageRefreshKey }: { 
+const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipeLeft, onSwipeRight, imageRefreshKey }: { 
   category: any; 
   index: number; 
   isActive: boolean; 
+  isAdjacent?: boolean;
   onSelect: () => void;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
@@ -113,10 +114,13 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
       whileDrag={{ scale: 1.05 }}
     >
       <motion.div
-        className={`relative ${isActive ? 'w-48 h-72 sm:w-56 sm:h-80' : 'w-32 h-48 sm:w-40 sm:h-64'} rounded-2xl overflow-hidden shadow-2xl border-2 ${isActive ? 'border-green-500' : 'border-gray-600'}`}
+        className={`relative ${isActive ? 'w-56 h-80 sm:w-64 sm:h-96' : isAdjacent ? 'w-40 h-60 sm:w-48 sm:h-72' : 'w-32 h-48 sm:w-40 sm:h-60'} rounded-2xl overflow-hidden shadow-2xl border-2 ${isActive ? 'border-green-500 shadow-green-500/50' : 'border-gray-600'} transition-all duration-500`}
         whileHover={{ scale: isActive ? 1.05 : 1.1 }}
         whileTap={{ scale: 0.95 }}
         style={{ transformStyle: "preserve-3d" }}
+        animate={isActive ? {
+          boxShadow: "0 0 30px rgba(34, 197, 94, 0.4), 0 0 60px rgba(34, 197, 94, 0.2)"
+        } : {}}
       >
         {/* Category poster image with overlay */}
         <div className="w-full h-full relative">
@@ -132,22 +136,22 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
         
         {/* Category level badge */}
         <motion.div 
-          className="absolute top-2 right-2 sm:top-4 sm:right-4 w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+          className={`absolute top-2 right-2 sm:top-4 sm:right-4 ${isActive ? 'w-10 h-10 sm:w-12 sm:h-12' : 'w-6 h-6 sm:w-8 sm:h-8'} bg-green-500 rounded-full flex items-center justify-center shadow-lg`}
           whileHover={{ scale: 1.1, rotate: 360 }}
           transition={{ duration: 0.3 }}
         >
-          <span className="text-white font-bold text-xs sm:text-sm">{category.skillsCount}</span>
+          <span className={`text-white font-bold ${isActive ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'}`}>{category.skillsCount}</span>
         </motion.div>
         
         {/* Category badge */}
-        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 sm:px-4 sm:py-2">
-          <span className="text-white text-xs sm:text-sm font-semibold">{category.name.split(' ')[0]}</span>
+        <div className={`absolute top-2 left-2 sm:top-4 sm:left-4 bg-black/70 backdrop-blur-sm rounded-full ${isActive ? 'px-3 py-2 sm:px-4 sm:py-2' : 'px-2 py-1 sm:px-3 sm:py-1'}`}>
+          <span className={`text-white font-semibold ${isActive ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'}`}>{category.name.split(' ')[0]}</span>
         </div>
 
         {/* Category title at bottom */}
-        <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4">
-          <h3 className="text-white font-bold text-sm sm:text-lg mb-1">{category.name}</h3>
-          <p className="text-green-300 text-xs sm:text-sm">{category.skillsCount} Skills</p>
+        <div className={`absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 ${isActive ? 'bottom-4 sm:bottom-6' : ''}`}>
+          <h3 className={`text-white font-bold ${isActive ? 'text-lg sm:text-xl' : 'text-sm sm:text-base'} mb-1`}>{category.name}</h3>
+          <p className={`text-green-300 ${isActive ? 'text-sm sm:text-base' : 'text-xs sm:text-sm'}`}>{category.skillsCount} Skills</p>
         </div>
 
         {/* Active indicator */}
@@ -168,6 +172,7 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
 const Skills = () => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   const [imageRefreshKey, setImageRefreshKey] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   
   // Define skill categories with icons and skill counts
   const skillCategories = [
@@ -219,13 +224,19 @@ const Skills = () => {
   const activeCategorySkills = skills.filter(skill => skill.category === activeCategory.name);
 
   const handleNext = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setActiveCategoryIndex((prev) => (prev + 1) % skillCategories.length);
     setImageRefreshKey(prev => prev + 1); // Refresh images on swipe
+    setTimeout(() => setIsTransitioning(false), 300);
   };
 
   const handlePrevious = () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
     setActiveCategoryIndex((prev) => (prev - 1 + skillCategories.length) % skillCategories.length);
     setImageRefreshKey(prev => prev + 1); // Refresh images on swipe
+    setTimeout(() => setIsTransitioning(false), 300);
   };
 
   const handleSwipeLeft = () => {
@@ -249,6 +260,17 @@ const Skills = () => {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
+
+  // Auto-rotation disabled for manual control
+  // useEffect(() => {
+  //   const autoRotate = setInterval(() => {
+  //     if (!isTransitioning) {
+  //       handleNext();
+  //     }
+  //   }, 5000); // Auto-rotate every 5 seconds
+
+  //   return () => clearInterval(autoRotate);
+  // }, [isTransitioning]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-900/20 to-black">
@@ -297,39 +319,82 @@ const Skills = () => {
           ))}
         </div>
         
-        {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
+        {/* Navigation Arrows - Transparent and always visible */}
         <motion.button
           onClick={handlePrevious}
-          className="hidden sm:flex absolute left-2 z-30 w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+          className="absolute left-2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/40 transition-all duration-300 border border-white/20"
           whileHover={{ scale: 1.1, rotate: -5 }}
           whileTap={{ scale: 0.9 }}
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </motion.button>
         
         <motion.button
           onClick={handleNext}
-          className="hidden sm:flex absolute right-2 z-30 w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+          className="absolute right-2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/40 transition-all duration-300 border border-white/20"
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </motion.button>
 
-        {/* Horizontal Skill Carousel */}
-        <div className="flex items-center justify-center gap-3 sm:gap-6 overflow-x-auto scrollbar-hide w-full">
-          {skillCategories.map((category, index) => (
-            <CategoryCard
-              key={category.name}
-              category={category}
-              index={index}
-              isActive={index === activeCategoryIndex}
-              onSelect={() => setActiveCategoryIndex(index)}
-              onSwipeLeft={handleSwipeLeft}
-              onSwipeRight={handleSwipeRight}
-              imageRefreshKey={imageRefreshKey}
-            />
-          ))}
+        {/* Circular Infinite Carousel - Center Focus */}
+        <div className="relative flex items-center justify-center w-full h-full">
+          {/* Create a circular layout with center focus */}
+          {skillCategories.map((category, index) => {
+            const totalItems = skillCategories.length;
+            const centerIndex = activeCategoryIndex;
+            const distance = Math.min(
+              Math.abs(index - centerIndex),
+              Math.abs(index - centerIndex + totalItems),
+              Math.abs(index - centerIndex - totalItems)
+            );
+            
+            const isActive = index === centerIndex;
+            const isAdjacent = distance === 1;
+            const isVisible = distance <= 2; // Show only 5 cards (center + 2 on each side)
+            
+            if (!isVisible) return null;
+            
+            // Calculate position offset from center
+            const positionOffset = index - centerIndex;
+            const adjustedOffset = positionOffset > totalItems / 2 ? positionOffset - totalItems : 
+                                 positionOffset < -totalItems / 2 ? positionOffset + totalItems : positionOffset;
+            
+            return (
+              <motion.div
+                key={`${category.name}-${index}`}
+                className="absolute"
+                animate={{
+                  x: adjustedOffset * 120, // Horizontal spacing
+                  scale: isActive ? 1 : isAdjacent ? 0.7 : 0.4,
+                  opacity: isActive ? 1 : isAdjacent ? 0.8 : 0.3,
+                  zIndex: isActive ? 30 : isAdjacent ? 20 : 10,
+                  rotateY: adjustedOffset * 15, // 3D rotation effect
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                  duration: 0.5
+                }}
+                style={{
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                <CategoryCard
+                  category={category}
+                  index={index}
+                  isActive={isActive}
+                  isAdjacent={isAdjacent}
+                  onSelect={() => setActiveCategoryIndex(index)}
+                  onSwipeLeft={handleSwipeLeft}
+                  onSwipeRight={handleSwipeRight}
+                  imageRefreshKey={imageRefreshKey}
+                />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
