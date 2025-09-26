@@ -122,7 +122,7 @@ const Home = () => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="text-white hover:text-white hover:bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  className="text-white hover:text-white hover:bg-white/20 rounded-full opacity-100 transition-all duration-200"
                 >
                   <Play className="w-5 h-5" />
                 </Button>
@@ -133,7 +133,7 @@ const Home = () => {
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
+                  className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full opacity-100 transition-all duration-200"
                 >
                   <MoreHorizontal className="w-5 h-5" />
                 </Button>
