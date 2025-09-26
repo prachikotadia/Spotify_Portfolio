@@ -127,14 +127,46 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Greeting */}
+        {/* Personalized Greeting with Profile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           className="mb-6"
         >
-          <h2 className="text-2xl font-bold text-white">Good morning, Prachi</h2>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-white/80 text-sm">Hello</p>
+              <h2 className="text-2xl font-bold text-white">Prachi Kotadia</h2>
+            </div>
+            <div className="w-12 h-12 rounded-full overflow-hidden">
+              <img
+                src="/src/assets/2025-09-25_21-10-04.jpg"
+                alt="Prachi Kotadia"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Search Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-6"
+        >
+          <div className="relative">
+            <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search here..."
+              className="w-full pl-12 pr-12 py-4 bg-[#181818] border-none rounded-lg text-white placeholder-gray-400 focus:bg-[#282828] transition-all duration-300"
+            />
+            <Button variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-[#282828] rounded-lg">
+              <MoreHorizontal className="w-4 h-4 text-white" />
+            </Button>
+          </div>
         </motion.div>
 
         {/* Categories - Like Spotify's category tabs */}
@@ -316,62 +348,132 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Education Section - Spotify Style */}
+        {/* New Release Section - Education */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
           className="mb-6"
         >
-          <h2 className="text-xl font-bold text-white mb-4">Education</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Master's Degree Card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.0 }}
-              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-600 to-pink-500 p-4 cursor-pointer hover:scale-105 transition-all duration-300 group"
-              onClick={() => navigate('/education')}
-            >
-              {/* Background Elements */}
-              <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full blur-xl"></div>
-              <div className="absolute bottom-0 left-0 w-12 h-12 bg-white/5 rounded-full blur-lg"></div>
-              
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
-                    <GraduationCap className="w-3 h-3 text-black" />
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <GraduationCap className="w-5 h-5 text-white" />
+              <h2 className="text-xl font-bold text-white">New Release</h2>
+            </div>
+            <Button variant="ghost" className="text-green-500 hover:text-green-400 text-sm font-bold">
+              View All
+            </Button>
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {[
+              { 
+                title: "Master's in Computer Science", 
+                subtitle: "Illinois Institute of Technology",
+                location: "Chicago, IL",
+                year: "2023-2025",
+                gradient: "from-purple-600 to-pink-500",
+                image: "/src/assets/2025-09-25_21-10-04.jpg"
+              },
+              { 
+                title: "Bachelor of Technology", 
+                subtitle: "Electronics and Communication",
+                location: "Gujarat, India",
+                year: "2019-2023",
+                gradient: "from-blue-600 to-green-800",
+                image: "/src/assets/ai-chat-project.jpg"
+              },
+              { 
+                title: "AWS Certified Developer", 
+                subtitle: "Amazon Web Services",
+                location: "Online",
+                year: "2024",
+                gradient: "from-orange-500 to-red-500",
+                image: "/src/assets/ecommerce-project.jpg"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.0 + index * 0.1 }}
+                className="flex-shrink-0 w-48 bg-gradient-to-br rounded-2xl p-4 cursor-pointer hover:scale-105 transition-all duration-300 group"
+                style={{ background: `linear-gradient(135deg, ${item.gradient.includes('purple') ? '#9333ea' : item.gradient.includes('blue') ? '#2563eb' : '#ea580c'}, ${item.gradient.includes('pink') ? '#ec4899' : item.gradient.includes('green') ? '#16a34a' : '#dc2626'})` }}
+                onClick={() => navigate('/education')}
+              >
+                <div className="relative mb-4">
+                  <div className="w-full aspect-square bg-white/20 rounded-xl flex items-center justify-center overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <h3 className="text-white font-bold text-sm">Master's in Computer Science</h3>
                 </div>
-                <p className="text-white/80 text-xs mb-2">Illinois Institute of Technology</p>
-                <p className="text-white/60 text-xs">Chicago, IL • 2023-2025</p>
-              </div>
-            </motion.div>
+                <h3 className="text-white font-bold text-sm mb-1 line-clamp-2">{item.title}</h3>
+                <p className="text-white/80 text-xs mb-1">{item.subtitle}</p>
+                <p className="text-white/60 text-xs">{item.location} • {item.year}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
-            {/* Bachelor's Degree Card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.1 }}
-              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-green-800 p-4 cursor-pointer hover:scale-105 transition-all duration-300 group"
-              onClick={() => navigate('/education')}
-            >
-              {/* Background Elements */}
-              <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full blur-xl"></div>
-              <div className="absolute bottom-0 left-0 w-12 h-12 bg-white/5 rounded-full blur-lg"></div>
-              
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-6 h-6 bg-purple-400 rounded-full flex items-center justify-center">
-                    <BookOpen className="w-3 h-3 text-black" />
-                  </div>
-                  <h3 className="text-white font-bold text-sm">Bachelor of Technology</h3>
+        {/* Popular Artist Section - Skills */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1 }}
+          className="mb-6"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Star className="w-5 h-5 text-white" />
+              <h2 className="text-xl font-bold text-white">Popular Artist</h2>
+            </div>
+            <Button variant="ghost" className="text-green-500 hover:text-green-400 text-sm font-bold">
+              View All
+            </Button>
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {[
+              { 
+                name: "React Developer", 
+                color: "text-green-500",
+                image: "/src/assets/2025-09-25_21-10-04.jpg"
+              },
+              { 
+                name: "Full Stack Engineer", 
+                color: "text-white",
+                image: "/src/assets/ai-chat-project.jpg"
+              },
+              { 
+                name: "AWS Certified", 
+                color: "text-white",
+                image: "/src/assets/ecommerce-project.jpg"
+              },
+              { 
+                name: "Mobile Developer", 
+                color: "text-white",
+                image: "/src/assets/weather-dashboard-project.jpg"
+              }
+            ].map((artist, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2 + index * 0.1 }}
+                className="flex-shrink-0 text-center cursor-pointer hover:scale-105 transition-all duration-300"
+                onClick={() => navigate('/skills')}
+              >
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-2 mx-auto">
+                  <img
+                    src={artist.image}
+                    alt={artist.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <p className="text-white/80 text-xs mb-2">Electronics and Communication</p>
-                <p className="text-white/60 text-xs">Gujarat, India • 2019-2023</p>
-              </div>
-            </motion.div>
+                <p className={`text-xs font-medium ${artist.color}`}>{artist.name}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
