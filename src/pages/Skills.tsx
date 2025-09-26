@@ -1,5 +1,5 @@
-import { motion, useMotionValue, useTransform, useSpring, useDragControls } from 'framer-motion';
-import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft, Globe, Server, Database, Smartphone, Cpu, Wrench, Play, Pause, SkipBack, SkipForward, Shuffle, Repeat, Volume2, Heart, Share, MoreHorizontal, Bell, Search, Menu, List, Video, Ticket } from 'lucide-react';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft, Globe, Server, Database, Smartphone, Cpu, Wrench } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -8,11 +8,11 @@ import { skills } from '@/data/mockData';
 import type { Skill } from '@/data/mockData';
 import { useState, useRef } from 'react';
 
-// Helper functions (moved from main Skills component)
+// Helper functions
 const getLevelColor = (level: number) => {
   if (level >= 5) return 'text-green-500';
-  if (level >= 4) return 'text-blue-500';
-  if (level >= 3) return 'text-yellow-500';
+  if (level >= 4) return 'text-green-400';
+  if (level >= 3) return 'text-green-300';
   return 'text-gray-500';
 };
 
@@ -23,29 +23,24 @@ const getLevelText = (level: number) => {
   return 'Beginner';
 };
 
-// Generate AI image URL for skill
-const getSkillImage = (skillName: string) => {
-  // Generate AI-style images using Unsplash with skill-specific queries
-  const skillQueries = {
-    'Python': 'python programming code computer',
-    'JavaScript': 'javascript code web development',
-    'React': 'react js frontend development',
-    'Node.js': 'nodejs backend server',
-    'AWS': 'amazon web services cloud',
-    'Docker': 'docker container technology',
-    'Machine Learning': 'artificial intelligence neural network',
-    'Data Science': 'data analysis visualization',
-    'Mobile Development': 'mobile app smartphone',
-    'DevOps': 'devops automation pipeline'
+// Generate AI image URL for skill category
+const getCategoryImage = (categoryName: string) => {
+  const categoryQueries = {
+    'Programming Languages': 'programming code computer technology',
+    'Web Development': 'web development frontend backend',
+    'Databases & Cloud': 'database cloud server technology',
+    'Embedded & Systems': 'embedded systems hardware electronics',
+    'Mobile & AI/ML': 'mobile app artificial intelligence machine learning',
+    'DevOps & Tools': 'devops automation pipeline tools'
   };
   
-  const query = skillQueries[skillName as keyof typeof skillQueries] || skillName.toLowerCase();
+  const query = categoryQueries[categoryName as keyof typeof categoryQueries] || categoryName.toLowerCase();
   return `https://source.unsplash.com/400x600/?${encodeURIComponent(query)}`;
 };
 
-// Horizontal Skill Card Component
-const SkillCard = ({ skill, index, isActive, onSelect }: { 
-  skill: Skill; 
+// Category Card Component (Main Flashcard)
+const CategoryCard = ({ category, index, isActive, onSelect }: { 
+  category: any; 
   index: number; 
   isActive: boolean; 
   onSelect: () => void;
@@ -70,119 +65,97 @@ const SkillCard = ({ skill, index, isActive, onSelect }: {
         whileTap={{ scale: 0.95 }}
         style={{ transformStyle: "preserve-3d" }}
       >
-        {/* Skill poster image */}
+        {/* Category poster image */}
         <div className="w-full h-full">
           <img
-            src={getSkillImage(skill.name)}
-            alt={skill.name}
+            src={getCategoryImage(category.name)}
+            alt={category.name}
             className="w-full h-full object-cover"
           />
         </div>
         
-        {/* Skill level badge */}
-        <div className="absolute top-4 right-4 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
-          <span className="text-white font-bold text-xs">{skill.level}</span>
+        {/* Category level badge */}
+        <div className="absolute top-4 right-4 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+          <span className="text-white font-bold text-xs">{category.skillsCount}</span>
         </div>
         
-        {/* Skill category badge */}
+        {/* Category badge */}
         <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1">
-          <span className="text-white text-xs font-medium">{skill.category.split(' ')[0]}</span>
+          <span className="text-white text-xs font-medium">{category.name.split(' ')[0]}</span>
         </div>
       </motion.div>
     </motion.div>
   );
 };
 
-// Bottom Navigation Component
-const BottomNavigation = () => {
-  return (
-    <div className="fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md border-t border-gray-800">
-      <div className="flex items-center justify-around py-4 px-6">
-        <div className="flex flex-col items-center gap-1">
-          <List className="w-6 h-6 text-gray-400" />
-          <span className="text-xs text-gray-400">Skills</span>
-        </div>
-        
-        <div className="flex flex-col items-center gap-1">
-          <Video className="w-6 h-6 text-gray-400" />
-          <span className="text-xs text-gray-400">Projects</span>
-        </div>
-        
-        <div className="flex flex-col items-center gap-1">
-          <Search className="w-6 h-6 text-gray-400" />
-          <span className="text-xs text-gray-400">Search</span>
-        </div>
-        
-        <div className="flex flex-col items-center gap-1 relative">
-          <Ticket className="w-6 h-6 text-gray-400" />
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
-            <span className="text-white text-xs font-bold">53</span>
-          </div>
-          <span className="text-xs text-gray-400">Certificates</span>
-        </div>
-        
-        <div className="flex flex-col items-center gap-1">
-          <Menu className="w-6 h-6 text-gray-400" />
-          <span className="text-xs text-gray-400">Menu</span>
-        </div>
-      </div>
-      
-      {/* Time indicator */}
-      <div className="text-center pb-2">
-        <span className="text-xs text-gray-500">0:00 - 16/07/20</span>
-      </div>
-    </div>
-  );
-};
-
 const Skills = () => {
-  const [activeSkillIndex, setActiveSkillIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState('Showing');
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   
-  // Get top skills for the carousel interface
-  const topSkills = skills
-    .sort((a, b) => b.level - a.level)
-    .slice(0, 8);
+  // Define skill categories with icons and skill counts
+  const skillCategories = [
+    { 
+      name: 'Programming Languages', 
+      emoji: '💻', 
+      icon: Code,
+      color: 'from-green-500 to-green-600',
+      skillsCount: skills.filter(s => s.category === 'Programming Languages').length
+    },
+    { 
+      name: 'Web Development', 
+      emoji: '🌐', 
+      icon: Globe,
+      color: 'from-green-500 to-green-600',
+      skillsCount: skills.filter(s => s.category === 'Web Development').length
+    },
+    { 
+      name: 'Databases & Cloud', 
+      emoji: '🗄️', 
+      icon: Database,
+      color: 'from-green-500 to-green-600',
+      skillsCount: skills.filter(s => s.category === 'Databases & Cloud').length
+    },
+    { 
+      name: 'Embedded & Systems', 
+      emoji: '🔧', 
+      icon: Cpu,
+      color: 'from-green-500 to-green-600',
+      skillsCount: skills.filter(s => s.category === 'Embedded & Systems').length
+    },
+    { 
+      name: 'Mobile & AI/ML', 
+      emoji: '🤖', 
+      icon: Smartphone,
+      color: 'from-green-500 to-green-600',
+      skillsCount: skills.filter(s => s.category === 'Mobile & AI/ML').length
+    },
+    { 
+      name: 'DevOps & Tools', 
+      emoji: '🛠️', 
+      icon: Wrench,
+      color: 'from-green-500 to-green-600',
+      skillsCount: skills.filter(s => s.category === 'DevOps & Tools').length
+    }
+  ];
 
-  const activeSkill = topSkills[activeSkillIndex];
+  const activeCategory = skillCategories[activeCategoryIndex];
+  const activeCategorySkills = skills.filter(skill => skill.category === activeCategory.name);
 
   const handleNext = () => {
-    setActiveSkillIndex((prev) => (prev + 1) % topSkills.length);
+    setActiveCategoryIndex((prev) => (prev + 1) % skillCategories.length);
   };
 
   const handlePrevious = () => {
-    setActiveSkillIndex((prev) => (prev - 1 + topSkills.length) % topSkills.length);
+    setActiveCategoryIndex((prev) => (prev - 1 + skillCategories.length) % skillCategories.length);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-900/20 to-black">
+    <div className="min-h-screen bg-gradient-to-b from-green-900/20 to-black">
       {/* Header */}
       <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold text-red-500">skillsk</h1>
-            <Bell className="w-6 h-6 text-gray-400" />
+            <h1 className="text-2xl font-bold text-green-500">skillsk</h1>
           </div>
-        </div>
-        
-        {/* Navigation Tabs */}
-        <div className="flex items-center justify-center gap-8 pb-4">
-          <button
-            onClick={() => setActiveTab('Showing')}
-            className={`text-lg font-medium transition-colors ${
-              activeTab === 'Showing' ? 'text-red-500' : 'text-white'
-            }`}
-          >
-            Showing
-          </button>
-          <button
-            onClick={() => setActiveTab('Coming')}
-            className={`text-lg font-medium transition-colors ${
-              activeTab === 'Coming' ? 'text-red-500' : 'text-white'
-            }`}
-          >
-            Coming
-          </button>
         </div>
       </div>
 
@@ -190,52 +163,75 @@ const Skills = () => {
       <div className="relative h-[calc(100vh-200px)] flex items-center justify-center overflow-hidden px-4">
         {/* Horizontal Skill Carousel */}
         <div className="flex items-center justify-center gap-8">
-          {topSkills.map((skill, index) => (
-            <SkillCard
-              key={skill.id}
-              skill={skill}
+          {skillCategories.map((category, index) => (
+            <CategoryCard
+              key={category.name}
+              category={category}
               index={index}
-              isActive={index === activeSkillIndex}
-              onSelect={() => setActiveSkillIndex(index)}
+              isActive={index === activeCategoryIndex}
+              onSelect={() => setActiveCategoryIndex(index)}
             />
           ))}
         </div>
       </div>
 
-      {/* Skill Details */}
-      {activeSkill && (
+      {/* Category Details */}
+      {activeCategory && (
         <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-white"
           >
-            <h2 className="text-4xl font-bold mb-2">{activeSkill.name.toUpperCase()}</h2>
+            <h2 className="text-4xl font-bold mb-2">{activeCategory.name.toUpperCase()}</h2>
             <div className="flex items-center justify-center gap-4 mb-4">
-              <span className="text-lg">{activeSkill.level * 20}% Up</span>
+              <span className="text-lg">{activeCategorySkills.length} Skills</span>
               <span className="text-lg">•</span>
-              <span className="text-lg">{activeSkill.level * 15} minutes</span>
+              <span className="text-lg">Expert Level</span>
             </div>
             <div className="flex items-center justify-center gap-2 flex-wrap">
-              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                {getLevelText(activeSkill.level).toUpperCase()}
+              <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                {activeCategory.name.split(' ')[0].toUpperCase()}
               </span>
-              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                {activeSkill.category.split(' ')[0].toUpperCase()}
-              </span>
-              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                 PROGRAMMING
               </span>
-              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                 DEVELOPMENT
+              </span>
+              <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                TECHNOLOGY
               </span>
             </div>
           </motion.div>
         </div>
       )}
 
-      {/* Bottom Navigation */}
-      <BottomNavigation />
+      {/* Sub-categories (Skills) */}
+      <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md border-t border-gray-800 p-4">
+        <div className="max-w-7xl mx-auto">
+          <h3 className="text-white font-bold mb-4 text-center">Skills in {activeCategory?.name}</h3>
+          <div className="flex flex-wrap justify-center gap-2">
+            {activeCategorySkills.slice(0, 8).map((skill, index) => (
+              <motion.div
+                key={skill.id}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+                className="bg-green-500/20 hover:bg-green-500/30 text-green-300 hover:text-white px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition-all duration-300"
+              >
+                {skill.name}
+              </motion.div>
+            ))}
+            {activeCategorySkills.length > 8 && (
+              <div className="bg-gray-600/20 text-gray-400 px-3 py-1 rounded-full text-sm font-medium">
+                +{activeCategorySkills.length - 8} more
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
