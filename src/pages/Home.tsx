@@ -316,33 +316,89 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Made for You Section */}
+        {/* Browse All Section - Exact Spotify Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
           className="mb-6"
         >
-          <h2 className="text-xl font-bold text-white mb-4">Made for you</h2>
+          <h2 className="text-xl font-bold text-white mb-4">Browse all</h2>
           <div className="grid grid-cols-2 gap-3">
-            {featuredProjects.slice(0, 4).map((project, index) => (
+            {[
+              { 
+                name: 'Podcasts', 
+                gradient: 'from-red-500 to-red-700',
+                image: '/src/assets/ai-chat-project.jpg'
+              },
+              { 
+                name: 'New Releases', 
+                gradient: 'from-pink-500 to-pink-700',
+                image: '/src/assets/ecommerce-project.jpg'
+              },
+              { 
+                name: 'Charts', 
+                gradient: 'from-purple-500 to-purple-700',
+                image: '/src/assets/weather-dashboard-project.jpg'
+              },
+              { 
+                name: 'Live Events', 
+                gradient: 'from-blue-500 to-purple-600',
+                image: '/src/assets/fitness-tracker-project.jpg'
+              },
+              { 
+                name: 'Made for You', 
+                gradient: 'from-blue-600 to-blue-800',
+                image: '/src/assets/task-management-project.jpg'
+              },
+              { 
+                name: 'At Home', 
+                gradient: 'from-green-600 to-blue-600',
+                image: '/src/assets/social-analytics-project.jpg'
+              },
+              { 
+                name: 'Only You', 
+                gradient: 'from-purple-500 to-yellow-500',
+                image: '/src/assets/ai-chat-project.jpg'
+              },
+              { 
+                name: 'Bollywood', 
+                gradient: 'from-red-600 to-red-800',
+                image: '/src/assets/ecommerce-project.jpg'
+              },
+              { 
+                name: 'Punjabi', 
+                gradient: 'from-pink-600 to-purple-600',
+                image: '/src/assets/weather-dashboard-project.jpg'
+              },
+              { 
+                name: 'Tamil', 
+                gradient: 'from-blue-600 to-green-600',
+                image: '/src/assets/fitness-tracker-project.jpg'
+              }
+            ].map((category, index) => (
               <motion.div
-                key={project.id}
+                key={category.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.0 + index * 0.1 }}
-                className="bg-[#181818] rounded-lg p-3 hover:bg-[#282828] transition-all duration-300 cursor-pointer group"
+                transition={{ delay: 1.0 + index * 0.05 }}
+                className={`bg-gradient-to-br ${category.gradient} rounded-lg p-4 h-24 relative overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group`}
               >
-                <div className="relative mb-3">
-                  <div className="w-full aspect-square bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center">
-                    <Play className="w-6 h-6 text-white ml-1" />
-                  </div>
-                  <div className="absolute bottom-1 right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="w-3 h-3 text-white ml-0.5" />
-                  </div>
+                <div className="relative z-10 h-full flex flex-col justify-between">
+                  <h3 className="text-white font-bold text-sm">{category.name}</h3>
                 </div>
-                <h3 className="font-bold text-white text-sm mb-1 line-clamp-2">{project.title}</h3>
-                <p className="text-gray-400 text-xs line-clamp-2">{project.description}</p>
+                {/* Background Image */}
+                <div className="absolute inset-0 opacity-20">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                {/* Floating Elements */}
+                <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-white/20 rounded-full group-hover:scale-110 transition-transform" />
+                <div className="absolute -right-1 -top-1 w-8 h-8 bg-white/10 rounded-full group-hover:scale-110 transition-transform" />
+                <div className="absolute -left-1 -bottom-1 w-6 h-6 bg-white/5 rounded-full group-hover:scale-110 transition-transform" />
               </motion.div>
             ))}
           </div>
