@@ -98,7 +98,7 @@ const Home = () => {
           className="mb-8"
         >
           <div className="flex justify-center">
-            <div className="w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl">
+            <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="/src/assets/Add_a_subheading__1_-removebg-preview.png"
                 alt="Prachi Kotadia - Full Stack Developer"
