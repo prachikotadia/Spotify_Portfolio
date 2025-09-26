@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Play, Shuffle, Clock, Bell, Heart, Star, TrendingUp, Award, MessageSquare, Plus, MoreHorizontal, Briefcase, Code } from 'lucide-react';
+import { Play, Shuffle, Clock, Bell, Heart, Star, TrendingUp, Award, MessageSquare, Plus, MoreHorizontal, Briefcase, Code, GraduationCap, BookOpen } from 'lucide-react';
 
 // Spotify-style icons as SVG components
 const HomeIcon = () => (
@@ -316,11 +316,70 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Browse All Section - Exact Spotify Style */}
+        {/* Education Section - Spotify Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9 }}
+          className="mb-6"
+        >
+          <h2 className="text-xl font-bold text-white mb-4">Education</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Master's Degree Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.0 }}
+              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-600 to-pink-500 p-4 cursor-pointer hover:scale-105 transition-all duration-300 group"
+              onClick={() => navigate('/education')}
+            >
+              {/* Background Elements */}
+              <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full blur-xl"></div>
+              <div className="absolute bottom-0 left-0 w-12 h-12 bg-white/5 rounded-full blur-lg"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-6 h-6 bg-green-400 rounded-full flex items-center justify-center">
+                    <GraduationCap className="w-3 h-3 text-black" />
+                  </div>
+                  <h3 className="text-white font-bold text-sm">Master's in Computer Science</h3>
+                </div>
+                <p className="text-white/80 text-xs mb-2">Illinois Institute of Technology</p>
+                <p className="text-white/60 text-xs">Chicago, IL • 2023-2025</p>
+              </div>
+            </motion.div>
+
+            {/* Bachelor's Degree Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.1 }}
+              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-green-800 p-4 cursor-pointer hover:scale-105 transition-all duration-300 group"
+              onClick={() => navigate('/education')}
+            >
+              {/* Background Elements */}
+              <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full blur-xl"></div>
+              <div className="absolute bottom-0 left-0 w-12 h-12 bg-white/5 rounded-full blur-lg"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-6 h-6 bg-purple-400 rounded-full flex items-center justify-center">
+                    <BookOpen className="w-3 h-3 text-black" />
+                  </div>
+                  <h3 className="text-white font-bold text-sm">Bachelor of Technology</h3>
+                </div>
+                <p className="text-white/80 text-xs mb-2">Electronics and Communication</p>
+                <p className="text-white/60 text-xs">Gujarat, India • 2019-2023</p>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Browse All Section - Exact Spotify Style */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2 }}
           className="mb-6"
         >
           <h2 className="text-xl font-bold text-white mb-4">Browse all</h2>

@@ -53,7 +53,6 @@ const BottomNavigation = () => {
   ];
 
   const rightNavItems = [
-    { name: 'Education', path: '/education', icon: EducationIcon },
     { name: 'Skill', path: '/skills', icon: SkillIcon },
     { name: 'Profile', path: '/profile', icon: UserIcon },
   ];
