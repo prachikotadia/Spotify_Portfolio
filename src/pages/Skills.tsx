@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform, useSpring, useDragControls } from 'framer-motion';
-import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft, Globe, Server, Database, Smartphone, Cpu, Wrench, Play, Pause, SkipBack, SkipForward, Shuffle, Repeat, Volume2, Heart, Share, MoreHorizontal } from 'lucide-react';
+import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft, Globe, Server, Database, Smartphone, Cpu, Wrench, Play, Pause, SkipBack, SkipForward, Shuffle, Repeat, Volume2, Heart, Share, MoreHorizontal, Bell, Search, Menu, List, Video, Ticket } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -40,37 +40,38 @@ const getSkillImage = (skillName: string) => {
   };
   
   const query = skillQueries[skillName as keyof typeof skillQueries] || skillName.toLowerCase();
-  return `https://source.unsplash.com/400x400/?${encodeURIComponent(query)}`;
+  return `https://source.unsplash.com/400x600/?${encodeURIComponent(query)}`;
 };
 
-// Stacked Circular Skill Component
-const StackedSkillCard = ({ skill, index, isActive, onSelect }: { 
+// Horizontal Skill Card Component
+const SkillCard = ({ skill, index, isActive, onSelect }: { 
   skill: Skill; 
   index: number; 
   isActive: boolean; 
   onSelect: () => void;
 }) => {
-  const y = useMotionValue(0);
-  const scale = useTransform(y, [-100, 0, 100], [0.8, 1, 0.8]);
-  const opacity = useTransform(y, [-100, 0, 100], [0.3, 1, 0.3]);
-  const zIndex = isActive ? 10 : 5 - index;
+  const x = useMotionValue(0);
+  const scale = useTransform(x, [-200, 0, 200], [0.8, 1, 0.8]);
+  const opacity = useTransform(x, [-200, 0, 200], [0.4, 1, 0.4]);
+  const rotateY = useTransform(x, [-200, 0, 200], [15, 0, -15]);
 
   return (
     <motion.div
-      drag="y"
-      dragConstraints={{ top: -200, bottom: 200 }}
+      drag="x"
+      dragConstraints={{ left: -200, right: 200 }}
       dragElastic={0.1}
-      style={{ y, scale, opacity, zIndex }}
-      className={`absolute inset-0 flex items-center justify-center ${isActive ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'}`}
+      style={{ x, scale, opacity, rotateY }}
+      className={`relative cursor-pointer ${isActive ? 'z-10' : 'z-0'}`}
       onClick={onSelect}
     >
       <motion.div
-        className={`relative ${isActive ? 'w-80 h-80' : 'w-64 h-64'}`}
+        className={`relative ${isActive ? 'w-64 h-96' : 'w-48 h-72'} rounded-2xl overflow-hidden shadow-2xl`}
         whileHover={{ scale: isActive ? 1.05 : 1.1 }}
         whileTap={{ scale: 0.95 }}
+        style={{ transformStyle: "preserve-3d" }}
       >
-        {/* Main circular image */}
-        <div className="w-full h-full rounded-full overflow-hidden shadow-2xl">
+        {/* Skill poster image */}
+        <div className="w-full h-full">
           <img
             src={getSkillImage(skill.name)}
             alt={skill.name}
@@ -78,101 +79,57 @@ const StackedSkillCard = ({ skill, index, isActive, onSelect }: {
           />
         </div>
         
-        {/* Skill level indicator */}
-        <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-          <span className="text-white font-bold text-sm">{skill.level}</span>
+        {/* Skill level badge */}
+        <div className="absolute top-4 right-4 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center shadow-lg">
+          <span className="text-white font-bold text-xs">{skill.level}</span>
         </div>
         
-        {/* Skill name overlay */}
-        {isActive && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 text-center"
-          >
-            <h3 className="text-white font-bold text-xl mb-1">{skill.name}</h3>
-            <p className="text-gray-400 text-sm">{getLevelText(skill.level)}</p>
-          </motion.div>
-        )}
+        {/* Skill category badge */}
+        <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1">
+          <span className="text-white text-xs font-medium">{skill.category.split(' ')[0]}</span>
+        </div>
       </motion.div>
     </motion.div>
   );
 };
 
-// Spotify Player Controls Component
-const PlayerControls = ({ skill, isPlaying, onPlayPause, onNext, onPrevious }: {
-  skill: Skill;
-  isPlaying: boolean;
-  onPlayPause: () => void;
-  onNext: () => void;
-  onPrevious: () => void;
-}) => {
-  const [progress, setProgress] = useState(30);
-  const [isLiked, setIsLiked] = useState(false);
-
+// Bottom Navigation Component
+const BottomNavigation = () => {
   return (
-    <div className="bg-[#181818] rounded-t-3xl p-6">
-      {/* Progress Bar */}
-      <div className="mb-6">
-        <div className="w-full bg-gray-600 rounded-full h-1 mb-2">
-          <div 
-            className="bg-white h-1 rounded-full transition-all duration-300"
-            style={{ width: `${progress}%` }}
-          />
+    <div className="fixed bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md border-t border-gray-800">
+      <div className="flex items-center justify-around py-4 px-6">
+        <div className="flex flex-col items-center gap-1">
+          <List className="w-6 h-6 text-gray-400" />
+          <span className="text-xs text-gray-400">Skills</span>
         </div>
-        <div className="flex justify-between text-xs text-gray-400">
-          <span>1:23</span>
-          <span>4:56</span>
+        
+        <div className="flex flex-col items-center gap-1">
+          <Video className="w-6 h-6 text-gray-400" />
+          <span className="text-xs text-gray-400">Projects</span>
+        </div>
+        
+        <div className="flex flex-col items-center gap-1">
+          <Search className="w-6 h-6 text-gray-400" />
+          <span className="text-xs text-gray-400">Search</span>
+        </div>
+        
+        <div className="flex flex-col items-center gap-1 relative">
+          <Ticket className="w-6 h-6 text-gray-400" />
+          <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center">
+            <span className="text-white text-xs font-bold">53</span>
+          </div>
+          <span className="text-xs text-gray-400">Certificates</span>
+        </div>
+        
+        <div className="flex flex-col items-center gap-1">
+          <Menu className="w-6 h-6 text-gray-400" />
+          <span className="text-xs text-gray-400">Menu</span>
         </div>
       </div>
-
-      {/* Main Controls */}
-      <div className="flex items-center justify-center gap-6 mb-6">
-        <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-          <Shuffle className="w-5 h-5" />
-        </Button>
-        
-        <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white" onClick={onPrevious}>
-          <SkipBack className="w-6 h-6" />
-        </Button>
-        
-        <Button
-          className="w-14 h-14 rounded-full bg-white text-black hover:scale-105 transition-transform"
-          onClick={onPlayPause}
-        >
-          {isPlaying ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6 ml-1" />}
-        </Button>
-        
-        <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white" onClick={onNext}>
-          <SkipForward className="w-6 h-6" />
-        </Button>
-        
-        <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-          <Repeat className="w-5 h-5" />
-        </Button>
-      </div>
-
-      {/* Bottom Controls */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-            <Heart className={`w-5 h-5 ${isLiked ? 'text-green-500 fill-current' : ''}`} />
-          </Button>
-          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-            <Share className="w-5 h-5" />
-          </Button>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-400">52</span>
-          <div className="w-4 h-4 bg-gray-600 rounded-sm" />
-          <div className="w-4 h-1 bg-gray-600 rounded-full" />
-          <span className="text-sm text-gray-400">Pretty V</span>
-          <div className="w-4 h-4 bg-gray-600 rounded-sm" />
-          <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
-            <SkipForward className="w-4 h-4" />
-          </Button>
-        </div>
+      
+      {/* Time indicator */}
+      <div className="text-center pb-2">
+        <span className="text-xs text-gray-500">0:00 - 16/07/20</span>
       </div>
     </div>
   );
@@ -180,12 +137,12 @@ const PlayerControls = ({ skill, isPlaying, onPlayPause, onNext, onPrevious }: {
 
 const Skills = () => {
   const [activeSkillIndex, setActiveSkillIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [activeTab, setActiveTab] = useState('Showing');
   
-  // Get top skills for the stacked interface
+  // Get top skills for the carousel interface
   const topSkills = skills
     .sort((a, b) => b.level - a.level)
-    .slice(0, 10);
+    .slice(0, 8);
 
   const activeSkill = topSkills[activeSkillIndex];
 
@@ -197,28 +154,44 @@ const Skills = () => {
     setActiveSkillIndex((prev) => (prev - 1 + topSkills.length) % topSkills.length);
   };
 
-  const handlePlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
-
   return (
-    <div className="min-h-screen bg-[#121212]">
+    <div className="min-h-screen bg-gradient-to-b from-purple-900/20 to-black">
       {/* Header */}
       <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
-          <div>
-            <h1 className="text-2xl font-bold text-white">Skills & Expertise</h1>
-            <p className="text-sm text-gray-400">Swipe to explore my technical skills</p>
+          <div className="flex items-center gap-4">
+            <h1 className="text-2xl font-bold text-red-500">skillsk</h1>
+            <Bell className="w-6 h-6 text-gray-400" />
           </div>
+        </div>
+        
+        {/* Navigation Tabs */}
+        <div className="flex items-center justify-center gap-8 pb-4">
+          <button
+            onClick={() => setActiveTab('Showing')}
+            className={`text-lg font-medium transition-colors ${
+              activeTab === 'Showing' ? 'text-red-500' : 'text-white'
+            }`}
+          >
+            Showing
+          </button>
+          <button
+            onClick={() => setActiveTab('Coming')}
+            className={`text-lg font-medium transition-colors ${
+              activeTab === 'Coming' ? 'text-red-500' : 'text-white'
+            }`}
+          >
+            Coming
+          </button>
         </div>
       </div>
 
-      {/* Main Content - Stacked Circular Skills */}
-      <div className="relative h-[calc(100vh-200px)] flex items-center justify-center overflow-hidden">
-        {/* Stacked Circular Skills */}
-        <div className="relative w-96 h-96">
+      {/* Main Content - Horizontal Skill Carousel */}
+      <div className="relative h-[calc(100vh-200px)] flex items-center justify-center overflow-hidden px-4">
+        {/* Horizontal Skill Carousel */}
+        <div className="flex items-center justify-center gap-8">
           {topSkills.map((skill, index) => (
-            <StackedSkillCard
+            <SkillCard
               key={skill.id}
               skill={skill}
               index={index}
@@ -229,14 +202,40 @@ const Skills = () => {
         </div>
       </div>
 
-      {/* Spotify Player Controls */}
-      <PlayerControls
-        skill={activeSkill}
-        isPlaying={isPlaying}
-        onPlayPause={handlePlayPause}
-        onNext={handleNext}
-        onPrevious={handlePrevious}
-      />
+      {/* Skill Details */}
+      {activeSkill && (
+        <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-white"
+          >
+            <h2 className="text-4xl font-bold mb-2">{activeSkill.name.toUpperCase()}</h2>
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <span className="text-lg">{activeSkill.level * 20}% Up</span>
+              <span className="text-lg">•</span>
+              <span className="text-lg">{activeSkill.level * 15} minutes</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                {getLevelText(activeSkill.level).toUpperCase()}
+              </span>
+              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                {activeSkill.category.split(' ')[0].toUpperCase()}
+              </span>
+              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                PROGRAMMING
+              </span>
+              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                DEVELOPMENT
+              </span>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Bottom Navigation */}
+      <BottomNavigation />
     </div>
   );
 };
