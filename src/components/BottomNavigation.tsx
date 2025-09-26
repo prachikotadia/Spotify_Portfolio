@@ -38,6 +38,12 @@ const SkillIcon = () => (
   </svg>
 );
 
+const EducationIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+    <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/>
+  </svg>
+);
+
 const BottomNavigation = () => {
   const location = useLocation();
 
@@ -47,6 +53,7 @@ const BottomNavigation = () => {
   ];
 
   const rightNavItems = [
+    { name: 'Education', path: '/education', icon: EducationIcon },
     { name: 'Skill', path: '/skills', icon: SkillIcon },
     { name: 'Profile', path: '/profile', icon: UserIcon },
   ];
