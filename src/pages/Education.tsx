@@ -217,7 +217,7 @@ const Education = () => {
               { 
                 title: "Continuous Learning", 
                 subtitle: "Latest technologies",
-                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=400&fit=crop&crop=center",
+                image: "/src/assets/image copy 3.png",
                 type: "Growth"
               }
             ].map((item, index) => (
