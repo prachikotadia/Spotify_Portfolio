@@ -70,6 +70,23 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-background pb-24">
+      {/* Fixed Search Button - Top Right Corner */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5 }}
+        className="fixed top-4 right-4 z-50"
+      >
+        <Button
+          variant="ghost"
+          size="icon"
+          className="w-12 h-12 bg-black/80 backdrop-blur-xl border border-white/20 hover:bg-white/20 rounded-full shadow-lg"
+          onClick={() => navigate('/search')}
+        >
+          <SearchIcon />
+        </Button>
+      </motion.div>
+
       {/* Hero Section - Spotify Style */}
       <div className="relative overflow-hidden">
         {/* Gradient Background with Organic Shapes */}
@@ -82,7 +99,6 @@ const Home = () => {
           {/* Spotify-style Header */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-4">
-              <Search className="w-6 h-6 text-white" />
               <SpotifyLogo size="lg" />
             </div>
             <div className="flex items-center gap-3">
@@ -705,16 +721,6 @@ const Home = () => {
 
           {/* Right Navigation */}
           <div className="flex items-center gap-6">
-            {/* Search */}
-            <Button
-              variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-2 py-2"
-              onClick={() => navigate('/search')}
-            >
-              <SearchIcon />
-              <span className="text-xs">Search</span>
-            </Button>
-
             {/* Skill */}
             <Button
               variant="ghost"

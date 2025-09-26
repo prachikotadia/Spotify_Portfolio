@@ -47,7 +47,6 @@ const BottomNavigation = () => {
   ];
 
   const rightNavItems = [
-    { name: 'Search', path: '/search', icon: SearchIcon },
     { name: 'Skill', path: '/skills', icon: SkillIcon },
     { name: 'Profile', path: '/profile', icon: UserIcon },
   ];
