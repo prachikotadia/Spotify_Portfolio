@@ -17,6 +17,9 @@ import Testimonials from "./pages/Testimonials";
 import Awards from "./pages/Awards";
 import Extras from "./pages/Extras";
 import Contact from "./pages/Contact";
+import ProjectDetail from "./pages/ProjectDetail";
+import ProjectsAI from "./pages/ProjectsAI";
+import ProjectsFullStack from "./pages/ProjectsFullStack";
 import NotFound from "./pages/NotFound";
 import BottomNavigation from "./components/BottomNavigation";
 
@@ -44,6 +47,9 @@ const App = () => (
             <Route path="/awards" element={<Awards />} />
             <Route path="/extras" element={<Extras />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/project/:id" element={<ProjectDetail />} />
+            <Route path="/projects/ai-ml" element={<ProjectsAI />} />
+            <Route path="/projects/fullstack" element={<ProjectsFullStack />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

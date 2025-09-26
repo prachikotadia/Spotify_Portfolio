@@ -491,7 +491,7 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Browse All Section - Exact Spotify Style */}
+        {/* Browse All Section - Projects and About Me */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -502,55 +502,40 @@ const Home = () => {
           <div className="grid grid-cols-2 gap-3">
             {[
               { 
-                name: 'Podcasts', 
-                gradient: 'from-red-500 to-red-700',
-                image: '/src/assets/ai-chat-project.jpg'
+                name: 'AI/ML Projects', 
+                gradient: 'from-purple-500 to-pink-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/ai-ml'
               },
               { 
-                name: 'New Releases', 
-                gradient: 'from-pink-500 to-pink-700',
-                image: '/src/assets/ecommerce-project.jpg'
+                name: 'Full Stack Apps', 
+                gradient: 'from-blue-500 to-cyan-500',
+                image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/fullstack'
               },
               { 
-                name: 'Charts', 
-                gradient: 'from-purple-500 to-purple-700',
-                image: '/src/assets/weather-dashboard-project.jpg'
+                name: 'Mobile Apps', 
+                gradient: 'from-green-500 to-emerald-500',
+                image: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/mobile'
               },
               { 
-                name: 'Live Events', 
-                gradient: 'from-blue-500 to-purple-600',
-                image: '/src/assets/fitness-tracker-project.jpg'
+                name: 'System Programming', 
+                gradient: 'from-orange-500 to-red-500',
+                image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/systems'
               },
               { 
-                name: 'Made for You', 
-                gradient: 'from-blue-600 to-blue-800',
-                image: '/src/assets/task-management-project.jpg'
+                name: 'Data Engineering', 
+                gradient: 'from-indigo-500 to-purple-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/data'
               },
               { 
-                name: 'At Home', 
-                gradient: 'from-green-600 to-blue-600',
-                image: '/src/assets/social-analytics-project.jpg'
-              },
-              { 
-                name: 'My Story', 
-                gradient: 'from-purple-500 to-yellow-500',
+                name: 'About Me', 
+                gradient: 'from-pink-500 to-rose-500',
                 image: '/src/assets/2025-09-25_21-10-04.jpg',
                 link: '/lyrics'
-              },
-              { 
-                name: 'Bollywood', 
-                gradient: 'from-red-600 to-red-800',
-                image: '/src/assets/ecommerce-project.jpg'
-              },
-              { 
-                name: 'Punjabi', 
-                gradient: 'from-pink-600 to-purple-600',
-                image: '/src/assets/weather-dashboard-project.jpg'
-              },
-              { 
-                name: 'Tamil', 
-                gradient: 'from-blue-600 to-green-600',
-                image: '/src/assets/fitness-tracker-project.jpg'
               }
             ].map((category, index) => (
               <motion.div
