@@ -90,60 +90,19 @@ const Home = () => {
 
       {/* Main Content */}
       <div className="px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
-        {/* Featured Project Banner - Like Spotify's "Popular New Album" */}
+        {/* Featured Profile Image */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mb-6"
-        >
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-green-500 to-green-600 p-6 lg:p-8">
-            {/* Background Pattern */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-            <div className="absolute bottom-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
-            
-            <div className="relative z-10 flex items-center justify-between">
-              {/* Text Content */}
-              <div className="flex-1 pr-4">
-                <p className="text-green-100 text-sm font-medium mb-2">Popular New Project</p>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-1">Full Stack Developer</h1>
-                <p className="text-green-100 text-sm">Prachi Kotadia</p>
-              </div>
-              
-              {/* Profile Image */}
-              <div className="relative flex-shrink-0">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 rounded-2xl overflow-hidden shadow-2xl">
-                  <img
-                    src="/src/assets/Add_a_subheading__1_-removebg-preview.png"
-                    alt="Prachi Kotadia"
-                    className="w-full h-full object-cover object-center"
-                    style={{
-                      filter: 'contrast(1.1) brightness(1.05) saturate(1.1)',
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Personalized Greeting with Profile */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-white/70 text-sm font-medium">Hello</p>
-              <h2 className="text-3xl lg:text-4xl font-bold text-white mt-1">Prachi Kotadia</h2>
-            </div>
-            <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden ring-2 ring-white/10">
+          <div className="flex justify-center">
+            <div className="w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="/src/assets/Add_a_subheading__1_-removebg-preview.png"
-                alt="Prachi Kotadia"
-                className="w-full h-full object-cover"
+                alt="Prachi Kotadia - Full Stack Developer"
+                className="w-full h-auto object-cover"
               />
             </div>
           </div>
