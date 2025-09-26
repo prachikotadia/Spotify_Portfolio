@@ -23,55 +23,22 @@ const getLevelText = (level: number) => {
   return 'Beginner';
 };
 
-// Generate random AI-generated images for skill categories
+// Get fixed images for skill categories
 const getCategoryImage = (categoryName: string) => {
   const categoryImages = {
-    'Programming Languages': [
-      '/Users/prachi/Projects/Portfolio/Spotify_Portfolio/Spotify_Portfolio/src/assets/image copy 4.png',
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=600&fit=crop&crop=center'
-    ],
-    'Web Development': [
-      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=600&fit=crop&crop=center'
-    ],
-    'Databases & Cloud': [
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=600&fit=crop&crop=center'
-    ],
-    'Embedded & Systems': [
-      '/Users/prachi/Projects/Portfolio/Spotify_Portfolio/Spotify_Portfolio/src/assets/image copy 5.png',
-      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center'
-    ],
-    'Mobile & AI/ML': [
-      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=600&fit=crop&crop=center'
-    ],
-    'DevOps & Tools': [
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=600&fit=crop&crop=center'
-    ]
+    'Programming Languages': '/Users/prachi/Projects/Portfolio/Spotify_Portfolio/Spotify_Portfolio/src/assets/image copy 4.png',
+    'Web Development': 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=600&fit=crop&crop=center',
+    'Databases & Cloud': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=600&fit=crop&crop=center',
+    'Embedded & Systems': '/Users/prachi/Projects/Portfolio/Spotify_Portfolio/Spotify_Portfolio/src/assets/image copy 5.png',
+    'Mobile & AI/ML': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=600&fit=crop&crop=center',
+    'DevOps & Tools': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=600&fit=crop&crop=center'
   };
   
-  const images = categoryImages[categoryName as keyof typeof categoryImages] || categoryImages['Programming Languages'];
-  const randomIndex = Math.floor(Math.random() * images.length);
-  return images[randomIndex];
+  return categoryImages[categoryName as keyof typeof categoryImages] || categoryImages['Programming Languages'];
 };
 
 // Category Card Component (Main Flashcard)
-const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipeLeft, onSwipeRight, imageRefreshKey }: { 
+const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipeLeft, onSwipeRight }: { 
   category: any; 
   index: number; 
   isActive: boolean; 
@@ -79,7 +46,6 @@ const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipe
   onSelect: () => void;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
-  imageRefreshKey: number;
 }) => {
   const x = useMotionValue(0);
   const scale = useTransform(x, [-200, 0, 200], [0.8, 1, 0.8]);
@@ -126,7 +92,6 @@ const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipe
         {/* Category poster image with overlay */}
         <div className="w-full h-full relative">
           <img
-            key={`${category.name}-${imageRefreshKey}`}
             src={getCategoryImage(category.name)}
             alt={category.name}
             className="w-full h-full object-cover"
@@ -173,7 +138,6 @@ const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipe
 
 const Skills = () => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
-  const [imageRefreshKey, setImageRefreshKey] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   
   // Define skill categories with real data
@@ -235,7 +199,6 @@ const Skills = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setActiveCategoryIndex((prev) => (prev + 1) % skillCategories.length);
-    setImageRefreshKey(prev => prev + 1); // Refresh images on swipe
     setTimeout(() => setIsTransitioning(false), 300);
   };
 
@@ -243,7 +206,6 @@ const Skills = () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     setActiveCategoryIndex((prev) => (prev - 1 + skillCategories.length) % skillCategories.length);
-    setImageRefreshKey(prev => prev + 1); // Refresh images on swipe
     setTimeout(() => setIsTransitioning(false), 300);
   };
 
@@ -398,7 +360,6 @@ const Skills = () => {
                   onSelect={() => setActiveCategoryIndex(index)}
                   onSwipeLeft={handleSwipeLeft}
                   onSwipeRight={handleSwipeRight}
-                  imageRefreshKey={imageRefreshKey}
                 />
               </motion.div>
             );
