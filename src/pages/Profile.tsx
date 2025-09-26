@@ -88,30 +88,40 @@ const Profile = () => {
           
           {/* Social Icons */}
           <div className="flex gap-4 justify-center">
-            <motion.div 
-              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            <motion.a 
+              href="https://github.com/prachikotadia" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
               whileHover={{ scale: 1.1 }}
             >
               <Github className="w-6 h-6 text-white" />
-            </motion.div>
-            <motion.div 
-              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            </motion.a>
+            <motion.a 
+              href="https://linkedin.com/in/prachikotadia" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
               whileHover={{ scale: 1.1 }}
             >
               <Linkedin className="w-6 h-6 text-white" />
-            </motion.div>
-            <motion.div 
-              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            </motion.a>
+            <motion.a 
+              href="mailto:prachi.kotadia@example.com" 
+              className="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
               whileHover={{ scale: 1.1 }}
             >
               <Mail className="w-6 h-6 text-white" />
-            </motion.div>
-            <motion.div 
-              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            </motion.a>
+            <motion.a 
+              href="https://prachikotadia.dev" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
               whileHover={{ scale: 1.1 }}
             >
               <Globe className="w-6 h-6 text-white" />
-            </motion.div>
+            </motion.a>
           </div>
         </div>
 
