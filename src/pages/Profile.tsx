@@ -88,11 +88,8 @@ const Profile = () => {
 
         {/* Social Links Section */}
         <div className="mb-6">
-          <div className="flex items-center justify-between mb-4">
+          <div className="mb-4">
             <h3 className="text-lg font-semibold text-white">Social</h3>
-            <Button variant="ghost" className="text-green-500 hover:text-green-400 p-0">
-              View All
-            </Button>
           </div>
           
           {/* Social Icons */}
