@@ -91,23 +91,6 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Search Icon */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mb-8 flex justify-center"
-        >
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate('/search')}
-            className="w-12 h-12 bg-gray-800/50 border border-gray-700 rounded-full hover:bg-gray-700/50 text-white hover:text-white transition-all duration-200"
-          >
-            <SearchIcon className="w-6 h-6" />
-          </Button>
-        </motion.div>
-
         {/* Browse All Section - First Priority */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -115,7 +98,17 @@ const Home = () => {
           transition={{ delay: 0.3 }}
           className="mb-8"
         >
-          <h2 className="text-xl font-bold text-white mb-4">Browse all</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-bold text-white">Browse all</h2>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/search')}
+              className="w-10 h-10 bg-gray-800/50 border border-gray-700 rounded-full hover:bg-gray-700/50 text-white hover:text-white transition-all duration-200"
+            >
+              <SearchIcon className="w-5 h-5" />
+            </Button>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {[
               { 
