@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye, Code, Github, Linkedin, Mail, Globe, Download } from 'lucide-react';
+import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye, Code, Github, Linkedin, Mail, Globe, Download, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -145,16 +145,22 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="grid grid-cols-2 gap-3">
-          <Button className="bg-green-500 hover:bg-green-600 text-white">
-            <Users className="w-4 h-4 mr-2" />
-            Share Profile
-          </Button>
-          <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
-            <Camera className="w-4 h-4 mr-2" />
-            Edit Profile
-          </Button>
+        {/* Location */}
+        <div className="mb-6">
+          <div className="flex items-center justify-center gap-2 text-gray-400">
+            <MapPin className="w-4 h-4" />
+            <span>Chicago, USA</span>
+          </div>
+        </div>
+
+        {/* Fun Spotify-style Sentences */}
+        <div className="space-y-2 text-center">
+          <p className="text-sm text-gray-400 italic">
+            "Software Engineer by day, Spotify playlist curator by night"
+          </p>
+          <p className="text-sm text-gray-400 italic">
+            "Debugging code while jamming to the perfect algorithm playlist"
+          </p>
         </div>
       </div>
     </div>
