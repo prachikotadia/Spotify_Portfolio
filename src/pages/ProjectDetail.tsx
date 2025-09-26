@@ -65,7 +65,7 @@ const ProjectDetail = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2 }}
-        className="flex justify-center px-6 mb-8"
+        className="flex justify-center px-4 sm:px-6 lg:px-8 mb-8 max-w-4xl mx-auto"
       >
         <div className="w-80 h-80 rounded-2xl overflow-hidden shadow-2xl">
           <img
@@ -81,7 +81,7 @@ const ProjectDetail = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="px-6 mb-8"
+        className="px-4 sm:px-6 lg:px-8 mb-8 max-w-4xl mx-auto"
       >
         <div className="flex items-center justify-between mb-4">
           <div>
@@ -153,7 +153,7 @@ const ProjectDetail = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="px-6 mb-8"
+        className="px-4 sm:px-6 lg:px-8 mb-8 max-w-4xl mx-auto"
       >
         <h3 className="text-xl font-bold text-white mb-4">About the project</h3>
         <p className="text-white/80 leading-relaxed mb-6">{project.longDescription}</p>

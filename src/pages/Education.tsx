@@ -36,7 +36,7 @@ const Education = () => {
       </div>
 
       {/* Spotify-style Content */}
-      <div className="px-6 pt-6">
+      <div className="px-4 sm:px-6 lg:px-8 pt-6 max-w-7xl mx-auto">
         {/* Recently Played Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

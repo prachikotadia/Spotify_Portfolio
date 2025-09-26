@@ -66,7 +66,7 @@ const Library = () => {
   return (
     <div className="min-h-screen bg-[#121212] pb-24">
       {/* Header */}
-      <div className="px-6 pt-12 pb-4">
+      <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-4 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -137,7 +137,7 @@ const Library = () => {
       </div>
 
       {/* Content List/Grid */}
-      <div className="px-6">
+      <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {viewMode === 'list' ? (
           <div className="space-y-2">
             {filteredData.map((item, index) => (

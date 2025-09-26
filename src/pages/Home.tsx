@@ -89,7 +89,7 @@ const Home = () => {
       </div>
 
       {/* Main Content */}
-      <div className="px-4 py-4">
+      <div className="px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
         {/* Featured Project Banner - Like Spotify's "Popular New Album" */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -177,7 +177,7 @@ const Home = () => {
           className="mb-8"
         >
           <h2 className="text-xl font-bold text-white mb-4">Browse all</h2>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
             {[
               { 
                 name: 'AI/ML Projects', 

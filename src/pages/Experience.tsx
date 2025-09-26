@@ -25,7 +25,7 @@ const Experience = () => {
         </motion.div>
       </div>
 
-      <div className="px-6">
+      <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* Timeline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
