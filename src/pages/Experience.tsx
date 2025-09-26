@@ -116,37 +116,6 @@ const Experience = () => {
           ))}
         </motion.div>
 
-        {/* Summary Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mt-12"
-        >
-          <Card>
-            <CardContent className="pt-6">
-              <h2 className="text-2xl font-bold mb-6 text-center">Career Summary</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">5+</div>
-                  <div className="text-sm text-muted-foreground">Years Experience</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">3</div>
-                  <div className="text-sm text-muted-foreground">Companies</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">20+</div>
-                  <div className="text-sm text-muted-foreground">Technologies</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary">50+</div>
-                  <div className="text-sm text-muted-foreground">Projects</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
       </div>
     </div>
   );
