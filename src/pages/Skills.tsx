@@ -46,7 +46,7 @@ const getCategoryImage = (categoryName: string) => {
       'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=600&fit=crop&crop=center'
     ],
     'Embedded & Systems': [
-      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
+      '/Users/prachi/Projects/Portfolio/Spotify_Portfolio/Spotify_Portfolio/src/assets/image copy 5.png',
       'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=600&fit=crop&crop=center',
       'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center'
