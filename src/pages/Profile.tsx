@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye, Code, Github, Linkedin, Mail, Share } from 'lucide-react';
+import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye, Code, Github, Linkedin, Mail, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -110,7 +110,7 @@ const Profile = () => {
               className="aspect-square rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center"
               whileHover={{ scale: 1.05 }}
             >
-              <Share className="w-8 h-8 text-white" />
+              <Globe className="w-8 h-8 text-white" />
             </motion.div>
           </div>
         </div>
