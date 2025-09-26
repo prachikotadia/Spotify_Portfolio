@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Search as SearchIcon, Clock } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -8,12 +9,20 @@ import SpotifyLogo from '@/components/SpotifyLogo';
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
-  // Use certificate names as recent searches
-  const recentSearches = mockCertificates.map(cert => cert.title);
+  // Use certificate names as recent searches with their IDs
+  const recentSearches = mockCertificates.map(cert => ({
+    title: cert.title,
+    id: cert.id
+  }));
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
+  };
+
+  const handleCertificateClick = (certificateId: string) => {
+    navigate(`/certificate/${certificateId}`);
   };
 
   return (
@@ -72,9 +81,9 @@ const Search = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + index * 0.05 }}
                   className="flex items-center justify-between p-3 bg-[#181818] rounded-lg hover:bg-[#282828] transition-colors cursor-pointer"
-                  onClick={() => handleSearch(search)}
+                  onClick={() => handleCertificateClick(search.id)}
                 >
-                  <span className="text-white">{search}</span>
+                  <span className="text-white">{search.title}</span>
                   <SearchIcon className="w-4 h-4 text-gray-400" />
                 </motion.div>
               ))}
