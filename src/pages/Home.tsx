@@ -117,6 +117,17 @@ const Home = () => {
                 <p className="text-gray-400 text-sm">Prachi Kotadia</p>
               </div>
               
+              {/* Play Button */}
+              <div className="flex-shrink-0">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-white hover:text-white hover:bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-200"
+                >
+                  <Play className="w-5 h-5" />
+                </Button>
+              </div>
+              
               {/* More Options */}
               <div className="flex-shrink-0">
                 <Button 
@@ -224,14 +235,14 @@ const Home = () => {
                 link: '/lyrics'
               }
             ].map((category, index) => (
-              <motion.div
+            <motion.div
                 key={category.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + index * 0.05 }}
                 className={`bg-gradient-to-br ${category.gradient} rounded-lg p-4 h-24 relative overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group`}
                 onClick={() => category.link && navigate(category.link)}
-              >
+            >
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <h3 className="text-white font-bold text-sm">{category.name}</h3>
                 </div>
