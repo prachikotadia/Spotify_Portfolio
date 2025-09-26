@@ -103,17 +103,17 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
   return (
     <motion.div
       drag="x"
-      dragConstraints={{ left: -80, right: 80 }}
-      dragElastic={0.3}
+      dragConstraints={{ left: -60, right: 60 }}
+      dragElastic={0.4}
       dragMomentum={false}
       onDragEnd={handleDragEnd}
       style={{ x, scale, opacity, rotateY }}
-      className={`relative cursor-grab active:cursor-grabbing ${isActive ? 'z-20' : 'z-10'} flex-shrink-0`}
+      className={`relative cursor-grab active:cursor-grabbing ${isActive ? 'z-20' : 'z-10'} flex-shrink-0 touch-pan-y`}
       onClick={onSelect}
       whileDrag={{ scale: 1.05 }}
     >
       <motion.div
-        className={`relative ${isActive ? 'w-56 h-80' : 'w-40 h-64'} rounded-2xl overflow-hidden shadow-2xl border-2 ${isActive ? 'border-green-500' : 'border-gray-600'}`}
+        className={`relative ${isActive ? 'w-48 h-72 sm:w-56 sm:h-80' : 'w-32 h-48 sm:w-40 sm:h-64'} rounded-2xl overflow-hidden shadow-2xl border-2 ${isActive ? 'border-green-500' : 'border-gray-600'}`}
         whileHover={{ scale: isActive ? 1.05 : 1.1 }}
         whileTap={{ scale: 0.95 }}
         style={{ transformStyle: "preserve-3d" }}
@@ -132,22 +132,22 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
         
         {/* Category level badge */}
         <motion.div 
-          className="absolute top-4 right-4 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+          className="absolute top-2 right-2 sm:top-4 sm:right-4 w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
           whileHover={{ scale: 1.1, rotate: 360 }}
           transition={{ duration: 0.3 }}
         >
-          <span className="text-white font-bold text-sm">{category.skillsCount}</span>
+          <span className="text-white font-bold text-xs sm:text-sm">{category.skillsCount}</span>
         </motion.div>
         
         {/* Category badge */}
-        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-full px-4 py-2">
-          <span className="text-white text-sm font-semibold">{category.name.split(' ')[0]}</span>
+        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-black/70 backdrop-blur-sm rounded-full px-2 py-1 sm:px-4 sm:py-2">
+          <span className="text-white text-xs sm:text-sm font-semibold">{category.name.split(' ')[0]}</span>
         </div>
 
         {/* Category title at bottom */}
-        <div className="absolute bottom-4 left-4 right-4">
-          <h3 className="text-white font-bold text-lg mb-1">{category.name}</h3>
-          <p className="text-green-300 text-sm">{category.skillsCount} Skills</p>
+        <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4">
+          <h3 className="text-white font-bold text-sm sm:text-lg mb-1">{category.name}</h3>
+          <p className="text-green-300 text-xs sm:text-sm">{category.skillsCount} Skills</p>
         </div>
 
         {/* Active indicator */}
@@ -264,27 +264,30 @@ const Skills = () => {
       {/* Header */}
       <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-3 max-w-7xl mx-auto">
-          <div className="flex items-center gap-3">
-            <h1 className="text-xl font-bold text-green-500">Skills Carousel</h1>
-            <div className="flex items-center gap-1 text-xs text-gray-400">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <h1 className="text-lg sm:text-xl font-bold text-green-500">Skills Carousel</h1>
+            <div className="hidden sm:flex items-center gap-1 text-xs text-gray-400">
               <span>← Swipe or use arrows →</span>
+            </div>
+            <div className="sm:hidden text-xs text-gray-400">
+              <span>← Swipe →</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Main Content - Horizontal Skill Carousel */}
-      <div className="relative h-[calc(100vh-300px)] flex flex-col items-center justify-center overflow-hidden px-8">
+      <div className="relative h-[calc(100vh-250px)] sm:h-[calc(100vh-300px)] flex flex-col items-center justify-center overflow-hidden px-2 sm:px-8">
         {/* Background gradient effects */}
         <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-transparent to-green-500/5 pointer-events-none" />
         
         {/* Progress indicator */}
-        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+        <div className="absolute top-2 sm:top-4 left-1/2 transform -translate-x-1/2 flex gap-1 sm:gap-2 z-20">
           {skillCategories.map((_, index) => (
             <motion.div
               key={index}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                index === activeCategoryIndex ? 'bg-green-500 w-8' : 'bg-gray-600 w-2'
+              className={`h-1 sm:h-2 rounded-full transition-all duration-300 ${
+                index === activeCategoryIndex ? 'bg-green-500 w-6 sm:w-8' : 'bg-gray-600 w-1 sm:w-2'
               }`}
               animate={{
                 scale: index === activeCategoryIndex ? 1.2 : 1,
@@ -294,10 +297,10 @@ const Skills = () => {
           ))}
         </div>
         
-        {/* Navigation Arrows */}
+        {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
         <motion.button
           onClick={handlePrevious}
-          className="absolute left-2 z-30 w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+          className="hidden sm:flex absolute left-2 z-30 w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
           whileHover={{ scale: 1.1, rotate: -5 }}
           whileTap={{ scale: 0.9 }}
         >
@@ -306,7 +309,7 @@ const Skills = () => {
         
         <motion.button
           onClick={handleNext}
-          className="absolute right-2 z-30 w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+          className="hidden sm:flex absolute right-2 z-30 w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
         >
@@ -314,7 +317,7 @@ const Skills = () => {
         </motion.button>
 
         {/* Horizontal Skill Carousel */}
-        <div className="flex items-center justify-center gap-6 overflow-x-auto scrollbar-hide w-full">
+        <div className="flex items-center justify-center gap-3 sm:gap-6 overflow-x-auto scrollbar-hide w-full">
           {skillCategories.map((category, index) => (
             <CategoryCard
               key={category.name}
@@ -332,14 +335,14 @@ const Skills = () => {
 
       {/* Category Details */}
       {activeCategory && (
-        <div className="absolute bottom-40 left-1/2 transform -translate-x-1/2 text-center z-10 w-full max-w-4xl px-4">
+        <div className="absolute bottom-32 sm:bottom-40 left-1/2 transform -translate-x-1/2 text-center z-10 w-full max-w-4xl px-2 sm:px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-white bg-black/40 backdrop-blur-md rounded-2xl p-6 border border-green-500/20"
+            className="text-white bg-black/40 backdrop-blur-md rounded-2xl p-3 sm:p-6 border border-green-500/20"
           >
             <motion.h2 
-              className="text-3xl font-bold mb-2 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent"
+              className="text-xl sm:text-3xl font-bold mb-2 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent"
               animate={{ 
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
@@ -347,32 +350,32 @@ const Skills = () => {
             >
               {activeCategory.name.toUpperCase()}
             </motion.h2>
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <span className="text-lg font-semibold">{activeCategorySkills.length} Skills</span>
-              <span className="text-lg">•</span>
-              <span className="text-lg font-semibold">Expert Level</span>
+            <div className="flex items-center justify-center gap-2 sm:gap-4 mb-3 sm:mb-4">
+              <span className="text-sm sm:text-lg font-semibold">{activeCategorySkills.length} Skills</span>
+              <span className="text-sm sm:text-lg">•</span>
+              <span className="text-sm sm:text-lg font-semibold">Expert Level</span>
             </div>
-            <div className="flex items-center justify-center gap-2 flex-wrap">
+            <div className="flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
               <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
                 {activeCategory.name.split(' ')[0].toUpperCase()}
               </motion.span>
               <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
                 PROGRAMMING
               </motion.span>
               <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
                 DEVELOPMENT
               </motion.span>
               <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
                 TECHNOLOGY
@@ -383,17 +386,17 @@ const Skills = () => {
       )}
 
       {/* Sub-categories (Skills) */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-black/50 backdrop-blur-md border-t border-green-500/20 p-4">
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-black/50 backdrop-blur-md border-t border-green-500/20 p-2 sm:p-4">
         <div className="max-w-6xl mx-auto">
           <motion.h3 
-            className="text-white font-bold mb-4 text-center text-lg"
+            className="text-white font-bold mb-2 sm:mb-4 text-center text-sm sm:text-lg"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
             Skills in {activeCategory?.name}
           </motion.h3>
-          <div className="flex flex-wrap justify-center gap-2 max-h-20 overflow-y-auto">
-            {activeCategorySkills.slice(0, 6).map((skill, index) => (
+          <div className="flex flex-wrap justify-center gap-1 sm:gap-2 max-h-16 sm:max-h-20 overflow-y-auto">
+            {activeCategorySkills.slice(0, 4).map((skill, index) => (
               <motion.div
                 key={skill.id}
                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -404,17 +407,17 @@ const Skills = () => {
                   y: -2,
                   boxShadow: "0 10px 25px rgba(34, 197, 94, 0.3)"
                 }}
-                className="bg-gradient-to-r from-green-500/20 to-green-600/20 hover:from-green-500/30 hover:to-green-600/30 text-green-300 hover:text-white px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition-all duration-300 border border-green-500/30 hover:border-green-400/50"
+                className="bg-gradient-to-r from-green-500/20 to-green-600/20 hover:from-green-500/30 hover:to-green-600/30 text-green-300 hover:text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium cursor-pointer transition-all duration-300 border border-green-500/30 hover:border-green-400/50"
               >
                 {skill.name}
               </motion.div>
             ))}
-            {activeCategorySkills.length > 6 && (
+            {activeCategorySkills.length > 4 && (
               <motion.div 
-                className="bg-gradient-to-r from-gray-600/20 to-gray-700/20 text-gray-400 px-3 py-1 rounded-full text-sm font-medium border border-gray-600/30"
+                className="bg-gradient-to-r from-gray-600/20 to-gray-700/20 text-gray-400 px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium border border-gray-600/30"
                 whileHover={{ scale: 1.05 }}
               >
-                +{activeCategorySkills.length - 6} more
+                +{activeCategorySkills.length - 4} more
               </motion.div>
             )}
           </div>
