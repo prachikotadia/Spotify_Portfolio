@@ -25,7 +25,7 @@ const Education = () => {
           </Button>
           
           {/* Center: Title */}
-          <div className="text-center flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <SpotifyLogo size="sm" />
             <h1 className="text-lg font-bold text-white">Education</h1>
           </div>

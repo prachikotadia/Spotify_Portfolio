@@ -1,6 +1,5 @@
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft, Globe, Server, Database, Smartphone, Cpu, Wrench } from 'lucide-react';
-import SpotifyLogo from '@/components/SpotifyLogo';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -8,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { skills } from '@/data/mockData';
 import type { Skill } from '@/data/mockData';
 import { useState, useRef, useEffect } from 'react';
+import SpotifyLogo from '@/components/SpotifyLogo';
 
 // Helper functions
 const getLevelColor = (level: number) => {
