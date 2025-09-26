@@ -9,17 +9,8 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-[#121212]">
       {/* Status Bar */}
-      <div className="flex items-center justify-between px-4 py-2 text-white text-sm">
-        <div className="flex items-center gap-2">
-          <ArrowLeft className="w-4 h-4" />
-        </div>
-        <div className="flex items-center gap-1">
-          <div className="w-4 h-2 bg-white rounded-sm"></div>
-          <div className="w-4 h-2 bg-white rounded-sm"></div>
-          <div className="w-4 h-2 bg-white rounded-sm"></div>
-          <div className="w-4 h-2 bg-white rounded-sm"></div>
-        </div>
-        <MoreVertical className="w-4 h-4" />
+      <div className="flex items-center px-4 py-2 text-white text-sm">
+        <ArrowLeft className="w-4 h-4" />
       </div>
 
       {/* Header */}
