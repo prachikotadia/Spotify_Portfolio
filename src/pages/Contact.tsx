@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Download, Github, Linkedin, Twitter, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Download, Github, Linkedin, Twitter, MessageSquare, Globe } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
+import SpotifyLogo from '@/components/SpotifyLogo';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -32,20 +33,26 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'your.email@example.com',
-      href: 'mailto:your.email@example.com'
+      value: 'iprachikotadia@gmail.com',
+      href: 'mailto:iprachikotadia@gmail.com'
     },
     {
-      icon: Phone,
-      label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      icon: Github,
+      label: 'GitHub',
+      value: 'github.com/prachikotadia',
+      href: 'https://github.com/prachikotadia'
     },
     {
-      icon: MapPin,
-      label: 'Location',
-      value: 'San Francisco, CA',
-      href: '#'
+      icon: Linkedin,
+      label: 'LinkedIn',
+      value: 'linkedin.com/in/prachi-kotadia',
+      href: 'https://www.linkedin.com/in/prachi-kotadia/'
+    },
+    {
+      icon: Globe,
+      label: 'Portfolio',
+      value: 'prachikotadia.netlify.app',
+      href: 'https://prachikotadia.netlify.app/'
     }
   ];
 
@@ -53,20 +60,20 @@ const Contact = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com',
+      href: 'https://github.com/prachikotadia',
       color: 'hover:text-gray-900'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/in/prachi-kotadia/',
       color: 'hover:text-blue-600'
     },
     {
-      icon: Twitter,
-      label: 'Twitter',
-      href: 'https://twitter.com',
-      color: 'hover:text-blue-400'
+      icon: Globe,
+      label: 'Portfolio',
+      href: 'https://prachikotadia.netlify.app/',
+      color: 'hover:text-green-600'
     }
   ];
 
@@ -79,7 +86,11 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center"
         >
-          <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <SpotifyLogo size="sm" />
+            <h1 className="text-4xl font-bold">Get In Touch</h1>
+          </div>
+          <h2 className="text-2xl font-semibold text-primary mb-2">Prachi Kotadia</h2>
           <p className="text-xl text-muted-foreground">
             Let's discuss your next project or just say hello
           </p>
@@ -94,7 +105,7 @@ const Contact = () => {
           transition={{ delay: 0.2 }}
           className="mb-12"
         >
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
