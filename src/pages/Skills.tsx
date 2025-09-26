@@ -23,28 +23,61 @@ const getLevelText = (level: number) => {
   return 'Beginner';
 };
 
-// Generate demo images for skill categories
+// Generate random AI-generated images for skill categories
 const getCategoryImage = (categoryName: string) => {
   const categoryImages = {
-    'Programming Languages': 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=600&fit=crop&crop=center',
-    'Web Development': 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=600&fit=crop&crop=center',
-    'Databases & Cloud': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=600&fit=crop&crop=center',
-    'Embedded & Systems': 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
-    'Mobile & AI/ML': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=600&fit=crop&crop=center',
-    'DevOps & Tools': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=600&fit=crop&crop=center'
+    'Programming Languages': [
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=600&fit=crop&crop=center'
+    ],
+    'Web Development': [
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=600&fit=crop&crop=center'
+    ],
+    'Databases & Cloud': [
+      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=600&fit=crop&crop=center'
+    ],
+    'Embedded & Systems': [
+      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center'
+    ],
+    'Mobile & AI/ML': [
+      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=600&fit=crop&crop=center'
+    ],
+    'DevOps & Tools': [
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=600&fit=crop&crop=center'
+    ]
   };
   
-  return categoryImages[categoryName as keyof typeof categoryImages] || 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=600&fit=crop&crop=center';
+  const images = categoryImages[categoryName as keyof typeof categoryImages] || categoryImages['Programming Languages'];
+  const randomIndex = Math.floor(Math.random() * images.length);
+  return images[randomIndex];
 };
 
 // Category Card Component (Main Flashcard)
-const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwipeRight }: { 
+const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwipeRight, imageRefreshKey }: { 
   category: any; 
   index: number; 
   isActive: boolean; 
   onSelect: () => void;
   onSwipeLeft: () => void;
   onSwipeRight: () => void;
+  imageRefreshKey: number;
 }) => {
   const x = useMotionValue(0);
   const scale = useTransform(x, [-200, 0, 200], [0.8, 1, 0.8]);
@@ -52,14 +85,14 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
   const rotateY = useTransform(x, [-200, 0, 200], [15, 0, -15]);
 
   const handleDragEnd = (event: any, info: any) => {
-    const threshold = 30; // Lower threshold for more responsive swiping
+    const threshold = 20; // Even lower threshold for more responsive swiping
     const velocity = info.velocity.x;
     
     // Check both offset and velocity for more responsive swiping
-    if (info.offset.x > threshold || velocity > 500) {
+    if (info.offset.x > threshold || velocity > 300) {
       // Swiped right - go to previous
       onSwipeRight();
-    } else if (info.offset.x < -threshold || velocity < -500) {
+    } else if (info.offset.x < -threshold || velocity < -300) {
       // Swiped left - go to next
       onSwipeLeft();
     }
@@ -70,17 +103,17 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
   return (
     <motion.div
       drag="x"
-      dragConstraints={{ left: -150, right: 150 }}
-      dragElastic={0.2}
+      dragConstraints={{ left: -80, right: 80 }}
+      dragElastic={0.3}
       dragMomentum={false}
       onDragEnd={handleDragEnd}
       style={{ x, scale, opacity, rotateY }}
-      className={`relative cursor-grab active:cursor-grabbing ${isActive ? 'z-10' : 'z-0'}`}
+      className={`relative cursor-grab active:cursor-grabbing ${isActive ? 'z-20' : 'z-10'} flex-shrink-0`}
       onClick={onSelect}
       whileDrag={{ scale: 1.05 }}
     >
       <motion.div
-        className={`relative ${isActive ? 'w-64 h-96' : 'w-48 h-72'} rounded-2xl overflow-hidden shadow-2xl border-2 ${isActive ? 'border-green-500' : 'border-gray-600'}`}
+        className={`relative ${isActive ? 'w-56 h-80' : 'w-40 h-64'} rounded-2xl overflow-hidden shadow-2xl border-2 ${isActive ? 'border-green-500' : 'border-gray-600'}`}
         whileHover={{ scale: isActive ? 1.05 : 1.1 }}
         whileTap={{ scale: 0.95 }}
         style={{ transformStyle: "preserve-3d" }}
@@ -88,6 +121,7 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
         {/* Category poster image with overlay */}
         <div className="w-full h-full relative">
           <img
+            key={`${category.name}-${imageRefreshKey}`}
             src={getCategoryImage(category.name)}
             alt={category.name}
             className="w-full h-full object-cover"
@@ -133,6 +167,7 @@ const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwip
 
 const Skills = () => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
+  const [imageRefreshKey, setImageRefreshKey] = useState(0);
   
   // Define skill categories with icons and skill counts
   const skillCategories = [
@@ -185,10 +220,12 @@ const Skills = () => {
 
   const handleNext = () => {
     setActiveCategoryIndex((prev) => (prev + 1) % skillCategories.length);
+    setImageRefreshKey(prev => prev + 1); // Refresh images on swipe
   };
 
   const handlePrevious = () => {
     setActiveCategoryIndex((prev) => (prev - 1 + skillCategories.length) % skillCategories.length);
+    setImageRefreshKey(prev => prev + 1); // Refresh images on swipe
   };
 
   const handleSwipeLeft = () => {
@@ -226,10 +263,10 @@ const Skills = () => {
       `}</style>
       {/* Header */}
       <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-800">
-        <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
-          <div className="flex items-center gap-4">
-            <h1 className="text-2xl font-bold text-green-500">skillsk</h1>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
+        <div className="flex items-center justify-between p-3 max-w-7xl mx-auto">
+          <div className="flex items-center gap-3">
+            <h1 className="text-xl font-bold text-green-500">Skills Carousel</h1>
+            <div className="flex items-center gap-1 text-xs text-gray-400">
               <span>← Swipe or use arrows →</span>
             </div>
           </div>
@@ -237,36 +274,17 @@ const Skills = () => {
       </div>
 
       {/* Main Content - Horizontal Skill Carousel */}
-      <div className="relative h-[calc(100vh-200px)] flex items-center justify-center overflow-hidden px-4">
+      <div className="relative h-[calc(100vh-300px)] flex flex-col items-center justify-center overflow-hidden px-8">
         {/* Background gradient effects */}
         <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-transparent to-green-500/5 pointer-events-none" />
         
-        {/* Navigation Arrows */}
-        <motion.button
-          onClick={handlePrevious}
-          className="absolute left-4 z-30 w-14 h-14 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
-          whileHover={{ scale: 1.1, rotate: -5 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ChevronLeft className="w-7 h-7" />
-        </motion.button>
-        
-        <motion.button
-          onClick={handleNext}
-          className="absolute right-4 z-30 w-14 h-14 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <ChevronRight className="w-7 h-7" />
-        </motion.button>
-
         {/* Progress indicator */}
-        <div className="absolute top-8 left-1/2 transform -translate-x-1/2 flex gap-2">
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
           {skillCategories.map((_, index) => (
             <motion.div
               key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === activeCategoryIndex ? 'bg-green-500 w-8' : 'bg-gray-600'
+              className={`h-2 rounded-full transition-all duration-300 ${
+                index === activeCategoryIndex ? 'bg-green-500 w-8' : 'bg-gray-600 w-2'
               }`}
               animate={{
                 scale: index === activeCategoryIndex ? 1.2 : 1,
@@ -275,9 +293,28 @@ const Skills = () => {
             />
           ))}
         </div>
+        
+        {/* Navigation Arrows */}
+        <motion.button
+          onClick={handlePrevious}
+          className="absolute left-2 z-30 w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+          whileHover={{ scale: 1.1, rotate: -5 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </motion.button>
+        
+        <motion.button
+          onClick={handleNext}
+          className="absolute right-2 z-30 w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <ChevronRight className="w-6 h-6" />
+        </motion.button>
 
         {/* Horizontal Skill Carousel */}
-        <div className="flex items-center justify-center gap-8 overflow-x-auto scrollbar-hide">
+        <div className="flex items-center justify-center gap-6 overflow-x-auto scrollbar-hide w-full">
           {skillCategories.map((category, index) => (
             <CategoryCard
               key={category.name}
@@ -287,6 +324,7 @@ const Skills = () => {
               onSelect={() => setActiveCategoryIndex(index)}
               onSwipeLeft={handleSwipeLeft}
               onSwipeRight={handleSwipeRight}
+              imageRefreshKey={imageRefreshKey}
             />
           ))}
         </div>
@@ -294,14 +332,14 @@ const Skills = () => {
 
       {/* Category Details */}
       {activeCategory && (
-        <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center z-10">
+        <div className="absolute bottom-40 left-1/2 transform -translate-x-1/2 text-center z-10 w-full max-w-4xl px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-white bg-black/40 backdrop-blur-md rounded-2xl p-8 border border-green-500/20"
+            className="text-white bg-black/40 backdrop-blur-md rounded-2xl p-6 border border-green-500/20"
           >
             <motion.h2 
-              className="text-4xl font-bold mb-2 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent"
+              className="text-3xl font-bold mb-2 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent"
               animate={{ 
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
@@ -309,32 +347,32 @@ const Skills = () => {
             >
               {activeCategory.name.toUpperCase()}
             </motion.h2>
-            <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="flex items-center justify-center gap-4 mb-4">
               <span className="text-lg font-semibold">{activeCategorySkills.length} Skills</span>
               <span className="text-lg">•</span>
               <span className="text-lg font-semibold">Expert Level</span>
             </div>
             <div className="flex items-center justify-center gap-2 flex-wrap">
               <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
                 {activeCategory.name.split(' ')[0].toUpperCase()}
               </motion.span>
               <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
                 PROGRAMMING
               </motion.span>
               <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
                 DEVELOPMENT
               </motion.span>
               <motion.span 
-                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
+                className="bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg"
                 whileHover={{ scale: 1.05 }}
               >
                 TECHNOLOGY
@@ -345,17 +383,17 @@ const Skills = () => {
       )}
 
       {/* Sub-categories (Skills) */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-black/50 backdrop-blur-md border-t border-green-500/20 p-6">
-        <div className="max-w-7xl mx-auto">
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black via-black/90 to-black/50 backdrop-blur-md border-t border-green-500/20 p-4">
+        <div className="max-w-6xl mx-auto">
           <motion.h3 
-            className="text-white font-bold mb-6 text-center text-xl"
+            className="text-white font-bold mb-4 text-center text-lg"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
           >
             Skills in {activeCategory?.name}
           </motion.h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {activeCategorySkills.slice(0, 8).map((skill, index) => (
+          <div className="flex flex-wrap justify-center gap-2 max-h-20 overflow-y-auto">
+            {activeCategorySkills.slice(0, 6).map((skill, index) => (
               <motion.div
                 key={skill.id}
                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -366,17 +404,17 @@ const Skills = () => {
                   y: -2,
                   boxShadow: "0 10px 25px rgba(34, 197, 94, 0.3)"
                 }}
-                className="bg-gradient-to-r from-green-500/20 to-green-600/20 hover:from-green-500/30 hover:to-green-600/30 text-green-300 hover:text-white px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-all duration-300 border border-green-500/30 hover:border-green-400/50"
+                className="bg-gradient-to-r from-green-500/20 to-green-600/20 hover:from-green-500/30 hover:to-green-600/30 text-green-300 hover:text-white px-3 py-1 rounded-full text-sm font-medium cursor-pointer transition-all duration-300 border border-green-500/30 hover:border-green-400/50"
               >
                 {skill.name}
               </motion.div>
             ))}
-            {activeCategorySkills.length > 8 && (
+            {activeCategorySkills.length > 6 && (
               <motion.div 
-                className="bg-gradient-to-r from-gray-600/20 to-gray-700/20 text-gray-400 px-4 py-2 rounded-full text-sm font-medium border border-gray-600/30"
+                className="bg-gradient-to-r from-gray-600/20 to-gray-700/20 text-gray-400 px-3 py-1 rounded-full text-sm font-medium border border-gray-600/30"
                 whileHover={{ scale: 1.05 }}
               >
-                +{activeCategorySkills.length - 8} more
+                +{activeCategorySkills.length - 6} more
               </motion.div>
             )}
           </div>
