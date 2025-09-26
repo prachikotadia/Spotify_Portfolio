@@ -121,6 +121,55 @@ const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipe
           </div>
         </div>
 
+        {/* Media Player Control Bar */}
+        <div className={`absolute bottom-0 left-0 right-0 ${isActive ? 'h-16' : 'h-12'} bg-gray-800/90 backdrop-blur-sm rounded-b-2xl flex flex-col justify-center px-3`}>
+          {/* Progress Bar */}
+          <div className="w-full h-1 bg-gray-600 rounded-full mb-2 relative">
+            <div className="h-full bg-white rounded-full" style={{ width: '33%' }}></div>
+            <div className="absolute top-1/2 left-1/3 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full"></div>
+          </div>
+          
+          {/* Control Icons */}
+          <div className="flex items-center justify-between">
+            {/* Shuffle Icon */}
+            <button className="text-white hover:text-green-400 transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+              </svg>
+            </button>
+            
+            {/* Previous Icon */}
+            <button className="text-white hover:text-green-400 transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+              </svg>
+            </button>
+            
+            {/* Play/Pause Icon */}
+            <button className="text-white hover:text-green-400 transition-colors">
+              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-gray-800">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </button>
+            
+            {/* Next Icon */}
+            <button className="text-white hover:text-green-400 transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
+              </svg>
+            </button>
+            
+            {/* Repeat Icon */}
+            <button className="text-white hover:text-green-400 transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
         {/* Active indicator */}
         {isActive && (
           <motion.div
