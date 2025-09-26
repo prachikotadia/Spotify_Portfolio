@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Library from "./pages/Library";
 import Profile from "./pages/Profile";
+import Lyrics from "./pages/Lyrics";
 import About from "./pages/About";
 import Experience from "./pages/Experience";
 import Education from "./pages/Education";
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/search" element={<Search />} />
             <Route path="/library" element={<Library />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/lyrics" element={<Lyrics />} />
             <Route path="/about" element={<About />} />
             <Route path="/experience" element={<Experience />} />
             <Route path="/education" element={<Education />} />

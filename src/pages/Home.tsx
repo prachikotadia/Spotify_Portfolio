@@ -357,9 +357,10 @@ const Home = () => {
                 image: '/src/assets/social-analytics-project.jpg'
               },
               { 
-                name: 'Only You', 
+                name: 'My Story', 
                 gradient: 'from-purple-500 to-yellow-500',
-                image: '/src/assets/ai-chat-project.jpg'
+                image: '/src/assets/2025-09-25_21-10-04.jpg',
+                link: '/lyrics'
               },
               { 
                 name: 'Bollywood', 
@@ -383,6 +384,7 @@ const Home = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.0 + index * 0.05 }}
                 className={`bg-gradient-to-br ${category.gradient} rounded-lg p-4 h-24 relative overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group`}
+                onClick={() => category.link && navigate(category.link)}
               >
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <h3 className="text-white font-bold text-sm">{category.name}</h3>
