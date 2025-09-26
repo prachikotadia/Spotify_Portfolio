@@ -68,15 +68,15 @@ const Profile = () => {
         <div className="grid grid-cols-3 gap-4 mb-8">
           <div className="text-center">
             <div className="text-2xl font-bold text-green-500 mb-1">25</div>
-            <div className="text-sm text-white w-full text-center">OmniLife AI Platform</div>
+            <div className="text-sm text-white w-full text-center">Projects</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-green-500 mb-1">9</div>
-            <div className="text-sm text-white w-full text-center">Google Python Certificate</div>
+            <div className="text-sm text-white w-full text-center">Certificates</div>
           </div>
           <div className="text-center">
             <div className="text-2xl font-bold text-green-500 mb-1">34</div>
-            <div className="text-sm text-white w-full text-center">GitHub Repositories</div>
+            <div className="text-sm text-white w-full text-center">Repositories</div>
           </div>
         </div>
 
