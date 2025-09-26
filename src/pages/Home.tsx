@@ -496,7 +496,7 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* New Release Section - Education */}
+        {/* Projects Section - Spotify Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -506,78 +506,94 @@ const Home = () => {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <GraduationCap className="w-4 h-4 text-black" />
+                <Code className="w-4 h-4 text-black" />
               </div>
-              <h2 className="text-2xl font-bold text-white">New Release</h2>
+              <h2 className="text-2xl font-bold text-white">Made For You</h2>
             </div>
-            <Button variant="ghost" className="text-green-500 hover:text-green-400 text-sm font-bold hover:bg-white/10 px-3 py-2 rounded-full">
-              View All
+            <Button 
+              variant="ghost" 
+              className="text-green-500 hover:text-green-400 text-sm font-bold hover:bg-white/10 px-3 py-2 rounded-full"
+              onClick={() => navigate('/library?tab=projects')}
+            >
+              Show all
             </Button>
           </div>
-          <div className="flex gap-4 overflow-x-auto pb-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
-              { 
-                title: "Master's in Computer Science", 
-                subtitle: "Illinois Institute of Technology",
-                location: "Chicago, IL",
-                year: "2023-2025",
-                gradient: "from-purple-600 to-pink-500",
-                image: "/assets/2025-09-25_21-10-04.jpg"
+              {
+                title: "AI Chat Assistant",
+                subtitle: "Full Stack Application",
+                image: "/assets/ai-chat-project.jpg",
+                gradient: "from-purple-500 to-pink-500"
               },
-              { 
-                title: "Bachelor of Technology", 
-                subtitle: "Electronics and Communication",
-                location: "Gujarat, India",
-                year: "2019-2023",
-                gradient: "from-blue-600 to-green-800",
-                image: "/assets/ai-chat-project.jpg"
+              {
+                title: "E-commerce Platform",
+                subtitle: "React & Node.js",
+                image: "/assets/ecommerce-project.jpg",
+                gradient: "from-blue-500 to-cyan-500"
               },
-              { 
-                title: "AWS Certified Developer", 
-                subtitle: "Amazon Web Services",
-                location: "Online",
-                year: "2024",
-                gradient: "from-orange-500 to-red-500",
-                image: "/assets/ecommerce-project.jpg"
+              {
+                title: "Fitness Tracker",
+                subtitle: "Mobile App",
+                image: "/assets/fitness-tracker-project.jpg",
+                gradient: "from-green-500 to-emerald-500"
+              },
+              {
+                title: "Social Analytics",
+                subtitle: "Data Visualization",
+                image: "/assets/social-analytics-project.jpg",
+                gradient: "from-orange-500 to-red-500"
+              },
+              {
+                title: "Task Management",
+                subtitle: "Productivity App",
+                image: "/assets/task-management-project.jpg",
+                gradient: "from-indigo-500 to-purple-500"
+              },
+              {
+                title: "Weather Dashboard",
+                subtitle: "Real-time Data",
+                image: "/assets/weather-dashboard-project.jpg",
+                gradient: "from-yellow-500 to-orange-500"
               }
-            ].map((item, index) => (
+            ].map((project, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.0 + index * 0.1 }}
-                className="flex-shrink-0 w-52 bg-gradient-to-br rounded-2xl p-5 cursor-pointer hover:scale-105 transition-all duration-300 group relative overflow-hidden"
-                style={{ background: `linear-gradient(135deg, ${item.gradient.includes('purple') ? '#9333ea' : item.gradient.includes('blue') ? '#2563eb' : '#ea580c'}, ${item.gradient.includes('pink') ? '#ec4899' : item.gradient.includes('green') ? '#16a34a' : '#dc2626'})` }}
-                onClick={() => navigate('/education')}
+                className="group cursor-pointer"
+                onClick={() => navigate('/library?tab=projects')}
               >
-                {/* Background Blur Elements */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/5 rounded-full blur-lg"></div>
-                
-                <div className="relative z-10">
-                  <div className="relative mb-4">
-                    <div className="w-full aspect-square bg-white/20 rounded-xl flex items-center justify-center overflow-hidden shadow-2xl">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    {/* Play Button Overlay */}
-                    <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Play className="w-4 h-4 text-white ml-0.5" />
-                    </div>
+                <div className="relative mb-3">
+                  <div className="w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-green-500 to-green-700 shadow-lg group-hover:shadow-2xl transition-all duration-300">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <h3 className="text-white font-bold text-base mb-2 line-clamp-2">{item.title}</h3>
-                  <p className="text-white/90 text-sm mb-1">{item.subtitle}</p>
-                  <p className="text-white/70 text-xs">{item.location} • {item.year}</p>
+                  <Button
+                    size="icon"
+                    className="absolute bottom-2 right-2 w-10 h-10 bg-green-500 hover:bg-green-600 text-black rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+                  >
+                    <Play className="w-5 h-5" />
+                  </Button>
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold text-sm mb-1 truncate group-hover:text-green-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-400 text-xs line-clamp-2">
+                    {project.subtitle}
+                  </p>
                 </div>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* Popular Artist Section - Skills */}
+        {/* Certificates Section - Spotify Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -587,53 +603,88 @@ const Home = () => {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                <Star className="w-4 h-4 text-black" />
+                <Award className="w-4 h-4 text-black" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Popular Artist</h2>
+              <h2 className="text-2xl font-bold text-white">Recently Played</h2>
             </div>
-            <Button variant="ghost" className="text-green-500 hover:text-green-400 text-sm font-bold hover:bg-white/10 px-3 py-2 rounded-full">
-              View All
+            <Button 
+              variant="ghost" 
+              className="text-green-500 hover:text-green-400 text-sm font-bold hover:bg-white/10 px-3 py-2 rounded-full"
+              onClick={() => navigate('/library?tab=certificates')}
+            >
+              Show all
             </Button>
           </div>
-          <div className="flex gap-4 overflow-x-auto pb-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
-              { 
-                name: "React Developer", 
-                color: "text-green-500",
-                image: "/assets/2025-09-25_21-10-04.jpg"
+              {
+                title: "AWS Certified Developer",
+                subtitle: "Amazon Web Services",
+                image: "/assets/2025-09-25_21-10-04.jpg",
+                gradient: "from-orange-500 to-red-500"
               },
-              { 
-                name: "Full Stack Engineer", 
-                color: "text-white",
-                image: "/assets/ai-chat-project.jpg"
+              {
+                title: "Google Cloud Professional",
+                subtitle: "Google Cloud Platform",
+                image: "/assets/ai-chat-project.jpg",
+                gradient: "from-blue-500 to-cyan-500"
               },
-              { 
-                name: "AWS Certified", 
-                color: "text-white",
-                image: "/assets/ecommerce-project.jpg"
+              {
+                title: "Microsoft Azure",
+                subtitle: "Cloud Computing",
+                image: "/assets/ecommerce-project.jpg",
+                gradient: "from-purple-500 to-pink-500"
               },
-              { 
-                name: "Mobile Developer", 
-                color: "text-white",
-                image: "/assets/weather-dashboard-project.jpg"
+              {
+                title: "Docker Certified",
+                subtitle: "Containerization",
+                image: "/assets/fitness-tracker-project.jpg",
+                gradient: "from-green-500 to-emerald-500"
+              },
+              {
+                title: "Kubernetes Admin",
+                subtitle: "Container Orchestration",
+                image: "/assets/social-analytics-project.jpg",
+                gradient: "from-indigo-500 to-purple-500"
+              },
+              {
+                title: "React Developer",
+                subtitle: "Frontend Development",
+                image: "/assets/task-management-project.jpg",
+                gradient: "from-yellow-500 to-orange-500"
               }
-            ].map((artist, index) => (
+            ].map((cert, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
-                className="flex-shrink-0 text-center cursor-pointer hover:scale-105 transition-all duration-300 group"
-                onClick={() => navigate('/skills')}
+                className="group cursor-pointer"
+                onClick={() => navigate('/library?tab=certificates')}
               >
-                <div className="w-24 h-24 rounded-full overflow-hidden mb-3 mx-auto ring-2 ring-white/10 group-hover:ring-green-500/50 transition-all duration-300">
-                  <img
-                    src={artist.image}
-                    alt={artist.name}
-                    className="w-full h-full object-cover"
+                <div className="relative mb-3">
+                  <div className="w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-green-500 to-green-700 shadow-lg group-hover:shadow-2xl transition-all duration-300">
+                    <img
+                      src={cert.image}
+                      alt={cert.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
-                <p className={`text-sm font-semibold ${artist.color} group-hover:text-green-400 transition-colors`}>{artist.name}</p>
+                  <Button
+                    size="icon"
+                    className="absolute bottom-2 right-2 w-10 h-10 bg-green-500 hover:bg-green-600 text-black rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+                  >
+                    <Play className="w-5 h-5" />
+                  </Button>
+                </div>
+                <div>
+                  <h3 className="text-white font-semibold text-sm mb-1 truncate group-hover:text-green-400 transition-colors">
+                    {cert.title}
+                  </h3>
+                  <p className="text-gray-400 text-xs line-clamp-2">
+                    {cert.subtitle}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
