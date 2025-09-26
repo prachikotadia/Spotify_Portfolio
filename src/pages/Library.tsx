@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Grid3X3, List, ArrowUpDown, Search, Play, Heart, MoreHorizontal, Code, Award, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,11 +12,20 @@ import SpotifyLogo from '@/components/SpotifyLogo';
 
 const Library = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState<'projects' | 'certificates' | 'research'>('projects');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [sortBy, setSortBy] = useState('recent');
   const [searchQuery, setSearchQuery] = useState('');
   const [likedItems, setLikedItems] = useState<Set<string>>(new Set());
+
+  // Handle URL parameters to set active tab
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab && ['projects', 'certificates', 'research'].includes(tab)) {
+      setActiveTab(tab as 'projects' | 'certificates' | 'research');
+    }
+  }, [searchParams]);
 
   const tabs = [
     { id: 'projects', label: 'Projects', icon: Code },

@@ -201,7 +201,7 @@ const Home = () => {
                 name: 'Certificates', 
                 gradient: 'from-yellow-500 to-orange-500',
                 image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/library',
+                link: '/library?tab=certificates',
                 count: '9 Certificates',
                 description: 'Google, Meta, AWS'
               },
