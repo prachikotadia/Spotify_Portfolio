@@ -613,23 +613,20 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
-                className="flex-shrink-0 w-48 bg-gradient-to-br rounded-2xl p-5 cursor-pointer hover:scale-105 transition-all duration-300 group relative overflow-hidden"
-                style={{ 
-                  background: `linear-gradient(135deg, ${index % 3 === 0 ? '#1db954' : index % 3 === 1 ? '#1ed760' : '#1aa34a'}, ${index % 3 === 0 ? '#1ed760' : index % 3 === 1 ? '#1db954' : '#1aa34a'})` 
-                }}
+                className="flex-shrink-0 w-48 bg-white/10 backdrop-blur-md rounded-2xl p-5 cursor-pointer hover:scale-105 transition-all duration-300 group relative overflow-hidden border border-white/20 hover:bg-white/20"
                 onClick={() => navigate('/library?tab=certificates')}
               >
-                {/* Background Blur Elements */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/5 rounded-full blur-lg"></div>
+                {/* Glassmorphism Background Elements */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full blur-xl"></div>
+                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/3 rounded-full blur-lg"></div>
                 
                 <div className="relative z-10">
                   <div className="relative mb-4">
-                    <div className="w-full aspect-square bg-white/20 rounded-xl flex items-center justify-center overflow-hidden shadow-2xl">
+                    <div className="w-full aspect-square bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden shadow-2xl border border-white/20">
                       <img
                         src={cert.image}
                         alt={cert.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover rounded-xl"
                       />
                     </div>
                     {/* Play Button Overlay */}
