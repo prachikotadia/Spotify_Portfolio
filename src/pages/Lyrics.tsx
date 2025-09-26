@@ -10,16 +10,24 @@ const Lyrics = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime] = useState(450); // 7:30 in seconds
   const [readProgress, setReadProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const lyricsRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const pauseTimeRef = useRef<number>(0);
 
   // Text-to-speech functionality
-  const startSpeech = () => {
+  const startSpeech = (fromTime = 0) => {
     if ('speechSynthesis' in window) {
       const fullText = `I'm a passionate Software Engineer with a Master's in Computer Science from Illinois Institute of Technology. Currently working as a Software Engineer at GroupedIn in New Jersey. My journey in technology spans across multiple domains including web development, mobile applications, AI/ML, and embedded systems. With expertise in React, Flutter, Python, C++, and cloud technologies like AWS, I've built scalable applications serving thousands of users. I'm particularly passionate about AI-driven solutions, having integrated NLP and machine learning models to enhance user experiences and boost engagement by 25%. My work involves full-stack development, from designing e-commerce systems handling 500+ daily transactions to building high-performance Linux kernel modules that reduce latency by 15%. I'm also experienced in IoT integration, real-time data processing, and automated CI/CD pipelines. Beyond technical skills, I'm a continuous learner who stays updated with the latest technologies. I believe in the power of open-source collaboration and have contributed to various projects. When I'm not coding, you'll find me exploring new technologies, contributing to research, or curating the perfect coding playlist on Spotify. I'm always excited to work on challenging problems, learn new technologies, and contribute to innovative projects that make a real impact. Let's connect and build something amazing together!`;
       
-      const utterance = new SpeechSynthesisUtterance(fullText);
+      // Calculate text position based on time
+      const textLength = fullText.length;
+      const timePerChar = totalTime / textLength;
+      const startChar = Math.floor(fromTime / timePerChar);
+      const textToSpeak = fullText.substring(startChar);
+      
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.rate = 0.8; // Slightly slower for better comprehension
       utterance.pitch = 1.0;
       utterance.volume = 0.8;
@@ -42,6 +50,7 @@ const Lyrics = () => {
       utterance.onend = () => {
         setIsPlaying(false);
         setCurrentTime(totalTime);
+        setReadProgress(100);
       };
       
       speechSynthesis.speak(utterance);
@@ -54,10 +63,27 @@ const Lyrics = () => {
     }
   };
 
+  const pauseSpeech = () => {
+    if (speechSynthesis.speaking) {
+      speechSynthesis.pause();
+      pauseTimeRef.current = currentTime;
+      setIsPaused(true);
+    }
+  };
+
+  const resumeSpeech = () => {
+    if (speechSynthesis.speaking && speechSynthesis.paused) {
+      speechSynthesis.resume();
+      setIsPaused(false);
+    }
+  };
+
   // Auto-scroll functionality with smooth progress
   useEffect(() => {
-    if (isPlaying) {
-      startSpeech();
+    if (isPlaying && !isPaused) {
+      if (currentTime === 0) {
+        startSpeech();
+      }
       intervalRef.current = setInterval(() => {
         setCurrentTime(prev => {
           const newTime = prev + 1;
@@ -71,9 +97,13 @@ const Lyrics = () => {
           }
           return newTime;
         });
-      }, 1000); // Update every 100ms for smoother transitions
-    } else {
+      }, 1000); // Update every 1000ms for smoother transitions
+    } else if (!isPlaying) {
       stopSpeech();
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    } else if (isPaused) {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
@@ -84,7 +114,7 @@ const Lyrics = () => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPlaying, totalTime]);
+  }, [isPlaying, isPaused, currentTime, totalTime]);
 
   // Auto-scroll lyrics with smooth animation
   useEffect(() => {
@@ -136,10 +166,16 @@ const Lyrics = () => {
 
   const handlePlayPause = () => {
     if (isPlaying) {
-      stopSpeech();
-      setIsPlaying(false);
+      if (isPaused) {
+        resumeSpeech();
+        setIsPaused(false);
+      } else {
+        pauseSpeech();
+        setIsPaused(true);
+      }
     } else {
       setIsPlaying(true);
+      setIsPaused(false);
     }
   };
 
@@ -147,10 +183,12 @@ const Lyrics = () => {
     stopSpeech();
     const newTime = Math.max(0, currentTime - 30);
     setCurrentTime(newTime);
+    setReadProgress((newTime / totalTime) * 100);
+    setIsPaused(false);
     if (isPlaying) {
       // Restart speech from new position
       setTimeout(() => {
-        startSpeech();
+        startSpeech(newTime);
       }, 100);
     }
   };
@@ -159,10 +197,12 @@ const Lyrics = () => {
     stopSpeech();
     const newTime = Math.min(totalTime, currentTime + 30);
     setCurrentTime(newTime);
+    setReadProgress((newTime / totalTime) * 100);
+    setIsPaused(false);
     if (isPlaying) {
       // Restart speech from new position
       setTimeout(() => {
-        startSpeech();
+        startSpeech(newTime);
       }, 100);
     }
   };
