@@ -51,8 +51,7 @@ import {
   blogPosts, 
   testimonials, 
   awards,
-  skills,
-  mockCertificates 
+  skills
 } from '@/data/mockData';
 import type { Project } from '@/data/mockData';
 
@@ -589,59 +588,6 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Certificates Section - Spotify "Recently Played" Style */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1 }}
-          className="mb-8"
-        >
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">Recently played</h2>
-            <Button 
-              variant="ghost" 
-              className="text-gray-400 hover:text-white text-sm font-semibold hover:bg-white/10 px-3 py-2 rounded-full"
-              onClick={() => navigate('/library?tab=certificates')}
-            >
-              Show all
-            </Button>
-          </div>
-          <div className="flex gap-4 overflow-x-auto pb-2">
-            {mockCertificates.map((cert, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.2 + index * 0.1 }}
-                className="flex-shrink-0 w-48 bg-white/10 backdrop-blur-md rounded-2xl p-5 cursor-pointer hover:scale-105 transition-all duration-300 group relative overflow-hidden border border-white/20 hover:bg-white/20"
-                onClick={() => navigate('/library?tab=certificates')}
-              >
-                {/* Glassmorphism Background Elements */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full blur-xl"></div>
-                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/3 rounded-full blur-lg"></div>
-                
-                <div className="relative z-10">
-                  <div className="relative mb-4">
-                    <div className="w-full aspect-square bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden shadow-2xl border border-white/20">
-                      <img
-                        src={cert.image}
-                        alt={cert.title}
-                        className="w-full h-full object-cover rounded-xl"
-                      />
-                    </div>
-                    {/* Play Button Overlay */}
-                    <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Play className="w-4 h-4 text-white ml-0.5" />
-                    </div>
-                  </div>
-                  <h3 className="text-white font-bold text-base mb-2 line-clamp-2">{cert.title}</h3>
-                  <p className="text-white/90 text-sm mb-1">{cert.issuer}</p>
-                  <p className="text-white/70 text-xs">{cert.date}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
 
 
