@@ -86,31 +86,31 @@ const Profile = () => {
             </Button>
           </div>
           
-          {/* Social Cards */}
-          <div className="grid grid-cols-4 gap-2">
+          {/* Social Icons */}
+          <div className="flex gap-4 justify-center">
             <motion.div 
-              className="aspect-square rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700"
-              whileHover={{ scale: 1.05 }}
+              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.1 }}
             >
-              <Github className="w-5 h-5 text-white" />
+              <Github className="w-6 h-6 text-white" />
             </motion.div>
             <motion.div 
-              className="aspect-square rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center"
-              whileHover={{ scale: 1.05 }}
+              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.1 }}
             >
-              <Linkedin className="w-5 h-5 text-white" />
+              <Linkedin className="w-6 h-6 text-white" />
             </motion.div>
             <motion.div 
-              className="aspect-square rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center"
-              whileHover={{ scale: 1.05 }}
+              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.1 }}
             >
-              <Mail className="w-5 h-5 text-white" />
+              <Mail className="w-6 h-6 text-white" />
             </motion.div>
             <motion.div 
-              className="aspect-square rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center"
-              whileHover={{ scale: 1.05 }}
+              className="p-2 rounded-full hover:bg-white/10 transition-colors"
+              whileHover={{ scale: 1.1 }}
             >
-              <Globe className="w-5 h-5 text-white" />
+              <Globe className="w-6 h-6 text-white" />
             </motion.div>
           </div>
         </div>
