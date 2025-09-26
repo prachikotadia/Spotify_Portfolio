@@ -70,23 +70,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-[#121212] pb-20">
-      {/* Spotify App Header */}
-      <div className="sticky top-0 z-40 bg-[#121212]/95 backdrop-blur-xl border-b border-white/5">
-        <div className="flex items-center justify-between px-4 py-4">
-          {/* Left: Bell Icon */}
-          <Button variant="ghost" size="icon" className="w-8 h-8 hover:bg-white/10 rounded-full">
-            <Bell className="w-5 h-5 text-white" />
-          </Button>
-          
-          {/* Center: Spotify Logo */}
-          <SpotifyLogo size="md" />
-          
-          {/* Right: Menu */}
-          <Button variant="ghost" size="icon" className="w-8 h-8 hover:bg-white/10 rounded-full">
-            <MoreHorizontal className="w-5 h-5 text-white" />
-          </Button>
-        </div>
-      </div>
 
       {/* Main Content */}
       <div className="px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
