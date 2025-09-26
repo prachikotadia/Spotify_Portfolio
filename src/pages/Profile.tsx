@@ -41,7 +41,18 @@ const Profile = () => {
               <img 
                 src="/src/assets/image copy 6.png" 
                 alt="Profile" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover select-none pointer-events-none"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
+                style={{
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  MozUserSelect: 'none',
+                  msUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
+                  KhtmlUserSelect: 'none'
+                } as React.CSSProperties}
               />
             </div>
             <Button 
