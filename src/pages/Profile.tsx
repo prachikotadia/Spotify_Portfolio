@@ -1,99 +1,99 @@
 import { motion } from 'framer-motion';
-import { Settings, Bell, Download, Share, ExternalLink, Github, Linkedin, Mail } from 'lucide-react';
+import { Settings, Bell, ExternalLink, Github, Linkedin, Mail, MapPin, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import SpotifyLogo from '@/components/SpotifyLogo';
 
 const Profile = () => {
   const stats = [
-    { label: 'Following', value: '25' },
-    { label: 'Followers', value: '38' },
-    { label: 'Projects', value: '10' },
-  ];
-
-  const recentProjects = [
-    { name: 'E-commerce Platform', artist: 'React, Node.js', image: '' },
-    { name: 'AI Chat App', artist: 'Python, OpenAI', image: '' },
-    { name: 'Weather Dashboard', artist: 'Vue.js, Express', image: '' },
+    { label: 'Projects', value: '12' },
+    { label: 'Certificates', value: '9' },
+    { label: 'Experience', value: '3+ years' },
   ];
 
   const socialLinks = [
-    { name: 'GitHub', icon: Github, href: 'https://github.com' },
-    { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com' },
-    { name: 'Email', icon: Mail, href: 'mailto:hello@example.com' },
+    { name: 'GitHub', icon: Github, href: 'https://github.com/prachikotadia', color: 'hover:text-gray-400' },
+    { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/prachi-kotadia/', color: 'hover:text-blue-400' },
+    { name: 'Email', icon: Mail, href: 'mailto:iprachikotadia@gmail.com', color: 'hover:text-red-400' },
+    { name: 'Website', icon: ExternalLink, href: 'https://prachikotadia.netlify.app/', color: 'hover:text-green-400' },
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-24">
-      {/* Header */}
-      <div className="px-6 pt-12 pb-6">
-        <div className="flex items-center justify-between mb-8">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-3xl font-bold"
-          >
-            Profile
-          </motion.h1>
-          <div className="flex gap-2">
-            <Button variant="ghost" size="icon">
+    <div className="min-h-screen bg-[#121212] pb-24">
+      {/* Spotify App Header */}
+      <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-800">
+        <div className="flex items-center justify-between p-3 max-w-7xl mx-auto">
+          <div className="flex items-center gap-3">
+            <SpotifyLogo size="sm" />
+            <h1 className="text-xl font-bold text-green-500">Profile</h1>
+          </div>
+          <div className="flex items-center gap-3">
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
               <Bell className="w-5 h-5" />
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white">
               <Settings className="w-5 h-5" />
             </Button>
           </div>
         </div>
+      </div>
 
-        {/* Profile Info */}
+      {/* Main Content */}
+      <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto">
+        {/* Profile Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-center mb-8"
+          className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8"
         >
-          <div className="relative inline-block mb-4">
-            <Avatar className="w-32 h-32 border-4 border-primary">
-              <AvatarImage src="" alt="Profile" />
-              <AvatarFallback className="text-2xl bg-primary text-white">
-                SJ
+          {/* Profile Image */}
+          <div className="relative">
+            <Avatar className="w-32 h-32 sm:w-40 sm:h-40 border-4 border-green-500">
+              <AvatarImage src="/src/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png" alt="Prachi Kotadia" />
+              <AvatarFallback className="text-2xl bg-green-500 text-white">
+                PK
               </AvatarFallback>
             </Avatar>
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+            <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
               <div className="w-3 h-3 bg-white rounded-full" />
             </div>
           </div>
-          
-          <h2 className="text-2xl font-bold mb-2">Sebastian John</h2>
-          <p className="text-muted-foreground mb-6">Full Stack Developer</p>
 
-          {/* Stats */}
-          <div className="flex justify-center gap-8 mb-6">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + index * 0.1 }}
-                className="text-center"
-              >
-                <p className="text-2xl font-bold text-primary">{stat.value}</p>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
+          {/* Profile Info */}
+          <div className="flex-1 text-center sm:text-left">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">Prachi Kotadia</h2>
+            <p className="text-lg text-gray-300 mb-4">Software Engineer & Full Stack Developer</p>
+            
+            {/* Location */}
+            <div className="flex items-center justify-center sm:justify-start gap-2 mb-4">
+              <MapPin className="w-4 h-4 text-gray-400" />
+              <span className="text-gray-400">New Jersey, USA</span>
+            </div>
 
-          {/* Action Buttons */}
-          <div className="flex gap-3 justify-center mb-8">
-            <Button className="rounded-full px-6">
-              Following
-            </Button>
-            <Button variant="outline" size="icon" className="rounded-full">
-              <Share className="w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="icon" className="rounded-full">
-              <Download className="w-5 h-5" />
-            </Button>
+            {/* About Me */}
+            <div className="max-w-2xl">
+              <p className="text-gray-300 leading-relaxed">
+                Passionate Software Engineer with expertise in full-stack development, AI/ML, and embedded systems. 
+                Currently working at GroupedIn, building scalable applications and leading innovative projects. 
+                I love creating efficient solutions and exploring cutting-edge technologies.
+              </p>
+            </div>
           </div>
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="grid grid-cols-3 gap-4 mb-8"
+        >
+          {stats.map((stat, index) => (
+            <div key={stat.label} className="text-center p-4 bg-gray-800/50 rounded-lg">
+              <p className="text-2xl font-bold text-green-500">{stat.value}</p>
+              <p className="text-sm text-gray-400">{stat.label}</p>
+            </div>
+          ))}
         </motion.div>
 
         {/* Social Links */}
@@ -103,72 +103,40 @@ const Profile = () => {
           transition={{ delay: 0.3 }}
           className="mb-8"
         >
-          <h3 className="text-lg font-semibold mb-4">Connect</h3>
-          <div className="space-y-3">
+          <h3 className="text-xl font-bold text-white mb-4">Connect With Me</h3>
+          <div className="flex flex-wrap gap-4">
             {socialLinks.map((link, index) => (
               <motion.a
                 key={link.name}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 transition-colors"
+                className={`flex items-center gap-2 px-4 py-2 bg-gray-800/50 rounded-full text-gray-300 hover:bg-gray-700/50 transition-colors ${link.color}`}
               >
-                <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center">
-                  <link.icon className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <p className="font-medium">{link.name}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {link.href.replace('https://', '').replace('mailto:', '')}
-                  </p>
-                </div>
-                <ExternalLink className="w-4 h-4 text-muted-foreground" />
+                <link.icon className="w-4 h-4" />
+                <span>{link.name}</span>
               </motion.a>
             ))}
           </div>
         </motion.div>
 
-        {/* Recently Played */}
+        {/* Resume Download */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
+          className="text-center"
         >
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">Recently Played</h3>
-            <Button variant="ghost" className="text-sm text-primary">
-              View All
-            </Button>
-          </div>
-          <div className="space-y-3">
-            {recentProjects.map((project, index) => (
-              <motion.div
-                key={project.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + index * 0.1 }}
-                className="flex items-center gap-4 p-3 rounded-lg hover:bg-white/5 cursor-pointer"
-              >
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary/60 rounded flex-shrink-0" />
-                <div className="flex-1 min-w-0">
-                  <p className="font-medium truncate">{project.name}</p>
-                  <p className="text-sm text-muted-foreground truncate">
-                    {project.artist}
-                  </p>
-                </div>
-                <Button variant="ghost" size="icon">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <circle cx="12" cy="5" r="2"/>
-                    <circle cx="12" cy="12" r="2"/>
-                    <circle cx="12" cy="19" r="2"/>
-                  </svg>
-                </Button>
-              </motion.div>
-            ))}
-          </div>
+          <Button 
+            className="bg-green-500 hover:bg-green-600 text-black font-semibold px-8 py-3 rounded-full"
+            onClick={() => window.open('/resume.pdf', '_blank')}
+          >
+            <FileText className="w-5 h-5 mr-2" />
+            Download Resume
+          </Button>
         </motion.div>
       </div>
     </div>
