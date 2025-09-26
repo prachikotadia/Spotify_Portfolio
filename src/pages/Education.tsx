@@ -55,7 +55,7 @@ const Education = () => {
               { 
                 title: "Bachelor of Technology", 
                 subtitle: "Electronics & Communication",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center",
+                image: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=400&fit=crop&crop=center",
                 duration: "4 years"
               }
             ].map((item, index) => (
@@ -153,7 +153,7 @@ const Education = () => {
             >
               <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center"
+                  src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=400&fit=crop&crop=center"
                   alt="Bachelor's Degree"
                   className="w-full h-full object-cover"
                 />
@@ -211,7 +211,7 @@ const Education = () => {
               { 
                 title: "Research Focus", 
                 subtitle: "Cutting-edge technology",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center",
+                image: "https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=400&fit=crop&crop=center",
                 type: "Research"
               },
               { 

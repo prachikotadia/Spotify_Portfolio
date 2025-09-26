@@ -43,7 +43,7 @@ const EducationDetail = () => {
       university: 'Charotar University of Science and Technology',
       location: 'Gujarat, India',
       duration: 'August 2019 - May 2023',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=400&fit=crop&crop=center',
       description: 'Comprehensive undergraduate program in Electronics and Communication Engineering.',
       longDescription: 'This rigorous undergraduate program provided a solid foundation in electronics, communication systems, signal processing, and embedded systems. The curriculum combined theoretical knowledge with extensive hands-on laboratory work, preparing students for careers in technology and engineering.',
       courses: [
