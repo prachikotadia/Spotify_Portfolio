@@ -105,7 +105,7 @@ const Home = () => {
               {/* Album Art */}
               <div className="w-16 h-16 flex-shrink-0">
                 <img
-                  src="/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png"
+                  src="/assets/image copy 7.png"
                   alt="About Me"
                   className="w-full h-full object-cover rounded"
                 />
