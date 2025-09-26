@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye } from 'lucide-react';
+import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
