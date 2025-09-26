@@ -186,33 +186,6 @@ const Library = () => {
                     {item.techStack && ` • ${item.techStack.slice(0, 2).join(', ')}`}
                   </p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleLike(item.id);
-                    }}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity text-white hover:bg-white/10"
-                  >
-                    <Heart className={`w-4 h-4 ${likedItems.has(item.id) ? 'text-red-500 fill-current' : ''}`} />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="opacity-0 group-hover:opacity-100 transition-opacity text-white hover:bg-white/10"
-                  >
-                    <Play className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="opacity-0 group-hover:opacity-100 transition-opacity text-white hover:bg-white/10"
-                  >
-                    <MoreHorizontal className="w-4 h-4" />
-                  </Button>
-                </div>
               </motion.div>
             ))}
           </div>
@@ -236,20 +209,6 @@ const Library = () => {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <div className="absolute bottom-2 right-2 w-10 h-10 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Play className="w-4 h-4 text-white ml-0.5" />
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleLike(item.id);
-                      }}
-                      className="absolute top-2 right-2 w-8 h-8 bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      <Heart className={`w-4 h-4 ${likedItems.has(item.id) ? 'text-red-500 fill-current' : 'text-white'}`} />
-                    </Button>
                   </div>
                   <div className="overflow-hidden mb-2">
                     <h3 className="font-bold text-white text-sm whitespace-nowrap animate-marquee">
