@@ -69,18 +69,18 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="min-h-screen bg-background pb-20 sm:pb-24">
       {/* Fixed Search Button - Top Right Corner */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.5 }}
-        className="fixed top-4 right-4 z-50"
+        className="fixed top-3 right-3 sm:top-4 sm:right-4 z-50"
       >
         <Button
           variant="ghost"
           size="icon"
-          className="w-12 h-12 bg-black/80 backdrop-blur-xl border border-white/20 hover:bg-white/20 rounded-full shadow-lg"
+          className="w-10 h-10 sm:w-12 sm:h-12 bg-black/80 backdrop-blur-xl border border-white/20 hover:bg-white/20 rounded-full shadow-lg"
           onClick={() => navigate('/search')}
         >
           <SearchIcon />
@@ -95,28 +95,28 @@ const Home = () => {
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
         </div>
         
-        <div className="relative pt-12 pb-8 px-4 sm:px-6">
+        <div className="relative pt-16 sm:pt-20 pb-8 px-4 sm:px-6 lg:px-8">
           {/* Spotify-style Header */}
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between mb-6 sm:mb-8">
+            <div className="flex items-center gap-3 sm:gap-4">
               <SpotifyLogo size="lg" />
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="glass hover:bg-white/20"
+                className="w-8 h-8 sm:w-10 sm:h-10 glass hover:bg-white/20"
                 onClick={() => console.log('Notifications clicked')}
               >
-                <Bell className="w-5 h-5" />
+                <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
               <Button 
                 variant="ghost" 
                 size="icon" 
-                className="glass hover:bg-white/20"
+                className="w-8 h-8 sm:w-10 sm:h-10 glass hover:bg-white/20"
                 onClick={() => console.log('Menu clicked')}
               >
-                <MoreHorizontal className="w-5 h-5" />
+                <MoreHorizontal className="w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
             </div>
           </div>
@@ -126,7 +126,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-green-600 p-8 mb-8"
+            className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-green-600 p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8"
           >
             {/* Depth Background - Subtle and Professional */}
             <div className="absolute inset-0 bg-gradient-to-br from-green-400/30 to-green-600/30">
@@ -139,7 +139,7 @@ const Home = () => {
               <div className="absolute bottom-0 left-0 w-full h-px bg-white/5"></div>
             </div>
 
-            <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-end gap-6">
+            <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-end gap-4 sm:gap-6">
               {/* Profile Photo with Depth Effect */}
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -147,7 +147,7 @@ const Home = () => {
                 transition={{ delay: 0.3 }}
                 className="relative"
               >
-                <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden depth-photo portrait-depth rim-light">
+                <div className="relative w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 rounded-2xl overflow-hidden depth-photo portrait-depth rim-light">
                   {/* Professional depth background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"></div>
                   
@@ -189,7 +189,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-green-100 text-sm font-medium mb-2"
+                  className="text-green-100 text-xs sm:text-sm font-medium mb-1 sm:mb-2"
                 >
                   Featured Developer
                 </motion.p>
@@ -197,7 +197,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="text-4xl sm:text-6xl font-bold text-white mb-2"
+                  className="text-2xl sm:text-4xl lg:text-6xl font-bold text-white mb-1 sm:mb-2"
                 >
                   Prachi Kotadia
                 </motion.h1>
@@ -205,7 +205,7 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="text-green-100 text-lg sm:text-xl mb-4"
+                  className="text-green-100 text-sm sm:text-lg lg:text-xl mb-3 sm:mb-4"
                 >
                   Full Stack Developer & Tech Enthusiast
                 </motion.p>
@@ -213,15 +213,15 @@ const Home = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 }}
-                  className="flex flex-wrap gap-2"
+                  className="flex flex-wrap gap-1 sm:gap-2"
                 >
-                  <span className="text-green-100 text-sm">React</span>
-                  <span className="text-green-100 text-sm">•</span>
-                  <span className="text-green-100 text-sm">TypeScript</span>
-                  <span className="text-green-100 text-sm">•</span>
-                  <span className="text-green-100 text-sm">Node.js</span>
-                  <span className="text-green-100 text-sm">•</span>
-                  <span className="text-green-100 text-sm">Full Stack</span>
+                  <span className="text-green-100 text-xs sm:text-sm">React</span>
+                  <span className="text-green-100 text-xs sm:text-sm">•</span>
+                  <span className="text-green-100 text-xs sm:text-sm">TypeScript</span>
+                  <span className="text-green-100 text-xs sm:text-sm">•</span>
+                  <span className="text-green-100 text-xs sm:text-sm">Node.js</span>
+                  <span className="text-green-100 text-xs sm:text-sm">•</span>
+                  <span className="text-green-100 text-xs sm:text-sm">Full Stack</span>
                 </motion.div>
               </div>
             </div>
@@ -232,40 +232,40 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8"
           >
             <Button 
-              className="bg-white hover:bg-white/90 text-black font-semibold px-8 py-4 rounded-full text-lg"
+              className="bg-white hover:bg-white/90 text-black font-semibold px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg"
               onClick={() => {
                 console.log('View Portfolio clicked');
                 document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
-              <Play className="w-5 h-5 mr-2" />
+              <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
               View Portfolio
             </Button>
             <Button 
               variant="outline" 
-              className="border-white/30 text-white hover:bg-white/10 px-6 py-4 rounded-full text-lg"
+              className="border-white/30 text-white hover:bg-white/10 px-3 sm:px-4 lg:px-6 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg"
               onClick={() => {
                 console.log('Follow clicked');
                 alert('Thanks for following! 🎵');
               }}
             >
-              <Heart className="w-5 h-5 mr-2" />
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
               Follow
             </Button>
           </motion.div>
         </div>
       </div>
 
-      <div className="px-4 sm:px-6">
+      <div className="px-4 sm:px-6 lg:px-8">
         {/* Quick Access Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-6 sm:mb-8"
         >
           {featuredProjects.slice(0, 6).map((project, index) => (
             <motion.div
@@ -298,20 +298,20 @@ const Home = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="welcome-card mb-8 text-white"
+          className="welcome-card mb-6 sm:mb-8 text-white p-4 sm:p-6 lg:p-8"
         >
           <div className="relative z-10">
-            <h2 className="text-2xl font-bold mb-2">
+            <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">
               Welcome to my
             </h2>
-            <h3 className="text-3xl font-bold mb-4">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">
               Portfolio of Projects
             </h3>
-            <p className="text-white/80 mb-6">
+            <p className="text-white/80 mb-4 sm:mb-6 text-sm sm:text-base">
               Discover my latest work and technical skills
             </p>
-            <div className="flex gap-3">
-              <Button className="bg-white text-black hover:bg-white/90 font-semibold px-6">
+            <div className="flex gap-2 sm:gap-3">
+              <Button className="bg-white text-black hover:bg-white/90 font-semibold px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base">
                 Continue with Portfolio
               </Button>
             </div>
@@ -323,18 +323,18 @@ const Home = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <div className="flex items-center gap-2 sm:gap-3">
               <SpotifyLogo size="md" />
-              <h2 className="text-2xl font-bold">Browse Categories</h2>
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold">Browse Categories</h2>
             </div>
-            <Button variant="ghost" className="text-muted-foreground hover:text-white">
+            <Button variant="ghost" className="text-muted-foreground hover:text-white text-sm">
               Show all
             </Button>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3 lg:gap-4">
             {categories.map((category, index) => (
               <motion.div
                 key={category.name}
@@ -342,7 +342,7 @@ const Home = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className={`relative overflow-hidden rounded-xl p-4 sm:p-6 bg-gradient-to-br ${category.gradient} cursor-pointer group`}
+                className={`relative overflow-hidden rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 bg-gradient-to-br ${category.gradient} cursor-pointer group`}
                 onClick={() => {
                   console.log(`Browsing ${category.name} category`);
                   // Filter projects by category
@@ -351,23 +351,23 @@ const Home = () => {
               >
                 {/* Organic shape overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5"></div>
-                <div className="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 bg-white/20 rounded-full blur-xl"></div>
-                <div className="absolute bottom-0 left-0 w-8 h-8 sm:w-12 sm:h-12 bg-white/10 rounded-full blur-lg"></div>
+                <div className="absolute top-0 right-0 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-white/20 rounded-full blur-xl"></div>
+                <div className="absolute bottom-0 left-0 w-6 h-6 sm:w-8 sm:h-8 lg:w-12 lg:h-12 bg-white/10 rounded-full blur-lg"></div>
                 
                 <div className="relative z-10">
-                  <h3 className="text-white font-bold text-sm sm:text-lg group-hover:text-white/90 transition-colors">
+                  <h3 className="text-white font-bold text-xs sm:text-sm lg:text-lg group-hover:text-white/90 transition-colors">
                     {category.name}
                   </h3>
-                  <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-1 sm:mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <Button 
                       size="sm" 
-                      className="bg-white/20 hover:bg-white/30 text-white rounded-full p-2"
+                      className="bg-white/20 hover:bg-white/30 text-white rounded-full p-1 sm:p-2"
                       onClick={(e) => {
                         e.stopPropagation();
                         console.log(`Playing ${category.name} playlist`);
                       }}
                     >
-                      <Play className="w-3 h-3" />
+                      <Play className="w-2 h-2 sm:w-3 sm:h-3" />
                     </Button>
                   </div>
                 </div>
@@ -681,13 +681,13 @@ const Home = () => {
         transition={{ delay: 1.8 }}
         className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-white/10 z-50"
       >
-        <div className="flex items-center justify-between px-4 py-3">
+        <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3">
           {/* Left Navigation */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-4 lg:gap-6">
             {/* Work */}
             <Button
               variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-2 py-2"
+              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-1 sm:px-2 py-1 sm:py-2"
               onClick={() => navigate('/experience')}
             >
               <WorkIcon />
@@ -697,7 +697,7 @@ const Home = () => {
             {/* Project */}
             <Button
               variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-2 py-2"
+              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-1 sm:px-2 py-1 sm:py-2"
               onClick={() => navigate('/library')}
             >
               <LibraryIcon />
@@ -708,11 +708,11 @@ const Home = () => {
           {/* Center Spotify Logo */}
           <Button
             variant="ghost"
-            className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
+            className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-2 sm:px-3 py-1 sm:py-2"
             onClick={() => navigate('/')}
           >
-            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 text-black" fill="currentColor">
+            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center">
+              <svg viewBox="0 0 24 24" className="w-3 h-3 sm:w-4 sm:h-4 text-black" fill="currentColor">
                 <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.84-.179-.959-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.361 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
               </svg>
             </div>
@@ -720,11 +720,11 @@ const Home = () => {
           </Button>
 
           {/* Right Navigation */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-3 sm:gap-4 lg:gap-6">
             {/* Skill */}
             <Button
               variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-2 py-2"
+              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-1 sm:px-2 py-1 sm:py-2"
               onClick={() => navigate('/skills')}
             >
               <SkillIcon />
@@ -734,7 +734,7 @@ const Home = () => {
             {/* Profile */}
             <Button
               variant="ghost"
-              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-2 py-2"
+              className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-1 sm:px-2 py-1 sm:py-2"
               onClick={() => navigate('/profile')}
             >
               <UserIcon />
