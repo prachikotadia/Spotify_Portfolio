@@ -35,7 +35,6 @@ const EducationDetail = () => {
       ],
       skills: ['Mobile Development', 'Database Design', 'Software Engineering', 'Cloud Computing', 'Algorithms', 'Machine Learning'],
       website: 'https://www.iit.edu/',
-      gpa: '3.8/4.0',
       status: 'In Progress'
     },
     'bachelors': {
@@ -59,7 +58,6 @@ const EducationDetail = () => {
       ],
       skills: ['Circuit Design', 'Embedded Systems', 'Signal Processing', 'Communication Tech', 'Digital Electronics', 'VLSI'],
       website: 'https://www.charusat.ac.in/',
-      gpa: '8.5/10.0',
       status: 'Completed'
     }
   };
@@ -226,8 +224,8 @@ const EducationDetail = () => {
           </Card>
         </div>
 
-        {/* Duration and GPA */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        {/* Duration */}
+        <div className="mb-6">
           <Card className="bg-[#181818] border-white/10">
             <CardContent className="p-4">
               <div className="flex items-center gap-3 mb-3">
@@ -235,16 +233,6 @@ const EducationDetail = () => {
                 <h4 className="text-lg font-semibold text-white">Duration</h4>
               </div>
               <p className="text-white/80">{education.duration}</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-[#181818] border-white/10">
-            <CardContent className="p-4">
-              <div className="flex items-center gap-3 mb-3">
-                <Award className="w-5 h-5 text-green-500" />
-                <h4 className="text-lg font-semibold text-white">GPA</h4>
-              </div>
-              <p className="text-white/80">{education.gpa}</p>
             </CardContent>
           </Card>
         </div>
