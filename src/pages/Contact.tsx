@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Download, Github, Linkedin, Twitter, MessageSquare, Globe } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Download, Github, Linkedin, Twitter, MessageSquare } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -47,12 +47,6 @@ const Contact = () => {
       label: 'LinkedIn',
       value: 'linkedin.com/in/prachi-kotadia',
       href: 'https://www.linkedin.com/in/prachi-kotadia/'
-    },
-    {
-      icon: Globe,
-      label: 'Portfolio',
-      value: 'prachikotadia.netlify.app',
-      href: 'https://prachikotadia.netlify.app/'
     }
   ];
 
@@ -70,7 +64,7 @@ const Contact = () => {
       color: 'hover:text-blue-600'
     },
     {
-      icon: Globe,
+      icon: MessageSquare,
       label: 'Portfolio',
       href: 'https://prachikotadia.netlify.app/',
       color: 'hover:text-green-600'
@@ -86,11 +80,11 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="flex items-center justify-center gap-3 mb-2">
             <SpotifyLogo size="sm" />
-            <h1 className="text-4xl font-bold">Get In Touch</h1>
+            <h1 className="text-4xl font-bold">Prachi Kotadia</h1>
           </div>
-          <h2 className="text-2xl font-semibold text-primary mb-2">Prachi Kotadia</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-primary">Get In Touch</h2>
           <p className="text-xl text-muted-foreground">
             Let's discuss your next project or just say hello
           </p>
@@ -105,7 +99,7 @@ const Contact = () => {
           transition={{ delay: 0.2 }}
           className="mb-12"
         >
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
