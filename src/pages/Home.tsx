@@ -114,27 +114,27 @@ const Home = () => {
           transition={{ delay: 0.1 }}
           className="mb-8"
         >
-          <div className="relative overflow-hidden rounded-2xl bg-green-500 p-8">
+          <div className="relative overflow-hidden rounded-2xl bg-green-500 p-6 sm:p-8">
             {/* Background Pattern - Sound Waves */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-green-400/30 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 right-0 w-32 h-32 bg-green-300/20 rounded-full blur-2xl"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-green-400/20 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-0 right-0 w-24 h-24 bg-green-300/15 rounded-full blur-xl"></div>
             
-            <div className="relative z-10 flex items-center justify-between">
+            <div className="relative z-10 flex items-end justify-between h-80 sm:h-96">
               {/* Text Content - Left Side */}
-              <div className="flex-1">
-                <p className="text-green-100 text-sm font-medium mb-3">New Portfolio</p>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-2 leading-none">
+              <div className="flex-1 flex flex-col justify-end pb-4">
+                <p className="text-green-100 text-sm font-medium mb-4">New Portfolio</p>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-1 leading-tight">
                   FULL STACK
                 </h1>
-                <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-none">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
                   DEVELOPER
                 </h2>
-                <p className="text-green-100 text-lg">Prachi Kotadia</p>
+                <p className="text-green-100 text-base">Prachi Kotadia</p>
               </div>
               
               {/* Profile Image - Right Side */}
               <div className="relative flex-shrink-0">
-                <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden">
+                <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-2xl overflow-hidden shadow-2xl">
                   <img
                     src="/src/assets/2025-09-25_21-10-04.jpg"
                     alt="Prachi Kotadia"
