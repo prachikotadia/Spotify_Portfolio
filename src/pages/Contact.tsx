@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import SpotifyLogo from '@/components/SpotifyLogo';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -33,26 +32,20 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'iprachikotadia@gmail.com',
-      href: 'mailto:iprachikotadia@gmail.com'
+      value: 'your.email@example.com',
+      href: 'mailto:your.email@example.com'
     },
     {
-      icon: Github,
-      label: 'GitHub',
-      value: 'github.com/prachikotadia',
-      href: 'https://github.com/prachikotadia'
+      icon: Phone,
+      label: 'Phone',
+      value: '+1 (555) 123-4567',
+      href: 'tel:+15551234567'
     },
     {
-      icon: Linkedin,
-      label: 'LinkedIn',
-      value: 'linkedin.com/in/prachi-kotadia',
-      href: 'https://www.linkedin.com/in/prachi-kotadia/'
-    },
-    {
-      icon: MessageSquare,
-      label: 'Website',
-      value: 'prachikotadia.netlify.app',
-      href: 'https://prachikotadia.netlify.app/'
+      icon: MapPin,
+      label: 'Location',
+      value: 'San Francisco, CA',
+      href: '#'
     }
   ];
 
@@ -60,20 +53,20 @@ const Contact = () => {
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/prachikotadia',
+      href: 'https://github.com',
       color: 'hover:text-gray-900'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/prachi-kotadia/',
+      href: 'https://linkedin.com',
       color: 'hover:text-blue-600'
     },
     {
-      icon: MessageSquare,
-      label: 'Website',
-      href: 'https://prachikotadia.netlify.app/',
-      color: 'hover:text-green-500'
+      icon: Twitter,
+      label: 'Twitter',
+      href: 'https://twitter.com',
+      color: 'hover:text-blue-400'
     }
   ];
 
@@ -86,10 +79,7 @@ const Contact = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <SpotifyLogo size="sm" />
-            <h1 className="text-4xl font-bold">Get In Touch</h1>
-          </div>
+          <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
           <p className="text-xl text-muted-foreground">
             Let's discuss your next project or just say hello
           </p>
