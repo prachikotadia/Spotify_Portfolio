@@ -89,7 +89,7 @@ const Home = () => {
       </div>
 
       {/* Main Content */}
-      <div className="px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
+      <div className="py-4">
         {/* Featured Profile Image */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -98,7 +98,7 @@ const Home = () => {
           className="mb-8"
         >
           <div className="flex justify-center">
-            <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl rounded-2xl overflow-hidden shadow-2xl">
+            <div className="w-full rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src="/src/assets/Add_a_subheading__1_-removebg-preview.png"
                 alt="Prachi Kotadia - Full Stack Developer"
