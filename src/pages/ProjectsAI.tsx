@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Play, Heart, MoreHorizontal, Github, ExternalLink, Calendar, Code, Star } from 'lucide-react';
+import { Play, Heart, MoreHorizontal, Github, ExternalLink, Calendar, Code, Star, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -11,6 +11,7 @@ import type { Project } from '@/data/mockData';
 const ProjectsAI = () => {
   const navigate = useNavigate();
   const [likedProjects, setLikedProjects] = useState<Set<string>>(new Set());
+  const [activeTab, setActiveTab] = useState<'projects' | 'certificates'>('projects');
 
   // Filter AI/ML projects
   const aiProjects = mockProjects.filter(project => 
@@ -85,7 +86,36 @@ const ProjectsAI = () => {
         </div>
       </motion.div>
 
-      {/* Projects Grid */}
+      {/* Tabs */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="px-6 mb-6"
+      >
+        <div className="flex gap-2 bg-[#181818] rounded-lg p-1">
+          <Button
+            variant={activeTab === 'projects' ? 'default' : 'ghost'}
+            onClick={() => setActiveTab('projects')}
+            className={`flex-1 ${activeTab === 'projects' ? 'bg-white text-black' : 'text-white hover:bg-white/10'}`}
+          >
+            <Code className="w-4 h-4 mr-2" />
+            Projects
+          </Button>
+          <Button
+            variant={activeTab === 'certificates' ? 'default' : 'ghost'}
+            onClick={() => setActiveTab('certificates')}
+            className={`flex-1 ${activeTab === 'certificates' ? 'bg-white text-black' : 'text-white hover:bg-white/10'}`}
+          >
+            <Award className="w-4 h-4 mr-2" />
+            Certificates
+          </Button>
+        </div>
+      </motion.div>
+
+      {/* Content based on active tab */}
+      {activeTab === 'projects' ? (
+        /* Projects Grid */
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -199,6 +229,104 @@ const ProjectsAI = () => {
           ))}
         </div>
       </motion.div>
+      ) : (
+        /* Certificates Grid */
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="px-6"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                id: '1',
+                title: 'AWS Certified Developer',
+                issuer: 'Amazon Web Services',
+                date: 'December 2024',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                skills: ['AWS', 'Cloud Computing', 'Serverless']
+              },
+              {
+                id: '2',
+                title: 'React Developer Certification',
+                issuer: 'Meta',
+                date: 'November 2023',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                skills: ['React', 'JavaScript', 'JSX']
+              },
+              {
+                id: '3',
+                title: 'Full Stack Web Development',
+                issuer: 'freeCodeCamp',
+                date: 'October 2023',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                skills: ['HTML', 'CSS', 'JavaScript']
+              }
+            ].map((certificate, index) => (
+              <motion.div
+                key={certificate.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6 + index * 0.1 }}
+                className="group"
+              >
+                <Card className="bg-[#181818] border-white/10 hover:bg-[#282828] transition-all duration-300 cursor-pointer overflow-hidden">
+                  <div className="relative">
+                    <div className="aspect-square overflow-hidden">
+                      <img
+                        src={certificate.image}
+                        alt={certificate.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    
+                    {/* Play Button Overlay */}
+                    <div className="absolute bottom-2 right-2 w-10 h-10 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Play className="w-4 h-4 text-white ml-0.5" />
+                    </div>
+                    
+                    {/* Like Button */}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="absolute top-2 right-2 w-8 h-8 bg-black/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <Heart className="w-4 h-4 text-white" />
+                    </Button>
+                  </div>
+                  
+                  <CardContent className="p-4">
+                    <h3 className="font-bold text-white text-lg mb-2 line-clamp-2">{certificate.title}</h3>
+                    <p className="text-gray-400 text-sm mb-3">{certificate.issuer}</p>
+                    
+                    {/* Skills */}
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {certificate.skills.map((skill, skillIndex) => (
+                        <Badge key={skillIndex} variant="secondary" className="text-xs bg-white/10 text-white">
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                    
+                    {/* Certificate Stats */}
+                    <div className="flex items-center justify-between text-xs text-gray-400">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-3 h-3" />
+                        <span>{certificate.date}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Award className="w-3 h-3" />
+                        <span>Verified</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };
