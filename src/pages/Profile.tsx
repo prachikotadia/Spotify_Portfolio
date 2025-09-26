@@ -87,30 +87,30 @@ const Profile = () => {
           </div>
           
           {/* Social Cards */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-4 gap-2">
             <motion.div 
               className="aspect-square rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700"
               whileHover={{ scale: 1.05 }}
             >
-              <Github className="w-8 h-8 text-white" />
+              <Github className="w-5 h-5 text-white" />
             </motion.div>
             <motion.div 
               className="aspect-square rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center"
               whileHover={{ scale: 1.05 }}
             >
-              <Linkedin className="w-8 h-8 text-white" />
+              <Linkedin className="w-5 h-5 text-white" />
             </motion.div>
             <motion.div 
               className="aspect-square rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center"
               whileHover={{ scale: 1.05 }}
             >
-              <Mail className="w-8 h-8 text-white" />
+              <Mail className="w-5 h-5 text-white" />
             </motion.div>
             <motion.div 
               className="aspect-square rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center"
               whileHover={{ scale: 1.05 }}
             >
-              <Globe className="w-8 h-8 text-white" />
+              <Globe className="w-5 h-5 text-white" />
             </motion.div>
           </div>
         </div>
