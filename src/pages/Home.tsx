@@ -629,7 +629,7 @@ const Home = () => {
         className="fixed bottom-0 left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-white/10 z-50"
       >
         <div className="flex items-center justify-center px-2 py-3">
-          <div className="flex items-center justify-between w-full max-w-md">
+          <div className="flex items-center justify-between w-full max-w-lg">
                     {/* Work */}
                     <Button
                       variant="ghost"
@@ -678,6 +678,16 @@ const Home = () => {
                     >
                       <Code className="w-5 h-5" />
                       <span className="text-xs">Skill</span>
+                    </Button>
+
+                    {/* Profile */}
+                    <Button
+                      variant="ghost"
+                      className="flex flex-col items-center gap-1 text-white hover:bg-white/10 px-3 py-2"
+                      onClick={() => navigate('/profile')}
+                    >
+                      <User className="w-5 h-5" />
+                      <span className="text-xs">Profile</span>
                     </Button>
           </div>
         </div>
