@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye, Code } from 'lucide-react';
+import { ArrowLeft, MoreVertical, Camera, Users, Music, ListMusic, Eye, Code, Github, Linkedin, Mail, Share } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -68,7 +68,7 @@ const Profile = () => {
             <div className="text-sm text-white">Projects</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-500 mb-1">35</div>
+            <div className="text-2xl font-bold text-green-500 mb-1">9</div>
             <div className="text-sm text-white">Certificates</div>
           </div>
           <div className="text-center">
@@ -77,34 +77,40 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* My Projects Section */}
+        {/* Social Links Section */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-white">My Projects</h3>
+            <h3 className="text-lg font-semibold text-white">Social</h3>
             <Button variant="ghost" className="text-green-500 hover:text-green-400 p-0">
               View All
             </Button>
           </div>
           
-          {/* Project Cards */}
-          <div className="grid grid-cols-3 gap-3">
+          {/* Social Cards */}
+          <div className="grid grid-cols-2 gap-3">
             <motion.div 
-              className="aspect-square rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center"
+              className="aspect-square rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center border border-gray-700"
               whileHover={{ scale: 1.05 }}
             >
-              <Music className="w-8 h-8 text-white" />
+              <Github className="w-8 h-8 text-white" />
             </motion.div>
             <motion.div 
-              className="aspect-square rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center"
+              className="aspect-square rounded-lg bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center"
               whileHover={{ scale: 1.05 }}
             >
-              <Code className="w-8 h-8 text-white" />
+              <Linkedin className="w-8 h-8 text-white" />
             </motion.div>
             <motion.div 
-              className="aspect-square rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center"
+              className="aspect-square rounded-lg bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center"
               whileHover={{ scale: 1.05 }}
             >
-              <Users className="w-8 h-8 text-white" />
+              <Mail className="w-8 h-8 text-white" />
+            </motion.div>
+            <motion.div 
+              className="aspect-square rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center"
+              whileHover={{ scale: 1.05 }}
+            >
+              <Share className="w-8 h-8 text-white" />
             </motion.div>
           </div>
         </div>
