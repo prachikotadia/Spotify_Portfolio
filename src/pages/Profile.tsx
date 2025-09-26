@@ -37,7 +37,7 @@ const Profile = () => {
           <div className="relative">
             <div className="w-32 h-32 rounded-full bg-gradient-to-br from-amber-200 to-amber-400 flex items-center justify-center overflow-hidden">
               <img 
-                src="/src/assets/image copy 6.png" 
+                src="/assets/image copy 6.png" 
                 alt="Profile" 
                 className="w-full h-full object-cover select-none pointer-events-none"
                 draggable={false}

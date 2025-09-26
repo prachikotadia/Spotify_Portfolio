@@ -20,7 +20,7 @@ const EducationDetail = () => {
       university: 'Illinois Institute of Technology',
       location: 'Chicago, IL, USA',
       duration: 'August 2023 - May 2025',
-      image: '/src/assets/image copy.png',
+      image: '/assets/image copy.png',
       description: 'Advanced graduate program focusing on cutting-edge computer science concepts and practical applications.',
       longDescription: 'This comprehensive Master\'s program provides deep knowledge in computer science fundamentals, advanced algorithms, software engineering principles, and modern development practices. The curriculum emphasizes hands-on learning through projects, research opportunities, and industry collaborations.',
       courses: [
@@ -43,7 +43,7 @@ const EducationDetail = () => {
       university: 'Charotar University of Science and Technology',
       location: 'Gujarat, India',
       duration: 'August 2019 - May 2023',
-      image: '/src/assets/image.png',
+      image: '/assets/image.png',
       description: 'Comprehensive undergraduate program in Electronics and Communication Engineering.',
       longDescription: 'This rigorous undergraduate program provided a solid foundation in electronics, communication systems, signal processing, and embedded systems. The curriculum combined theoretical knowledge with extensive hands-on laboratory work, preparing students for careers in technology and engineering.',
       courses: [

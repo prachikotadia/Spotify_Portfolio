@@ -51,13 +51,13 @@ const Education = () => {
               { 
                 title: "Master's in Computer Science", 
                 subtitle: "Illinois Institute of Technology",
-                image: "/src/assets/image copy.png",
+                image: "/assets/image copy.png",
                 duration: "2 years"
               },
               { 
                 title: "Bachelor of Technology", 
                 subtitle: "Electronics & Communication",
-                image: "/src/assets/image.png",
+                image: "/assets/image.png",
                 duration: "4 years"
               }
             ].map((item, index) => (
@@ -108,7 +108,7 @@ const Education = () => {
             >
               <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <img
-                  src="/src/assets/image copy.png"
+                  src="/assets/image copy.png"
                   alt="Master's Degree"
                   className="w-full h-full object-cover"
                 />
@@ -155,7 +155,7 @@ const Education = () => {
             >
               <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                 <img
-                  src="/src/assets/image.png"
+                  src="/assets/image.png"
                   alt="Bachelor's Degree"
                   className="w-full h-full object-cover"
                 />
@@ -207,7 +207,7 @@ const Education = () => {
               { 
                 title: "Academic Excellence", 
                 subtitle: "Consistent high performance",
-                image: "/src/assets/image copy 2.png",
+                image: "/assets/image copy 2.png",
                 type: "Achievement"
               },
               { 
@@ -219,7 +219,7 @@ const Education = () => {
               { 
                 title: "Continuous Learning", 
                 subtitle: "Latest technologies",
-                image: "/src/assets/image copy 3.png",
+                image: "/assets/image copy 3.png",
                 type: "Growth"
               }
             ].map((item, index) => (

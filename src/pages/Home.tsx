@@ -83,7 +83,7 @@ const Home = () => {
           <div className="flex justify-center">
             <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/src/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png"
+                  src="/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png"
                   alt="Prachi Kotadia - Full Stack Developer"
                   className="w-full h-auto object-cover"
                 />
@@ -180,7 +180,7 @@ const Home = () => {
               { 
                 name: 'About Me', 
                 gradient: 'from-pink-500 to-rose-500',
-                image: '/src/assets/2025-09-25_21-10-04.jpg',
+                image: '/assets/2025-09-25_21-10-04.jpg',
                 link: '/lyrics'
               }
             ].map((category, index) => (
@@ -221,9 +221,9 @@ const Home = () => {
         >
           <div className="flex gap-4 overflow-x-auto pb-2">
             {[
-              { title: "AI Chat Application", artist: "React, OpenAI", image: "/src/assets/ai-chat-project.jpg" },
-              { title: "E-commerce Platform", artist: "Next.js, Stripe", image: "/src/assets/ecommerce-project.jpg" },
-              { title: "Weather Dashboard", artist: "Vue.js, APIs", image: "/src/assets/weather-dashboard-project.jpg" }
+              { title: "AI Chat Application", artist: "React, OpenAI", image: "/assets/ai-chat-project.jpg" },
+              { title: "E-commerce Platform", artist: "Next.js, Stripe", image: "/assets/ecommerce-project.jpg" },
+              { title: "Weather Dashboard", artist: "Vue.js, APIs", image: "/assets/weather-dashboard-project.jpg" }
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -266,9 +266,9 @@ const Home = () => {
           </div>
           <div className="flex gap-4 overflow-x-auto pb-2">
             {[
-              { title: "Work Projects", image: "/src/assets/task-management-project.jpg" },
-              { title: "Personal Projects", image: "/src/assets/fitness-tracker-project.jpg" },
-              { title: "Open Source", image: "/src/assets/social-analytics-project.jpg" }
+              { title: "Work Projects", image: "/assets/task-management-project.jpg" },
+              { title: "Personal Projects", image: "/assets/fitness-tracker-project.jpg" },
+              { title: "Open Source", image: "/assets/social-analytics-project.jpg" }
             ].map((playlist, index) => (
               <motion.div
                 key={index}
@@ -384,7 +384,7 @@ const Home = () => {
                 location: "Chicago, IL",
                 year: "2023-2025",
                 gradient: "from-purple-600 to-pink-500",
-                image: "/src/assets/2025-09-25_21-10-04.jpg"
+                image: "/assets/2025-09-25_21-10-04.jpg"
               },
               { 
                 title: "Bachelor of Technology", 
@@ -392,7 +392,7 @@ const Home = () => {
                 location: "Gujarat, India",
                 year: "2019-2023",
                 gradient: "from-blue-600 to-green-800",
-                image: "/src/assets/ai-chat-project.jpg"
+                image: "/assets/ai-chat-project.jpg"
               },
               { 
                 title: "AWS Certified Developer", 
@@ -400,7 +400,7 @@ const Home = () => {
                 location: "Online",
                 year: "2024",
                 gradient: "from-orange-500 to-red-500",
-                image: "/src/assets/ecommerce-project.jpg"
+                image: "/assets/ecommerce-project.jpg"
               }
             ].map((item, index) => (
               <motion.div
@@ -462,22 +462,22 @@ const Home = () => {
               { 
                 name: "React Developer", 
                 color: "text-green-500",
-                image: "/src/assets/2025-09-25_21-10-04.jpg"
+                image: "/assets/2025-09-25_21-10-04.jpg"
               },
               { 
                 name: "Full Stack Engineer", 
                 color: "text-white",
-                image: "/src/assets/ai-chat-project.jpg"
+                image: "/assets/ai-chat-project.jpg"
               },
               { 
                 name: "AWS Certified", 
                 color: "text-white",
-                image: "/src/assets/ecommerce-project.jpg"
+                image: "/assets/ecommerce-project.jpg"
               },
               { 
                 name: "Mobile Developer", 
                 color: "text-white",
-                image: "/src/assets/weather-dashboard-project.jpg"
+                image: "/assets/weather-dashboard-project.jpg"
               }
             ].map((artist, index) => (
               <motion.div
