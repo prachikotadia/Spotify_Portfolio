@@ -174,54 +174,60 @@ const Skills = () => {
   const [imageRefreshKey, setImageRefreshKey] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   
-  // Define skill categories with icons and skill counts
+  // Define skill categories with real data
   const skillCategories = [
     { 
       name: 'Programming Languages', 
       emoji: '💻', 
       icon: Code,
       color: 'from-green-500 to-green-600',
-      skillsCount: skills.filter(s => s.category === 'Programming Languages').length
+      skillsCount: 10,
+      skills: ['Python', 'JavaScript', 'TypeScript', 'C++', 'C', 'Dart', 'SQL', 'Shell Scripting', 'HTML/CSS', 'Node.js']
     },
     { 
       name: 'Web Development', 
       emoji: '🌐', 
       icon: Globe,
-      color: 'from-green-500 to-green-600',
-      skillsCount: skills.filter(s => s.category === 'Web Development').length
+      color: 'from-blue-500 to-blue-600',
+      skillsCount: 8,
+      skills: ['React', 'HTML5/CSS3', 'JWT & OAuth2', 'WebSockets', 'REST API', 'PWA', 'Responsive Design', 'Animations & UX']
     },
     { 
       name: 'Databases & Cloud', 
       emoji: '🗄️', 
       icon: Database,
-      color: 'from-green-500 to-green-600',
-      skillsCount: skills.filter(s => s.category === 'Databases & Cloud').length
+      color: 'from-purple-500 to-purple-600',
+      skillsCount: 8,
+      skills: ['PostgreSQL', 'DynamoDB', 'AWS Lambda', 'Redis', 'MySQL', 'CRUD Operations', 'AWS', 'Microservices']
     },
     { 
       name: 'Embedded & Systems', 
       emoji: '🔧', 
       icon: Cpu,
-      color: 'from-green-500 to-green-600',
-      skillsCount: skills.filter(s => s.category === 'Embedded & Systems').length
+      color: 'from-orange-500 to-orange-600',
+      skillsCount: 8,
+      skills: ['Linux', 'GStreamer', 'CarPlay', 'Vulkan', 'Trace32', 'Memory Management', 'Debugging Tools', 'Event-Driven Architecture']
     },
     { 
       name: 'Mobile & AI/ML', 
       emoji: '🤖', 
       icon: Smartphone,
-      color: 'from-green-500 to-green-600',
-      skillsCount: skills.filter(s => s.category === 'Mobile & AI/ML').length
+      color: 'from-pink-500 to-pink-600',
+      skillsCount: 7,
+      skills: ['Flutter', 'OpenAI API', 'LangChain', 'NLP', 'Recommendation Systems', 'Chatbots', 'Text Processing']
     },
     { 
       name: 'DevOps & Tools', 
       emoji: '🛠️', 
       icon: Wrench,
-      color: 'from-green-500 to-green-600',
-      skillsCount: skills.filter(s => s.category === 'DevOps & Tools').length
+      color: 'from-gray-500 to-gray-600',
+      skillsCount: 12,
+      skills: ['Git/GitHub', 'Docker', 'CI/CD', 'Monitoring & Logging', 'SonarQube', 'Perf', 'Postman', 'Swagger/OpenAPI', 'Vite', 'JMeter', 'Locust', 'Error Handling']
     }
   ];
 
   const activeCategory = skillCategories[activeCategoryIndex];
-  const activeCategorySkills = skills.filter(skill => skill.category === activeCategory.name);
+  const activeCategorySkills = activeCategory.skills;
 
   const handleNext = () => {
     if (isTransitioning) return;
@@ -461,9 +467,9 @@ const Skills = () => {
             Skills in {activeCategory?.name}
           </motion.h3>
           <div className="flex flex-wrap justify-center gap-1 sm:gap-2 max-h-16 sm:max-h-20 overflow-y-auto">
-            {activeCategorySkills.slice(0, 4).map((skill, index) => (
+            {activeCategorySkills.slice(0, 6).map((skill, index) => (
               <motion.div
-                key={skill.id}
+                key={skill}
                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
@@ -474,15 +480,15 @@ const Skills = () => {
                 }}
                 className="bg-gradient-to-r from-green-500/20 to-green-600/20 hover:from-green-500/30 hover:to-green-600/30 text-green-300 hover:text-white px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium cursor-pointer transition-all duration-300 border border-green-500/30 hover:border-green-400/50"
               >
-                {skill.name}
+                {skill}
               </motion.div>
             ))}
-            {activeCategorySkills.length > 4 && (
+            {activeCategorySkills.length > 6 && (
               <motion.div 
                 className="bg-gradient-to-r from-gray-600/20 to-gray-700/20 text-gray-400 px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm font-medium border border-gray-600/30"
                 whileHover={{ scale: 1.05 }}
               >
-                +{activeCategorySkills.length - 4} more
+                +{activeCategorySkills.length - 6} more
               </motion.div>
             )}
           </div>
