@@ -270,6 +270,154 @@ const Home = () => {
           </div>
         </motion.div>
 
+        {/* Course Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mb-8"
+        >
+          <h2 className="text-xl font-bold text-white mb-4">Course</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              {
+                title: "Data Structures & Algorithms",
+                description: "Mastered arrays, trees, graphs, and sorting/searching algorithms. Built problem-solving skills essential for efficient coding, optimization, and competitive programming.",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=400&fit=crop&crop=center",
+                category: "Programming"
+              },
+              {
+                title: "Mobile Application and Development",
+                description: "Explored tools, frameworks, and design principles for developing mobile applications. Built intuitive, responsive, and cross-platform apps with real-world use cases.",
+                image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop&crop=center",
+                category: "Mobile"
+              },
+              {
+                title: "Advanced Database Organization",
+                description: "Focused on indexing strategies, query optimization, and data modeling. Learned advanced techniques for efficient storage and retrieval of large datasets.",
+                image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=400&fit=crop&crop=center",
+                category: "Database"
+              },
+              {
+                title: "Software Project Management",
+                description: "Studied methodologies like Agile and Waterfall. Gained knowledge of project scheduling, resource allocation, and effective team collaboration to deliver successful projects.",
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop&crop=center",
+                category: "Management"
+              },
+              {
+                title: "Big Data Technology",
+                description: "Worked with distributed systems and big data frameworks to process large-scale datasets. Covered topics like real-time data pipelines, parallel computation, and analytics.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center",
+                category: "Big Data"
+              },
+              {
+                title: "Computer Networks",
+                description: "Explored OSI and TCP/IP models, data transmission, and routing protocols. Understood network security, reliability, and real-world communication systems.",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center",
+                category: "Networking"
+              },
+              {
+                title: "Software Engineering",
+                description: "Covered software development life cycle (SDLC), requirement analysis, testing methods, and design patterns. Learned to create scalable, maintainable, and robust applications.",
+                image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop&crop=center",
+                category: "Engineering"
+              },
+              {
+                title: "Web Application Development",
+                description: "Designed and built modern, full-stack web applications with frontend and backend integration. Gained hands-on skills in authentication, APIs, and responsive UI.",
+                image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop&crop=center",
+                category: "Web Development"
+              },
+              {
+                title: "Science of Programming",
+                description: "Studied programming paradigms, logic, and systematic approaches to writing clean, efficient, and reusable code.",
+                image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=400&fit=crop&crop=center",
+                category: "Programming"
+              },
+              {
+                title: "Data Preparation and Analysis",
+                description: "Learned data cleaning, transformation, and statistical modeling. Developed skills in preparing raw data for visualization and decision-making.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center",
+                category: "Data Science"
+              },
+              {
+                title: "Software Quality Management",
+                description: "Focused on software testing, defect prevention, and assurance strategies. Learned how to enforce quality standards throughout the SDLC.",
+                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop&crop=center",
+                category: "Quality"
+              },
+              {
+                title: "Embedded Systems Design",
+                description: "Covered microcontroller architecture, peripherals, and interfacing. Built hands-on projects with ARM-based and Arduino platforms.",
+                image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop&crop=center",
+                category: "Embedded"
+              },
+              {
+                title: "Embedded C Programming",
+                description: "Developed low-level firmware with C. Learned memory optimization, interrupt handling, and real-time coding for resource-constrained systems.",
+                image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=400&fit=crop&crop=center",
+                category: "Embedded"
+              },
+              {
+                title: "Microprocessors & Microcontrollers",
+                description: "Studied processor architecture, instruction sets, and peripheral integration. Practiced system-level programming with real hardware.",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center",
+                category: "Hardware"
+              },
+              {
+                title: "Real-Time Operating Systems (RTOS)",
+                description: "Explored task scheduling, inter-process communication, and synchronization in real-time environments. Built projects using FreeRTOS.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center",
+                category: "Systems"
+              },
+              {
+                title: "Embedded Communication Protocols",
+                description: "Learned SPI, I2C, UART, and CAN protocols. Implemented reliable device-to-device communication in embedded platforms.",
+                image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center",
+                category: "Communication"
+              },
+              {
+                title: "Digital Signal Processing (DSP)",
+                description: "Focused on signal filtering, Fourier transforms, and embedded implementation of DSP algorithms.",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center",
+                category: "Signal Processing"
+              }
+            ].map((course, index) => (
+              <motion.div
+                key={course.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + index * 0.05 }}
+                className="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-all duration-300 cursor-pointer group"
+              >
+                <div className="flex items-start gap-4">
+                  {/* Course Image */}
+                  <div className="w-16 h-16 flex-shrink-0">
+                    <img
+                      src={course.image}
+                      alt={course.title}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                  </div>
+                  
+                  {/* Course Info */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="text-white font-semibold text-sm line-clamp-2">{course.title}</h3>
+                      <Badge variant="secondary" className="text-xs bg-green-500/20 text-green-300">
+                        {course.category}
+                      </Badge>
+                    </div>
+                    <p className="text-gray-400 text-xs line-clamp-3 leading-relaxed">
+                      {course.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Recently Played - Like Spotify's Recently Played */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
