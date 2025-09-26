@@ -57,7 +57,7 @@ const Profile = () => {
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-white mb-2">Prachi Kotadia</h2>
           <Badge className="bg-green-500 text-white hover:bg-green-600">
-            Premium Developer
+            Creative Technologist
           </Badge>
         </div>
 
