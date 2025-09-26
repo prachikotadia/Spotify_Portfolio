@@ -169,34 +169,112 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Categories - Like Spotify's category tabs */}
+        {/* Browse All Section - First Priority */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="mb-6"
+          className="mb-8"
         >
-          <div className="flex gap-4 overflow-x-auto pb-2">
+          <h2 className="text-xl font-bold text-white mb-4">Browse all</h2>
+          <div className="grid grid-cols-2 gap-3">
             {[
-              { name: 'Newest', active: true },
-              { name: 'Hot', icon: '🔥' },
-              { name: 'Radio' },
-              { name: 'Artists' },
-              { name: 'Podcasts' }
+              { 
+                name: 'AI/ML Projects', 
+                gradient: 'from-purple-500 to-pink-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/ai-ml'
+              },
+              { 
+                name: 'Full Stack Apps', 
+                gradient: 'from-blue-500 to-cyan-500',
+                image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/fullstack'
+              },
+              { 
+                name: 'Mobile Apps', 
+                gradient: 'from-green-500 to-emerald-500',
+                image: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/mobile'
+              },
+              { 
+                name: 'System Programming', 
+                gradient: 'from-orange-500 to-red-500',
+                image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/systems'
+              },
+              { 
+                name: 'Data Engineering', 
+                gradient: 'from-indigo-500 to-purple-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/projects/data'
+              },
+              { 
+                name: 'Certificates', 
+                gradient: 'from-yellow-500 to-orange-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/certificates'
+              },
+              { 
+                name: 'Work Experience', 
+                gradient: 'from-teal-500 to-cyan-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/experience'
+              },
+              { 
+                name: 'Skills', 
+                gradient: 'from-violet-500 to-purple-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/skills'
+              },
+              { 
+                name: 'Education', 
+                gradient: 'from-emerald-500 to-green-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/education'
+              },
+              { 
+                name: 'Blog', 
+                gradient: 'from-rose-500 to-pink-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/blog'
+              },
+              { 
+                name: 'Testimonials', 
+                gradient: 'from-amber-500 to-yellow-500',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                link: '/testimonials'
+              },
+              { 
+                name: 'About Me', 
+                gradient: 'from-pink-500 to-rose-500',
+                image: '/src/assets/2025-09-25_21-10-04.jpg',
+                link: '/lyrics'
+              }
             ].map((category, index) => (
               <motion.div
                 key={category.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap ${
-                  category.active 
-                    ? 'bg-green-500 text-black font-semibold' 
-                    : 'bg-[#181818] text-white hover:bg-[#282828]'
-                }`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4 + index * 0.05 }}
+                className={`bg-gradient-to-br ${category.gradient} rounded-lg p-4 h-24 relative overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group`}
+                onClick={() => category.link && navigate(category.link)}
               >
-                {category.icon && <span>{category.icon}</span>}
-                <span className="text-sm">{category.name}</span>
+                <div className="relative z-10 h-full flex flex-col justify-between">
+                  <h3 className="text-white font-bold text-sm">{category.name}</h3>
+                </div>
+                {/* Background Image */}
+                <div className="absolute inset-0 opacity-20">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                {/* Floating Elements */}
+                <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-white/20 rounded-full group-hover:scale-110 transition-transform" />
+                <div className="absolute -right-1 -top-1 w-8 h-8 bg-white/10 rounded-full group-hover:scale-110 transition-transform" />
+                <div className="absolute -left-1 -bottom-1 w-6 h-6 bg-white/5 rounded-full group-hover:scale-110 transition-transform" />
               </motion.div>
             ))}
           </div>
@@ -491,80 +569,6 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Browse All Section - Projects and About Me */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          className="mb-6"
-        >
-          <h2 className="text-xl font-bold text-white mb-4">Browse all</h2>
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              { 
-                name: 'AI/ML Projects', 
-                gradient: 'from-purple-500 to-pink-500',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/ai-ml'
-              },
-              { 
-                name: 'Full Stack Apps', 
-                gradient: 'from-blue-500 to-cyan-500',
-                image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/fullstack'
-              },
-              { 
-                name: 'Mobile Apps', 
-                gradient: 'from-green-500 to-emerald-500',
-                image: 'https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/mobile'
-              },
-              { 
-                name: 'System Programming', 
-                gradient: 'from-orange-500 to-red-500',
-                image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/systems'
-              },
-              { 
-                name: 'Data Engineering', 
-                gradient: 'from-indigo-500 to-purple-500',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                link: '/projects/data'
-              },
-              { 
-                name: 'About Me', 
-                gradient: 'from-pink-500 to-rose-500',
-                image: '/src/assets/2025-09-25_21-10-04.jpg',
-                link: '/lyrics'
-              }
-            ].map((category, index) => (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.0 + index * 0.05 }}
-                className={`bg-gradient-to-br ${category.gradient} rounded-lg p-4 h-24 relative overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group`}
-                onClick={() => category.link && navigate(category.link)}
-              >
-                <div className="relative z-10 h-full flex flex-col justify-between">
-                  <h3 className="text-white font-bold text-sm">{category.name}</h3>
-                </div>
-                {/* Background Image */}
-                <div className="absolute inset-0 opacity-20">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Floating Elements */}
-                <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-white/20 rounded-full group-hover:scale-110 transition-transform" />
-                <div className="absolute -right-1 -top-1 w-8 h-8 bg-white/10 rounded-full group-hover:scale-110 transition-transform" />
-                <div className="absolute -left-1 -bottom-1 w-6 h-6 bg-white/5 rounded-full group-hover:scale-110 transition-transform" />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
 
 
 
