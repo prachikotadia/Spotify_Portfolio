@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft, Globe, Server, Database, Smartphone, Cpu, Wrench } from 'lucide-react';
+import { Code, Star, TrendingUp, Zap, ChevronRight, ChevronLeft, Globe, Server, Database, Smartphone, Cpu, Wrench, ArrowLeft } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { skills } from '@/data/mockData';
 import type { Skill } from '@/data/mockData';
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SpotifyLogo from '@/components/SpotifyLogo';
 
 // Helper functions
@@ -187,6 +188,7 @@ const CategoryCard = ({ category, index, isActive, isAdjacent, onSelect, onSwipe
 };
 
 const Skills = () => {
+  const navigate = useNavigate();
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   
@@ -307,6 +309,14 @@ const Skills = () => {
       <div className="sticky top-0 z-20 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-3 max-w-7xl mx-auto">
           <div className="flex items-center gap-2 sm:gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/')}
+              className="w-8 h-8 text-white hover:bg-white/10 rounded-full"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Button>
             <SpotifyLogo size="sm" />
             <h1 className="text-lg sm:text-xl font-bold text-green-500">Skills</h1>
           </div>

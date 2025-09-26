@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Grid3X3, List, ArrowUpDown, Search, Play, Heart, MoreHorizontal, Code, Award, BookOpen } from 'lucide-react';
+import { Grid3X3, List, ArrowUpDown, Search, Play, Heart, MoreHorizontal, Code, Award, BookOpen, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -79,6 +79,14 @@ const Library = () => {
       <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-4 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/')}
+              className="w-8 h-8 text-white hover:bg-white/10 rounded-full"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Button>
             <SpotifyLogo size="sm" />
             <motion.h1
               initial={{ opacity: 0, y: 20 }}

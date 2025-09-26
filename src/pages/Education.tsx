@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { GraduationCap, Calendar, MapPin, Award, BookOpen, ExternalLink, Building, Clock, Play, Heart, MoreHorizontal, ChevronDown } from 'lucide-react';
+import { GraduationCap, Calendar, MapPin, Award, BookOpen, ExternalLink, Building, Clock, Play, Heart, MoreHorizontal, ChevronDown, ArrowLeft } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -26,6 +26,14 @@ const Education = () => {
           
           {/* Center: Title */}
           <div className="flex items-center justify-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/')}
+              className="w-8 h-8 text-white hover:bg-white/10 rounded-full"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Button>
             <SpotifyLogo size="sm" />
             <h1 className="text-lg font-bold text-white">Education</h1>
           </div>

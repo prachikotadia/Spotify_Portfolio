@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Search as SearchIcon, Clock } from 'lucide-react';
+import { Search as SearchIcon, Clock, ArrowLeft } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { mockCertificates } from '@/data/mockData';
@@ -31,6 +31,14 @@ const Search = () => {
       <div className="sticky top-0 z-10 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
           <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/')}
+              className="w-8 h-8 text-white hover:bg-white/10 rounded-full"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Button>
             <SpotifyLogo size="md" />
             <div>
               <h1 className="text-xl font-bold text-white">Search</h1>

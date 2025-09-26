@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Building2, Award, Code } from 'lucide-react';
+import { Calendar, MapPin, Building2, Award, Code, ArrowLeft } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { workExperience } from '@/data/mockData';
 import type { WorkExperience } from '@/data/mockData';
 import { useNavigate } from 'react-router-dom';
@@ -20,6 +21,14 @@ const Experience = () => {
           className="text-center"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/')}
+              className="w-8 h-8 text-white hover:bg-white/10 rounded-full"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Button>
             <SpotifyLogo size="sm" />
             <h1 className="text-4xl font-bold">Work Experience</h1>
           </div>
