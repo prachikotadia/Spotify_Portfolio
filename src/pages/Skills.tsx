@@ -26,10 +26,10 @@ const getLevelText = (level: number) => {
 // Get fixed images for skill categories
 const getCategoryImage = (categoryName: string) => {
   const categoryImages = {
-    'Programming Languages': '/Users/prachi/Projects/Portfolio/Spotify_Portfolio/Spotify_Portfolio/src/assets/image copy 4.png',
+    'Programming Languages': '/src/assets/image copy 4.png',
     'Web Development': 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=600&fit=crop&crop=center',
     'Databases & Cloud': 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=600&fit=crop&crop=center',
-    'Embedded & Systems': '/Users/prachi/Projects/Portfolio/Spotify_Portfolio/Spotify_Portfolio/src/assets/image copy 5.png',
+    'Embedded & Systems': '/src/assets/image copy 5.png',
     'Mobile & AI/ML': 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=600&fit=crop&crop=center',
     'DevOps & Tools': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=600&fit=crop&crop=center'
   };
