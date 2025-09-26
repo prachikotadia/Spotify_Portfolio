@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search as SearchIcon, X, Clock, TrendingUp, Star, Code, Briefcase, GraduationCap, Award, Heart } from 'lucide-react';
+import { Search as SearchIcon, X, Clock, TrendingUp, Star, Code, Briefcase, GraduationCap, Award, Heart, Mic, Camera } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import SpotifyLogo from '@/components/SpotifyLogo';
 import { 
   mockProjects, 
   workExperience, 
@@ -92,50 +93,41 @@ const Search = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80 pb-24">
-      {/* Enhanced Spotify-style Header */}
-      <div className="sticky top-0 z-30 bg-black/90 backdrop-blur-xl border-b border-white/10">
-        <div className="px-6 pt-12 pb-8">
+    <div className="min-h-screen bg-[#121212] pb-20">
+      {/* Spotify Search Header */}
+      <div className="sticky top-0 z-30 bg-[#121212]">
+        <div className="px-4 py-6">
+          {/* Search Title */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-between mb-8"
+            className="flex items-center justify-between mb-6"
           >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
-                <SearchIcon className="w-6 h-6 text-black" />
-              </div>
-              <div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
-                  Search
-                </h1>
-                <p className="text-muted-foreground text-sm">Discover amazing projects and content</p>
-              </div>
-            </div>
-            <div className="flex gap-3">
-              <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
-                <TrendingUp className="w-5 h-5" />
+            <h1 className="text-3xl font-bold text-white">Search</h1>
+            <div className="flex gap-2">
+              <Button variant="ghost" size="icon" className="w-8 h-8 border border-white/20 rounded-full">
+                <Mic className="w-4 h-4 text-white" />
               </Button>
-              <Button variant="ghost" size="icon" className="glass hover:bg-white/20">
-                <Clock className="w-5 h-5" />
+              <Button variant="ghost" size="icon" className="w-8 h-8 border border-white/20 rounded-full">
+                <Camera className="w-4 h-4 text-white" />
               </Button>
             </div>
           </motion.div>
 
-          {/* Enhanced Search Bar */}
+          {/* Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="relative mb-6"
           >
-            <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <Input
               type="text"
-              placeholder="What do you want to find?"
+              placeholder="Artists, Songs or Podcasts"
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
-              className="pl-12 pr-12 py-4 text-lg bg-white/10 border-white/20 rounded-xl backdrop-blur-sm focus:bg-white/20 transition-all duration-300"
+              className="pl-12 pr-4 py-4 text-lg bg-[#181818] border-none rounded-lg focus:bg-[#282828] transition-all duration-300 text-white placeholder-gray-400"
             />
             {searchQuery && (
               <Button
@@ -144,14 +136,14 @@ const Search = () => {
                 onClick={() => setSearchQuery('')}
                 className="absolute right-2 top-1/2 -translate-y-1/2 hover:bg-white/10"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 text-white" />
               </Button>
             )}
           </motion.div>
         </div>
       </div>
 
-      <div className="px-6">
+      <div className="px-4">
         <AnimatePresence mode="wait">
           {!searchQuery ? (
             <motion.div
@@ -161,64 +153,86 @@ const Search = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ delay: 0.2 }}
             >
-              {/* Recent Searches */}
+              {/* Discover Banner */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="mb-8"
+                className="mb-6"
               >
-                <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-primary" />
-                  Recent searches
-                </h2>
-                <div className="space-y-2">
-                  {recentSearches.map((search, index) => (
+                <div className="bg-[#1DB954] rounded-2xl p-6 relative overflow-hidden">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <SpotifyLogo size="md" />
+                      <div>
+                        <h2 className="text-white font-bold text-lg">discover the music around you</h2>
+                      </div>
+                    </div>
+                    <Button variant="ghost" size="icon" className="w-8 h-8 bg-white/20 rounded-full">
+                      <Clock className="w-4 h-4 text-white" />
+                    </Button>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Your Top Genres */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mb-6"
+              >
+                <h2 className="text-xl font-bold text-white mb-4">Your Top Genres</h2>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { name: 'Frontend', gradient: 'from-green-500 to-green-700', image: '/src/assets/ai-chat-project.jpg' },
+                    { name: 'Backend', gradient: 'from-purple-500 to-pink-500', image: '/src/assets/ecommerce-project.jpg' },
+                    { name: 'Full Stack', gradient: 'from-blue-500 to-cyan-500', image: '/src/assets/weather-dashboard-project.jpg' },
+                    { name: 'Mobile', gradient: 'from-orange-500 to-red-500', image: '/src/assets/fitness-tracker-project.jpg' }
+                  ].map((genre, index) => (
                     <motion.div
-                      key={search}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.4 + index * 0.1 }}
-                      onClick={() => handleSearch(search)}
-                      className="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 cursor-pointer transition-all duration-300 group"
+                      key={genre.name}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.5 + index * 0.1 }}
+                      className={`bg-gradient-to-br ${genre.gradient} rounded-lg p-4 h-24 relative overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group`}
                     >
-                      <SearchIcon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                      <span className="group-hover:text-white transition-colors">{search}</span>
+                      <div className="relative z-10 h-full flex flex-col justify-between">
+                        <h3 className="text-white font-bold text-sm">{genre.name}</h3>
+                      </div>
+                      <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-white/20 rounded-full group-hover:scale-110 transition-transform" />
+                      <div className="absolute -right-1 -top-1 w-8 h-8 bg-white/10 rounded-full group-hover:scale-110 transition-transform" />
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
 
-              {/* Browse All Categories */}
+              {/* Browse All */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
+                transition={{ delay: 0.6 }}
               >
-                <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-primary" />
-                  Browse all
-                </h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {categories.map((category, index) => (
+                <h2 className="text-xl font-bold text-white mb-4">Browse All</h2>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { name: 'Made for You', gradient: 'from-blue-500 to-cyan-500' },
+                    { name: 'New Releases', gradient: 'from-purple-500 to-pink-500' },
+                    { name: 'Charts', gradient: 'from-blue-600 to-blue-800' },
+                    { name: 'Podcasts', gradient: 'from-red-600 to-red-800' }
+                  ].map((category, index) => (
                     <motion.div
                       key={category.name}
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
-                      className={`bg-gradient-to-br ${category.color} rounded-xl p-6 h-32 relative overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group`}
+                      transition={{ delay: 0.7 + index * 0.1 }}
+                      className={`bg-gradient-to-br ${category.gradient} rounded-lg p-4 h-24 relative overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group`}
                     >
                       <div className="relative z-10 h-full flex flex-col justify-between">
-                        <div>
-                          <h3 className="text-white font-bold text-lg mb-2 group-hover:scale-105 transition-transform">
-                            {category.name}
-                          </h3>
-                          <p className="text-white/80 text-sm">{category.count} items</p>
-                        </div>
-                        <category.icon className="w-8 h-8 text-white/60 group-hover:text-white transition-colors" />
+                        <h3 className="text-white font-bold text-sm">{category.name}</h3>
                       </div>
-                      <div className="absolute -right-6 -bottom-6 w-20 h-20 bg-white/20 rounded-full group-hover:scale-110 transition-transform" />
-                      <div className="absolute -right-2 -top-2 w-12 h-12 bg-white/10 rounded-full group-hover:scale-110 transition-transform" />
+                      <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-white/20 rounded-full group-hover:scale-110 transition-transform" />
+                      <div className="absolute -right-1 -top-1 w-8 h-8 bg-white/10 rounded-full group-hover:scale-110 transition-transform" />
                     </motion.div>
                   ))}
                 </div>
