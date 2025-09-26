@@ -14,45 +14,34 @@ const Lyrics = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
 
-  // Human-like speech with natural pauses and "umm" sounds
+  // Text-to-speech functionality
   const startSpeech = () => {
     if ('speechSynthesis' in window) {
-      const humanLikeText = `I'm a passionate Software Engineer... umm... with a Master's in Computer Science from Illinois Institute of Technology. Currently... I'm working as a Software Engineer at GroupedIn in New Jersey. My journey in technology... umm... spans across multiple domains including web development, mobile applications, AI/ML, and embedded systems. With expertise in React, Flutter, Python, C++... and cloud technologies like AWS, I've built scalable applications serving thousands of users. I'm particularly passionate about... umm... AI-driven solutions, having integrated NLP and machine learning models to enhance user experiences and boost engagement by 25%. My work involves full-stack development... from designing e-commerce systems handling 500+ daily transactions to building high-performance Linux kernel modules that reduce latency by 15%. I'm also experienced in IoT integration, real-time data processing, and automated CI/CD pipelines. Beyond technical skills... umm... I'm a continuous learner who stays updated with the latest technologies. I believe in the power of open-source collaboration and have contributed to various projects. When I'm not coding... you'll find me exploring new technologies, contributing to research, or curating the perfect coding playlist on Spotify. I'm always excited to work on challenging problems, learn new technologies, and contribute to innovative projects that make a real impact. Let's connect and build something amazing together!`;
+      const fullText = `I'm a passionate Software Engineer with a Master's in Computer Science from Illinois Institute of Technology. Currently working as a Software Engineer at GroupedIn in New Jersey. My journey in technology spans across multiple domains including web development, mobile applications, AI/ML, and embedded systems. With expertise in React, Flutter, Python, C++, and cloud technologies like AWS, I've built scalable applications serving thousands of users. I'm particularly passionate about AI-driven solutions, having integrated NLP and machine learning models to enhance user experiences and boost engagement by 25%. My work involves full-stack development, from designing e-commerce systems handling 500+ daily transactions to building high-performance Linux kernel modules that reduce latency by 15%. I'm also experienced in IoT integration, real-time data processing, and automated CI/CD pipelines. Beyond technical skills, I'm a continuous learner who stays updated with the latest technologies. I believe in the power of open-source collaboration and have contributed to various projects. When I'm not coding, you'll find me exploring new technologies, contributing to research, or curating the perfect coding playlist on Spotify. I'm always excited to work on challenging problems, learn new technologies, and contribute to innovative projects that make a real impact. Let's connect and build something amazing together!`;
       
-      const utterance = new SpeechSynthesisUtterance(humanLikeText);
-      utterance.rate = 0.7; // Slower, more natural pace
-      utterance.pitch = 1.1; // Slightly higher pitch for more human-like sound
-      utterance.volume = 0.9;
+      const utterance = new SpeechSynthesisUtterance(fullText);
+      utterance.rate = 0.8; // Slightly slower for better comprehension
+      utterance.pitch = 1.0;
+      utterance.volume = 0.8;
       
-      // Try to use the most natural-sounding voice
+      // Try to use a female voice for better experience
       const voices = speechSynthesis.getVoices();
-      const naturalVoice = voices.find(voice => 
+      const femaleVoice = voices.find(voice => 
+        voice.name.includes('Female') || 
         voice.name.includes('Samantha') || 
         voice.name.includes('Karen') ||
-        voice.name.includes('Susan') ||
-        voice.name.includes('Female') ||
-        voice.name.includes('Microsoft') ||
-        voice.name.includes('Google')
+        voice.name.includes('Susan')
       );
       
-      if (naturalVoice) {
-        utterance.voice = naturalVoice;
+      if (femaleVoice) {
+        utterance.voice = femaleVoice;
       }
-      
-      // Add natural pauses and emphasis
-      utterance.onboundary = (event) => {
-        if (event.name === 'sentence') {
-          // Add slight pause after sentences
-          setTimeout(() => {}, 200);
-        }
-      };
       
       speechRef.current = utterance;
       
       utterance.onend = () => {
         setIsPlaying(false);
         setCurrentTime(totalTime);
-        setReadProgress(100);
       };
       
       speechSynthesis.speak(utterance);
@@ -65,7 +54,7 @@ const Lyrics = () => {
     }
   };
 
-  // Auto-scroll functionality
+  // Auto-scroll functionality with smooth progress
   useEffect(() => {
     if (isPlaying) {
       startSpeech();
@@ -82,7 +71,7 @@ const Lyrics = () => {
           }
           return newTime;
         });
-      }, 1000);
+      }, 100); // Update every 100ms for smoother transitions
     } else {
       stopSpeech();
       if (intervalRef.current) {
@@ -225,35 +214,54 @@ const Lyrics = () => {
           className="space-y-6 max-h-[60vh] overflow-y-auto scrollbar-hide"
         >
           {[
-            { text: "I'm a passionate Software Engineer... umm...", progress: 0 },
+            { text: "I'm a passionate Software Engineer", progress: 0 },
             { text: "with a Master's in Computer Science", progress: 6.25 },
             { text: "from Illinois Institute of Technology", progress: 12.5 },
-            { text: "Currently... I'm working as a Software Engineer", progress: 18.75 },
+            { text: "Currently working as a Software Engineer", progress: 18.75 },
             { text: "at GroupedIn in New Jersey", progress: 25 },
-            { text: "My journey in technology... umm...", progress: 31.25 },
-            { text: "spans across multiple domains including", progress: 37.5 },
+            { text: "My journey in technology spans", progress: 31.25 },
+            { text: "Across multiple domains including", progress: 37.5 },
             { text: "web development, mobile applications", progress: 43.75 },
             { text: "AI/ML, and embedded systems", progress: 50 },
-            { text: "With expertise in React, Flutter, Python, C++...", progress: 56.25 },
-            { text: "and cloud technologies like AWS", progress: 62.5 },
+            { text: "With expertise in React, Flutter", progress: 56.25 },
+            { text: "Python, C++, and cloud technologies", progress: 62.5 },
             { text: "I've built scalable applications", progress: 68.75 },
-            { text: "serving thousands of users", progress: 75 },
-            { text: "I'm particularly passionate about... umm...", progress: 81.25 },
+            { text: "Serving thousands of users", progress: 75 },
+            { text: "I'm particularly passionate about", progress: 81.25 },
             { text: "AI-driven solutions", progress: 87.5 },
-            { text: "having integrated NLP and machine learning", progress: 93.75 },
-            { text: "Let's connect and build something amazing together!", progress: 100 }
-          ].map((line, index) => (
-            <div 
-              key={index}
-              className={`text-2xl font-bold leading-relaxed transition-colors duration-500 ${
-                readProgress >= line.progress 
-                  ? 'text-white' 
-                  : 'text-gray-400'
-              }`}
-            >
-              <div>{line.text}</div>
-            </div>
-          ))}
+            { text: "Having integrated NLP and machine learning", progress: 93.75 },
+            { text: "models to enhance user experiences", progress: 100 }
+          ].map((line, index) => {
+            const isRead = readProgress >= line.progress;
+            const isCurrent = readProgress >= line.progress && readProgress < (line.progress + 6.25);
+            const opacity = isRead ? 1 : 0.4;
+            const scale = isCurrent ? 1.02 : 1;
+            
+            return (
+              <motion.div 
+                key={index}
+                className={`text-2xl font-bold leading-relaxed transition-all duration-300 ease-in-out ${
+                  isRead ? 'text-white' : 'text-gray-400'
+                }`}
+                style={{
+                  opacity,
+                  transform: `scale(${scale})`,
+                  textShadow: isRead ? '0 0 10px rgba(255, 255, 255, 0.3)' : 'none'
+                }}
+                animate={{
+                  opacity: isRead ? 1 : 0.4,
+                  scale: isCurrent ? 1.02 : 1,
+                  y: isCurrent ? -2 : 0
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeInOut"
+                }}
+              >
+                <div>{line.text}</div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
