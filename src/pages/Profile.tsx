@@ -98,7 +98,7 @@ const Profile = () => {
               <Github className="w-6 h-6 text-white" />
             </motion.a>
             <motion.a 
-              href="https://linkedin.com/in/prachikotadia" 
+              href="https://www.linkedin.com/in/prachi-kotadia/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
@@ -107,14 +107,14 @@ const Profile = () => {
               <Linkedin className="w-6 h-6 text-white" />
             </motion.a>
             <motion.a 
-              href="mailto:prachi.kotadia@example.com" 
+              href="mailto:iprachikotadia@gmail.com" 
               className="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
               whileHover={{ scale: 1.1 }}
             >
               <Mail className="w-6 h-6 text-white" />
             </motion.a>
             <motion.a 
-              href="https://prachikotadia.dev" 
+              href="https://prachikotadia.netlify.app/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
