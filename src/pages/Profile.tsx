@@ -53,12 +53,6 @@ const Profile = () => {
                 } as React.CSSProperties}
               />
             </div>
-            <Button 
-              size="icon" 
-              className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 hover:bg-green-600 rounded-full"
-            >
-              <Camera className="w-4 h-4 text-white" />
-            </Button>
           </div>
         </div>
 
