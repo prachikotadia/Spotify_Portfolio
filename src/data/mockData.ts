@@ -438,29 +438,70 @@ export interface Skill {
 }
 
 export const skills: Skill[] = [
-  // Frontend
-  { id: '1', name: 'React', category: 'Frontend', level: 5 },
-  { id: '2', name: 'JavaScript', category: 'Frontend', level: 5 },
-  { id: '3', name: 'HTML/CSS', category: 'Frontend', level: 5 },
-  { id: '4', name: 'Tailwind CSS', category: 'Frontend', level: 4 },
-  { id: '5', name: 'TypeScript', category: 'Frontend', level: 3 },
-  { id: '6', name: 'Next.js', category: 'Frontend', level: 4 },
+  // Programming Languages 💻
+  { id: '1', name: 'Python', category: 'Programming Languages', level: 5 },
+  { id: '2', name: 'JavaScript', category: 'Programming Languages', level: 5 },
+  { id: '3', name: 'TypeScript', category: 'Programming Languages', level: 5 },
+  { id: '4', name: 'C++', category: 'Programming Languages', level: 4 },
+  { id: '5', name: 'C', category: 'Programming Languages', level: 4 },
+  { id: '6', name: 'Dart', category: 'Programming Languages', level: 4 },
+  { id: '7', name: 'SQL', category: 'Programming Languages', level: 4 },
+  { id: '8', name: 'Shell Scripting', category: 'Programming Languages', level: 3 },
+  { id: '9', name: 'HTML/CSS', category: 'Programming Languages', level: 5 },
+  { id: '10', name: 'Node.js', category: 'Programming Languages', level: 4 },
   
-  // Backend
-  { id: '7', name: 'Node.js', category: 'Backend', level: 4 },
-  { id: '8', name: 'Express.js', category: 'Backend', level: 4 },
-  { id: '9', name: 'Python', category: 'Backend', level: 3 },
-  { id: '10', name: 'MongoDB', category: 'Database', level: 4 },
-  { id: '11', name: 'SQL', category: 'Database', level: 3 },
+  // Web Development 🌐
+  { id: '11', name: 'React', category: 'Web Development', level: 5 },
+  { id: '12', name: 'HTML5/CSS3', category: 'Web Development', level: 5 },
+  { id: '13', name: 'JWT & OAuth2', category: 'Web Development', level: 4 },
+  { id: '14', name: 'WebSockets', category: 'Web Development', level: 4 },
+  { id: '15', name: 'REST API', category: 'Web Development', level: 5 },
+  { id: '16', name: 'PWA', category: 'Web Development', level: 3 },
+  { id: '17', name: 'Responsive Design', category: 'Web Development', level: 5 },
+  { id: '18', name: 'Animations & UX', category: 'Web Development', level: 4 },
   
-  // Tools & Others
-  { id: '12', name: 'Git', category: 'Tools', level: 5 },
-  { id: '13', name: 'VS Code', category: 'Tools', level: 5 },
-  { id: '14', name: 'Netlify', category: 'Deployment', level: 4 },
-  { id: '15', name: 'Vercel', category: 'Deployment', level: 3 },
-  { id: '16', name: 'Figma', category: 'Design', level: 3 },
-  { id: '17', name: 'Responsive Design', category: 'Frontend', level: 5 },
-  { id: '18', name: 'Web Development', category: 'General', level: 5 }
+  // Databases & Cloud 🗄️
+  { id: '19', name: 'PostgreSQL', category: 'Databases & Cloud', level: 4 },
+  { id: '20', name: 'DynamoDB', category: 'Databases & Cloud', level: 4 },
+  { id: '21', name: 'AWS Lambda', category: 'Databases & Cloud', level: 4 },
+  { id: '22', name: 'Redis', category: 'Databases & Cloud', level: 3 },
+  { id: '23', name: 'MySQL', category: 'Databases & Cloud', level: 4 },
+  { id: '24', name: 'CRUD Operations', category: 'Databases & Cloud', level: 5 },
+  { id: '25', name: 'AWS', category: 'Databases & Cloud', level: 4 },
+  { id: '26', name: 'Microservices', category: 'Databases & Cloud', level: 4 },
+  
+  // Embedded & Systems 🔧
+  { id: '27', name: 'Linux', category: 'Embedded & Systems', level: 4 },
+  { id: '28', name: 'GStreamer', category: 'Embedded & Systems', level: 3 },
+  { id: '29', name: 'CarPlay', category: 'Embedded & Systems', level: 3 },
+  { id: '30', name: 'Vulkan', category: 'Embedded & Systems', level: 2 },
+  { id: '31', name: 'Trace32', category: 'Embedded & Systems', level: 3 },
+  { id: '32', name: 'Memory Management', category: 'Embedded & Systems', level: 4 },
+  { id: '33', name: 'Debugging Tools', category: 'Embedded & Systems', level: 4 },
+  { id: '34', name: 'Event-Driven Architecture', category: 'Embedded & Systems', level: 4 },
+  
+  // Mobile & AI/ML 🤖
+  { id: '35', name: 'Flutter', category: 'Mobile & AI/ML', level: 4 },
+  { id: '36', name: 'OpenAI API', category: 'Mobile & AI/ML', level: 4 },
+  { id: '37', name: 'LangChain', category: 'Mobile & AI/ML', level: 3 },
+  { id: '38', name: 'NLP', category: 'Mobile & AI/ML', level: 4 },
+  { id: '39', name: 'Recommendation Systems', category: 'Mobile & AI/ML', level: 4 },
+  { id: '40', name: 'Chatbots', category: 'Mobile & AI/ML', level: 4 },
+  { id: '41', name: 'Text Processing', category: 'Mobile & AI/ML', level: 4 },
+  
+  // DevOps & Tools 🛠️
+  { id: '42', name: 'Git/GitHub', category: 'DevOps & Tools', level: 5 },
+  { id: '43', name: 'Docker', category: 'DevOps & Tools', level: 4 },
+  { id: '44', name: 'CI/CD', category: 'DevOps & Tools', level: 4 },
+  { id: '45', name: 'Monitoring & Logging', category: 'DevOps & Tools', level: 3 },
+  { id: '46', name: 'SonarQube', category: 'DevOps & Tools', level: 3 },
+  { id: '47', name: 'Perf', category: 'DevOps & Tools', level: 3 },
+  { id: '48', name: 'Postman', category: 'DevOps & Tools', level: 4 },
+  { id: '49', name: 'Swagger/OpenAPI', category: 'DevOps & Tools', level: 3 },
+  { id: '50', name: 'Vite', category: 'DevOps & Tools', level: 4 },
+  { id: '51', name: 'JMeter', category: 'DevOps & Tools', level: 3 },
+  { id: '52', name: 'Locust', category: 'DevOps & Tools', level: 3 },
+  { id: '53', name: 'Error Handling', category: 'DevOps & Tools', level: 4 }
 ];
 
 // Blog Data
