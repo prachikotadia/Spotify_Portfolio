@@ -128,6 +128,17 @@ const Home = () => {
                 </Button>
               </div>
               
+              {/* Like Button */}
+              <div className="flex-shrink-0">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full opacity-100 transition-all duration-200"
+                >
+                  <Heart className="w-5 h-5" />
+                </Button>
+              </div>
+              
               {/* More Options */}
               <div className="flex-shrink-0">
                 <Button 
