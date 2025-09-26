@@ -107,35 +107,34 @@ const Home = () => {
 
       {/* Main Content */}
       <div className="px-6 py-6 max-w-6xl mx-auto">
-        {/* Featured Profile Banner - Spotify Album Style */}
+        {/* Featured Profile Banner - Exact Spotify Album Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           className="mb-8"
         >
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-green-500 to-green-600 p-8">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-green-600/20"></div>
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
+          <div className="relative overflow-hidden rounded-2xl bg-green-500 p-8">
+            {/* Background Pattern - Sound Waves */}
+            <div className="absolute top-0 right-0 w-40 h-40 bg-green-400/30 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-green-300/20 rounded-full blur-2xl"></div>
             
-            <div className="relative z-10 flex items-center gap-8">
-              {/* Text Content */}
+            <div className="relative z-10 flex items-center justify-between">
+              {/* Text Content - Left Side */}
               <div className="flex-1">
-                <p className="text-green-100 text-sm font-medium mb-2">Featured Developer</p>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 leading-tight">
+                <p className="text-green-100 text-sm font-medium mb-3">New Portfolio</p>
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-2 leading-none">
                   FULL STACK
                 </h1>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-none">
                   DEVELOPER
                 </h2>
-                <p className="text-green-100 text-lg sm:text-xl">Prachi Kotadia</p>
+                <p className="text-green-100 text-lg">Prachi Kotadia</p>
               </div>
               
-              {/* Profile Image */}
+              {/* Profile Image - Right Side */}
               <div className="relative flex-shrink-0">
-                <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden">
                   <img
                     src="/src/assets/2025-09-25_21-10-04.jpg"
                     alt="Prachi Kotadia"
@@ -145,31 +144,9 @@ const Home = () => {
                     }}
                   />
                 </div>
-                {/* Subtle depth shadow */}
-                <div className="absolute -inset-2 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-2xl blur-lg -z-10"></div>
               </div>
             </div>
           </div>
-          
-          {/* Action Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex items-center gap-4 mt-6"
-          >
-            <Button className="bg-white hover:bg-white/90 text-black font-bold px-8 py-3 rounded-full text-lg">
-              <Play className="w-5 h-5 mr-2" />
-              View Portfolio
-            </Button>
-            <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 px-6 py-3 rounded-full">
-              <Heart className="w-5 h-5 mr-2" />
-              Follow
-            </Button>
-            <Button variant="ghost" className="text-white hover:bg-white/10 p-3 rounded-full">
-              <MoreHorizontal className="w-5 h-5" />
-            </Button>
-          </motion.div>
         </motion.div>
 
         {/* Made for You - Spotify Style */}
