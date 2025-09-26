@@ -39,22 +39,38 @@ const getCategoryImage = (categoryName: string) => {
 };
 
 // Category Card Component (Main Flashcard)
-const CategoryCard = ({ category, index, isActive, onSelect }: { 
+const CategoryCard = ({ category, index, isActive, onSelect, onSwipeLeft, onSwipeRight }: { 
   category: any; 
   index: number; 
   isActive: boolean; 
   onSelect: () => void;
+  onSwipeLeft: () => void;
+  onSwipeRight: () => void;
 }) => {
   const x = useMotionValue(0);
   const scale = useTransform(x, [-200, 0, 200], [0.8, 1, 0.8]);
   const opacity = useTransform(x, [-200, 0, 200], [0.4, 1, 0.4]);
   const rotateY = useTransform(x, [-200, 0, 200], [15, 0, -15]);
 
+  const handleDragEnd = (event: any, info: any) => {
+    const threshold = 50;
+    if (info.offset.x > threshold) {
+      // Swiped right - go to previous
+      onSwipeRight();
+    } else if (info.offset.x < -threshold) {
+      // Swiped left - go to next
+      onSwipeLeft();
+    }
+    // Reset position
+    x.set(0);
+  };
+
   return (
     <motion.div
       drag="x"
       dragConstraints={{ left: -200, right: 200 }}
       dragElastic={0.1}
+      onDragEnd={handleDragEnd}
       style={{ x, scale, opacity, rotateY }}
       className={`relative cursor-pointer ${isActive ? 'z-10' : 'z-0'}`}
       onClick={onSelect}
@@ -148,6 +164,14 @@ const Skills = () => {
     setActiveCategoryIndex((prev) => (prev - 1 + skillCategories.length) % skillCategories.length);
   };
 
+  const handleSwipeLeft = () => {
+    handleNext();
+  };
+
+  const handleSwipeRight = () => {
+    handlePrevious();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-900/20 to-black">
       {/* Header */}
@@ -170,6 +194,8 @@ const Skills = () => {
               index={index}
               isActive={index === activeCategoryIndex}
               onSelect={() => setActiveCategoryIndex(index)}
+              onSwipeLeft={handleSwipeLeft}
+              onSwipeRight={handleSwipeRight}
             />
           ))}
         </div>
