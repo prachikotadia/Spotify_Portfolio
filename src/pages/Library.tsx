@@ -160,9 +160,9 @@ const Library = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-white break-words">{item.title}</h3>
-                  <p className="text-sm text-gray-400 break-words">
+                <div className="flex-1 w-full">
+                  <h3 className="font-semibold text-white w-full">{item.title}</h3>
+                  <p className="text-sm text-gray-400 w-full">
                     {activeTab === 'projects' && 'Project'}
                     {activeTab === 'certificates' && 'Certificate'}
                     {activeTab === 'research' && 'Research Paper'}
@@ -234,8 +234,8 @@ const Library = () => {
                       <Heart className={`w-4 h-4 ${likedItems.has(item.id) ? 'text-red-500 fill-current' : 'text-white'}`} />
                     </Button>
                   </div>
-                  <h3 className="font-bold text-white text-sm mb-2 break-words">{item.title}</h3>
-                  <p className="text-gray-400 text-xs mb-3 break-words">
+                  <h3 className="font-bold text-white text-sm mb-2 w-full">{item.title}</h3>
+                  <p className="text-gray-400 text-xs mb-3 w-full">
                     {activeTab === 'projects' && item.description}
                     {activeTab === 'certificates' && item.issuer}
                     {activeTab === 'research' && item.authors}
