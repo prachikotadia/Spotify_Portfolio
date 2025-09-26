@@ -282,6 +282,7 @@ const Home = () => {
             <Button
               variant="ghost"
               size="sm"
+              onClick={() => navigate('/courses')}
               className="text-gray-400 hover:text-white text-sm"
             >
               See all
@@ -318,36 +319,6 @@ const Home = () => {
                 name: 'Computer Networks',
                 image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center',
                 description: 'Explored OSI and TCP/IP models, data transmission'
-              },
-              {
-                name: 'Software Engineering',
-                image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop&crop=center',
-                description: 'Covered SDLC, requirement analysis, and design patterns'
-              },
-              {
-                name: 'Web Application Development',
-                image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop&crop=center',
-                description: 'Designed and built modern, full-stack web applications'
-              },
-              {
-                name: 'Science of Programming',
-                image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=400&fit=crop&crop=center',
-                description: 'Studied programming paradigms and systematic approaches'
-              },
-              {
-                name: 'Data Preparation and Analysis',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-                description: 'Learned data cleaning, transformation, and statistical modeling'
-              },
-              {
-                name: 'Software Quality Management',
-                image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop&crop=center',
-                description: 'Focused on software testing and defect prevention'
-              },
-              {
-                name: 'Embedded Systems Design',
-                image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center',
-                description: 'Covered microcontroller architecture and interfacing'
               }
             ].map((course, index) => (
               <motion.div
