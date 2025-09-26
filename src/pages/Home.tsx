@@ -75,9 +75,9 @@ const Home = () => {
       <div className="px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
         {/* Featured Profile Image */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
           className="mb-8"
         >
           <div className="flex justify-center">
@@ -87,7 +87,51 @@ const Home = () => {
                   alt="Prachi Kotadia - Full Stack Developer"
                   className="w-full h-auto object-cover"
                 />
-            </div>
+          </div>
+          </div>
+        </motion.div>
+
+        {/* Recently Played Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-8"
+        >
+          <h2 className="text-xl font-bold text-white mb-4">Recently played</h2>
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {[
+              { 
+                title: "About Me", 
+                artist: "Prachi Kotadia", 
+                image: "/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png",
+                type: "song"
+              }
+            ].map((item, index) => (
+            <motion.div
+                key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 * index }}
+                className="flex-shrink-0 w-48 bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-colors cursor-pointer group"
+                onClick={() => navigate('/lyrics')}
+              >
+                <div className="relative mb-3">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-48 object-cover rounded-lg shadow-lg group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                      <Play className="w-6 h-6 text-white ml-1" />
+                    </div>
+                  </div>
+                </div>
+                <h3 className="font-semibold text-white text-sm mb-1 truncate">{item.title}</h3>
+                <p className="text-gray-400 text-xs truncate">{item.artist}</p>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
@@ -207,8 +251,8 @@ const Home = () => {
                 <div className="absolute -right-2 -bottom-2 w-16 h-16 bg-white/20 rounded-full group-hover:scale-110 transition-transform" />
                 <div className="absolute -right-1 -top-1 w-8 h-8 bg-white/10 rounded-full group-hover:scale-110 transition-transform" />
                 <div className="absolute -left-1 -bottom-1 w-6 h-6 bg-white/5 rounded-full group-hover:scale-110 transition-transform" />
-              </motion.div>
-            ))}
+            </motion.div>
+          ))}
           </div>
         </motion.div>
 
@@ -243,7 +287,7 @@ const Home = () => {
                   <div className="absolute bottom-1 right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <Play className="w-3 h-3 text-white ml-0.5" />
                   </div>
-                </div>
+            </div>
                 <h3 className="font-bold text-white text-sm mb-1 line-clamp-2">{item.title}</h3>
                 <p className="text-gray-400 text-xs line-clamp-2">{item.artist}</p>
               </motion.div>
@@ -493,8 +537,8 @@ const Home = () => {
                     src={artist.image}
                     alt={artist.name}
                     className="w-full h-full object-cover"
-                  />
-                </div>
+                />
+              </div>
                 <p className={`text-sm font-semibold ${artist.color} group-hover:text-green-400 transition-colors`}>{artist.name}</p>
               </motion.div>
             ))}
