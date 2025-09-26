@@ -24,6 +24,7 @@ import Certificates from "./pages/Certificates";
 import CertificateDetail from "./pages/CertificateDetail";
 import ResearchDetail from "./pages/ResearchDetail";
 import EducationDetail from "./pages/EducationDetail";
+import ExperienceDetail from "./pages/ExperienceDetail";
 import NotFound from "./pages/NotFound";
 import BottomNavigation from "./components/BottomNavigation";
 
@@ -57,8 +58,9 @@ const App = () => (
             <Route path="/certificates" element={<Certificates />} />
             <Route path="/certificate/:id" element={<CertificateDetail />} />
             <Route path="/research/:id" element={<ResearchDetail />} />
-            <Route path="/education/:id" element={<EducationDetail />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="/education/:id" element={<EducationDetail />} />
+                <Route path="/experience/:id" element={<ExperienceDetail />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
           <BottomNavigation />

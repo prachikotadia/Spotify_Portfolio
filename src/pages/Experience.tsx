@@ -4,8 +4,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { workExperience } from '@/data/mockData';
 import type { WorkExperience } from '@/data/mockData';
+import { useNavigate } from 'react-router-dom';
 
 const Experience = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Hero Section */}
@@ -38,7 +41,7 @@ const Experience = () => {
               transition={{ delay: 0.3 + index * 0.1 }}
               className="relative"
             >
-              <Card className="hover:shadow-lg transition-shadow">
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => navigate(`/experience/${job.id}`)}>
                 <CardContent className="pt-6">
                   <div className="flex flex-col md:flex-row md:items-start gap-4">
                     {/* Timeline indicator */}

@@ -293,45 +293,96 @@ export interface WorkExperience {
 export const workExperience: WorkExperience[] = [
   {
     id: '1',
-    company: 'Freelance Developer',
-    position: 'Full Stack Developer',
-    duration: '2021 - Present',
-    location: 'Remote',
-    description: 'Providing end-to-end web development services to clients across various industries.',
+    company: 'GroupedIn',
+    position: 'Software Engineer',
+    duration: 'Aug 2025 – Present',
+    location: 'New Jersey, USA',
+    description: 'Engineered and maintained cross-platform applications using React, Flutter, and FastAPI, supporting 1,000+ daily active users across web, iOS, and Android. Integrated AI-driven chat and recommendation engines, leveraging NLP and predictive analytics to boost user engagement by 25%.',
     achievements: [
-      'Delivered 20+ successful projects for diverse clients',
-      'Built scalable web applications using modern technologies',
-      'Maintained 100% client satisfaction rate'
+      'Designed, developed, and deployed e-commerce systems (checkout, inventory, payments) handling ~500 daily transactions',
+      'Architected real-time IoT and sensor data integration for 200+ users, increasing activity by 30%',
+      'Built high-performance C/C++ Linux kernel modules, reducing latency by 15%',
+      'Automated CI/CD pipelines for embedded builds, cutting integration/deployment time by 40%',
+      'Used Trace32 debugging to resolve complex memory fragmentation issues',
+      'Collaborated with hardware and QA teams to deliver reliable sprint releases'
     ],
-    techStack: ['React', 'Node.js', 'MongoDB', 'Express', 'JavaScript']
+    techStack: ['React', 'Flutter', 'FastAPI', 'AI/ML', 'NLP', 'Cross-platform', 'E-commerce', 'IoT', 'C/C++', 'Linux Kernel', 'CI/CD']
   },
   {
     id: '2',
-    company: 'Open Source Contributor',
-    position: 'Contributor',
-    duration: '2020 - Present',
-    location: 'Remote',
-    description: 'Contributing to open source projects and building personal projects.',
+    company: 'Illinois Institute of Technology',
+    position: 'Research Assistant – Microservices & Distributed Systems Benchmarking',
+    duration: 'Apr 2025 – May 2025',
+    location: 'Chicago, USA',
+    description: 'Benchmarked microservices in C++, Go, Rust, Java, and Node.js, focusing on runtime efficiency, memory footprint, and GC impact.',
     achievements: [
-      'Active contributor to multiple open source repositories',
-      'Built and maintained personal portfolio projects',
-      'Published technical articles and tutorials'
+      'Migrated performance-critical components to Rust/Go, reducing memory usage by ~35%',
+      'Increased system throughput by 30% with async I/O and rigorous load testing',
+      'Used SonarQube + Valgrind to catch leaks, race conditions, and vulnerabilities early',
+      'Designed low-latency, high-throughput data pipelines for real-time apps',
+      'Authored a comparative study on distributed system performance trade-offs'
     ],
-    techStack: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Git']
+    techStack: ['C++', 'Go', 'Rust', 'Java', 'Node.js', 'Microservices', 'Distributed Systems', 'Benchmarking', 'JMeter', 'Locust', 'Linux Perf', 'SonarQube', 'Valgrind']
   },
   {
     id: '3',
-    company: 'Student Projects',
-    position: 'Student Developer',
-    duration: '2019 - 2021',
-    location: 'Academic',
-    description: 'Developed various projects as part of academic coursework and personal learning.',
+    company: 'GroupedIn',
+    position: 'Software Engineer',
+    duration: 'Sep 2024 – Dec 2024',
+    location: 'New Jersey, USA (Hybrid)',
+    description: 'Built and optimized a full-stack expense management system with AWS Lambda, DynamoDB, and React.js.',
     achievements: [
-      'Completed multiple full-stack development projects',
-      'Learned modern web development technologies',
-      'Built responsive and interactive web applications'
+      'Delivered serverless platform with AWS backend and React.js frontend',
+      'Reduced API latency by 40% using DynamoDB auto-scaling and Lambda tuning',
+      'Integrated AWS Cognito for secure authentication',
+      'Automated deployments with GitHub Actions CI/CD pipelines',
+      'Contributed in Agile sprints and team collaboration'
     ],
-    techStack: ['HTML', 'CSS', 'JavaScript', 'Python', 'SQL']
+    techStack: ['React.js', 'AWS Lambda', 'DynamoDB', 'CI/CD', 'API Gateway', 'GitHub Actions']
+  },
+  {
+    id: '4',
+    company: 'GroupedIn',
+    position: 'Software Engineer',
+    duration: 'Jun 2024 – Aug 2024',
+    location: 'New Jersey, USA (Hybrid)',
+    description: 'Worked on scalable REST APIs with Python, Flask, and PostgreSQL; focused on performance, Docker deployments, and open-source collaboration.',
+    achievements: [
+      'Built APIs serving 5,000+ users',
+      'Optimized SQL queries, cutting latency by 20%',
+      'Designed dual-database architecture (MongoDB + PostgreSQL)',
+      'Dockerized microservices for production deployment',
+      'Collaborated via GitHub and open-source reviews'
+    ],
+    techStack: ['Python', 'Flask', 'PostgreSQL', 'MongoDB', 'Docker', 'Open Source']
+  },
+  {
+    id: '5',
+    company: 'CHARUSAT',
+    position: 'Research Intern – Computational Antenna Design',
+    duration: 'Jun 2022 – Jul 2022',
+    location: 'Gujarat, India',
+    description: 'Focused on circularly polarized antenna design optimization using computational modeling and algorithm-based tuning.',
+    achievements: [
+      'Automated antenna parameter tuning scripts',
+      'Optimized bandwidth, gain, and axial ratio',
+      'Strengthened RF and wireless design knowledge'
+    ],
+    techStack: ['Antenna Design', 'Data Modeling', 'RF Systems', 'Simulation', 'Optimization']
+  },
+  {
+    id: '6',
+    company: 'Ekarshi OpenSource Foundation',
+    position: 'Software Engineer Intern',
+    duration: 'Jun 2020 – Oct 2020',
+    location: 'Ahmedabad, India',
+    description: 'Worked on programming concepts, memory optimization, and efficient software design.',
+    achievements: [
+      'Explored advanced memory allocation and function optimization',
+      'Contributed to open-source modules',
+      'Improved coding practices and refactoring'
+    ],
+    techStack: ['C++', 'Algorithms', 'Memory Management', 'Design Analysis']
   }
 ];
 
@@ -585,75 +636,111 @@ export const sideProjects: SideProject[] = [
 export const mockCertificates = [
   {
     id: 'cert-1',
-    title: 'AWS Certified Developer - Associate',
-    issuer: 'Amazon Web Services',
-    date: 'December 2024',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-    skills: ['AWS', 'Cloud Computing', 'Serverless', 'CI/CD'],
-    link: 'https://www.credly.com/badges/example-aws-developer',
-    description: 'Comprehensive certification covering AWS services, serverless architecture, and cloud development best practices.',
-    longDescription: 'This certification validates expertise in developing and maintaining applications on the AWS platform. Covers core AWS services, security best practices, and serverless architecture patterns.',
-    techStack: ['AWS', 'Lambda', 'API Gateway', 'DynamoDB', 'S3', 'CloudFormation']
+    title: 'Crash Course on Python',
+    issuer: 'Google (Coursera)',
+    date: '2023',
+    image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=400&fit=crop&crop=center',
+    skills: ['Python Basics', 'Control Structures', 'Loops', 'Functions'],
+    link: 'https://coursera.org/verify/LHGQ1SX2M40N',
+    description: 'Comprehensive Python programming fundamentals for beginners.',
+    longDescription: 'This certification covers Python programming fundamentals including variables, data types, control structures, loops, functions, and basic programming concepts. Perfect for beginners looking to start their programming journey with Python.',
+    techStack: ['Python', 'Programming Fundamentals', 'Control Structures', 'Functions', 'Data Types']
   },
   {
     id: 'cert-2',
-    title: 'React Developer Certification',
-    issuer: 'Meta',
-    date: 'November 2023',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-    skills: ['React', 'JavaScript', 'JSX', 'State Management'],
-    link: 'https://www.coursera.org/account/accomplishments/certificate/example-react',
-    description: 'Professional certification in React development covering modern React patterns and best practices.',
-    longDescription: 'Comprehensive certification covering React fundamentals, hooks, state management, component lifecycle, and modern React development patterns.',
-    techStack: ['React', 'JavaScript', 'JSX', 'Hooks', 'Context API', 'Redux']
+    title: 'Coding Interview Preparation',
+    issuer: 'Meta (Coursera)',
+    date: '2023',
+    image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=400&fit=crop&crop=center',
+    skills: ['Data Structures', 'Algorithms', 'Interview Strategy', 'Problem Solving'],
+    link: 'https://coursera.org/verify/B6DU13XTR6AT',
+    description: 'Comprehensive preparation for technical coding interviews.',
+    longDescription: 'This certification provides comprehensive preparation for technical coding interviews, covering data structures, algorithms, problem-solving strategies, and interview techniques. Includes practice problems and mock interviews.',
+    techStack: ['Data Structures', 'Algorithms', 'Problem Solving', 'Interview Prep', 'Coding']
   },
   {
     id: 'cert-3',
-    title: 'Full Stack Web Development',
-    issuer: 'freeCodeCamp',
-    date: 'October 2023',
+    title: 'Foundations: Data, Data, Everywhere',
+    issuer: 'Google (Coursera)',
+    date: '2023',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-    skills: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'MongoDB'],
-    link: 'https://www.freecodecamp.org/certification/example-fullstack',
-    description: 'Complete full-stack development certification covering frontend and backend technologies.',
-    longDescription: 'Comprehensive certification covering HTML, CSS, JavaScript, Node.js, Express, MongoDB, and full-stack development best practices.',
-    techStack: ['HTML', 'CSS', 'JavaScript', 'Node.js', 'Express', 'MongoDB', 'React']
+    skills: ['Data Analysis', 'Data Lifecycle', 'Business Intelligence', 'Visualization'],
+    link: 'https://coursera.org/verify/7NEFJ74GA66B',
+    description: 'Foundational knowledge of data analysis and business intelligence.',
+    longDescription: 'This certification covers the fundamentals of data analysis, data lifecycle, business intelligence, and data visualization. Perfect for understanding how data drives business decisions and insights.',
+    techStack: ['Data Analysis', 'Business Intelligence', 'Data Visualization', 'Analytics', 'SQL']
   },
   {
     id: 'cert-4',
-    title: 'JavaScript Algorithms and Data Structures',
-    issuer: 'freeCodeCamp',
-    date: 'September 2023',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-    skills: ['JavaScript', 'Algorithms', 'Data Structures', 'Problem Solving'],
-    link: 'https://www.freecodecamp.org/certification/example-js-algo',
-    description: 'Advanced JavaScript certification focusing on algorithms and data structures.',
-    longDescription: 'Comprehensive certification covering JavaScript algorithms, data structures, problem-solving techniques, and advanced programming concepts.',
-    techStack: ['JavaScript', 'Algorithms', 'Data Structures', 'ES6+', 'Functional Programming']
+    title: 'Foundations of Project Management',
+    issuer: 'Google (Coursera)',
+    date: '2023',
+    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=400&fit=crop&crop=center',
+    skills: ['Project Planning', 'Stakeholder Management', 'Agile', 'Scrum'],
+    link: 'https://coursera.org/verify/5TH1FGFD1ZHJ',
+    description: 'Essential project management skills and methodologies.',
+    longDescription: 'This certification covers essential project management skills including project planning, stakeholder management, Agile methodologies, Scrum framework, and project execution. Perfect for managing technical projects effectively.',
+    techStack: ['Project Management', 'Agile', 'Scrum', 'Planning', 'Stakeholder Management']
   },
   {
     id: 'cert-5',
-    title: 'Python for Data Science, AI & Development',
-    issuer: 'Coursera (IBM)',
-    date: 'August 2023',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-    skills: ['Python', 'Data Science', 'AI', 'Machine Learning', 'Pandas', 'NumPy'],
-    link: 'https://www.coursera.org/account/accomplishments/certificate/example-python-ds',
-    description: 'Comprehensive Python certification for data science and AI development.',
-    longDescription: 'Advanced certification covering Python programming, data science libraries, machine learning, and AI development using Python.',
-    techStack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib', 'Jupyter']
+    title: 'Foundations of User Experience (UX) Design',
+    issuer: 'Google (Coursera)',
+    date: '2023',
+    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=400&fit=crop&crop=center',
+    skills: ['UX Principles', 'Accessibility', 'Design Thinking', 'Wireframing'],
+    link: 'https://coursera.org/verify/BPE6U7LVW7RM',
+    description: 'Comprehensive UX design principles and methodologies.',
+    longDescription: 'This certification covers user experience design principles, accessibility, design thinking, wireframing, and user research. Essential for creating user-centered digital products and interfaces.',
+    techStack: ['UX Design', 'Accessibility', 'Design Thinking', 'Wireframing', 'User Research']
   },
   {
     id: 'cert-6',
-    title: 'Git and GitHub Fundamentals',
-    issuer: 'Coursera (Google)',
-    date: 'July 2023',
+    title: 'Technical Support Fundamentals',
+    issuer: 'Google (Coursera)',
+    date: '2023',
+    image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=400&h=400&fit=crop&crop=center',
+    skills: ['Computer Hardware', 'Networking', 'Troubleshooting', 'Linux'],
+    link: 'https://coursera.org/verify/D15A5AY8QXSO',
+    description: 'Fundamental technical support and troubleshooting skills.',
+    longDescription: 'This certification covers computer hardware, networking fundamentals, troubleshooting techniques, and Linux basics. Essential for technical support roles and system administration.',
+    techStack: ['Computer Hardware', 'Networking', 'Troubleshooting', 'Linux', 'System Administration']
+  },
+  {
+    id: 'cert-7',
+    title: 'The Data Scientist\'s Toolbox',
+    issuer: 'Johns Hopkins University (Coursera)',
+    date: '2023',
+    image: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=400&fit=crop&crop=center',
+    skills: ['R Programming', 'Data Science Workflow', 'Version Control', 'GitHub'],
+    link: 'https://coursera.org/verify/NSRORKMUYQG2',
+    description: 'Essential tools and workflows for data science professionals.',
+    longDescription: 'This certification covers R programming, data science workflows, version control with Git, GitHub collaboration, and essential tools for data science professionals. Perfect for aspiring data scientists.',
+    techStack: ['R Programming', 'Data Science', 'Git', 'GitHub', 'Workflow']
+  },
+  {
+    id: 'cert-8',
+    title: 'What is Data Science?',
+    issuer: 'IBM (Coursera)',
+    date: '2023',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
-    skills: ['Git', 'GitHub', 'Version Control', 'Collaboration'],
-    link: 'https://www.coursera.org/account/accomplishments/certificate/example-git',
-    description: 'Professional certification in Git and GitHub for version control and collaboration.',
-    longDescription: 'Comprehensive certification covering Git fundamentals, GitHub workflows, version control best practices, and collaborative development.',
-    techStack: ['Git', 'GitHub', 'Version Control', 'Branching', 'Merging', 'Pull Requests']
+    skills: ['Data Science Basics', 'Big Data', 'Business Use Cases', 'Analytics'],
+    link: 'https://coursera.org/verify/6ZVETUKCLJDI',
+    description: 'Introduction to data science concepts and applications.',
+    longDescription: 'This certification provides an introduction to data science concepts, big data technologies, business use cases, and analytics. Perfect for understanding the data science field and its applications.',
+    techStack: ['Data Science', 'Big Data', 'Analytics', 'Business Intelligence', 'Statistics']
+  },
+  {
+    id: 'cert-9',
+    title: 'Amazon DynamoDB Service Introduction',
+    issuer: 'Amazon Web Services',
+    date: '2023',
+    image: 'https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=400&h=400&fit=crop&crop=center',
+    skills: ['NoSQL', 'DynamoDB', 'AWS Cloud', 'Key-Value Databases'],
+    link: '',
+    description: 'Introduction to Amazon DynamoDB NoSQL database service.',
+    longDescription: 'This certification covers Amazon DynamoDB, a NoSQL database service. Learn about key-value databases, DynamoDB features, AWS cloud integration, and database design patterns for scalable applications.',
+    techStack: ['DynamoDB', 'NoSQL', 'AWS', 'Database Design', 'Cloud Computing']
   }
 ];
 
