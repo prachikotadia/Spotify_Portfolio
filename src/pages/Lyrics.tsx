@@ -2,14 +2,85 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Play, Pause, ArrowLeft, Heart, SkipBack, SkipForward, Minus, Volume2, Upload, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Lyrics = () => {
   const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [totalTime] = useState(450); // 7:30 in seconds
+  const lyricsRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (isPlaying) {
+      intervalRef.current = setInterval(() => {
+        setCurrentTime(prev => {
+          const newTime = prev + 1;
+          if (newTime >= totalTime) {
+            setIsPlaying(false);
+            return totalTime;
+          }
+          return newTime;
+        });
+      }, 1000);
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isPlaying, totalTime]);
+
+  // Auto-scroll lyrics
+  useEffect(() => {
+    if (lyricsRef.current && isPlaying) {
+      const scrollProgress = currentTime / totalTime;
+      const maxScroll = lyricsRef.current.scrollHeight - lyricsRef.current.clientHeight;
+      const targetScroll = maxScroll * scrollProgress;
+      
+      lyricsRef.current.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      });
+    }
+  }, [currentTime, totalTime, isPlaying]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleSkipBack = () => {
+    setCurrentTime(Math.max(0, currentTime - 30));
+  };
+
+  const handleSkipForward = () => {
+    setCurrentTime(Math.min(totalTime, currentTime + 30));
+  };
 
   return (
     <div className="min-h-screen bg-[#1E3A8A]">
+      <style>{`
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
       {/* Status Bar */}
       <div className="flex items-center justify-between px-4 py-2 text-white text-sm">
         <div className="text-white font-medium">11:34</div>
@@ -40,8 +111,11 @@ const Lyrics = () => {
       </div>
 
       {/* Lyrics Content */}
-      <div className="px-4 py-6">
-        <div className="space-y-6 text-white">
+      <div className="px-4 py-6 pb-32">
+        <div 
+          ref={lyricsRef}
+          className="space-y-6 text-white max-h-[60vh] overflow-y-auto scrollbar-hide"
+        >
           <div className="text-2xl font-bold leading-relaxed">
             <div>I'm a passionate Software Engineer</div>
             <div>with a Master's in Computer Science</div>
@@ -137,13 +211,16 @@ const Lyrics = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-[#1E3A8A] px-4 py-4">
         {/* Progress Bar */}
         <div className="flex items-center gap-3 mb-6">
-          <span className="text-white text-sm">2:31</span>
+          <span className="text-white text-sm">{formatTime(currentTime)}</span>
           <div className="flex-1 h-1 bg-white/30 rounded-full">
-            <div className="h-1 bg-white rounded-full w-1/3 relative">
+            <div 
+              className="h-1 bg-white rounded-full relative"
+              style={{ width: `${(currentTime / totalTime) * 100}%` }}
+            >
               <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full"></div>
             </div>
           </div>
-          <span className="text-white text-sm">-5:09</span>
+          <span className="text-white text-sm">-{formatTime(totalTime - currentTime)}</span>
         </div>
 
         {/* Playback Controls */}
@@ -159,12 +236,13 @@ const Lyrics = () => {
             variant="ghost" 
             size="icon" 
             className="text-white hover:bg-white/20 rounded-full"
+            onClick={handleSkipBack}
           >
             <SkipBack className="w-6 h-6" />
           </Button>
           <Button 
             className="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
-            onClick={() => setIsPlaying(!isPlaying)}
+            onClick={handlePlayPause}
           >
             {isPlaying ? (
               <Pause className="w-8 h-8 text-black" />
@@ -176,6 +254,7 @@ const Lyrics = () => {
             variant="ghost" 
             size="icon" 
             className="text-white hover:bg-white/20 rounded-full"
+            onClick={handleSkipForward}
           >
             <SkipForward className="w-6 h-6" />
           </Button>
