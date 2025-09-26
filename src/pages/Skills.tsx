@@ -8,6 +8,21 @@ import { skills } from '@/data/mockData';
 import type { Skill } from '@/data/mockData';
 import { useState, useRef } from 'react';
 
+// Helper functions (moved from main Skills component)
+const getLevelColor = (level: number) => {
+  if (level >= 5) return 'text-green-500';
+  if (level >= 4) return 'text-blue-500';
+  if (level >= 3) return 'text-yellow-500';
+  return 'text-gray-500';
+};
+
+const getLevelText = (level: number) => {
+  if (level >= 5) return 'Expert';
+  if (level >= 4) return 'Advanced';
+  if (level >= 3) return 'Intermediate';
+  return 'Beginner';
+};
+
 // Swipeable Card Component
 const SwipeableCard = ({ skill, category, index }: { skill: Skill; category: any; index: number }) => {
   const x = useMotionValue(0);
@@ -119,20 +134,6 @@ const Skills = () => {
 
   const getSkillsByCategory = (category: string) => {
     return skills.filter(skill => skill.category === category);
-  };
-
-  const getLevelColor = (level: number) => {
-    if (level >= 5) return 'text-green-500';
-    if (level >= 4) return 'text-blue-500';
-    if (level >= 3) return 'text-yellow-500';
-    return 'text-gray-500';
-  };
-
-  const getLevelText = (level: number) => {
-    if (level >= 5) return 'Expert';
-    if (level >= 4) return 'Advanced';
-    if (level >= 3) return 'Intermediate';
-    return 'Beginner';
   };
 
   return (
