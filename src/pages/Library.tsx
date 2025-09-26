@@ -66,19 +66,6 @@ const Library = () => {
 
   return (
     <div className="min-h-screen bg-[#121212] pb-24">
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-100%); }
-        }
-        .animate-marquee {
-          animation: marquee 10s linear infinite;
-          animation-play-state: running;
-        }
-        .animate-marquee:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
       {/* Header */}
       <div className="px-4 sm:px-6 lg:px-8 pt-12 pb-4 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
@@ -173,12 +160,10 @@ const Library = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="flex-1 w-full overflow-hidden">
-                  <div className="relative">
-                    <h3 className="font-semibold text-white whitespace-nowrap animate-marquee">
-                      {item.title}
-                    </h3>
-                  </div>
+                <div className="flex-1 w-full">
+                  <h3 className="font-semibold text-white truncate">
+                    {item.title}
+                  </h3>
                   <p className="text-sm text-gray-400 truncate">
                     {activeTab === 'projects' && 'Project'}
                     {activeTab === 'certificates' && 'Certificate'}
@@ -210,11 +195,9 @@ const Library = () => {
                       />
                     </div>
                   </div>
-                  <div className="overflow-hidden mb-2">
-                    <h3 className="font-bold text-white text-sm whitespace-nowrap animate-marquee">
-                      {item.title}
-                    </h3>
-                  </div>
+                  <h3 className="font-bold text-white text-sm mb-2 truncate">
+                    {item.title}
+                  </h3>
                   <p className="text-gray-400 text-xs mb-3 truncate">
                     {activeTab === 'projects' && item.description}
                     {activeTab === 'certificates' && item.issuer}
