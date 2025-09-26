@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ChevronDown, Play, Pause, Heart, Share2, ExternalLink, Github, Shuffle, SkipBack, SkipForward, Repeat, Queue, Tv } from 'lucide-react';
+import { ChevronDown, Play, Pause, Heart, Share2, ExternalLink, Github, Shuffle, SkipBack, SkipForward, Repeat, List, Tv } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -142,7 +142,7 @@ const ProjectDetail = () => {
               <Share2 className="w-5 h-5" />
             </Button>
             <Button variant="ghost" size="icon" className="text-white/70 hover:bg-white/10">
-              <Queue className="w-5 h-5" />
+              <List className="w-5 h-5" />
             </Button>
           </div>
         </div>
