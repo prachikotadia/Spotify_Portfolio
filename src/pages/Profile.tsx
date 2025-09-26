@@ -11,7 +11,6 @@ const Profile = () => {
       {/* Status Bar */}
       <div className="flex items-center justify-between px-4 py-2 text-white text-sm">
         <div className="flex items-center gap-2">
-          <span>9:41</span>
           <ArrowLeft className="w-4 h-4" />
         </div>
         <div className="flex items-center gap-1">
