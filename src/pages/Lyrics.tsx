@@ -1,24 +1,36 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Play, Pause } from 'lucide-react';
+import { ChevronDown, Play, Pause, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Lyrics = () => {
   const navigate = useNavigate();
+  const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#4A90E2]">
       {/* Status Bar */}
       <div className="flex items-center justify-between px-4 py-2 text-white text-sm">
         <div className="text-white font-medium">11:34</div>
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="text-white hover:bg-white/20 rounded-full"
-          onClick={() => navigate('/')}
-        >
-          <ChevronDown className="w-5 h-5" />
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="text-white hover:bg-white/20 rounded-full"
+            onClick={() => navigate('/')}
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Button>
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="text-white hover:bg-white/20 rounded-full"
+            onClick={() => navigate('/')}
+          >
+            <ChevronDown className="w-5 h-5" />
+          </Button>
+        </div>
       </div>
 
       {/* Song Header */}
@@ -130,8 +142,15 @@ const Lyrics = () => {
             </div>
           </div>
           <div className="text-white text-sm">-0:16</div>
-          <Button className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-            <Play className="w-5 h-5 text-black ml-0.5" />
+          <Button 
+            className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+            onClick={() => setIsPlaying(!isPlaying)}
+          >
+            {isPlaying ? (
+              <Pause className="w-5 h-5 text-black" />
+            ) : (
+              <Play className="w-5 h-5 text-black ml-0.5" />
+            )}
           </Button>
         </div>
       </div>
