@@ -9,6 +9,7 @@ const Lyrics = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [totalTime] = useState(450); // 7:30 in seconds
+  const [readProgress, setReadProgress] = useState(0);
   const lyricsRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
@@ -60,8 +61,12 @@ const Lyrics = () => {
       intervalRef.current = setInterval(() => {
         setCurrentTime(prev => {
           const newTime = prev + 1;
+          const progress = (newTime / totalTime) * 100;
+          setReadProgress(progress);
+          
           if (newTime >= totalTime) {
             setIsPlaying(false);
+            setReadProgress(100);
             return totalTime;
           }
           return newTime;
@@ -81,17 +86,38 @@ const Lyrics = () => {
     };
   }, [isPlaying, totalTime]);
 
-  // Auto-scroll lyrics
+  // Auto-scroll lyrics with smooth animation
   useEffect(() => {
     if (lyricsRef.current && isPlaying) {
       const scrollProgress = currentTime / totalTime;
       const maxScroll = lyricsRef.current.scrollHeight - lyricsRef.current.clientHeight;
       const targetScroll = maxScroll * scrollProgress;
       
-      lyricsRef.current.scrollTo({
-        top: targetScroll,
-        behavior: 'smooth'
-      });
+      // Smooth scroll with easing
+      const startScroll = lyricsRef.current.scrollTop;
+      const distance = targetScroll - startScroll;
+      const duration = 1000; // 1 second smooth scroll
+      let startTime: number;
+      
+      const animateScroll = (timestamp: number) => {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeInOutCubic = progress < 0.5 
+          ? 4 * progress * progress * progress 
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+        
+        const currentScroll = startScroll + (distance * easeInOutCubic);
+        lyricsRef.current!.scrollTop = currentScroll;
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        }
+      };
+      
+      requestAnimationFrame(animateScroll);
     }
   }, [currentTime, totalTime, isPlaying]);
 
@@ -185,96 +211,37 @@ const Lyrics = () => {
       <div className="px-4 py-6 pb-32">
         <div 
           ref={lyricsRef}
-          className="space-y-6 text-white max-h-[60vh] overflow-y-auto scrollbar-hide"
+          className="space-y-6 max-h-[60vh] overflow-y-auto scrollbar-hide"
         >
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>I'm a passionate Software Engineer</div>
-            <div>with a Master's in Computer Science</div>
-            <div>from Illinois Institute of Technology</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>Currently working as a Software Engineer</div>
-            <div>at GroupedIn in New Jersey</div>
-            <div>My journey in technology spans</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>Across multiple domains including</div>
-            <div>web development, mobile applications</div>
-            <div>AI/ML, and embedded systems</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>With expertise in React, Flutter</div>
-            <div>Python, C++, and cloud technologies</div>
-            <div>I've built scalable applications</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>Serving thousands of users</div>
-            <div>I'm particularly passionate about</div>
-            <div>AI-driven solutions</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>Having integrated NLP and machine learning</div>
-            <div>models to enhance user experiences</div>
-            <div>and boost engagement by 25%</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>My work involves full-stack development</div>
-            <div>from designing e-commerce systems</div>
-            <div>handling 500+ daily transactions</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>To building high-performance</div>
-            <div>Linux kernel modules that reduce</div>
-            <div>latency by 15%</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>I'm also experienced in IoT integration</div>
-            <div>real-time data processing</div>
-            <div>and automated CI/CD pipelines</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>Beyond technical skills</div>
-            <div>I'm a continuous learner who stays</div>
-            <div>updated with the latest technologies</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>I believe in the power of</div>
-            <div>open-source collaboration</div>
-            <div>and have contributed to various projects</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>When I'm not coding</div>
-            <div>you'll find me exploring new technologies</div>
-            <div>contributing to research</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>or curating the perfect coding</div>
-            <div>playlist on Spotify</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>I'm always excited to work on</div>
-            <div>challenging problems, learn new technologies</div>
-            <div>and contribute to innovative projects</div>
-          </div>
-          
-          <div className="text-2xl font-bold leading-relaxed">
-            <div>that make a real impact</div>
-            <div>Let's connect and build</div>
-            <div>something amazing together!</div>
-          </div>
+          {[
+            { text: "I'm a passionate Software Engineer", progress: 0 },
+            { text: "with a Master's in Computer Science", progress: 6.67 },
+            { text: "from Illinois Institute of Technology", progress: 13.33 },
+            { text: "Currently working as a Software Engineer", progress: 20 },
+            { text: "at GroupedIn in New Jersey", progress: 26.67 },
+            { text: "My journey in technology spans", progress: 33.33 },
+            { text: "Across multiple domains including", progress: 40 },
+            { text: "web development, mobile applications", progress: 46.67 },
+            { text: "AI/ML, and embedded systems", progress: 53.33 },
+            { text: "With expertise in React, Flutter", progress: 60 },
+            { text: "Python, C++, and cloud technologies", progress: 66.67 },
+            { text: "I've built scalable applications", progress: 73.33 },
+            { text: "Serving thousands of users", progress: 80 },
+            { text: "I'm particularly passionate about", progress: 86.67 },
+            { text: "AI-driven solutions", progress: 93.33 },
+            { text: "Having integrated NLP and machine learning", progress: 100 }
+          ].map((line, index) => (
+            <div 
+              key={index}
+              className={`text-2xl font-bold leading-relaxed transition-colors duration-500 ${
+                readProgress >= line.progress 
+                  ? 'text-white' 
+                  : 'text-gray-400'
+              }`}
+            >
+              <div>{line.text}</div>
+            </div>
+          ))}
         </div>
       </div>
 
