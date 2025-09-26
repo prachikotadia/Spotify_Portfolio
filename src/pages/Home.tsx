@@ -253,11 +253,74 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Made for You Section */}
+        {/* Certificates Section - Like Spotify's Certificates */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
+          className="mb-6"
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-bold text-white">Certificates</h2>
+            <Button variant="ghost" className="text-gray-400 hover:text-white text-sm font-bold">
+              See all
+            </Button>
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {[
+              { 
+                title: "AWS Certified Developer", 
+                issuer: "Amazon Web Services",
+                year: "2024",
+                gradient: "from-orange-500 to-red-500"
+              },
+              { 
+                title: "React Developer Certification", 
+                issuer: "Meta",
+                year: "2023",
+                gradient: "from-blue-500 to-cyan-500"
+              },
+              { 
+                title: "Full Stack Web Development", 
+                issuer: "freeCodeCamp",
+                year: "2023",
+                gradient: "from-green-500 to-emerald-500"
+              },
+              { 
+                title: "JavaScript Algorithms", 
+                issuer: "freeCodeCamp",
+                year: "2023",
+                gradient: "from-yellow-500 to-orange-500"
+              }
+            ].map((cert, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8 + index * 0.1 }}
+                className="flex-shrink-0 w-40 bg-[#181818] rounded-lg p-4 hover:bg-[#282828] transition-all duration-300 cursor-pointer group"
+              >
+                <div className="relative mb-3">
+                  <div className={`w-full aspect-square bg-gradient-to-br ${cert.gradient} rounded-lg flex items-center justify-center`}>
+                    <Award className="w-8 h-8 text-white" />
+                  </div>
+                  <div className="absolute bottom-1 right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Play className="w-3 h-3 text-white ml-0.5" />
+                  </div>
+                </div>
+                <h3 className="font-bold text-white text-sm mb-1 line-clamp-2">{cert.title}</h3>
+                <p className="text-gray-400 text-xs mb-1">{cert.issuer}</p>
+                <p className="text-gray-500 text-xs">{cert.year}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Made for You Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
           className="mb-6"
         >
           <h2 className="text-xl font-bold text-white mb-4">Made for you</h2>
@@ -267,7 +330,7 @@ const Home = () => {
                 key={project.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
+                transition={{ delay: 1.0 + index * 0.1 }}
                 className="bg-[#181818] rounded-lg p-3 hover:bg-[#282828] transition-all duration-300 cursor-pointer group"
               >
                 <div className="relative mb-3">
