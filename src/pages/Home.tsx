@@ -69,7 +69,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black pb-20">
+    <div className="min-h-screen bg-[#121212] pb-20">
       {/* Fixed Search Button */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -80,61 +80,69 @@ const Home = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="w-10 h-10 bg-black/80 backdrop-blur-xl border border-white/20 hover:bg-white/20 rounded-full"
+          className="w-10 h-10 bg-[#121212]/90 backdrop-blur-xl border border-white/20 hover:bg-white/20 rounded-full"
           onClick={() => navigate('/search')}
         >
           <SearchIcon />
         </Button>
       </motion.div>
 
-      {/* Spotify-style Header */}
-      <div className="sticky top-0 z-40 bg-black/80 backdrop-blur-xl border-b border-white/10">
-        <div className="flex items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-4">
-            <SpotifyLogo size="lg" />
-            <span className="text-white font-bold text-xl">Good afternoon</span>
+      {/* Spotify Mobile App Header */}
+      <div className="sticky top-0 z-40 bg-[#121212] border-b border-gray-800">
+        <div className="flex items-center justify-between px-4 py-4">
+          {/* Left: Logo */}
+          <div className="flex items-center">
+            <SpotifyLogo size="md" />
           </div>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="w-8 h-8 hover:bg-white/20">
-              <Bell className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" size="icon" className="w-8 h-8 hover:bg-white/20">
-              <MoreHorizontal className="w-4 h-4" />
-            </Button>
-          </div>
+          
+          {/* Right: Menu */}
+          <Button variant="ghost" size="icon" className="w-8 h-8 hover:bg-white/10">
+            <MoreHorizontal className="w-5 h-5 text-white" />
+          </Button>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="px-6 py-6 max-w-6xl mx-auto">
-        {/* Featured Profile Banner - Exact Spotify Album Style */}
+      <div className="px-4 py-6">
+        {/* Featured Work Banner - Spotify Mobile Style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           className="mb-8"
         >
-          <div className="relative overflow-hidden rounded-2xl bg-green-500 p-6 sm:p-8">
-            {/* Background Pattern - Sound Waves */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-green-400/20 rounded-full blur-2xl"></div>
-            <div className="absolute bottom-0 right-0 w-24 h-24 bg-green-300/15 rounded-full blur-xl"></div>
-            
-            <div className="relative z-10 flex items-end justify-between h-80 sm:h-96">
-              {/* Text Content - Left Side */}
-              <div className="flex-1 flex flex-col justify-end pb-4">
-                <p className="text-green-100 text-sm font-medium mb-4">New Portfolio</p>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-1 leading-tight">
-                  FULL STACK
+          <div className="relative w-full max-w-md mx-auto">
+            {/* Green Banner Card */}
+            <motion.div
+              whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(29, 185, 84, 0.3)" }}
+              className="relative overflow-hidden rounded-2xl bg-[#1DB954] p-6 shadow-2xl"
+            >
+              {/* Background Pattern */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+              <div className="absolute bottom-0 right-0 w-16 h-16 bg-white/5 rounded-full blur-lg"></div>
+              
+              {/* Text Content */}
+              <div className="relative z-10 pr-20">
+                <p className="text-green-100 text-sm font-medium mb-2">New Project</p>
+                <p className="text-green-100 text-xs mb-4">By Prachi Kotadia</p>
+                <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+                  MY PORTFOLIO
                 </h1>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                  DEVELOPER
-                </h2>
-                <p className="text-green-100 text-base">Prachi Kotadia</p>
               </div>
               
-              {/* Profile Image - Right Side */}
-              <div className="relative flex-shrink-0">
-                <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-2xl overflow-hidden shadow-2xl">
+              {/* Overlapping Image - Half Inside, Half Outside */}
+              <div className="absolute -right-8 top-1/2 transform -translate-y-1/2 z-20">
+                <motion.div
+                  whileHover={{ 
+                    scale: 1.05, 
+                    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.4)",
+                    zIndex: 30
+                  }}
+                  className="relative w-32 h-32 sm:w-36 sm:h-36 rounded-2xl overflow-hidden shadow-2xl"
+                  style={{
+                    boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)"
+                  }}
+                >
                   <img
                     src="/src/assets/2025-09-25_21-10-04.jpg"
                     alt="Prachi Kotadia"
@@ -143,35 +151,37 @@ const Home = () => {
                       filter: 'contrast(1.1) brightness(1.05) saturate(1.1)',
                     }}
                   />
-                </div>
+                  {/* Depth overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/10"></div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Made for You - Spotify Style */}
+        {/* Made for You - Mobile Optimized */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <h2 className="text-2xl font-bold text-white mb-6">Made for Prachi</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {featuredProjects.slice(0, 6).map((project, index) => (
+          <h2 className="text-xl font-bold text-white mb-4">Made for Prachi</h2>
+          <div className="grid grid-cols-2 gap-3">
+            {featuredProjects.slice(0, 4).map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 + index * 0.1 }}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-4 hover:bg-gray-700 transition-all duration-300 cursor-pointer group"
+                className="bg-[#181818] rounded-lg p-3 hover:bg-[#282828] transition-all duration-300 cursor-pointer group"
               >
-                <div className="relative mb-4">
+                <div className="relative mb-3">
                   <div className="w-full aspect-square bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center">
-                    <Play className="w-8 h-8 text-white ml-1" />
+                    <Play className="w-6 h-6 text-white ml-1" />
                   </div>
-                  <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="w-4 h-4 text-white ml-0.5" />
+                  <div className="absolute bottom-1 right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Play className="w-3 h-3 text-white ml-0.5" />
                   </div>
                 </div>
                 <h3 className="font-bold text-white text-sm mb-1 line-clamp-2">{project.title}</h3>
@@ -181,34 +191,34 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Recently Played */}
+        {/* Recently Played - Mobile Optimized */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
           className="mb-8"
         >
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">Recently played</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-bold text-white">Recently played</h2>
             <Button variant="ghost" className="text-gray-400 hover:text-white text-sm font-bold">
               Show all
             </Button>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {workExperience.slice(0, 6).map((exp, index) => (
+          <div className="grid grid-cols-2 gap-3">
+            {workExperience.slice(0, 4).map((exp, index) => (
               <motion.div
                 key={exp.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-4 hover:bg-gray-700 transition-all duration-300 cursor-pointer group"
+                className="bg-[#181818] rounded-lg p-3 hover:bg-[#282828] transition-all duration-300 cursor-pointer group"
               >
-                <div className="relative mb-4">
+                <div className="relative mb-3">
                   <div className="w-full aspect-square bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                    <Briefcase className="w-8 h-8 text-white" />
+                    <Briefcase className="w-6 h-6 text-white" />
                   </div>
-                  <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="w-4 h-4 text-white ml-0.5" />
+                  <div className="absolute bottom-1 right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Play className="w-3 h-3 text-white ml-0.5" />
                   </div>
                 </div>
                 <h3 className="font-bold text-white text-sm mb-1 line-clamp-2">{exp.position}</h3>
@@ -218,76 +228,38 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Jump back in */}
+        {/* Jump back in - Mobile Optimized */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
           className="mb-8"
         >
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">Jump back in</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-bold text-white">Jump back in</h2>
             <Button variant="ghost" className="text-gray-400 hover:text-white text-sm font-bold">
               Show all
             </Button>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {recentProjects.slice(0, 6).map((project, index) => (
+          <div className="grid grid-cols-2 gap-3">
+            {recentProjects.slice(0, 4).map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.7 + index * 0.1 }}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-4 hover:bg-gray-700 transition-all duration-300 cursor-pointer group"
+                className="bg-[#181818] rounded-lg p-3 hover:bg-[#282828] transition-all duration-300 cursor-pointer group"
               >
-                <div className="relative mb-4">
+                <div className="relative mb-3">
                   <div className="w-full aspect-square bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
-                    <Play className="w-8 h-8 text-white ml-1" />
+                    <Play className="w-6 h-6 text-white ml-1" />
                   </div>
-                  <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="w-4 h-4 text-white ml-0.5" />
+                  <div className="absolute bottom-1 right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Play className="w-3 h-3 text-white ml-0.5" />
                   </div>
                 </div>
                 <h3 className="font-bold text-white text-sm mb-1 line-clamp-2">{project.title}</h3>
                 <p className="text-gray-400 text-xs line-clamp-2">{project.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-
-        {/* Your top mixes */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mb-8"
-        >
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">Your top mixes</h2>
-            <Button variant="ghost" className="text-gray-400 hover:text-white text-sm font-bold">
-              Show all
-            </Button>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {testimonials.slice(0, 6).map((testimonial, index) => (
-              <motion.div
-                key={testimonial.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.9 + index * 0.1 }}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg p-4 hover:bg-gray-700 transition-all duration-300 cursor-pointer group"
-              >
-                <div className="relative mb-4">
-                  <div className="w-full aspect-square bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
-                    <Star className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="w-4 h-4 text-white ml-0.5" />
-                  </div>
-                </div>
-                <h3 className="font-bold text-white text-sm mb-1 line-clamp-2">{testimonial.name}</h3>
-                <p className="text-gray-400 text-xs line-clamp-2">{testimonial.role}</p>
               </motion.div>
             ))}
           </div>
