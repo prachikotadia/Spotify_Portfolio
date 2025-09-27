@@ -381,7 +381,7 @@ const Library = () => {
                   />
                 </div>
                 {activeTab === 'certificates' && (item as any).link ? (
-                  <div className="absolute bottom-4 right-4 p-2">
+                  <div className="absolute bottom-3 right-3">
                     <Button
                       size="sm"
                       className="w-20 h-6 bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 text-xs rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"

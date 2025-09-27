@@ -511,14 +511,14 @@ const Home = () => {
                       <Play className="w-4 h-4 text-white ml-0.5" />
                     </div>
                   </div>
-                  <div className="pr-28">
+                  <div className="pb-16 pr-20">
                     <h3 className="text-white font-bold text-base mb-2 line-clamp-2">{cert.title}</h3>
                     <p className="text-white/90 text-sm mb-1">{cert.issuer}</p>
-                    <p className="text-white/70 text-xs mb-4">{cert.date}</p>
+                    <p className="text-white/70 text-xs">{cert.date}</p>
                   </div>
                   
-                  {/* Credentials Button - Properly Spaced */}
-                  <div className="absolute bottom-4 right-4 p-2">
+                  {/* Credentials Button - Fixed Position with Proper Spacing */}
+                  <div className="absolute bottom-3 right-3">
                     <Button
                       size="sm"
                       variant="outline"
