@@ -41,7 +41,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             transition={{ 
               duration: 0.8, 
               ease: "easeOut",
-              delay: 0.2
+              delay: 0.13
             }}
             className="relative z-10"
           >
@@ -79,7 +79,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             <motion.p
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ 
-                duration: 1.5,
+                duration: 1,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
