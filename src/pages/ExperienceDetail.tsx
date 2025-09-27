@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Heart, Play, Pause, Shuffle, SkipBack, SkipForward, Repeat, Cast, Share, List, Calendar, MapPin, Building2, Award, Code, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Heart, Play, Pause, Shuffle, SkipBack, SkipForward, Repeat, Cast, Share, List, Calendar, MapPin, Building2, Award, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { workExperience } from '@/data/mockData';
@@ -195,23 +195,12 @@ const ExperienceDetail = () => {
             </div>
           </div>
 
-          {/* Company Links */}
+          {/* Company Information */}
           <div className="bg-gray-800/50 rounded-lg p-4">
             <h3 className="text-lg font-bold text-white mb-3">Company Information</h3>
             <div className="flex items-center gap-2">
               <Building2 className="w-4 h-4 text-green-500" />
               <span className="text-white">{experience.company}</span>
-            </div>
-            <div className="mt-2">
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-white border-gray-600 hover:bg-gray-700"
-                onClick={() => window.open('https://www.linkedin.com/company/groupedin', '_blank')}
-              >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                View Company
-              </Button>
             </div>
           </div>
         </motion.div>
