@@ -494,51 +494,96 @@ const Home = () => {
 
 
 
-        {/* Skills Section - Small AI Generated Images with Names */}
+        {/* Skills Section - Magical Hover Effects */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3 }}
-          className="mb-8 group"
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.3 }}
+          className="mb-8 group relative overflow-hidden"
+          whileHover={{ 
+            scale: 1.02,
+            transition: { duration: 0.4, ease: "easeOut" }
+          }}
         >
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors duration-300">Skills</h2>
-            <Button 
-              variant="ghost" 
-              className="text-gray-400 hover:text-white text-sm font-semibold hover:bg-white/10 px-3 py-2 rounded-full"
-              onClick={() => navigate('/skills')}
-            >
-              Show all
-            </Button>
+          {/* Magical Background Glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-green-500/0 via-green-500/5 to-green-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl blur-xl"></div>
+          
+          {/* Floating Particles Effect */}
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            <div className="absolute top-4 left-4 w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-all duration-700"></div>
+            <div className="absolute top-8 right-8 w-1 h-1 bg-green-300 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-all duration-1000"></div>
+            <div className="absolute bottom-6 left-1/4 w-1.5 h-1.5 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-800"></div>
+            <div className="absolute bottom-4 right-1/3 w-1 h-1 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-all duration-900"></div>
           </div>
-          <div className="flex flex-wrap gap-2 group-hover:gap-3 transition-all duration-300">
-            {[
-              "Python", "JavaScript", "TypeScript", "C++", "C", "Dart", "SQL", "Shell Scripting", "HTML/CSS", "Node.js",
-              "React", "HTML5/CSS3", "JWT & OAuth2", "WebSockets", "REST API", "PWA", "Responsive Design", "Animations & UX",
-              "PostgreSQL", "DynamoDB", "AWS Lambda", "Redis", "MySQL", "CRUD Operations", "AWS", "Microservices",
-              "Linux", "GStreamer", "CarPlay", "Vulkan", "Trace32", "Memory Management", "Debugging Tools", "Event-Driven Architecture",
-              "Flutter", "OpenAI API", "LangChain", "NLP", "Recommendation Systems", "Chatbots", "Text Processing",
-              "Git/GitHub", "Docker", "CI/CD", "Monitoring & Logging", "SonarQube", "Perf", "Postman", "Swagger/OpenAPI",
-              "Vite", "JMeter", "Locust", "Error Handling"
-            ].map((skill, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.4 + index * 0.05 }}
-                className="group-hover:scale-105 transition-transform duration-300 cursor-pointer"
-                onClick={() => navigate('/skills')}
-                whileHover={{ scale: 1.1 }}
+
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-6">
+              <motion.h2 
+                className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors duration-500"
+                whileHover={{ 
+                  scale: 1.05,
+                  textShadow: "0 0 20px rgba(34, 197, 94, 0.5)"
+                }}
               >
-                <div className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-green-500 hover:border-green-400 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/25">
-                  <span className="text-white text-xs font-medium hover:text-black transition-colors duration-300">
-                    {skill}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+                Skills
+              </motion.h2>
+              <Button 
+                variant="ghost" 
+                className="text-gray-400 hover:text-white text-sm font-semibold hover:bg-white/10 px-3 py-2 rounded-full group-hover:bg-green-500/20 group-hover:text-green-400 transition-all duration-300"
+                onClick={() => navigate('/skills')}
+              >
+                Show all
+              </Button>
+            </div>
+            
+            <div className="flex flex-wrap gap-2 group-hover:gap-3 transition-all duration-500">
+              {[
+                "Python", "JavaScript", "TypeScript", "C++", "C", "Dart", "SQL", "Shell Scripting", "HTML/CSS", "Node.js",
+                "React", "HTML5/CSS3", "JWT & OAuth2", "WebSockets", "REST API", "PWA", "Responsive Design", "Animations & UX",
+                "PostgreSQL", "DynamoDB", "AWS Lambda", "Redis", "MySQL", "CRUD Operations", "AWS", "Microservices",
+                "Linux", "GStreamer", "CarPlay", "Vulkan", "Trace32", "Memory Management", "Debugging Tools", "Event-Driven Architecture",
+                "Flutter", "OpenAI API", "LangChain", "NLP", "Recommendation Systems", "Chatbots", "Text Processing",
+                "Git/GitHub", "Docker", "CI/CD", "Monitoring & Logging", "SonarQube", "Perf", "Postman", "Swagger/OpenAPI",
+                "Vite", "JMeter", "Locust", "Error Handling"
+              ].map((skill, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ 
+                    delay: 1.4 + index * 0.05,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  className="group-hover:scale-105 transition-all duration-300 cursor-pointer relative"
+                  onClick={() => navigate('/skills')}
+                  whileHover={{ 
+                    scale: 1.15,
+                    y: -5,
+                    transition: { duration: 0.2 }
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {/* Magical Glow Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/0 via-green-500/20 to-green-500/0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                  
+                  <div className="relative px-3 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 hover:border-green-400 transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/30 hover:backdrop-blur-md">
+                    <motion.span 
+                      className="text-white text-xs font-medium hover:text-black transition-colors duration-300 relative z-10"
+                      whileHover={{ 
+                        scale: 1.05,
+                        textShadow: "0 0 10px rgba(0, 0, 0, 0.5)"
+                      }}
+                    >
+                      {skill}
+                    </motion.span>
+                    
+                    {/* Sparkle Effect */}
+                    <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-spin transition-all duration-300"></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
