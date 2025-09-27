@@ -473,8 +473,8 @@ const Home = () => {
                         src={cert.image}
                         alt={cert.title}
                         className="w-full h-full object-cover rounded-xl"
-                />
-              </div>
+                      />
+                    </div>
                     {/* Play Button Overlay */}
                     <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <Play className="w-4 h-4 text-white ml-0.5" />
@@ -488,6 +488,11 @@ const Home = () => {
             ))}
           </div>
         </motion.div>
+
+
+
+
+
 
         {/* Skills Section - Small AI Generated Images with Names */}
         <motion.div
@@ -522,8 +527,8 @@ const Home = () => {
                       src={`https://images.unsplash.com/photo-${1500000000000 + index * 1000000}?w=100&h=100&fit=crop&crop=center`}
                       alt={skill.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+                    />
+                  </div>
                   <Button
                     size="icon"
                     className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 hover:bg-green-600 text-black rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0"
