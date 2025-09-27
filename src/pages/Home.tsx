@@ -471,7 +471,7 @@ const Home = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
-          className="mb-8 relative"
+          className="mb-8"
         >
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-white">Certificates</h2>
@@ -483,24 +483,6 @@ const Home = () => {
               Show all
             </Button>
           </div>
-          
-          {/* View Credentials Button - Bottom Right Corner */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.3 }}
-            className="absolute bottom-2 right-2 z-20"
-          >
-            <Button
-              variant="ghost"
-              size="sm"
-              className="bg-green-500/20 hover:bg-green-500/30 text-green-400 hover:text-green-300 text-xs font-medium px-3 py-1.5 rounded-full border border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-              onClick={() => navigate('/library?tab=certificates')}
-            >
-              <Award className="w-3 h-3 mr-1.5" />
-              View Credentials
-            </Button>
-          </motion.div>
           <div className="flex gap-4 overflow-x-auto pb-2">
             {mockCertificates.map((cert, index) => (
               <motion.div
@@ -531,7 +513,20 @@ const Home = () => {
                   </div>
                   <h3 className="text-white font-bold text-base mb-2 line-clamp-2">{cert.title}</h3>
                   <p className="text-white/90 text-sm mb-1">{cert.issuer}</p>
-                  <p className="text-white/70 text-xs">{cert.date}</p>
+                  <p className="text-white/70 text-xs mb-3">{cert.date}</p>
+                  
+                  {/* View Credentials Button */}
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="absolute bottom-2 right-2 w-20 h-6 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(cert.link, '_blank', 'noopener,noreferrer');
+                    }}
+                  >
+                    View
+                  </Button>
                 </div>
               </motion.div>
             ))}

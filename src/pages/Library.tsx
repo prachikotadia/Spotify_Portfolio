@@ -333,6 +333,19 @@ const Library = () => {
                   {item.date || item.year || '2024'}
                 </div>
                 <div className="col-span-1 flex items-center gap-1">
+                  {activeTab === 'certificates' && (item as any).link && (
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="w-16 h-6 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open((item as any).link, '_blank', 'noopener,noreferrer');
+                      }}
+                    >
+                      View
+                    </Button>
+                  )}
                   <Button variant="ghost" size="icon" className="w-6 h-6 text-white hover:bg-white/10 rounded-full">
                     <Heart className="w-3 h-3" />
                   </Button>
@@ -367,12 +380,25 @@ const Library = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <Button
-                  size="icon"
-                  className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-8 h-8 sm:w-12 sm:h-12 bg-green-500 hover:bg-green-600 text-black rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
-                >
-                  <Play className="w-4 h-4 sm:w-6 sm:h-6" />
-                </Button>
+                {activeTab === 'certificates' && (item as any).link ? (
+                  <Button
+                    size="sm"
+                    className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-16 h-6 sm:w-20 sm:h-8 bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 text-xs sm:text-sm rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open((item as any).link, '_blank', 'noopener,noreferrer');
+                    }}
+                  >
+                    View
+                  </Button>
+                ) : (
+                  <Button
+                    size="icon"
+                    className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-8 h-8 sm:w-12 sm:h-12 bg-green-500 hover:bg-green-600 text-black rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+                  >
+                    <Play className="w-4 h-4 sm:w-6 sm:h-6" />
+                  </Button>
+                )}
               </div>
               <div>
                 <h3 className="text-white font-semibold text-xs sm:text-sm mb-1 truncate group-hover:text-green-400 transition-colors">
