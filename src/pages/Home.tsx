@@ -471,7 +471,7 @@ const Home = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
-          className="mb-8"
+          className="mb-8 relative"
         >
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-white">Certificates</h2>
@@ -483,6 +483,24 @@ const Home = () => {
               Show all
             </Button>
           </div>
+          
+          {/* View Credentials Button - Bottom Right Corner */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.3 }}
+            className="absolute bottom-2 right-2 z-20"
+          >
+            <Button
+              variant="ghost"
+              size="sm"
+              className="bg-green-500/20 hover:bg-green-500/30 text-green-400 hover:text-green-300 text-xs font-medium px-3 py-1.5 rounded-full border border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              onClick={() => navigate('/library?tab=certificates')}
+            >
+              <Award className="w-3 h-3 mr-1.5" />
+              View Credentials
+            </Button>
+          </motion.div>
           <div className="flex gap-4 overflow-x-auto pb-2">
             {mockCertificates.map((cert, index) => (
               <motion.div

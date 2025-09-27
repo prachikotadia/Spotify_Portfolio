@@ -76,7 +76,7 @@ const Experience = () => {
                 <div className="text-sm text-white/60">Positions</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white mb-1">5+</div>
+                <div className="text-2xl font-bold text-white mb-1">3+</div>
                 <div className="text-sm text-white/60">Years</div>
               </div>
               <div className="text-center">
