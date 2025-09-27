@@ -511,8 +511,8 @@ const Home = () => {
               Show all
             </Button>
           </div>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-            {skills.slice(0, 16).map((skill, index) => (
+          <div className="flex flex-wrap gap-2">
+            {skills.slice(0, 20).map((skill, index) => (
               <motion.div
                 key={skill.id}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -521,28 +521,10 @@ const Home = () => {
                 className="group cursor-pointer"
                 onClick={() => navigate('/skills')}
               >
-                <div className="relative mb-2">
-                  <div className="w-full h-16 rounded-xl overflow-hidden bg-gradient-to-br from-green-500 to-green-700 shadow-lg group-hover:shadow-2xl transition-all duration-300">
-                    <img
-                      src={`https://images.unsplash.com/photo-${1500000000000 + index * 1000000}?w=100&h=100&fit=crop&crop=center`}
-                      alt={skill.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <Button
-                    size="icon"
-                    className="absolute bottom-1 right-1 w-6 h-4 bg-green-500 hover:bg-green-600 text-black rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0"
-                  >
-                    <Play className="w-3 h-3" />
-                  </Button>
-                </div>
-                <div className="text-center">
-                  <h3 className="text-white font-medium text-xs mb-1 truncate group-hover:text-green-400 transition-colors">
+                <div className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 group-hover:scale-105">
+                  <span className="text-white text-xs font-medium group-hover:text-green-400 transition-colors">
                     {skill.name}
-                  </h3>
-                  <p className="text-gray-400 text-xs truncate">
-                    {skill.category}
-                  </p>
+                  </span>
                 </div>
               </motion.div>
             ))}
