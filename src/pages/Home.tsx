@@ -489,7 +489,7 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Skills Section - Spotify "Made For You" Style */}
+        {/* Skills Section - Small AI Generated Images with Names */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -506,8 +506,8 @@ const Home = () => {
               Show all
             </Button>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {skills.slice(0, 12).map((skill, index) => (
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+            {skills.slice(0, 16).map((skill, index) => (
               <motion.div
                 key={skill.id}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -516,26 +516,26 @@ const Home = () => {
                 className="group cursor-pointer"
                 onClick={() => navigate('/skills')}
               >
-                <div className="relative mb-3">
+                <div className="relative mb-2">
                   <div className="w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-green-500 to-green-700 shadow-lg group-hover:shadow-2xl transition-all duration-300">
                     <img
-                      src={`https://images.unsplash.com/photo-${1500000000000 + index * 1000000}?w=200&h=200&fit=crop&crop=center`}
+                      src={`https://images.unsplash.com/photo-${1500000000000 + index * 1000000}?w=100&h=100&fit=crop&crop=center`}
                       alt={skill.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
                   <Button
                     size="icon"
-                    className="absolute bottom-2 right-2 w-8 h-8 bg-green-500 hover:bg-green-600 text-black rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+                    className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 hover:bg-green-600 text-black rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0"
                   >
-                    <Play className="w-4 h-4" />
+                    <Play className="w-3 h-3" />
                   </Button>
                 </div>
-                <div>
-                  <h3 className="text-white font-semibold text-sm mb-1 truncate group-hover:text-green-400 transition-colors">
+                <div className="text-center">
+                  <h3 className="text-white font-medium text-xs mb-1 truncate group-hover:text-green-400 transition-colors">
                     {skill.name}
                   </h3>
-                  <p className="text-gray-400 text-xs">
+                  <p className="text-gray-400 text-xs truncate">
                     {skill.category}
                   </p>
                 </div>
