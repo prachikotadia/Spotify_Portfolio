@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Building2, Award, Code, ArrowLeft, Play, Pause, Heart, MoreHorizontal, Clock, Users, Star, TrendingUp, Briefcase, GraduationCap, Zap } from 'lucide-react';
+import { Calendar, MapPin, Building2, Award, Code, ArrowLeft, Clock, Users, Star, TrendingUp, Briefcase, GraduationCap, Zap } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -69,22 +69,6 @@ const Experience = () => {
             </div>
           </div>
 
-          {/* Play Controls */}
-          <div className="flex items-center gap-4 mb-8">
-            <Button
-              size="lg"
-              className="bg-green-500 hover:bg-green-600 text-black font-bold px-8 py-3 rounded-full"
-              onClick={() => setIsPlaying(!isPlaying)}
-            >
-              {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-            </Button>
-            <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-white/10">
-              <Heart className="w-5 h-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="text-white/60 hover:text-white hover:bg-white/10">
-              <MoreHorizontal className="w-5 h-5" />
-            </Button>
-          </div>
         </motion.div>
       </div>
 
@@ -144,17 +128,6 @@ const Experience = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-white/60 hover:text-white hover:bg-white/10">
-                  <Play className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-white/60 hover:text-white hover:bg-white/10">
-                  <Heart className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="icon" className="w-8 h-8 text-white/60 hover:text-white hover:bg-white/10">
-                  <MoreHorizontal className="w-4 h-4" />
-                </Button>
-              </div>
             </motion.div>
           ))}
         </div>
@@ -200,14 +173,6 @@ const Experience = () => {
             <p className="text-white/60 text-xs truncate">
               {workExperience[currentTrack]?.company || 'Professional Journey'}
             </p>
-          </div>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="w-8 h-8 text-white/60 hover:text-white">
-              <Play className="w-4 h-4" />
-            </Button>
-            <Button variant="ghost" size="icon" className="w-8 h-8 text-white/60 hover:text-white">
-              <Heart className="w-4 h-4" />
-            </Button>
           </div>
         </div>
       </div>
