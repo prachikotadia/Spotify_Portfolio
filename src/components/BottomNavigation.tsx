@@ -14,9 +14,12 @@ const SearchIcon = () => (
   </svg>
 );
 
+// Spotify-style Your Library icon (three vertical bars)
 const LibraryIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+    <rect x="3" y="3" width="4" height="18" rx="1"/>
+    <rect x="10" y="3" width="4" height="18" rx="1"/>
+    <rect x="17" y="3" width="4" height="18" rx="1"/>
   </svg>
 );
 
@@ -26,15 +29,27 @@ const UserIcon = () => (
   </svg>
 );
 
+// Spotify-style Browse icon (stacked albums)
 const WorkIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <path d="M20 6h-2l-2-2H8L6 6H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/>
+    <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
+    <path d="M2 4h20v2H2V4zm0 5h20v2H2V9zm0 5h20v2H2v-2z" opacity="0.3"/>
   </svg>
 );
 
+// Spotify-style Search icon (magnifying glass)
+const SearchIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+  </svg>
+);
+
+// Spotify-style Radio icon (radio waves)
 const SkillIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    <circle cx="12" cy="12" r="2"/>
+    <path d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1zm0 20c-5 0-9-4-9-9s4-9 9-9 9 4 9 9-4 9-9 9z" opacity="0.3"/>
+    <path d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1zm0 2c5 0 9 4 9 9s-4 9-9 9-9-4-9-9 4-9 9-9z" opacity="0.3"/>
   </svg>
 );
 

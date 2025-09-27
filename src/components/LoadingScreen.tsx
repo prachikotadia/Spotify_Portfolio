@@ -37,7 +37,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           {/* Spotify Logo */}
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            animate={{ scale: 3, opacity: 1 }}
             transition={{ 
               duration: 0.8, 
               ease: "easeOut",
@@ -85,14 +85,13 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               }}
               className="text-white/80 text-sm font-medium tracking-wider"
             >
-              Loading...
+          
             </motion.p>
           </motion.div>
 
           {/* Progress bar */}
           <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
+           
             transition={{ duration: 2, ease: "easeInOut" }}
             className="absolute bottom-10 left-0 right-0 mx-8 h-1 bg-gradient-to-r from-green-500 to-green-400 rounded-full"
           />
