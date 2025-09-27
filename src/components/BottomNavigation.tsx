@@ -14,13 +14,12 @@ const SearchIcon = () => (
   </svg>
 );
 
-// Exact Library icon from reference
+// Exact Spotify Your Library icon
 const LibraryIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <rect x="4" y="4" width="2.5" height="16" rx="0.5"/>
-    <rect x="8" y="4" width="2.5" height="16" rx="0.5"/>
-    <rect x="12" y="4" width="2.5" height="16" rx="0.5"/>
-    <polygon points="16,4 20,4 20,20 16,20" fill="currentColor"/>
+    <rect x="3" y="3" width="4" height="18" rx="1"/>
+    <rect x="10" y="3" width="4" height="18" rx="1"/>
+    <rect x="17" y="3" width="4" height="18" rx="1"/>
   </svg>
 );
 
