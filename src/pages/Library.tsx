@@ -337,13 +337,13 @@ const Library = () => {
                     <Button 
                       variant="outline" 
                       size="sm"
-                      className="w-14 h-6 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200 flex-shrink-0"
+                      className="w-20 h-5 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200 flex-shrink-0"
                       onClick={(e) => {
                         e.stopPropagation();
                         window.open((item as any).link, '_blank', 'noopener,noreferrer');
                       }}
                     >
-                      View
+                      Credentials
                     </Button>
                   )}
                   <Button variant="ghost" size="icon" className="w-6 h-6 text-white hover:bg-white/10 rounded-full flex-shrink-0">
@@ -383,13 +383,13 @@ const Library = () => {
                 {activeTab === 'certificates' && (item as any).link ? (
                   <Button
                     size="sm"
-                    className="absolute bottom-2 right-2 w-14 h-6 bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 text-xs rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-10"
+                    className="absolute bottom-2 right-2 w-20 h-5 bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 text-xs rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-10"
                     onClick={(e) => {
                       e.stopPropagation();
                       window.open((item as any).link, '_blank', 'noopener,noreferrer');
                     }}
                   >
-                    View
+                    Credentials
                   </Button>
                 ) : (
                   <Button
