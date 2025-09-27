@@ -14,12 +14,12 @@ const SearchIcon = () => (
   </svg>
 );
 
-// Spotify-style Your Library icon (three vertical bars)
+// Exact Spotify Your Library icon (three vertical bars)
 const LibraryIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <rect x="3" y="3" width="4" height="18" rx="1"/>
-    <rect x="10" y="3" width="4" height="18" rx="1"/>
-    <rect x="17" y="3" width="4" height="18" rx="1"/>
+    <rect x="4" y="4" width="3" height="16" rx="0.5"/>
+    <rect x="10.5" y="4" width="3" height="16" rx="0.5"/>
+    <rect x="17" y="4" width="3" height="16" rx="0.5"/>
   </svg>
 );
 
@@ -29,21 +29,22 @@ const UserIcon = () => (
   </svg>
 );
 
-// Spotify-style Browse icon (stacked albums)
+// Exact Spotify Browse icon (stacked albums with container)
 const WorkIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
-    <path d="M2 4h20v2H2V4zm0 5h20v2H2V9zm0 5h20v2H2v-2z" opacity="0.3"/>
+    <rect x="4" y="8" width="12" height="8" rx="1" fill="currentColor"/>
+    <rect x="6" y="6" width="12" height="8" rx="1" fill="currentColor" opacity="0.7"/>
+    <rect x="8" y="4" width="12" height="8" rx="1" fill="currentColor" opacity="0.4"/>
   </svg>
 );
 
 
-// Spotify-style Radio icon (radio waves)
+// Exact Spotify Radio icon (radio waves)
 const SkillIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <circle cx="12" cy="12" r="2"/>
-    <path d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1zm0 20c-5 0-9-4-9-9s4-9 9-9 9 4 9 9-4 9-9 9z" opacity="0.3"/>
-    <path d="M12 1C5.9 1 1 5.9 1 12s4.9 11 11 11 11-4.9 11-11S18.1 1 12 1zm0 2c5 0 9 4 9 9s-4 9-9 9-9-4-9-9 4-9 9-9z" opacity="0.3"/>
+    <circle cx="12" cy="12" r="1.5"/>
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" opacity="0.3"/>
+    <path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" opacity="0.2"/>
   </svg>
 );
 
