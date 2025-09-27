@@ -490,7 +490,7 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
-                className="flex-shrink-0 w-48 bg-white/10 backdrop-blur-md rounded-2xl p-5 cursor-pointer hover:scale-105 transition-all duration-300 group relative overflow-hidden border border-white/20 hover:bg-white/20"
+                className="flex-shrink-0 w-44 h-64 bg-white/10 backdrop-blur-md rounded-2xl p-4 cursor-pointer hover:scale-105 transition-all duration-300 group relative overflow-hidden border border-white/20 hover:bg-white/20"
                 onClick={() => navigate('/library?tab=certificates')}
               >
                 {/* Glassmorphism Background Elements */}
@@ -498,38 +498,41 @@ const Home = () => {
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/3 rounded-full blur-lg"></div>
                 
                 <div className="relative z-10">
-                  <div className="relative mb-4">
-                    <div className="w-full aspect-square bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden shadow-2xl border border-white/20">
+                  <div className="relative mb-3">
+                    <div className="w-full h-24 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center overflow-hidden shadow-2xl border border-white/20">
                       <img
                         src={cert.image}
                         alt={cert.title}
                         className="w-full h-full object-cover rounded-xl"
-                />
-              </div>
+                      />
+                    </div>
                     {/* Play Button Overlay */}
-                    <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Play className="w-4 h-4 text-white ml-0.5" />
+                    <div className="absolute bottom-1 right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Play className="w-3 h-3 text-white ml-0.5" />
                     </div>
                   </div>
-                  <div className="pb-16 pr-20">
-                    <h3 className="text-white font-bold text-base mb-2 break-words">{cert.title}</h3>
-                    <p className="text-white/90 text-sm mb-1 break-words">{cert.issuer}</p>
-                    <p className="text-white/70 text-xs break-words">{cert.date}</p>
-                  </div>
                   
-                  {/* Credentials Button - Fixed Position with Proper Spacing */}
-                  <div className="absolute bottom-3 right-3">
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="w-20 h-6 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.open(cert.link, '_blank', 'noopener,noreferrer');
-                      }}
-                    >
-                      Credentials
-                    </Button>
+                  <div className="flex flex-col justify-between h-20">
+                    <div>
+                      <h3 className="text-white font-bold text-sm mb-1 line-clamp-2">{cert.title}</h3>
+                      <p className="text-white/90 text-xs mb-1">{cert.issuer}</p>
+                      <p className="text-white/70 text-xs">{cert.date}</p>
+                    </div>
+                    
+                    {/* Credentials Button - Fixed Position with Proper Spacing */}
+                    <div className="mt-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="w-full h-6 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(cert.link, '_blank', 'noopener,noreferrer');
+                        }}
+                      >
+                        Credentials
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </motion.div>

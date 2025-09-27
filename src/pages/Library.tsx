@@ -403,10 +403,10 @@ const Library = () => {
                 )}
               </div>
               <div>
-                <h3 className="text-white font-semibold text-xs sm:text-sm mb-1 break-words group-hover:text-green-400 transition-colors">
+                <h3 className="text-white font-semibold text-xs sm:text-sm mb-1 truncate group-hover:text-green-400 transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-gray-400 text-xs break-words hidden sm:block">
+                <p className="text-gray-400 text-xs line-clamp-2 hidden sm:block">
                   {getItemDescription(item)}
                 </p>
               </div>
