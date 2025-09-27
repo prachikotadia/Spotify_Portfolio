@@ -28,6 +28,7 @@ import ExperienceDetail from "./pages/ExperienceDetail";
 import Courses from "./pages/Courses";
 import NotFound from "./pages/NotFound";
 import BottomNavigation from "./components/BottomNavigation";
+import SplashScreen from "./components/SplashScreen";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <SplashScreen />
       <BrowserRouter>
         <div className="min-h-screen bg-background">
           <Routes>
