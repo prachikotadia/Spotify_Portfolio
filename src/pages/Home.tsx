@@ -512,9 +512,17 @@ const Home = () => {
             </Button>
           </div>
           <div className="flex flex-wrap gap-2">
-            {skills.slice(0, 20).map((skill, index) => (
+            {[
+              "Python", "JavaScript", "TypeScript", "C++", "C", "Dart", "SQL", "Shell Scripting", "HTML/CSS", "Node.js",
+              "React", "HTML5/CSS3", "JWT & OAuth2", "WebSockets", "REST API", "PWA", "Responsive Design", "Animations & UX",
+              "PostgreSQL", "DynamoDB", "AWS Lambda", "Redis", "MySQL", "CRUD Operations", "AWS", "Microservices",
+              "Linux", "GStreamer", "CarPlay", "Vulkan", "Trace32", "Memory Management", "Debugging Tools", "Event-Driven Architecture",
+              "Flutter", "OpenAI API", "LangChain", "NLP", "Recommendation Systems", "Chatbots", "Text Processing",
+              "Git/GitHub", "Docker", "CI/CD", "Monitoring & Logging", "SonarQube", "Perf", "Postman", "Swagger/OpenAPI",
+              "Vite", "JMeter", "Locust", "Error Handling"
+            ].map((skill, index) => (
               <motion.div
-                key={skill.id}
+                key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.4 + index * 0.05 }}
@@ -523,7 +531,7 @@ const Home = () => {
               >
                 <div className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 group-hover:scale-105">
                   <span className="text-white text-xs font-medium group-hover:text-green-400 transition-colors">
-                    {skill.name}
+                    {skill}
                   </span>
                 </div>
               </motion.div>
