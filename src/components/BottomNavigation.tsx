@@ -14,13 +14,13 @@ const SearchIcon = () => (
   </svg>
 );
 
-// Library icon (three vertical bars + trapezoid)
+// Exact Library icon from reference
 const LibraryIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <rect x="3" y="4" width="3" height="16" rx="0.5"/>
-    <rect x="8" y="4" width="3" height="16" rx="0.5"/>
-    <rect x="13" y="4" width="3" height="16" rx="0.5"/>
-    <polygon points="18,4 22,4 22,20 18,20" fill="currentColor"/>
+    <rect x="4" y="4" width="2.5" height="16" rx="0.5"/>
+    <rect x="8" y="4" width="2.5" height="16" rx="0.5"/>
+    <rect x="12" y="4" width="2.5" height="16" rx="0.5"/>
+    <polygon points="16,4 20,4 20,20 16,20" fill="currentColor"/>
   </svg>
 );
 
@@ -30,13 +30,13 @@ const UserIcon = () => (
   </svg>
 );
 
-// Browse/Playlist icon (two rounded rectangles with circles)
+// Exact Browse icon from reference
 const WorkIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <rect x="2" y="8" width="10" height="6" rx="1" stroke="currentColor" strokeWidth="1" fill="none"/>
-    <circle cx="12" cy="11" r="1.5" fill="currentColor"/>
-    <rect x="4" y="6" width="10" height="6" rx="1" stroke="currentColor" strokeWidth="1" fill="none"/>
-    <circle cx="4" cy="9" r="1.5" fill="currentColor"/>
+    <rect x="3" y="9" width="8" height="4" rx="1" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+    <circle cx="11" cy="11" r="1" fill="currentColor"/>
+    <rect x="5" y="7" width="8" height="4" rx="1" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+    <circle cx="5" cy="9" r="1" fill="currentColor"/>
   </svg>
 );
 
