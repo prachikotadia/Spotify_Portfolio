@@ -499,10 +499,12 @@ const Home = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3 }}
-          className="mb-8"
+          className="mb-8 group"
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.3 }}
         >
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">Skills</h2>
+            <h2 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors duration-300">Skills</h2>
             <Button 
               variant="ghost" 
               className="text-gray-400 hover:text-white text-sm font-semibold hover:bg-white/10 px-3 py-2 rounded-full"
@@ -511,7 +513,7 @@ const Home = () => {
               Show all
             </Button>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 group-hover:gap-3 transition-all duration-300">
             {[
               "Python", "JavaScript", "TypeScript", "C++", "C", "Dart", "SQL", "Shell Scripting", "HTML/CSS", "Node.js",
               "React", "HTML5/CSS3", "JWT & OAuth2", "WebSockets", "REST API", "PWA", "Responsive Design", "Animations & UX",
@@ -526,11 +528,12 @@ const Home = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.4 + index * 0.05 }}
-                className="group cursor-pointer"
+                className="group-hover:scale-105 transition-transform duration-300 cursor-pointer"
                 onClick={() => navigate('/skills')}
+                whileHover={{ scale: 1.1 }}
               >
-                <div className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-green-500 hover:border-green-400 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/25">
-                  <span className="text-white text-xs font-medium group-hover:text-black transition-colors duration-300">
+                <div className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-green-500 hover:border-green-400 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/25">
+                  <span className="text-white text-xs font-medium hover:text-black transition-colors duration-300">
                     {skill}
                   </span>
                 </div>
