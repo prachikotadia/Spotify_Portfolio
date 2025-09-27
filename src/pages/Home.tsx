@@ -511,22 +511,26 @@ const Home = () => {
                       <Play className="w-4 h-4 text-white ml-0.5" />
                     </div>
                   </div>
-                  <h3 className="text-white font-bold text-base mb-2 line-clamp-2 pr-24">{cert.title}</h3>
-                  <p className="text-white/90 text-sm mb-1 pr-24">{cert.issuer}</p>
-                  <p className="text-white/70 text-xs mb-6 pr-24">{cert.date}</p>
+                  <div className="pr-28">
+                    <h3 className="text-white font-bold text-base mb-2 line-clamp-2">{cert.title}</h3>
+                    <p className="text-white/90 text-sm mb-1">{cert.issuer}</p>
+                    <p className="text-white/70 text-xs mb-4">{cert.date}</p>
+                  </div>
                   
-                  {/* Credentials Button - Small Corner with More Space */}
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="absolute bottom-4 right-4 w-20 h-5 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200 z-10"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(cert.link, '_blank', 'noopener,noreferrer');
-                    }}
-                  >
-                    Credentials
-                  </Button>
+                  {/* Credentials Button - Properly Spaced */}
+                  <div className="absolute bottom-4 right-4 p-2">
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="w-20 h-6 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(cert.link, '_blank', 'noopener,noreferrer');
+                      }}
+                    >
+                      Credentials
+                    </Button>
+                  </div>
                 </div>
               </motion.div>
             ))}
