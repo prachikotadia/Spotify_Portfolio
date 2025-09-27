@@ -512,9 +512,9 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="pb-16 pr-20">
-                    <h3 className="text-white font-bold text-base mb-2 line-clamp-2">{cert.title}</h3>
-                    <p className="text-white/90 text-sm mb-1">{cert.issuer}</p>
-                    <p className="text-white/70 text-xs">{cert.date}</p>
+                    <h3 className="text-white font-bold text-base mb-2 break-words">{cert.title}</h3>
+                    <p className="text-white/90 text-sm mb-1 break-words">{cert.issuer}</p>
+                    <p className="text-white/70 text-xs break-words">{cert.date}</p>
                   </div>
                   
                   {/* Credentials Button - Fixed Position with Proper Spacing */}
