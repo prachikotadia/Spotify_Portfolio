@@ -14,12 +14,12 @@ const SearchIcon = () => (
   </svg>
 );
 
-// Exact Spotify Your Library icon from screenshot (three vertical bars)
+// Exact three vertical bars icon for Project
 const LibraryIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <rect x="3" y="3" width="4" height="18" rx="1"/>
-    <rect x="10" y="3" width="4" height="18" rx="1"/>
-    <rect x="17" y="3" width="4" height="18" rx="1"/>
+    <rect x="4" y="4" width="3" height="16" rx="0.5"/>
+    <rect x="10.5" y="4" width="3" height="16" rx="0.5"/>
+    <rect x="17" y="4" width="3" height="16" rx="0.5"/>
   </svg>
 );
 
