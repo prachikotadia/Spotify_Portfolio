@@ -71,11 +71,19 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#121212] pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-[#000000] pb-20 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 bg-green-400/5 rounded-full blur-2xl animate-bounce"></div>
+        <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-green-600/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-40 right-1/3 w-28 h-28 bg-green-300/10 rounded-full blur-2xl animate-bounce"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-500/3 rounded-full blur-3xl animate-pulse"></div>
+      </div>
 
       {/* Main Content */}
-      <div className="px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
-        {/* Featured Profile Image */}
+      <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
+        {/* Featured Profile Image with Enhanced Effects */}
         <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -83,12 +91,25 @@ const Home = () => {
           className="mb-8"
         >
           <div className="flex justify-center">
-            <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative group">
+              {/* Glow Effect */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-green-500/20 via-green-400/10 to-green-600/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Main Image Container */}
+              <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl rounded-2xl overflow-hidden shadow-2xl spotify-glass-enhanced">
                 <img
                   src="/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png"
                   alt="Prachi Kotadia - Full Stack Developer"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                
+                {/* Overlay Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Floating Elements */}
+                <div className="absolute top-4 right-4 w-3 h-3 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 animate-ping transition-opacity duration-500"></div>
+                <div className="absolute bottom-4 left-4 w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 animate-pulse transition-opacity duration-700"></div>
+              </div>
           </div>
           </div>
         </motion.div>
@@ -100,42 +121,52 @@ const Home = () => {
           transition={{ delay: 0.2 }}
           className="mb-8"
         >
-          <h2 className="text-xl font-bold text-white mb-4">Recently played</h2>
-          <div className="bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-colors cursor-pointer group"
+          <h2 className="text-xl font-bold text-white mb-4 bg-gradient-to-r from-white to-green-400 bg-clip-text text-transparent">
+            Recently played
+          </h2>
+          <div className="spotify-card hover:spotify-glass-enhanced transition-all duration-300 cursor-pointer group relative overflow-hidden"
                onClick={() => navigate('/lyrics')}>
-            <div className="flex items-center gap-4">
-              {/* Album Art */}
-              <div className="w-16 h-16 flex-shrink-0">
+            {/* Background Glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-green-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative flex items-center gap-4">
+              {/* Album Art with Enhanced Effects */}
+              <div className="relative w-16 h-16 flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 to-green-400/20 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <img
                   src="/assets/image copy 7.png"
                   alt="About Me"
-                  className="w-full h-full object-cover rounded"
+                  className="relative w-full h-full object-cover rounded-lg shadow-lg"
                 />
+                {/* Play Overlay */}
+                <div className="absolute inset-0 bg-black/40 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Play className="w-6 h-6 text-white" />
+                </div>
               </div>
               
               {/* Song Info */}
               <div className="flex-1 min-w-0">
-                <h3 className="text-white font-semibold text-lg mb-1">About Me</h3>
-                <p className="text-gray-400 text-sm">Prachi Kotadia</p>
+                <h3 className="text-white font-semibold text-lg mb-1 group-hover:text-green-400 transition-colors duration-300">
+                  About Me
+                </h3>
+                <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                  Prachi Kotadia
+                </p>
               </div>
               
-              {/* Play Button */}
-              <div className="flex-shrink-0">
+              {/* Action Buttons with Enhanced Effects */}
+              <div className="flex items-center gap-2">
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="text-white hover:text-white hover:bg-white/20 rounded-full opacity-100 transition-all duration-200"
+                  className="w-8 h-8 text-white hover:bg-green-500/20 hover:text-green-400 rounded-full transition-all duration-300 hover:scale-110"
                 >
                   <Play className="w-5 h-5" />
                 </Button>
-              </div>
-              
-              {/* Like Button */}
-              <div className="flex-shrink-0">
+                
                 <Button 
                   variant="ghost" 
                   size="icon" 
-                  className="text-gray-400 hover:text-white hover:bg-white/10 rounded-full opacity-100 transition-all duration-200"
+                  className="w-8 h-8 text-gray-400 hover:bg-red-500/20 hover:text-red-400 rounded-full transition-all duration-300 hover:scale-110"
                 >
                   <Heart className="w-5 h-5" />
                 </Button>
@@ -345,8 +376,8 @@ const Home = () => {
             </h3>
                   <p className="text-gray-400 text-xs line-clamp-2 hidden sm:block">
                     {course.description}
-                  </p>
-                </div>
+            </p>
+            </div>
               </motion.div>
             ))}
           </div>
@@ -422,8 +453,8 @@ const Home = () => {
                       src={project.image}
                       alt={project.title}
                       className="w-full h-full object-cover"
-                    />
-                  </div>
+                />
+              </div>
                   <div className="absolute bottom-1 right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <Play className="w-3 h-3 text-white ml-0.5" />
                   </div>
@@ -473,8 +504,8 @@ const Home = () => {
                         src={cert.image}
                         alt={cert.title}
                         className="w-full h-full object-cover rounded-xl"
-                      />
-                    </div>
+                />
+              </div>
                     {/* Play Button Overlay */}
                     <div className="absolute bottom-2 right-2 w-8 h-8 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <Play className="w-4 h-4 text-white ml-0.5" />
