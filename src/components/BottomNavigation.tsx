@@ -14,12 +14,13 @@ const SearchIcon = () => (
   </svg>
 );
 
-// Exact three vertical bars icon for Project
+// Library icon (three vertical bars + trapezoid)
 const LibraryIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <rect x="4" y="4" width="3" height="16" rx="0.5"/>
-    <rect x="10.5" y="4" width="3" height="16" rx="0.5"/>
-    <rect x="17" y="4" width="3" height="16" rx="0.5"/>
+    <rect x="3" y="4" width="3" height="16" rx="0.5"/>
+    <rect x="8" y="4" width="3" height="16" rx="0.5"/>
+    <rect x="13" y="4" width="3" height="16" rx="0.5"/>
+    <polygon points="18,4 22,4 22,20 18,20" fill="currentColor"/>
   </svg>
 );
 
@@ -29,12 +30,13 @@ const UserIcon = () => (
   </svg>
 );
 
-// Exact Spotify Browse icon (stacked albums with container)
+// Browse/Playlist icon (two rounded rectangles with circles)
 const WorkIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <rect x="4" y="8" width="12" height="8" rx="1" fill="currentColor"/>
-    <rect x="6" y="6" width="12" height="8" rx="1" fill="currentColor" opacity="0.7"/>
-    <rect x="8" y="4" width="12" height="8" rx="1" fill="currentColor" opacity="0.4"/>
+    <rect x="2" y="8" width="10" height="6" rx="1" stroke="currentColor" strokeWidth="1" fill="none"/>
+    <circle cx="12" cy="11" r="1.5" fill="currentColor"/>
+    <rect x="4" y="6" width="10" height="6" rx="1" stroke="currentColor" strokeWidth="1" fill="none"/>
+    <circle cx="4" cy="9" r="1.5" fill="currentColor"/>
   </svg>
 );
 
