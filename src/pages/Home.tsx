@@ -529,8 +529,8 @@ const Home = () => {
                 className="group cursor-pointer"
                 onClick={() => navigate('/skills')}
               >
-                <div className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 group-hover:scale-105">
-                  <span className="text-white text-xs font-medium group-hover:text-green-400 transition-colors">
+                <div className="px-3 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:bg-green-500 hover:border-green-400 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-green-500/25">
+                  <span className="text-white text-xs font-medium group-hover:text-black transition-colors duration-300">
                     {skill}
                   </span>
                 </div>
