@@ -513,13 +513,13 @@ const Home = () => {
                   </div>
                   <h3 className="text-white font-bold text-base mb-2 line-clamp-2 pr-20">{cert.title}</h3>
                   <p className="text-white/90 text-sm mb-1 pr-20">{cert.issuer}</p>
-                  <p className="text-white/70 text-xs mb-3 pr-20">{cert.date}</p>
+                  <p className="text-white/70 text-xs mb-4 pr-20">{cert.date}</p>
                   
-                  {/* Credentials Button - Small Corner */}
+                  {/* Credentials Button - Small Corner with Space */}
                   <Button
                     size="sm"
                     variant="outline"
-                    className="absolute bottom-2 right-2 w-20 h-5 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200 z-10"
+                    className="absolute bottom-3 right-3 w-20 h-5 text-xs bg-green-500/20 border-green-400/30 text-green-300 hover:bg-green-500/30 hover:border-green-400/50 hover:text-green-200 transition-all duration-200 z-10"
                     onClick={(e) => {
                       e.stopPropagation();
                       window.open(cert.link, '_blank', 'noopener,noreferrer');
