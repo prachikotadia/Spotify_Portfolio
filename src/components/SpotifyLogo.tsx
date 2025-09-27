@@ -23,8 +23,8 @@ const SpotifyLogo = ({ size = 'md', className = '', animated = false }: SpotifyL
 
   const logo = (
     <img
-      src="/assets/image copy 8.png"
-      alt="Prachi Kotadia Logo"
+      src="/assets/205-2056187_spotify-icon-by-beanmelon-transparent-cool-spotify-icons-removebg-preview.png"
+      alt="Spotify Logo"
       className={`${sizeClasses[size]} object-contain`}
     />
   );
