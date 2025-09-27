@@ -7,7 +7,7 @@ const SplashScreen = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 1300); // 1.3 seconds
+    }, 2000); // 1.5 seconds
 
     return () => clearTimeout(timer);
   }, []);
@@ -35,7 +35,7 @@ const SplashScreen = () => {
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ 
-              scale: 1, 
+              scale: 3, 
               opacity: 1,
               transition: { 
                 duration: 0.8, 
@@ -46,8 +46,8 @@ const SplashScreen = () => {
             className="relative z-10"
           >
             <motion.img
-              src="/assets/205-2056187_spotify-icon-by-beanmelon-transparent-cool-spotify-icons-removebg-preview.png"
-              alt="Spotify Logo"
+              src="/assets/image copy 8.png"
+              alt="Prachi Kotadia Logo"
               className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain"
               animate={{
                 rotate: [0, 5, -5, 0],
@@ -81,7 +81,7 @@ const SplashScreen = () => {
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
-              Loading...
+              Welcome to my Portfolio
             </motion.div>
           </motion.div>
         </motion.div>
