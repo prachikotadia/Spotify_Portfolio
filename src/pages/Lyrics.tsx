@@ -19,7 +19,7 @@ const Lyrics = () => {
   // Text-to-speech functionality
   const startSpeech = (fromTime = 0) => {
     if ('speechSynthesis' in window) {
-      const fullText = `I'm a passionate Software Engineer with a Master's in Computer Science from Illinois Institute of Technology. Currently working as a Software Engineer at GroupedIn in New Jersey. My journey in technology spans across multiple domains including web development, mobile applications, AI/ML, and embedded systems. With expertise in React, Flutter, Python, C++, and cloud technologies like AWS, I've built scalable applications serving thousands of users. I'm particularly passionate about AI-driven solutions, having integrated NLP and machine learning models to enhance user experiences and boost engagement by 25%. My work involves full-stack development, from designing e-commerce systems handling 500+ daily transactions to building high-performance Linux kernel modules that reduce latency by 15%. I'm also experienced in IoT integration, real-time data processing, and automated CI/CD pipelines. Beyond technical skills, I'm a continuous learner who stays updated with the latest technologies. I believe in the power of open-source collaboration and have contributed to various projects. When I'm not coding, you'll find me exploring new technologies, contributing to research, or curating the perfect coding playlist on Spotify. I'm always excited to work on challenging problems, learn new technologies, and contribute to innovative projects that make a real impact. Let's connect and build something amazing together!`;
+      const fullText = `I am a passionate Software Engineer who loves building creative and practical solutions that make an impact. My journey started with curiosity about how technology shapes everyday life, and it quickly grew into a strong focus on software systems, web apps, and scalable solutions. I enjoy solving problems with a balance of logic and creativity, always striving for clean code and thoughtful design. Along the way, I have worked on projects that challenged me to think deeper about performance, usability, and user experience. I believe technology should feel seamless and intuitive, and that's the standard I aim for in my work. Outside of coding, I like exploring new ideas, learning continuously, and keeping up with the latest in tech. What excites me most is the opportunity to keep improving, collaborating, and pushing the boundaries of what software can do.`;
       
       // Calculate text position based on time
       const textLength = fullText.length;
@@ -255,24 +255,20 @@ const Lyrics = () => {
         >
           {[
             { 
-              text: "I'm a passionate Software Engineer with a Master's in Computer Science from Illinois Institute of Technology. Currently working as a Software Engineer at GroupedIn in New Jersey. My journey in technology spans across multiple domains including web development, mobile applications, AI/ML, and embedded systems.", 
+              text: "I am a passionate Software Engineer who loves building creative and practical solutions that make an impact. My journey started with curiosity about how technology shapes everyday life, and it quickly grew into a strong focus on software systems, web apps, and scalable solutions.", 
               progress: 0 
             },
             { 
-              text: "With expertise in React, Flutter, Python, C++, and cloud technologies like AWS, I've built scalable applications serving thousands of users. I'm particularly passionate about AI-driven solutions, having integrated NLP and machine learning models to enhance user experiences and boost engagement by 25%.", 
+              text: "I enjoy solving problems with a balance of logic and creativity, always striving for clean code and thoughtful design. Along the way, I have worked on projects that challenged me to think deeper about performance, usability, and user experience.", 
               progress: 25 
             },
             { 
-              text: "My work involves full-stack development, from designing e-commerce systems handling 500+ daily transactions to building high-performance Linux kernel modules that reduce latency by 15%. I'm also experienced in IoT integration, real-time data processing, and automated CI/CD pipelines.", 
+              text: "I believe technology should feel seamless and intuitive, and that's the standard I aim for in my work. Outside of coding, I like exploring new ideas, learning continuously, and keeping up with the latest in tech.", 
               progress: 50 
             },
             { 
-              text: "Beyond technical skills, I'm a continuous learner who stays updated with the latest technologies. I believe in the power of open-source collaboration and have contributed to various projects. When I'm not coding, you'll find me exploring new technologies, contributing to research, or curating the perfect coding playlist on Spotify.", 
+              text: "What excites me most is the opportunity to keep improving, collaborating, and pushing the boundaries of what software can do.", 
               progress: 75 
-            },
-            { 
-              text: "I'm always excited to work on challenging problems, learn new technologies, and contribute to innovative projects that make a real impact. Let's connect and build something amazing together!", 
-              progress: 100 
             }
           ].map((paragraph, index) => {
             const isRead = readProgress >= paragraph.progress;
