@@ -137,26 +137,26 @@ const SpotifySidebar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowCreatePopup(false)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-white font-semibold">Create Playlist</h3>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-white font-semibold text-sm">Create Playlist</h3>
                 <button
                   onClick={() => setShowCreatePopup(false)}
-                  className="text-gray-400 hover:text-white"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-300 text-xs">
                 Only admin can add new playlists to the library.
               </p>
             </motion.div>
@@ -169,26 +169,26 @@ const SpotifySidebar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowFavoritesPopup(false)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-white font-semibold">Certificates</h3>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-white font-semibold text-sm">Certificates</h3>
                 <button
                   onClick={() => setShowFavoritesPopup(false)}
-                  className="text-gray-400 hover:text-white"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-gray-300 text-xs mb-3">
                 View all your professional certificates and achievements.
               </p>
               <button
@@ -196,7 +196,7 @@ const SpotifySidebar = () => {
                   setShowFavoritesPopup(false);
                   navigate('/library?tab=certificates');
                 }}
-                className="w-full bg-green-500 text-black font-semibold py-2 px-4 rounded-full hover:bg-green-600 transition-colors"
+                className="w-full bg-green-500/80 backdrop-blur-sm text-black font-semibold py-2 px-3 rounded-full hover:bg-green-500 transition-colors text-xs"
               >
                 View Certificates
               </button>
@@ -210,26 +210,26 @@ const SpotifySidebar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowDownloadPopup(false)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-white font-semibold">Resume PDF</h3>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-white font-semibold text-sm">Resume PDF</h3>
                 <button
                   onClick={() => setShowDownloadPopup(false)}
-                  className="text-gray-400 hover:text-white"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-gray-300 text-xs mb-3">
                 Download Prachi Kotadia's latest resume in PDF format.
               </p>
               <button
@@ -237,7 +237,7 @@ const SpotifySidebar = () => {
                   setShowDownloadPopup(false);
                   window.open('https://prachikotadia.netlify.app/assets/Prachi_Kotadia_Resume_2025.pdf', '_blank');
                 }}
-                className="w-full bg-green-500 text-black font-semibold py-2 px-4 rounded-full hover:bg-green-600 transition-colors"
+                className="w-full bg-green-500/80 backdrop-blur-sm text-black font-semibold py-2 px-3 rounded-full hover:bg-green-500 transition-colors text-xs"
               >
                 Download Resume
               </button>

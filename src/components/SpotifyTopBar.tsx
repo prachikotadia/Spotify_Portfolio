@@ -79,26 +79,26 @@ const SpotifyTopBar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowNotificationPopup(false)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-white font-semibold">Notifications</h3>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-white font-semibold text-sm">Notifications</h3>
                 <button
                   onClick={() => setShowNotificationPopup(false)}
-                  className="text-gray-400 hover:text-white"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-300 text-xs">
                 Only admin can check notifications and system alerts.
               </p>
             </motion.div>
@@ -111,26 +111,26 @@ const SpotifyTopBar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowSettingsPopup(false)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-white font-semibold">Settings</h3>
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-white font-semibold text-sm">Settings</h3>
                 <button
                   onClick={() => setShowSettingsPopup(false)}
-                  className="text-gray-400 hover:text-white"
+                  className="text-gray-400 hover:text-white transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
-              <p className="text-gray-300 text-sm">
+              <p className="text-gray-300 text-xs">
                 Only admin can manage application settings and preferences.
               </p>
             </motion.div>
