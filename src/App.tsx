@@ -31,7 +31,7 @@ import BottomNavigation from "./components/BottomNavigation";
 import LoadingScreen from "./components/LoadingScreen";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import PerformanceMonitor from "./components/PerformanceMonitor";
-import { useBrowserHistory } from "./hooks/useBrowserHistory";
+import BrowserHistoryManager from "./components/BrowserHistoryManager";
 import { NavigationProvider } from "./contexts/NavigationContext";
 
 const queryClient = new QueryClient();
@@ -42,9 +42,6 @@ const App = () => {
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
-
-  // Initialize browser history management
-  useBrowserHistory();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -62,6 +59,7 @@ const App = () => {
             {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
             <GoogleAnalytics />
             <PerformanceMonitor />
+            <BrowserHistoryManager />
             <Routes>
               <Route path="/" element={<Home isLoading={isLoading} />} />
               <Route path="/search" element={<Search />} />
