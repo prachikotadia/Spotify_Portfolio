@@ -115,7 +115,7 @@ const Courses = () => {
     {
       id: 9,
       name: 'Science of Programming',
-      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/science-of-programming.png',
       description: 'Studied programming paradigms, logic, and systematic approaches to writing clean, efficient, and reusable code.',
       duration: '3 months',
       level: 'Intermediate',
