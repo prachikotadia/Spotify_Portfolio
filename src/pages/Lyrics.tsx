@@ -220,7 +220,6 @@ const Lyrics = () => {
       `}</style>
       {/* Status Bar */}
       <div className="flex items-center justify-between px-4 py-2 text-white text-sm">
-        <div className="text-white font-medium">11:34</div>
         <div className="flex items-center gap-2">
           <Button 
             variant="ghost" 

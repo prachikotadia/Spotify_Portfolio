@@ -39,7 +39,6 @@ const Experience = () => {
           >
             <ArrowLeft className="w-4 h-4" />
           </Button>
-          <span>9:41</span>
         </div>
         <SpotifyLogo size="sm" />
         <div className="w-6 h-6"></div>
