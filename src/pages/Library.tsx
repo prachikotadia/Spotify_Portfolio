@@ -6,14 +6,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import ProjectCard from '@/components/ProjectCard';
-import { mockProjects, mockCertificates, mockResearchPapers } from '@/data/mockData';
+import { mockProjects, mockCertificates } from '@/data/mockData';
 import type { Project } from '@/data/mockData';
 import SpotifyLogo from '@/components/SpotifyLogo';
 
 const Library = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [activeTab, setActiveTab] = useState<'projects' | 'certificates' | 'research'>('projects');
+  const [activeTab, setActiveTab] = useState<'projects' | 'certificates'>('projects');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [sortBy, setSortBy] = useState('recent');
   const [searchQuery, setSearchQuery] = useState('');
@@ -24,15 +24,14 @@ const Library = () => {
   // Handle URL parameters to set active tab
   useEffect(() => {
     const tab = searchParams.get('tab');
-    if (tab && ['projects', 'certificates', 'research'].includes(tab)) {
-      setActiveTab(tab as 'projects' | 'certificates' | 'research');
+    if (tab && ['projects', 'certificates'].includes(tab)) {
+      setActiveTab(tab as 'projects' | 'certificates');
     }
   }, [searchParams]);
 
   const tabs = [
     { id: 'projects', label: 'Projects', icon: Code },
     { id: 'certificates', label: 'Certificates', icon: Award },
-    { id: 'research', label: 'Research Papers', icon: BookOpen },
   ];
 
   const getCurrentData = () => {
@@ -41,8 +40,6 @@ const Library = () => {
         return mockProjects;
       case 'certificates':
         return mockCertificates;
-      case 'research':
-        return mockResearchPapers;
       default:
         return mockProjects;
     }
@@ -70,29 +67,23 @@ const Library = () => {
       navigate(`/project/${item.id}`);
     } else if (activeTab === 'certificates') {
       navigate(`/certificate/${item.id}`);
-    } else if (activeTab === 'research') {
-      navigate(`/research/${item.id}`);
-    }
   };
 
   const getItemType = (item: any) => {
     if (activeTab === 'projects') return 'Project';
     if (activeTab === 'certificates') return 'Certificate';
-    if (activeTab === 'research') return 'Research Paper';
     return 'Item';
   };
 
   const getItemDescription = (item: any) => {
     if (activeTab === 'projects') return item.description;
     if (activeTab === 'certificates') return item.issuer;
-    if (activeTab === 'research') return item.authors;
     return '';
   };
 
   const getItemTechStack = (item: any) => {
     if (activeTab === 'projects') return item.techStack;
     if (activeTab === 'certificates') return [item.issuer, item.date];
-    if (activeTab === 'research') return [item.journal, item.year];
     return [];
   };
 
@@ -100,7 +91,6 @@ const Library = () => {
     switch (activeTab) {
       case 'projects': return 'My Projects';
       case 'certificates': return 'My Certificates';
-      case 'research': return 'My Research';
       default: return 'My Library';
     }
   };
@@ -109,7 +99,6 @@ const Library = () => {
     switch (activeTab) {
       case 'projects': return 'Software development projects and applications';
       case 'certificates': return 'Professional certifications and achievements';
-      case 'research': return 'Research papers and academic publications';
       default: return 'Your personal collection';
     }
   };
@@ -143,7 +132,6 @@ const Library = () => {
               <div className="w-32 h-32 sm:w-48 sm:h-48 bg-gradient-to-br from-green-500 to-green-700 rounded-lg shadow-2xl flex items-center justify-center flex-shrink-0">
                 {activeTab === 'projects' && <Code className="w-16 h-16 sm:w-24 sm:h-24 text-white" />}
                 {activeTab === 'certificates' && <Award className="w-16 h-16 sm:w-24 sm:h-24 text-white" />}
-                {activeTab === 'research' && <BookOpen className="w-16 h-16 sm:w-24 sm:h-24 text-white" />}
               </div>
               <div className="flex-1 text-center sm:text-left">
                 <p className="text-xs sm:text-sm text-gray-300 mb-2">PLAYLIST</p>
@@ -369,7 +357,7 @@ const Library = () => {
 
       {/* Featured Items - Album Style */}
       <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mt-8 sm:mt-12 mb-20">
-        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Featured {activeTab === 'projects' ? 'Projects' : activeTab === 'certificates' ? 'Certificates' : 'Research'}</h2>
+        <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Featured {activeTab === 'projects' ? 'Projects' : 'Certificates'}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {filteredData.slice(0, 6).map((item, index) => (
             <motion.div
@@ -438,7 +426,6 @@ const Library = () => {
             <div className="w-8 h-8 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-green-700 rounded flex items-center justify-center">
               {activeTab === 'projects' && <Code className="w-4 h-4 sm:w-6 sm:h-6 text-white" />}
               {activeTab === 'certificates' && <Award className="w-4 h-4 sm:w-6 sm:h-6 text-white" />}
-              {activeTab === 'research' && <BookOpen className="w-4 h-4 sm:w-6 sm:h-6 text-white" />}
             </div>
             <div className="hidden sm:block">
               <p className="text-white font-medium text-sm">{getTabTitle()}</p>

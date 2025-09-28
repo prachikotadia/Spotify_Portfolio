@@ -23,7 +23,6 @@ import ProjectsAI from "./pages/ProjectsAI";
 import ProjectsFullStack from "./pages/ProjectsFullStack";
 import Certificates from "./pages/Certificates";
 import CertificateDetail from "./pages/CertificateDetail";
-import ResearchDetail from "./pages/ResearchDetail";
 import EducationDetail from "./pages/EducationDetail";
 import ExperienceDetail from "./pages/ExperienceDetail";
 import Courses from "./pages/Courses";
@@ -68,7 +67,6 @@ const App = () => {
               <Route path="/projects/fullstack" element={<ProjectsFullStack />} />
               <Route path="/certificates" element={<Certificates />} />
               <Route path="/certificate/:id" element={<CertificateDetail />} />
-              <Route path="/research/:id" element={<ResearchDetail />} />
               <Route path="/education/:id" element={<EducationDetail />} />
               <Route path="/experience/:id" element={<ExperienceDetail />} />
               <Route path="/courses" element={<Courses />} />
