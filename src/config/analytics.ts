@@ -1,7 +1,7 @@
 // Analytics Configuration
 export const ANALYTICS_CONFIG = {
   // Google Analytics
-  GA_TRACKING_ID: (typeof process !== 'undefined' && process.env?.REACT_APP_GA_TRACKING_ID) || 'G-XXXXXXXXXX',
+  GA_TRACKING_ID: (typeof process !== 'undefined' && process.env?.REACT_APP_GA_TRACKING_ID) || 'G-FBLPRHSMDL',
   
   // Sentry
   SENTRY_DSN: (typeof process !== 'undefined' && process.env?.REACT_APP_SENTRY_DSN) || 'YOUR_SENTRY_DSN_HERE',
