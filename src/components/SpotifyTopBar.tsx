@@ -17,8 +17,8 @@ const SpotifyTopBar = () => {
       className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800"
     >
       <div className="flex items-center justify-between px-2 sm:px-4 py-3">
-        {/* Navigation Arrows - Hidden on mobile */}
-        <div className="hidden sm:flex items-center gap-2">
+        {/* Navigation Arrows */}
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
@@ -35,20 +35,6 @@ const SpotifyTopBar = () => {
           >
             <ChevronRight className="w-5 h-5" />
           </Button>
-        </div>
-
-        {/* Search Bar */}
-        <div className="flex-1 max-w-md mx-2 sm:mx-4">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="What do you want to play?"
-              className="w-full bg-white text-black placeholder-gray-500 px-3 sm:px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
-            />
-            <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <SearchIcon className="w-4 h-4 text-gray-500" />
-            </div>
-          </div>
         </div>
 
         {/* User Actions */}
@@ -155,12 +141,6 @@ const SpotifyTopBar = () => {
   );
 };
 
-// Search Icon Component
-const SearchIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
-    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-  </svg>
-);
 
 // ChevronDown Icon Component
 const ChevronDown = () => (
