@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Play, Pause, ArrowLeft, Heart, SkipBack, SkipForward, Minus, Volume2, Upload, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 const Lyrics = () => {
   const navigate = useNavigate();
@@ -11,10 +11,106 @@ const Lyrics = () => {
   const [totalTime] = useState(450); // 7:30 in seconds
   const [readProgress, setReadProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [isManualScrolling, setIsManualScrolling] = useState(false);
+  const [userScrollPosition, setUserScrollPosition] = useState(0);
   const lyricsRef = useRef<HTMLDivElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
   const pauseTimeRef = useRef<number>(0);
+  const autoScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastScrollTimeRef = useRef<number>(0);
+
+  // Lyrics data with timing
+  const lyricsData = [
+    { text: "I am a passionate Software Engineer", progress: 0, duration: 3, isBold: true },
+    { text: "who loves building creative and practical solutions", progress: 3, duration: 4, isBold: true },
+    { text: "that make an impact.", progress: 7, duration: 2, isBold: true },
+    { text: "My journey started with curiosity", progress: 9, duration: 3, isBold: true },
+    { text: "about how technology shapes everyday life,", progress: 12, duration: 4, isBold: true },
+    { text: "and it quickly grew into a strong focus", progress: 16, duration: 4, isBold: true },
+    { text: "on software systems, web apps, and scalable solutions.", progress: 20, duration: 5, isBold: true },
+    { text: "I enjoy solving problems", progress: 25, duration: 3, isBold: false },
+    { text: "with a balance of logic and creativity,", progress: 28, duration: 4, isBold: false },
+    { text: "always striving for clean code and thoughtful design.", progress: 32, duration: 5, isBold: false },
+    { text: "Along the way, I have worked on projects", progress: 37, duration: 4, isBold: false },
+    { text: "that challenged me to think deeper", progress: 41, duration: 3, isBold: false },
+    { text: "about performance, usability, and user experience.", progress: 44, duration: 5, isBold: false },
+    { text: "I believe technology should feel", progress: 49, duration: 3, isBold: false },
+    { text: "seamless and intuitive,", progress: 52, duration: 3, isBold: false },
+    { text: "and that's the standard I aim for in my work.", progress: 55, duration: 5, isBold: false },
+    { text: "Outside of coding, I like exploring new ideas,", progress: 60, duration: 4, isBold: false },
+    { text: "learning continuously,", progress: 64, duration: 2, isBold: false },
+    { text: "and keeping up with the latest in tech.", progress: 66, duration: 4, isBold: false },
+    { text: "What excites me most is the opportunity", progress: 70, duration: 4, isBold: false },
+    { text: "to keep improving, collaborating,", progress: 74, duration: 3, isBold: false },
+    { text: "and pushing the boundaries of what software can do.", progress: 77, duration: 5, isBold: false }
+  ];
+
+  // Smooth auto-scroll to center current line
+  const scrollToCurrentLine = useCallback((lineIndex: number, smooth = true) => {
+    if (!lyricsRef.current) return;
+    
+    const container = lyricsRef.current;
+    const lineElements = container.querySelectorAll('[data-line-index]');
+    const targetElement = lineElements[lineIndex] as HTMLElement;
+    
+    if (targetElement) {
+      const containerHeight = container.clientHeight;
+      const lineTop = targetElement.offsetTop;
+      const lineHeight = targetElement.offsetHeight;
+      const targetScrollTop = lineTop - (containerHeight / 2) + (lineHeight / 2);
+      
+      if (smooth) {
+        container.scrollTo({
+          top: targetScrollTop,
+          behavior: 'smooth'
+        });
+      } else {
+        container.scrollTop = targetScrollTop;
+      }
+    }
+  }, []);
+
+  // Detect manual scrolling
+  const handleScroll = useCallback(() => {
+    if (!lyricsRef.current) return;
+    
+    const now = Date.now();
+    lastScrollTimeRef.current = now;
+    
+    // If user is scrolling manually, pause auto-scroll
+    if (isPlaying && !isPaused) {
+      setIsManualScrolling(true);
+      
+      // Clear any pending auto-scroll
+      if (autoScrollTimeoutRef.current) {
+        clearTimeout(autoScrollTimeoutRef.current);
+      }
+      
+      // Resume auto-scroll after user stops scrolling for 2 seconds
+      autoScrollTimeoutRef.current = setTimeout(() => {
+        setIsManualScrolling(false);
+        scrollToCurrentLine(currentLineIndex, true);
+      }, 2000);
+    }
+  }, [isPlaying, isPaused, currentLineIndex, scrollToCurrentLine]);
+
+  // Update current line based on time
+  const updateCurrentLine = useCallback((time: number) => {
+    const currentLine = lyricsData.findIndex(line => 
+      time >= line.progress && time < line.progress + line.duration
+    );
+    
+    if (currentLine !== -1 && currentLine !== currentLineIndex) {
+      setCurrentLineIndex(currentLine);
+      
+      // Auto-scroll to current line if not manually scrolling
+      if (!isManualScrolling) {
+        scrollToCurrentLine(currentLine, true);
+      }
+    }
+  }, [currentLineIndex, isManualScrolling, scrollToCurrentLine]);
 
   // Text-to-speech functionality
   const startSpeech = (fromTime = 0) => {
@@ -78,7 +174,7 @@ const Lyrics = () => {
     }
   };
 
-  // Auto-scroll functionality with smooth progress
+  // Main playback and sync functionality
   useEffect(() => {
     if (isPlaying && !isPaused) {
       if (currentTime === 0) {
@@ -86,18 +182,22 @@ const Lyrics = () => {
       }
       intervalRef.current = setInterval(() => {
         setCurrentTime(prev => {
-          const newTime = prev + 1;
+          const newTime = prev + 0.1; // Update every 100ms for smoother sync
           const progress = (newTime / totalTime) * 100;
           setReadProgress(progress);
+          
+          // Update current line based on time
+          updateCurrentLine(newTime);
           
           if (newTime >= totalTime) {
             setIsPlaying(false);
             setReadProgress(100);
+            setCurrentLineIndex(lyricsData.length - 1);
             return totalTime;
           }
           return newTime;
         });
-      }, 1000); // Update every 1000ms for smoother transitions
+      }, 100); // Update every 100ms for smooth sync
     } else if (!isPlaying) {
       stopSpeech();
       if (intervalRef.current) {
@@ -114,7 +214,16 @@ const Lyrics = () => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPlaying, isPaused, currentTime, totalTime]);
+  }, [isPlaying, isPaused, currentTime, totalTime, updateCurrentLine]);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const container = lyricsRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll, { passive: true });
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, [handleScroll]);
 
   // Auto-scroll lyrics with smooth animation
   useEffect(() => {
@@ -169,6 +278,10 @@ const Lyrics = () => {
       if (isPaused) {
         resumeSpeech();
         setIsPaused(false);
+        // Resume auto-scroll if not manually scrolling
+        if (!isManualScrolling) {
+          scrollToCurrentLine(currentLineIndex, true);
+        }
       } else {
         pauseSpeech();
         setIsPaused(true);
@@ -176,15 +289,24 @@ const Lyrics = () => {
     } else {
       setIsPlaying(true);
       setIsPaused(false);
+      setCurrentLineIndex(0);
+      setIsManualScrolling(false);
+      // Scroll to beginning when starting
+      setTimeout(() => scrollToCurrentLine(0, true), 100);
     }
   };
 
   const handleSkipBack = () => {
     stopSpeech();
-    const newTime = Math.max(0, currentTime - 30);
+    const newTime = Math.max(0, currentTime - 10);
     setCurrentTime(newTime);
     setReadProgress((newTime / totalTime) * 100);
     setIsPaused(false);
+    setIsManualScrolling(false);
+    
+    // Update current line based on new time
+    updateCurrentLine(newTime);
+    
     if (isPlaying) {
       // Restart speech from new position
       setTimeout(() => {
@@ -195,10 +317,15 @@ const Lyrics = () => {
 
   const handleSkipForward = () => {
     stopSpeech();
-    const newTime = Math.min(totalTime, currentTime + 30);
+    const newTime = Math.min(totalTime, currentTime + 10);
     setCurrentTime(newTime);
     setReadProgress((newTime / totalTime) * 100);
     setIsPaused(false);
+    setIsManualScrolling(false);
+    
+    // Update current line based on new time
+    updateCurrentLine(newTime);
+    
     if (isPlaying) {
       // Restart speech from new position
       setTimeout(() => {
@@ -269,135 +396,34 @@ const Lyrics = () => {
           className="max-h-[65vh] overflow-y-auto scrollbar-hide"
         >
           <div className="text-center space-y-6">
-            {[
-              { 
-                text: "I am a passionate Software Engineer", 
-                progress: 0,
-                isBold: true
-              },
-              { 
-                text: "who loves building creative and practical solutions", 
-                progress: 5,
-                isBold: true
-              },
-              { 
-                text: "that make an impact.", 
-                progress: 10,
-                isBold: true
-              },
-              { 
-                text: "My journey started with curiosity", 
-                progress: 15,
-                isBold: true
-              },
-              { 
-                text: "about how technology shapes everyday life,", 
-                progress: 20,
-                isBold: true
-              },
-              { 
-                text: "and it quickly grew into a strong focus", 
-                progress: 25,
-                isBold: true
-              },
-              { 
-                text: "on software systems, web apps, and scalable solutions.", 
-                progress: 30,
-                isBold: true
-              },
-              { 
-                text: "I enjoy solving problems", 
-                progress: 35,
-                isBold: false
-              },
-              { 
-                text: "with a balance of logic and creativity,", 
-                progress: 40,
-                isBold: false
-              },
-              { 
-                text: "always striving for clean code and thoughtful design.", 
-                progress: 45,
-                isBold: false
-              },
-              { 
-                text: "Along the way, I have worked on projects", 
-                progress: 50,
-                isBold: false
-              },
-              { 
-                text: "that challenged me to think deeper", 
-                progress: 55,
-                isBold: false
-              },
-              { 
-                text: "about performance, usability, and user experience.", 
-                progress: 60,
-                isBold: false
-              },
-              { 
-                text: "I believe technology should feel", 
-                progress: 65,
-                isBold: false
-              },
-              { 
-                text: "seamless and intuitive,", 
-                progress: 70,
-                isBold: false
-              },
-              { 
-                text: "and that's the standard I aim for in my work.", 
-                progress: 75,
-                isBold: false
-              },
-              { 
-                text: "Outside of coding, I like exploring new ideas,", 
-                progress: 80,
-                isBold: false
-              },
-              { 
-                text: "learning continuously,", 
-                progress: 85,
-                isBold: false
-              },
-              { 
-                text: "and keeping up with the latest in tech.", 
-                progress: 90,
-                isBold: false
-              },
-              { 
-                text: "What excites me most is the opportunity", 
-                progress: 95,
-                isBold: false
-              },
-              { 
-                text: "to keep improving, collaborating,", 
-                progress: 100,
-                isBold: false
-              },
-              { 
-                text: "and pushing the boundaries of what software can do.", 
-                progress: 105,
-                isBold: false
-              }
-            ].map((line, index) => {
-              const isRead = readProgress >= line.progress;
-              const isCurrent = readProgress >= line.progress && readProgress < (line.progress + 5);
+            {lyricsData.map((line, index) => {
+              const isRead = currentLineIndex > index;
+              const isCurrent = currentLineIndex === index;
+              const isUpcoming = currentLineIndex < index;
+              
+              // Text color logic
+              let textColor = 'text-white/40'; // Grey for upcoming
+              if (isRead) textColor = 'text-white'; // White for read
+              if (isCurrent) textColor = 'text-white'; // White bold for current
               
               return (
                 <motion.div 
                   key={index}
-                  className={`text-2xl leading-relaxed transition-all duration-300 ${
-                    isRead ? 'text-white' : 'text-white/40'
-                  } ${line.isBold ? 'font-bold' : 'font-normal'}`}
+                  data-line-index={index}
+                  className={`text-2xl leading-relaxed transition-all duration-500 ease-in-out ${textColor} ${
+                    line.isBold ? 'font-bold' : 'font-normal'
+                  } ${isCurrent ? 'font-bold' : ''}`}
                   animate={{
-                    opacity: isRead ? 1 : 0.4,
-                    scale: isCurrent ? 1.02 : 1,
-                    y: isCurrent ? -2 : 0
+                    opacity: isCurrent ? 1 : isRead ? 0.8 : 0.4,
+                    scale: isCurrent ? 1.05 : 1,
+                    y: isCurrent ? -3 : 0
                   }}
                   transition={{
-                    duration: 0.3,
+                    duration: 0.5,
                     ease: "easeInOut"
+                  }}
+                  style={{
+                    textShadow: isCurrent ? '0 0 20px rgba(255, 255, 255, 0.3)' : 'none'
                   }}
                 >
                   <p className="mb-1">{line.text}</p>
