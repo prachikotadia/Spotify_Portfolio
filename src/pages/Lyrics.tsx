@@ -218,169 +218,199 @@ const Lyrics = () => {
           display: none;
         }
       `}</style>
-      {/* Status Bar */}
-      <div className="flex items-center justify-between px-4 py-2 text-white text-sm">
+      
+      {/* Top Navigation Bar */}
+      <div className="flex items-center justify-between px-6 py-4 text-white/70 text-sm">
         <div className="flex items-center gap-2">
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white hover:bg-white/20 rounded-full"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-8 h-8"
             onClick={() => navigate('/')}
           >
-            <ArrowLeft className="w-5 h-5" />
+            <ArrowLeft className="w-4 h-4" />
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white hover:bg-white/20 rounded-full"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-8 h-8"
             onClick={() => navigate('/')}
           >
-            <ChevronDown className="w-5 h-5" />
+            <ChevronDown className="w-4 h-4" />
           </Button>
+        </div>
+        <div className="flex items-center gap-4">
+          <Button 
+            variant="ghost" 
+            className="text-white/70 hover:text-white hover:bg-white/10 px-4 py-2 rounded-full text-sm"
+          >
+            Upgrade
+          </Button>
+          <div className="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1">
+            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+              <span className="text-black text-xs font-bold">P</span>
+            </div>
+            <span className="text-white/70 text-sm">Prachi</span>
+            <ChevronDown className="w-4 h-4" />
+          </div>
         </div>
       </div>
 
       {/* Song Header */}
-      <div className="px-4 py-2">
-        <h1 className="text-white font-semibold text-lg">About Me</h1>
-        <p className="text-white/80 text-sm">Prachi Kotadia</p>
+      <div className="px-6 py-4">
+        <h1 className="text-white font-bold text-2xl mb-2">About Me</h1>
+        <p className="text-white/80 text-lg">Prachi Kotadia</p>
       </div>
 
-      {/* Lyrics Content */}
-      <div className="px-4 py-6 pb-32">
+      {/* Lyrics Content - Spotify Style */}
+      <div className="px-6 py-8 pb-40">
         <div 
           ref={lyricsRef}
-          className="space-y-6 max-h-[60vh] overflow-y-auto scrollbar-hide"
+          className="max-h-[65vh] overflow-y-auto scrollbar-hide"
         >
-          {[
-            { 
-              text: "I am a passionate Software Engineer who loves building creative and practical solutions that make an impact. My journey started with curiosity about how technology shapes everyday life, and it quickly grew into a strong focus on software systems, web apps, and scalable solutions.", 
-              progress: 0 
-            },
-            { 
-              text: "I enjoy solving problems with a balance of logic and creativity, always striving for clean code and thoughtful design. Along the way, I have worked on projects that challenged me to think deeper about performance, usability, and user experience.", 
-              progress: 25 
-            },
-            { 
-              text: "I believe technology should feel seamless and intuitive, and that's the standard I aim for in my work. Outside of coding, I like exploring new ideas, learning continuously, and keeping up with the latest in tech.", 
-              progress: 50 
-            },
-            { 
-              text: "What excites me most is the opportunity to keep improving, collaborating, and pushing the boundaries of what software can do.", 
-              progress: 75 
-            }
-          ].map((paragraph, index) => {
-            const isRead = readProgress >= paragraph.progress;
-            const isCurrent = readProgress >= paragraph.progress && readProgress < (paragraph.progress + 25);
-            const opacity = isRead ? 1 : 0.4;
-            const scale = isCurrent ? 1.01 : 1;
-            
-            return (
-              <motion.div 
-                key={index}
-                className={`text-lg leading-relaxed transition-all duration-500 ease-in-out ${
-                  isRead ? 'text-white' : 'text-gray-400'
-                }`}
-                style={{
-                  opacity,
-                  transform: `scale(${scale})`,
-                  textShadow: isRead ? '0 0 8px rgba(255, 255, 255, 0.2)' : 'none'
-                }}
-                animate={{
-                  opacity: isRead ? 1 : 0.4,
-                  scale: isCurrent ? 1.01 : 1,
-                  y: isCurrent ? -1 : 0
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "easeInOut"
-                }}
-              >
-                <p className="mb-4">{paragraph.text}</p>
-              </motion.div>
-            );
-          })}
+          <div className="space-y-8">
+            {[
+              { 
+                text: "I am a passionate Software Engineer who loves building creative and practical solutions that make an impact.", 
+                progress: 0,
+                isBold: true
+              },
+              { 
+                text: "My journey started with curiosity about how technology shapes everyday life, and it quickly grew into a strong focus on software systems, web apps, and scalable solutions.", 
+                progress: 10,
+                isBold: true
+              },
+              { 
+                text: "I enjoy solving problems with a balance of logic and creativity, always striving for clean code and thoughtful design.", 
+                progress: 20,
+                isBold: true
+              },
+              { 
+                text: "Along the way, I have worked on projects that challenged me to think deeper about performance, usability, and user experience.", 
+                progress: 30,
+                isBold: true
+              },
+              { 
+                text: "I believe technology should feel seamless and intuitive, and that's the standard I aim for in my work.", 
+                progress: 40,
+                isBold: false
+              },
+              { 
+                text: "Outside of coding, I like exploring new ideas, learning continuously, and keeping up with the latest in tech.", 
+                progress: 50,
+                isBold: false
+              },
+              { 
+                text: "What excites me most is the opportunity to keep improving, collaborating, and pushing the boundaries of what software can do.", 
+                progress: 60,
+                isBold: false
+              }
+            ].map((line, index) => {
+              const isRead = readProgress >= line.progress;
+              const isCurrent = readProgress >= line.progress && readProgress < (line.progress + 15);
+              
+              return (
+                <motion.div 
+                  key={index}
+                  className={`text-2xl leading-relaxed transition-all duration-300 ${
+                    isRead ? 'text-white' : 'text-white/40'
+                  } ${line.isBold ? 'font-bold' : 'font-normal'}`}
+                  animate={{
+                    opacity: isRead ? 1 : 0.4,
+                    scale: isCurrent ? 1.02 : 1,
+                    y: isCurrent ? -2 : 0
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <p className="mb-2">{line.text}</p>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      {/* Media Player Interface */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#1E3A8A] px-4 py-4">
+      {/* Media Player Interface - Spotify Style */}
+      <div className="fixed bottom-0 left-0 right-0 bg-[#1E3A8A] px-6 py-6">
         {/* Progress Bar */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className="text-white text-sm">{formatTime(currentTime)}</span>
-          <div className="flex-1 h-1 bg-white/30 rounded-full">
+        <div className="flex items-center gap-4 mb-8">
+          <span className="text-white text-sm font-medium">{formatTime(currentTime)}</span>
+          <div className="flex-1 h-1 bg-white/20 rounded-full relative">
             <div 
               className="h-1 bg-white rounded-full relative"
               style={{ width: `${(currentTime / totalTime) * 100}%` }}
             >
-              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full"></div>
+              <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg"></div>
             </div>
           </div>
-          <span className="text-white text-sm">-{formatTime(totalTime - currentTime)}</span>
+          <span className="text-white text-sm font-medium">{formatTime(totalTime)}</span>
         </div>
 
         {/* Playback Controls */}
-        <div className="flex items-center justify-center gap-8 mb-6">
+        <div className="flex items-center justify-center gap-12 mb-8">
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white hover:bg-white/20 rounded-full"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
           >
-            <Heart className="w-6 h-6" />
+            <Heart className="w-5 h-5" />
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white hover:bg-white/20 rounded-full"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
             onClick={handleSkipBack}
           >
-            <SkipBack className="w-6 h-6" />
+            <SkipBack className="w-5 h-5" />
           </Button>
           <Button 
-            className="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+            className="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
             onClick={handlePlayPause}
           >
             {isPlaying ? (
-              <Pause className="w-8 h-8 text-black" />
+              <Pause className="w-7 h-7 text-black" />
             ) : (
-              <Play className="w-8 h-8 text-black ml-1" />
+              <Play className="w-7 h-7 text-black ml-1" />
             )}
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white hover:bg-white/20 rounded-full"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
             onClick={handleSkipForward}
           >
-            <SkipForward className="w-6 h-6" />
+            <SkipForward className="w-5 h-5" />
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white hover:bg-white/20 rounded-full"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
           >
-            <Minus className="w-6 h-6" />
+            <Minus className="w-5 h-5" />
           </Button>
         </div>
 
         {/* Device and Options */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <Volume2 className="w-5 h-5 text-green-500" />
             <span className="text-green-500 text-sm font-medium">LIVING ROOM</span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-white hover:bg-white/20 rounded-full"
+              className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
             >
               <Upload className="w-5 h-5" />
             </Button>
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-white hover:bg-white/20 rounded-full"
+              className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
             >
               <List className="w-5 h-5" />
             </Button>
