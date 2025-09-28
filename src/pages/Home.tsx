@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { useAnalytics } from '@/hooks/useAnalytics';
 import { Play, Shuffle, Clock, Bell, Heart, Star, TrendingUp, Award, MessageSquare, Plus, MoreHorizontal, Briefcase, Code, GraduationCap, BookOpen } from 'lucide-react';
 import SpotifyLogo from '@/components/SpotifyLogo';
 import SpotifySidebar from '@/components/SpotifySidebar';
@@ -67,6 +68,14 @@ interface HomeProps {
 const Home = ({ isLoading = false }: HomeProps) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const navigate = useNavigate();
+  const analytics = useAnalytics();
+
+  // Track page view
+  useEffect(() => {
+    if (!isLoading) {
+      analytics.trackPageView('Home');
+    }
+  }, [isLoading, analytics]);
 
   const categories = [
     { name: 'Frontend', gradient: 'from-purple-500 to-pink-500' },
@@ -142,7 +151,10 @@ const Home = ({ isLoading = false }: HomeProps) => {
             Recently played
           </h2>
           <div className="spotify-card hover:spotify-glass-enhanced transition-all duration-300 cursor-pointer group relative overflow-hidden"
-               onClick={() => navigate('/lyrics')}>
+               onClick={() => {
+                 analytics.trackNavClick('Lyrics', 'Home');
+                 navigate('/lyrics');
+               }}>
             {/* Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-green-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="relative flex items-center gap-4">
@@ -215,7 +227,10 @@ const Home = ({ isLoading = false }: HomeProps) => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => navigate('/search')}
+              onClick={() => {
+                analytics.trackButtonClick('Search', 'Home');
+                navigate('/search');
+              }}
               className="w-10 h-10 bg-gray-800/50 border border-gray-700 rounded-full hover:bg-gray-700/50 text-white hover:text-white transition-all duration-200"
             >
               <SearchIcon />
@@ -294,7 +309,12 @@ const Home = ({ isLoading = false }: HomeProps) => {
               animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + index * 0.05 }}
                 className={`bg-gradient-to-br ${category.gradient} rounded-lg p-4 h-24 relative overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group`}
-                onClick={() => category.link && navigate(category.link)}
+                onClick={() => {
+                  if (category.link) {
+                    analytics.trackNavClick(category.name, 'Home');
+                    navigate(category.link);
+                  }
+                }}
             >
                 <div className="relative z-10 h-full flex flex-col justify-between">
                   <div>
@@ -463,7 +483,10 @@ const Home = ({ isLoading = false }: HomeProps) => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
                 className="flex-shrink-0 w-32 bg-[#181818] rounded-lg p-3 hover:bg-[#282828] transition-all duration-300 cursor-pointer group"
-                onClick={() => navigate(`/project/${project.id}`)}
+                onClick={() => {
+                  analytics.trackProjectView(project.title, 'Featured Project');
+                  navigate(`/project/${project.id}`);
+                }}
               >
                 <div className="relative mb-3">
                   <div className="w-full aspect-square bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center overflow-hidden">
