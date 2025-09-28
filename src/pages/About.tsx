@@ -1,10 +1,17 @@
 import { motion } from 'framer-motion';
-import { Download, Mail, MapPin, Calendar, Code, Heart } from 'lucide-react';
+import { Download, Mail, MapPin, Calendar, Code, Heart, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useNavigate } from 'react-router-dom';
+import SpotifyLogo from '@/components/SpotifyLogo';
+import SpotifySidebar from '@/components/SpotifySidebar';
+import SpotifyTopBar from '@/components/SpotifyTopBar';
+import SpotifyPlayer from '@/components/SpotifyPlayer';
 
 const About = () => {
+  const navigate = useNavigate();
+  
   const personalInfo = {
     name: 'Prachi Kotadia',
     title: 'Software Engineer',
@@ -37,9 +44,35 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-24">
-      {/* Hero Section */}
-      <div className="hero-gradient pt-12 pb-8 px-6">
+    <div className="min-h-screen bg-black lg:flex">
+      {/* Spotify Sidebar - Desktop Only */}
+      <SpotifySidebar />
+      
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col">
+        {/* Spotify Top Bar */}
+        <SpotifyTopBar />
+        
+        {/* Status Bar */}
+        <div className="flex items-center justify-between px-4 py-2 text-white/60 text-sm">
+          <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate('/')}
+              className="w-6 h-6 text-white/60 hover:text-white hover:bg-white/10"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </Button>
+          </div>
+          <SpotifyLogo size="sm" />
+          <div className="w-6 h-6"></div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 px-6 py-8 pb-32">
+          {/* Hero Section */}
+          <div className="hero-gradient pt-12 pb-8 px-6 -mx-6 rounded-2xl mb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,9 +104,7 @@ const About = () => {
             </Button>
           </div>
         </motion.div>
-      </div>
-
-      <div className="px-6">
+          </div>
         {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -172,6 +203,10 @@ const About = () => {
             </CardContent>
           </Card>
         </motion.div>
+        </div>
+        
+        {/* Spotify Player */}
+        <SpotifyPlayer />
       </div>
     </div>
   );
