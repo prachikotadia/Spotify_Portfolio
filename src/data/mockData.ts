@@ -776,7 +776,7 @@ export const mockCertificates = [
     title: 'Amazon DynamoDB Service Introduction',
     issuer: 'Amazon Web Services',
     date: '2023',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
+    image: '/assets/aws-logo.png',
     skills: ['NoSQL', 'DynamoDB', 'AWS Cloud', 'Key-Value Databases'],
     link: '',
     description: 'Introduction to Amazon DynamoDB NoSQL database service.',
