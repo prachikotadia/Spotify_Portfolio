@@ -31,6 +31,8 @@ import BottomNavigation from "./components/BottomNavigation";
 import LoadingScreen from "./components/LoadingScreen";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import PerformanceMonitor from "./components/PerformanceMonitor";
+import { useBrowserHistory } from "./hooks/useBrowserHistory";
+import { NavigationProvider } from "./contexts/NavigationContext";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,9 @@ const App = () => {
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
+
+  // Initialize browser history management
+  useBrowserHistory();
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -52,6 +57,7 @@ const App = () => {
             v7_relativeSplatPath: true
           }}
         >
+          <NavigationProvider>
           <div className="min-h-screen bg-background">
             {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
             <GoogleAnalytics />
@@ -84,6 +90,7 @@ const App = () => {
             </Routes>
             <BottomNavigation />
           </div>
+          </NavigationProvider>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

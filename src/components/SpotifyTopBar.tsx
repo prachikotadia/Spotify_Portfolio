@@ -23,7 +23,7 @@ const SpotifyTopBar = () => {
             variant="ghost"
             size="icon"
             className="w-8 h-8 bg-black/70 hover:bg-gray-800 rounded-full text-gray-400 hover:text-white"
-            onClick={() => window.history.back()}
+            onClick={() => navigate(-1)}
           >
             <ChevronLeft className="w-5 h-5" />
           </Button>
@@ -31,7 +31,7 @@ const SpotifyTopBar = () => {
             variant="ghost"
             size="icon"
             className="w-8 h-8 bg-black/70 hover:bg-gray-800 rounded-full text-gray-400 hover:text-white"
-            onClick={() => window.history.forward()}
+            onClick={() => navigate(1)}
           >
             <ChevronRight className="w-5 h-5" />
           </Button>
