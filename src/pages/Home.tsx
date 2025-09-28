@@ -99,7 +99,7 @@ const Home = () => {
               <div className="relative w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl rounded-2xl overflow-hidden shadow-2xl spotify-glass-enhanced">
                 <img
                   src="/assets/Add_a_subheading__1_-removebg-preview-removebg-preview.png"
-                  alt="Prachi Kotadia - Full Stack Developer"
+                  alt="Prachi Kotadia - Software Engineer"
                   className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 

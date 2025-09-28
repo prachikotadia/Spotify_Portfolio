@@ -324,7 +324,12 @@ const Skills = () => {
       </div>
 
       {/* Main Content - Horizontal Skill Carousel */}
-      <div className="relative h-[calc(100vh-300px)] sm:h-[calc(100vh-350px)] flex flex-col items-center justify-center overflow-hidden px-2 sm:px-8">
+      <div 
+        className="relative h-[calc(100vh-300px)] sm:h-[calc(100vh-350px)] flex flex-col items-center justify-center overflow-hidden px-2 sm:px-8"
+        role="region"
+        aria-label="Skills carousel"
+        aria-live="polite"
+      >
         {/* Background gradient effects */}
         <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-transparent to-green-500/5 pointer-events-none" />
         
@@ -350,6 +355,7 @@ const Skills = () => {
           className="absolute left-2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/40 transition-all duration-300 border border-white/20"
           whileHover={{ scale: 1.1, rotate: -5 }}
           whileTap={{ scale: 0.9 }}
+          aria-label="Previous skill category"
         >
           <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </motion.button>
@@ -359,6 +365,7 @@ const Skills = () => {
           className="absolute right-2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/40 transition-all duration-300 border border-white/20"
           whileHover={{ scale: 1.1, rotate: 5 }}
           whileTap={{ scale: 0.9 }}
+          aria-label="Next skill category"
         >
           <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </motion.button>

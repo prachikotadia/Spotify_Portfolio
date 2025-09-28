@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 const About = () => {
   const personalInfo = {
     name: 'Your Name',
-    title: 'Full Stack Developer',
+    title: 'Software Engineer',
     location: 'San Francisco, CA',
     email: 'your.email@example.com',
     experience: '5+ years',
