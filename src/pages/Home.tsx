@@ -335,12 +335,12 @@ const Home = () => {
               },
               {
                 name: 'Advanced Database Organization',
-                image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
+                image: '/assets/advanced-database.png',
                 description: 'Focused on indexing strategies and query optimization'
               },
               {
                 name: 'Software Project Management',
-                image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
+                image: '/assets/software-project-management.png',
                 description: 'Studied Agile and Waterfall methodologies'
               },
               {
@@ -350,7 +350,7 @@ const Home = () => {
               },
               {
                 name: 'Computer Networks',
-                image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
+                image: '/assets/computer-networks.png',
                 description: 'Explored OSI and TCP/IP models, data transmission'
               }
             ].map((course, index) => (

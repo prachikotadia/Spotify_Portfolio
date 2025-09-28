@@ -19,7 +19,7 @@ const Courses = () => {
     {
       id: 1,
       name: 'Data Structures & Algorithms',
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/data-structures-algorithms.png',
       description: 'Mastered arrays, trees, graphs, and sorting/searching algorithms. Built problem-solving skills essential for efficient coding, optimization, and competitive programming.',
       duration: '4 months',
       level: 'Advanced',
@@ -31,7 +31,7 @@ const Courses = () => {
     {
       id: 2,
       name: 'Mobile Application Development',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
       description: 'Explored tools, frameworks, and design principles for developing mobile applications. Built intuitive, responsive, and cross-platform apps with real-world use cases.',
       duration: '6 months',
       level: 'Intermediate',
@@ -43,7 +43,7 @@ const Courses = () => {
     {
       id: 3,
       name: 'Advanced Database Organization',
-      image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/advanced-database.png',
       description: 'Focused on indexing strategies, query optimization, and data modeling. Learned advanced techniques for efficient storage and retrieval of large datasets.',
       duration: '3 months',
       level: 'Advanced',
@@ -55,7 +55,7 @@ const Courses = () => {
     {
       id: 4,
       name: 'Software Project Management',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/software-project-management.png',
       description: 'Studied methodologies like Agile and Waterfall. Gained knowledge of project scheduling, resource allocation, and effective team collaboration to deliver successful projects.',
       duration: '2 months',
       level: 'Beginner',
@@ -67,7 +67,7 @@ const Courses = () => {
     {
       id: 5,
       name: 'Big Data Technology',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
       description: 'Worked with distributed systems and big data frameworks to process large-scale datasets. Covered topics like real-time data pipelines, parallel computation, and analytics.',
       duration: '5 months',
       level: 'Advanced',
@@ -79,7 +79,7 @@ const Courses = () => {
     {
       id: 6,
       name: 'Computer Networks',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/computer-networks.png',
       description: 'Explored OSI and TCP/IP models, data transmission, and routing protocols. Understood network security, reliability, and real-world communication systems.',
       duration: '4 months',
       level: 'Intermediate',
