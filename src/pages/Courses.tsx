@@ -103,7 +103,7 @@ const Courses = () => {
     {
       id: 8,
       name: 'Web Application Development',
-      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/web-application-development.png',
       description: 'Designed and built modern, full-stack web applications with frontend and backend integration. Gained hands-on skills in authentication, APIs, and responsive UI.',
       duration: '5 months',
       level: 'Intermediate',
