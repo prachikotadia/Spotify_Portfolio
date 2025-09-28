@@ -67,7 +67,7 @@ const Courses = () => {
     {
       id: 5,
       name: 'Big Data Technology',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
+      image: '/assets/big-data-technology.png',
       description: 'Worked with distributed systems and big data frameworks to process large-scale datasets. Covered topics like real-time data pipelines, parallel computation, and analytics.',
       duration: '5 months',
       level: 'Advanced',
@@ -151,7 +151,7 @@ const Courses = () => {
     {
       id: 12,
       name: 'Embedded Systems Design',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/embedded-systems.png',
       description: 'Covered microcontroller architecture, peripherals, and interfacing. Built hands-on projects with ARM-based and Arduino platforms.',
       duration: '4 months',
       level: 'Advanced',

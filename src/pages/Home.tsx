@@ -345,7 +345,7 @@ const Home = () => {
               },
               {
                 name: 'Big Data Technology',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
+                image: '/assets/big-data-technology.png',
                 description: 'Worked with distributed systems and big data frameworks'
               },
               {
