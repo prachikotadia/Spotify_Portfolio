@@ -139,7 +139,23 @@ const Courses = () => {
       rating: 4.8,
       students: 700,
       category: 'Data Science',
-      skills: ['Hadoop', 'Spark', 'Kafka', 'Data Pipelines', 'Analytics', 'Distributed Systems']
+      skills: ['Hadoop', 'Spark', 'Kafka', 'Data Pipelines', 'Analytics', 'Distributed Systems'],
+      learned: [
+        'Mastered Hadoop ecosystem for distributed data processing',
+        'Learned Apache Spark for real-time data analytics',
+        'Implemented Kafka for data streaming and messaging',
+        'Built scalable data pipelines for large-scale processing'
+      ],
+      projects: [
+        'Stack Overflow Q&A Data Storage & Analysis',
+        'Real-time data processing pipeline with Spark',
+        'Distributed analytics system for big data'
+      ],
+      achievements: [
+        'Processed datasets with millions of records',
+        'Achieved 4.8/5 rating in big data technologies',
+        'Built production-ready data pipelines'
+      ]
     },
     {
       id: 6,
@@ -151,7 +167,23 @@ const Courses = () => {
       rating: 4.7,
       students: 900,
       category: 'Networking',
-      skills: ['OSI Model', 'TCP/IP', 'Routing', 'Security', 'Protocols', 'Network Design']
+      skills: ['OSI Model', 'TCP/IP', 'Routing', 'Security', 'Protocols', 'Network Design'],
+      learned: [
+        'Mastered OSI and TCP/IP network models',
+        'Learned routing protocols and network topology design',
+        'Implemented network security and encryption protocols',
+        'Understood data transmission and network reliability'
+      ],
+      projects: [
+        'Network topology design and implementation',
+        'Network security protocol analysis',
+        'Data transmission optimization project'
+      ],
+      achievements: [
+        'Designed secure network architectures',
+        'Achieved 4.7/5 rating in networking concepts',
+        'Implemented network protocols and security measures'
+      ]
     },
     {
       id: 7,
@@ -163,7 +195,23 @@ const Courses = () => {
       rating: 4.9,
       students: 1300,
       category: 'Software Development',
-      skills: ['SDLC', 'Design Patterns', 'Testing', 'Architecture', 'Scalability', 'Maintainability']
+      skills: ['SDLC', 'Design Patterns', 'Testing', 'Architecture', 'Scalability', 'Maintainability'],
+      learned: [
+        'Mastered software development life cycle (SDLC) methodologies',
+        'Learned design patterns and software architecture principles',
+        'Implemented comprehensive testing strategies and quality assurance',
+        'Built scalable and maintainable software applications'
+      ],
+      projects: [
+        'Full-stack web application with modern architecture',
+        'Microservices-based system design and implementation',
+        'Comprehensive testing suite with automated quality checks'
+      ],
+      achievements: [
+        'Developed production-ready software applications',
+        'Achieved 4.9/5 rating in software engineering principles',
+        'Implemented scalable and maintainable code architectures'
+      ]
     },
     {
       id: 8,
@@ -175,7 +223,23 @@ const Courses = () => {
       rating: 4.8,
       students: 1500,
       category: 'Web Development',
-      skills: ['React', 'Node.js', 'APIs', 'Authentication', 'Responsive Design', 'Full-stack']
+      skills: ['React', 'Node.js', 'APIs', 'Authentication', 'Responsive Design', 'Full-stack'],
+      learned: [
+        'Mastered React framework for modern frontend development',
+        'Learned Node.js for backend API development',
+        'Implemented authentication and security in web applications',
+        'Built responsive and mobile-friendly user interfaces'
+      ],
+      projects: [
+        'Portfolio Website with React and modern UI',
+        'Full-stack web application with authentication',
+        'Responsive e-commerce platform with API integration'
+      ],
+      achievements: [
+        'Developed multiple production web applications',
+        'Achieved 4.8/5 rating in web development skills',
+        'Built responsive and accessible user interfaces'
+      ]
     },
     {
       id: 9,
@@ -187,7 +251,23 @@ const Courses = () => {
       rating: 4.6,
       students: 1000,
       category: 'Programming',
-      skills: ['Paradigms', 'Logic', 'Clean Code', 'Efficiency', 'Reusability', 'Best Practices']
+      skills: ['Paradigms', 'Logic', 'Clean Code', 'Efficiency', 'Reusability', 'Best Practices'],
+      learned: [
+        'Mastered different programming paradigms and their applications',
+        'Learned logical thinking and systematic problem-solving approaches',
+        'Developed clean code practices and coding standards',
+        'Implemented efficient and reusable code architectures'
+      ],
+      projects: [
+        'Multi-paradigm programming project demonstrating different approaches',
+        'Code refactoring and optimization exercises',
+        'Programming best practices implementation guide'
+      ],
+      achievements: [
+        'Applied multiple programming paradigms effectively',
+        'Achieved 4.6/5 rating in programming methodology',
+        'Developed clean and maintainable code practices'
+      ]
     },
     {
       id: 10,
@@ -199,7 +279,23 @@ const Courses = () => {
       rating: 4.7,
       students: 850,
       category: 'Data Analysis',
-      skills: ['Data Cleaning', 'Transformation', 'Statistical Modeling', 'Visualization', 'Python', 'R']
+      skills: ['Data Cleaning', 'Transformation', 'Statistical Modeling', 'Visualization', 'Python', 'R'],
+      learned: [
+        'Mastered data cleaning and preprocessing techniques',
+        'Learned statistical modeling and data transformation methods',
+        'Developed skills in data visualization and analysis',
+        'Implemented Python and R for data science workflows'
+      ],
+      projects: [
+        'Comprehensive data cleaning pipeline for large datasets',
+        'Statistical analysis and modeling project',
+        'Data visualization dashboard with interactive charts'
+      ],
+      achievements: [
+        'Processed and analyzed complex datasets',
+        'Achieved 4.7/5 rating in data analysis skills',
+        'Built automated data preparation workflows'
+      ]
     },
     {
       id: 11,
@@ -211,7 +307,23 @@ const Courses = () => {
       rating: 4.8,
       students: 750,
       category: 'Quality Assurance',
-      skills: ['Testing', 'Defect Prevention', 'Quality Standards', 'Automation', 'CI/CD', 'Monitoring']
+      skills: ['Testing', 'Defect Prevention', 'Quality Standards', 'Automation', 'CI/CD', 'Monitoring'],
+      learned: [
+        'Mastered software testing methodologies and strategies',
+        'Learned defect prevention and quality assurance techniques',
+        'Implemented automated testing and CI/CD pipelines',
+        'Developed quality standards and monitoring systems'
+      ],
+      projects: [
+        'Comprehensive testing suite for software applications',
+        'Automated quality assurance pipeline implementation',
+        'Quality monitoring and reporting system'
+      ],
+      achievements: [
+        'Implemented quality standards across multiple projects',
+        'Achieved 4.8/5 rating in quality management skills',
+        'Built automated testing and monitoring systems'
+      ]
     },
     {
       id: 12,
@@ -223,7 +335,23 @@ const Courses = () => {
       rating: 4.9,
       students: 600,
       category: 'Embedded Systems',
-      skills: ['Microcontrollers', 'ARM', 'Arduino', 'Peripherals', 'Interfacing', 'Real-time Systems']
+      skills: ['Microcontrollers', 'ARM', 'Arduino', 'Peripherals', 'Interfacing', 'Real-time Systems'],
+      learned: [
+        'Mastered microcontroller architecture and programming',
+        'Learned ARM-based system design and development',
+        'Implemented Arduino projects with sensors and actuators',
+        'Developed real-time systems and embedded applications'
+      ],
+      projects: [
+        'ARM-based embedded system with sensor integration',
+        'Arduino IoT project with wireless connectivity',
+        'Real-time control system for embedded applications'
+      ],
+      achievements: [
+        'Built multiple embedded systems projects',
+        'Achieved 4.9/5 rating in embedded systems design',
+        'Developed real-time and IoT applications'
+      ]
     }
   ];
 
