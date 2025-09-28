@@ -127,7 +127,7 @@ const Courses = () => {
     {
       id: 10,
       name: 'Data Preparation and Analysis',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/data-preparation-analysis.png',
       description: 'Learned data cleaning, transformation, and statistical modeling. Developed skills in preparing raw data for visualization and decision-making.',
       duration: '4 months',
       level: 'Intermediate',
