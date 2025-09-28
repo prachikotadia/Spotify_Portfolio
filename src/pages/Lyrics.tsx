@@ -268,46 +268,121 @@ const Lyrics = () => {
           ref={lyricsRef}
           className="max-h-[65vh] overflow-y-auto scrollbar-hide"
         >
-          <div className="space-y-8">
+          <div className="text-center space-y-6">
             {[
               { 
-                text: "I am a passionate Software Engineer who loves building creative and practical solutions that make an impact.", 
+                text: "I am a passionate Software Engineer", 
                 progress: 0,
                 isBold: true
               },
               { 
-                text: "My journey started with curiosity about how technology shapes everyday life, and it quickly grew into a strong focus on software systems, web apps, and scalable solutions.", 
+                text: "who loves building creative and practical solutions", 
+                progress: 5,
+                isBold: true
+              },
+              { 
+                text: "that make an impact.", 
                 progress: 10,
                 isBold: true
               },
               { 
-                text: "I enjoy solving problems with a balance of logic and creativity, always striving for clean code and thoughtful design.", 
+                text: "My journey started with curiosity", 
+                progress: 15,
+                isBold: true
+              },
+              { 
+                text: "about how technology shapes everyday life,", 
                 progress: 20,
                 isBold: true
               },
               { 
-                text: "Along the way, I have worked on projects that challenged me to think deeper about performance, usability, and user experience.", 
+                text: "and it quickly grew into a strong focus", 
+                progress: 25,
+                isBold: true
+              },
+              { 
+                text: "on software systems, web apps, and scalable solutions.", 
                 progress: 30,
                 isBold: true
               },
               { 
-                text: "I believe technology should feel seamless and intuitive, and that's the standard I aim for in my work.", 
+                text: "I enjoy solving problems", 
+                progress: 35,
+                isBold: false
+              },
+              { 
+                text: "with a balance of logic and creativity,", 
                 progress: 40,
                 isBold: false
               },
               { 
-                text: "Outside of coding, I like exploring new ideas, learning continuously, and keeping up with the latest in tech.", 
+                text: "always striving for clean code and thoughtful design.", 
+                progress: 45,
+                isBold: false
+              },
+              { 
+                text: "Along the way, I have worked on projects", 
                 progress: 50,
                 isBold: false
               },
               { 
-                text: "What excites me most is the opportunity to keep improving, collaborating, and pushing the boundaries of what software can do.", 
+                text: "that challenged me to think deeper", 
+                progress: 55,
+                isBold: false
+              },
+              { 
+                text: "about performance, usability, and user experience.", 
                 progress: 60,
+                isBold: false
+              },
+              { 
+                text: "I believe technology should feel", 
+                progress: 65,
+                isBold: false
+              },
+              { 
+                text: "seamless and intuitive,", 
+                progress: 70,
+                isBold: false
+              },
+              { 
+                text: "and that's the standard I aim for in my work.", 
+                progress: 75,
+                isBold: false
+              },
+              { 
+                text: "Outside of coding, I like exploring new ideas,", 
+                progress: 80,
+                isBold: false
+              },
+              { 
+                text: "learning continuously,", 
+                progress: 85,
+                isBold: false
+              },
+              { 
+                text: "and keeping up with the latest in tech.", 
+                progress: 90,
+                isBold: false
+              },
+              { 
+                text: "What excites me most is the opportunity", 
+                progress: 95,
+                isBold: false
+              },
+              { 
+                text: "to keep improving, collaborating,", 
+                progress: 100,
+                isBold: false
+              },
+              { 
+                text: "and pushing the boundaries of what software can do.", 
+                progress: 105,
                 isBold: false
               }
             ].map((line, index) => {
               const isRead = readProgress >= line.progress;
-              const isCurrent = readProgress >= line.progress && readProgress < (line.progress + 15);
+              const isCurrent = readProgress >= line.progress && readProgress < (line.progress + 5);
               
               return (
                 <motion.div 
@@ -325,7 +400,7 @@ const Lyrics = () => {
                     ease: "easeInOut"
                   }}
                 >
-                  <p className="mb-2">{line.text}</p>
+                  <p className="mb-1">{line.text}</p>
                 </motion.div>
               );
             })}
