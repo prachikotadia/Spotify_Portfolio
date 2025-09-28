@@ -143,13 +143,13 @@ const Lyrics = () => {
       setCurrentWordIndex(0);
       setTimeout(() => {
         speakWordByWord(lineIndex + 1, 0);
-      }, 200); // Small delay between lines
+      }, 50); // Much faster delay between lines (3x faster)
       return;
     }
 
     const currentWord = currentLine.words[wordIndex];
     const utterance = new SpeechSynthesisUtterance(currentWord);
-    utterance.rate = 0.7; // Slower for word-by-word
+    utterance.rate = 2.1; // 3x faster (0.7 * 3 = 2.1)
     utterance.pitch = 1.0;
     utterance.volume = 1.0; // Maximum volume
     
@@ -186,7 +186,7 @@ const Lyrics = () => {
         if (isPlaying && !isPaused) {
           setTimeout(() => {
             speakWordByWord(lineIndex, wordIndex + 1);
-          }, 50); // Small delay between words
+          }, 10); // Much faster delay between words (3x faster)
         }
       };
       
