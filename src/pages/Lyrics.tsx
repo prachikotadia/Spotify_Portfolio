@@ -273,7 +273,7 @@ const Lyrics = () => {
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
+    const secs = Math.floor(seconds % 60); // Remove decimals
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
@@ -394,10 +394,10 @@ const Lyrics = () => {
       </div>
 
       {/* Lyrics Content - Spotify Style */}
-      <div className="px-6 py-8 pb-40">
+      <div className="px-6 py-8 pb-48">
         <div 
           ref={lyricsRef}
-          className="max-h-[65vh] overflow-y-auto scrollbar-hide"
+          className="max-h-[60vh] overflow-y-auto scrollbar-hide"
         >
           <div className="text-center space-y-6">
             {lyricsData.map((line, index) => {
@@ -439,9 +439,9 @@ const Lyrics = () => {
       </div>
 
       {/* Media Player Interface - Spotify Style */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#1E3A8A] px-6 py-6">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#1E3A8A] px-6 py-4">
         {/* Progress Bar */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-4 mb-6">
           <span className="text-white text-sm font-medium">{formatTime(currentTime)}</span>
           <div className="flex-1 h-1 bg-white/20 rounded-full relative">
             <div 
@@ -455,69 +455,69 @@ const Lyrics = () => {
         </div>
 
         {/* Playback Controls */}
-        <div className="flex items-center justify-center gap-12 mb-8">
+        <div className="flex items-center justify-center gap-6 mb-4">
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-8 h-8"
           >
-            <Heart className="w-5 h-5" />
+            <Heart className="w-4 h-4" />
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-8 h-8"
             onClick={handleSkipBack}
           >
-            <SkipBack className="w-5 h-5" />
+            <SkipBack className="w-4 h-4" />
           </Button>
           <Button 
-            className="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+            className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
             onClick={handlePlayPause}
           >
             {isPlaying ? (
-              <Pause className="w-7 h-7 text-black" />
+              <Pause className="w-5 h-5 text-black" />
             ) : (
-              <Play className="w-7 h-7 text-black ml-1" />
+              <Play className="w-5 h-5 text-black ml-0.5" />
             )}
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-8 h-8"
             onClick={handleSkipForward}
           >
-            <SkipForward className="w-5 h-5" />
+            <SkipForward className="w-4 h-4" />
           </Button>
           <Button 
             variant="ghost" 
             size="icon" 
-            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
+            className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-8 h-8"
           >
-            <Minus className="w-5 h-5" />
+            <Minus className="w-4 h-4" />
           </Button>
         </div>
 
         {/* Device and Options */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Volume2 className="w-5 h-5 text-green-500" />
-            <span className="text-green-500 text-sm font-medium">LIVING ROOM</span>
+          <div className="flex items-center gap-2">
+            <Volume2 className="w-4 h-4 text-green-500" />
+            <span className="text-green-500 text-xs font-medium">LIVING ROOM</span>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
+              className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-8 h-8"
             >
-              <Upload className="w-5 h-5" />
+              <Upload className="w-4 h-4" />
             </Button>
             <Button 
               variant="ghost" 
               size="icon" 
-              className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-10 h-10"
+              className="text-white/70 hover:text-white hover:bg-white/10 rounded-full w-8 h-8"
             >
-              <List className="w-5 h-5" />
+              <List className="w-4 h-4" />
             </Button>
           </div>
         </div>
