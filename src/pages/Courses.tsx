@@ -91,7 +91,7 @@ const Courses = () => {
     {
       id: 7,
       name: 'Software Engineering',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/software-engineering.png',
       description: 'Covered software development life cycle (SDLC), requirement analysis, testing methods, and design patterns. Learned to create scalable, maintainable, and robust applications.',
       duration: '6 months',
       level: 'Advanced',
