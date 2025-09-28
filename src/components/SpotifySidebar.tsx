@@ -1,11 +1,15 @@
-import { motion } from 'framer-motion';
-import { Home, Search, Library, Plus, Heart, Download } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Home, Search, Library, Plus, Heart, Download, X } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import SpotifyLogo from './SpotifyLogo';
 
 const SpotifySidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [showCreatePopup, setShowCreatePopup] = useState(false);
+  const [showFavoritesPopup, setShowFavoritesPopup] = useState(false);
+  const [showDownloadPopup, setShowDownloadPopup] = useState(false);
 
   const mainNavItems = [
     { id: 'home', label: 'Home', icon: Home, path: '/' },
@@ -14,9 +18,24 @@ const SpotifySidebar = () => {
   ];
 
   const playlistItems = [
-    { id: 'created', label: 'Created Playlist', icon: Plus },
-    { id: 'liked', label: 'Liked Songs', icon: Heart },
-    { id: 'downloaded', label: 'Downloaded', icon: Download },
+    { 
+      id: 'created', 
+      label: 'Created Playlist', 
+      icon: Plus,
+      onClick: () => setShowCreatePopup(true)
+    },
+    { 
+      id: 'liked', 
+      label: 'Certificates', 
+      icon: Heart,
+      onClick: () => setShowFavoritesPopup(true)
+    },
+    { 
+      id: 'downloaded', 
+      label: 'Resume PDF', 
+      icon: Download,
+      onClick: () => setShowDownloadPopup(true)
+    },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -70,6 +89,7 @@ const SpotifySidebar = () => {
           {playlistItems.map((item) => (
             <motion.button
               key={item.id}
+              onClick={item.onClick}
               className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-left text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
               whileHover={{ x: 4 }}
               whileTap={{ scale: 0.98 }}
@@ -108,6 +128,123 @@ const SpotifySidebar = () => {
           </div>
         </div>
       </div>
+
+      {/* Popups */}
+      <AnimatePresence>
+        {/* Create Playlist Popup */}
+        {showCreatePopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            onClick={() => setShowCreatePopup(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white font-semibold">Create Playlist</h3>
+                <button
+                  onClick={() => setShowCreatePopup(false)}
+                  className="text-gray-400 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <p className="text-gray-300 text-sm">
+                Only admin can add new playlists to the library.
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* Certificates Popup */}
+        {showFavoritesPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            onClick={() => setShowFavoritesPopup(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white font-semibold">Certificates</h3>
+                <button
+                  onClick={() => setShowFavoritesPopup(false)}
+                  className="text-gray-400 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <p className="text-gray-300 text-sm mb-4">
+                View all your professional certificates and achievements.
+              </p>
+              <button
+                onClick={() => {
+                  setShowFavoritesPopup(false);
+                  navigate('/library?tab=certificates');
+                }}
+                className="w-full bg-green-500 text-black font-semibold py-2 px-4 rounded-full hover:bg-green-600 transition-colors"
+              >
+                View Certificates
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* Resume PDF Popup */}
+        {showDownloadPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            onClick={() => setShowDownloadPopup(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white font-semibold">Resume PDF</h3>
+                <button
+                  onClick={() => setShowDownloadPopup(false)}
+                  className="text-gray-400 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <p className="text-gray-300 text-sm mb-4">
+                Download Prachi Kotadia's latest resume in PDF format.
+              </p>
+              <button
+                onClick={() => {
+                  setShowDownloadPopup(false);
+                  window.open('https://prachikotadia.netlify.app/assets/Prachi_Kotadia_Resume_2025.pdf', '_blank');
+                }}
+                className="w-full bg-green-500 text-black font-semibold py-2 px-4 rounded-full hover:bg-green-600 transition-colors"
+              >
+                Download Resume
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

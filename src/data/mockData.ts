@@ -312,7 +312,7 @@ export const workExperience: WorkExperience[] = [
     id: '2',
     company: 'Illinois Institute of Technology',
     position: 'Research Assistant – Microservices & Distributed Systems Benchmarking',
-    duration: 'Apr 2025 – May 2025',
+    duration: 'Feb 2025 – May 2025',
     location: 'Chicago, USA',
     description: 'Benchmarked microservices in C++, Go, Rust, Java, and Node.js, focusing on runtime efficiency, memory footprint, and GC impact.',
     achievements: [

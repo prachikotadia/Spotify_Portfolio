@@ -1,10 +1,13 @@
-import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Bell, User, Settings } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Bell, User, Settings, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 
 const SpotifyTopBar = () => {
   const navigate = useNavigate();
+  const [showNotificationPopup, setShowNotificationPopup] = useState(false);
+  const [showSettingsPopup, setShowSettingsPopup] = useState(false);
 
   return (
     <motion.div
@@ -53,6 +56,7 @@ const SpotifyTopBar = () => {
           <Button
             variant="ghost"
             size="icon"
+            onClick={() => setShowNotificationPopup(true)}
             className="w-8 h-8 text-gray-400 hover:text-white hover:bg-gray-800 rounded-full"
           >
             <Bell className="w-5 h-5" />
@@ -60,6 +64,7 @@ const SpotifyTopBar = () => {
           <Button
             variant="ghost"
             size="icon"
+            onClick={() => setShowSettingsPopup(true)}
             className="w-8 h-8 text-gray-400 hover:text-white hover:bg-gray-800 rounded-full"
           >
             <Settings className="w-5 h-5" />
@@ -79,6 +84,73 @@ const SpotifyTopBar = () => {
           </Button>
         </div>
       </div>
+
+      {/* Popups */}
+      <AnimatePresence>
+        {/* Notification Popup */}
+        {showNotificationPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            onClick={() => setShowNotificationPopup(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white font-semibold">Notifications</h3>
+                <button
+                  onClick={() => setShowNotificationPopup(false)}
+                  className="text-gray-400 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <p className="text-gray-300 text-sm">
+                Only admin can check notifications and system alerts.
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* Settings Popup */}
+        {showSettingsPopup && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            onClick={() => setShowSettingsPopup(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-gray-900 rounded-lg p-6 max-w-sm mx-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-white font-semibold">Settings</h3>
+                <button
+                  onClick={() => setShowSettingsPopup(false)}
+                  className="text-gray-400 hover:text-white"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <p className="text-gray-300 text-sm">
+                Only admin can manage application settings and preferences.
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
