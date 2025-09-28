@@ -31,7 +31,7 @@ const Courses = () => {
     {
       id: 2,
       name: 'Mobile Application Development',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
+      image: '/assets/mobile-app-development.png',
       description: 'Explored tools, frameworks, and design principles for developing mobile applications. Built intuitive, responsive, and cross-platform apps with real-world use cases.',
       duration: '6 months',
       level: 'Intermediate',

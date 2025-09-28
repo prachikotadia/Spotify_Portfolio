@@ -330,7 +330,7 @@ const Home = () => {
               },
               {
                 name: 'Mobile Application Development',
-                image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
+                image: '/assets/mobile-app-development.png',
                 description: 'Built intuitive, responsive, and cross-platform apps'
               },
               {
