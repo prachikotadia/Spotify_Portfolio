@@ -130,30 +130,64 @@ const Lyrics = () => {
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       utterance.rate = 0.8; // Slightly slower for better comprehension
       utterance.pitch = 1.0;
-      utterance.volume = 0.8;
+      utterance.volume = 1.0; // Maximum volume
       
-      // Try to use a female voice for better experience
-      const voices = speechSynthesis.getVoices();
-      const femaleVoice = voices.find(voice => 
-        voice.name.includes('Female') || 
-        voice.name.includes('Samantha') || 
-        voice.name.includes('Karen') ||
-        voice.name.includes('Susan')
-      );
-      
-      if (femaleVoice) {
-        utterance.voice = femaleVoice;
-      }
-      
-      speechRef.current = utterance;
-      
-      utterance.onend = () => {
-        setIsPlaying(false);
-        setCurrentTime(totalTime);
-        setReadProgress(100);
+      // Wait for voices to load, then try to use a female voice
+      const speakWithVoice = () => {
+        const voices = speechSynthesis.getVoices();
+        console.log('Available voices:', voices.map(v => v.name)); // Debug log
+        
+        // Try to find a good voice (prefer female voices)
+        const preferredVoice = voices.find(voice => 
+          voice.name.includes('Female') || 
+          voice.name.includes('Samantha') || 
+          voice.name.includes('Karen') ||
+          voice.name.includes('Susan') ||
+          voice.name.includes('Zira') ||
+          voice.name.includes('Hazel') ||
+          voice.name.includes('Microsoft') ||
+          voice.name.includes('Google')
+        );
+        
+        if (preferredVoice) {
+          utterance.voice = preferredVoice;
+          console.log('Using voice:', preferredVoice.name); // Debug log
+        } else if (voices.length > 0) {
+          utterance.voice = voices[0];
+          console.log('Using default voice:', voices[0].name); // Debug log
+        }
+        
+        speechRef.current = utterance;
+        
+        utterance.onend = () => {
+          setIsPlaying(false);
+          setCurrentTime(totalTime);
+          setReadProgress(100);
+        };
+        
+        utterance.onerror = (event) => {
+          console.error('Speech synthesis error:', event.error);
+          alert('Audio playback failed. Please check your browser audio settings and try again.');
+        };
+        
+        // Try to speak
+        try {
+          speechSynthesis.speak(utterance);
+          console.log('Speech synthesis started'); // Debug log
+        } catch (error) {
+          console.error('Error starting speech synthesis:', error);
+          alert('Audio playback failed. Please check your browser audio settings and try again.');
+        }
       };
       
-      speechSynthesis.speak(utterance);
+      // Wait for voices to load
+      if (speechSynthesis.getVoices().length === 0) {
+        speechSynthesis.addEventListener('voiceschanged', speakWithVoice, { once: true });
+      } else {
+        speakWithVoice();
+      }
+    } else {
+      alert('Text-to-speech is not supported in this browser.');
     }
   };
 
@@ -291,6 +325,12 @@ const Lyrics = () => {
         setIsPaused(true);
       }
     } else {
+      // Check if audio is supported and show user-friendly message
+      if (!('speechSynthesis' in window)) {
+        alert('Text-to-speech is not supported in this browser. Please use Chrome, Firefox, Safari, or Edge.');
+        return;
+      }
+      
       setIsPlaying(true);
       setIsPaused(false);
       setCurrentLineIndex(0);
