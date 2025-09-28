@@ -352,6 +352,7 @@ const Home = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5 + index * 0.05 }}
                 className="group cursor-pointer"
+                onClick={() => navigate('/courses')}
               >
                 <div className="relative mb-3">
                   <div className="w-full aspect-square rounded-full overflow-hidden bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">

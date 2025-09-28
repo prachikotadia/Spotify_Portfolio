@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import SpotifyLogo from '@/components/SpotifyLogo';
+import CourseDetailModal from '@/components/CourseDetailModal';
 
 const Courses = () => {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ const Courses = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const courses = [
     {
@@ -26,7 +29,27 @@ const Courses = () => {
       rating: 4.8,
       students: 1200,
       category: 'Programming',
-      skills: ['Arrays', 'Trees', 'Graphs', 'Sorting', 'Searching', 'Optimization']
+      skills: ['Arrays', 'Trees', 'Graphs', 'Sorting', 'Searching', 'Optimization'],
+      learned: [
+        'Mastered fundamental data structures: arrays, linked lists, stacks, queues, trees, and graphs',
+        'Implemented various sorting algorithms: bubble sort, merge sort, quick sort, heap sort',
+        'Learned graph traversal algorithms: DFS, BFS, Dijkstra\'s shortest path',
+        'Developed problem-solving strategies for algorithmic challenges',
+        'Optimized code performance through Big O analysis and space-time complexity',
+        'Applied data structures in real-world scenarios and system design'
+      ],
+      projects: [
+        'Binary Search Tree Implementation with insertion, deletion, and traversal',
+        'Graph-based Social Network Analysis with shortest path algorithms',
+        'Sorting Algorithm Visualizer with performance comparison',
+        'Dynamic Programming solutions for optimization problems'
+      ],
+      achievements: [
+        'Solved 200+ algorithmic problems on coding platforms',
+        'Achieved 95% accuracy in algorithm complexity analysis',
+        'Built efficient data structure libraries in multiple languages',
+        'Completed advanced graph theory and network analysis projects'
+      ]
     },
     {
       id: 2,
@@ -398,6 +421,10 @@ const Courses = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               className="group cursor-pointer"
+              onClick={() => {
+                setSelectedCourse(course);
+                setIsModalOpen(true);
+              }}
             >
               <div className="relative mb-2 sm:mb-3">
                 <div className="w-full aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-green-500 to-green-700 shadow-lg group-hover:shadow-2xl transition-all duration-300">
@@ -487,6 +514,16 @@ const Courses = () => {
           </div>
         </div>
       </div>
+
+      {/* Course Detail Modal */}
+      <CourseDetailModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedCourse(null);
+        }}
+        course={selectedCourse}
+      />
     </div>
   );
 };
