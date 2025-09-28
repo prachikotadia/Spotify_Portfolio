@@ -75,11 +75,17 @@ const SpotifySidebar = () => {
       {/* Playlist Section */}
       <div className="px-3 flex-1">
         <div className="flex items-center justify-between mb-4">
-          <button className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
+          <button 
+            onClick={() => navigate('/library')}
+            className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors"
+          >
             <Library className="w-5 h-5" />
             <span className="text-sm font-medium">Your Library</span>
           </button>
-          <button className="text-gray-400 hover:text-white transition-colors">
+          <button 
+            onClick={() => setShowCreatePopup(true)}
+            className="text-gray-400 hover:text-white transition-colors"
+          >
             <Plus className="w-5 h-5" />
           </button>
         </div>
@@ -103,14 +109,22 @@ const SpotifySidebar = () => {
         {/* Custom Playlists */}
         <div className="mt-6 space-y-1">
           <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">Playlists</div>
-          {['Projects', 'Certificates', 'Skills', 'Experience', 'Education'].map((playlist) => (
+          {[
+            { name: 'Projects', path: '/library?tab=projects' },
+            { name: 'Certificates', path: '/library?tab=certificates' },
+            { name: 'Skills', path: '/skills' },
+            { name: 'Experience', path: '/experience' },
+            { name: 'Education', path: '/education' },
+            { name: 'Courses', path: '/courses' }
+          ].map((playlist) => (
             <motion.button
-              key={playlist}
+              key={playlist.name}
+              onClick={() => navigate(playlist.path)}
               className="w-full text-left px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-md transition-colors"
               whileHover={{ x: 4 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="text-sm">{playlist}</span>
+              <span className="text-sm">{playlist.name}</span>
             </motion.button>
           ))}
         </div>
