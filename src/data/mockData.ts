@@ -752,7 +752,7 @@ export const mockCertificates = [
     title: 'The Data Scientist\'s Toolbox',
     issuer: 'Johns Hopkins University (Coursera)',
     date: '2023',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Johns_Hopkins_University_logo.svg/200px-Johns_Hopkins_University_logo.svg.png',
+    image: '/assets/johns-hopkins-logo.png',
     skills: ['R Programming', 'Data Science Workflow', 'Version Control', 'GitHub'],
     link: 'https://coursera.org/verify/NSRORKMUYQG2',
     description: 'Essential tools and workflows for data science professionals.',
