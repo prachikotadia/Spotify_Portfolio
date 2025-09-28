@@ -83,7 +83,7 @@ const BottomNavigation = () => {
                     }`}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <item.icon className="w-6 h-6" />
+                    <item.icon />
                     <span className="text-xs">{item.name}</span>
                   </motion.div>
                 </Link>
@@ -120,7 +120,7 @@ const BottomNavigation = () => {
                     }`}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <item.icon className="w-6 h-6" />
+                    <item.icon />
                     <span className="text-xs">{item.name}</span>
                   </motion.div>
                 </Link>
@@ -144,7 +144,7 @@ const BottomNavigation = () => {
                   }`}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <item.icon className="w-7 h-7" />
+                  <item.icon />
                   <span className="text-xs">{item.name}</span>
                 </motion.div>
               </Link>
@@ -181,7 +181,7 @@ const BottomNavigation = () => {
                   }`}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <item.icon className="w-7 h-7" />
+                  <item.icon />
                   <span className="text-xs">{item.name}</span>
                 </motion.div>
               </Link>
