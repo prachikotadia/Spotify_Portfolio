@@ -62,6 +62,7 @@ const Lyrics = () => {
       const targetScrollTop = lineTop - (containerHeight / 2) + (lineHeight / 2);
       
       if (smooth) {
+        // Faster, more responsive scroll
         container.scrollTo({
           top: targetScrollTop,
           behavior: 'smooth'
@@ -88,11 +89,11 @@ const Lyrics = () => {
         clearTimeout(autoScrollTimeoutRef.current);
       }
       
-      // Resume auto-scroll after user stops scrolling for 2 seconds
+      // Resume auto-scroll after user stops scrolling for 1 second (faster)
       autoScrollTimeoutRef.current = setTimeout(() => {
         setIsManualScrolling(false);
         scrollToCurrentLine(currentLineIndex, true);
-      }, 2000);
+      }, 1000); // Reduced from 2000ms to 1000ms for faster resume
     }
   }, [isPlaying, isPaused, currentLineIndex, scrollToCurrentLine]);
 
@@ -107,7 +108,10 @@ const Lyrics = () => {
       
       // Auto-scroll to current line if not manually scrolling
       if (!isManualScrolling) {
-        scrollToCurrentLine(currentLine, true);
+        // Immediate scroll for faster response
+        setTimeout(() => {
+          scrollToCurrentLine(currentLine, true);
+        }, 50); // Small delay to ensure DOM is updated
       }
     }
   }, [currentLineIndex, isManualScrolling, scrollToCurrentLine]);
@@ -182,7 +186,7 @@ const Lyrics = () => {
       }
       intervalRef.current = setInterval(() => {
         setCurrentTime(prev => {
-          const newTime = prev + 0.1; // Update every 100ms for smoother sync
+          const newTime = prev + 0.2; // Update every 200ms for faster sync
           const progress = (newTime / totalTime) * 100;
           setReadProgress(progress);
           
@@ -197,7 +201,7 @@ const Lyrics = () => {
           }
           return newTime;
         });
-      }, 100); // Update every 100ms for smooth sync
+      }, 200); // Update every 200ms for faster, more responsive sync
     } else if (!isPlaying) {
       stopSpeech();
       if (intervalRef.current) {
@@ -280,7 +284,7 @@ const Lyrics = () => {
         setIsPaused(false);
         // Resume auto-scroll if not manually scrolling
         if (!isManualScrolling) {
-          scrollToCurrentLine(currentLineIndex, true);
+          setTimeout(() => scrollToCurrentLine(currentLineIndex, true), 50);
         }
       } else {
         pauseSpeech();
@@ -291,8 +295,8 @@ const Lyrics = () => {
       setIsPaused(false);
       setCurrentLineIndex(0);
       setIsManualScrolling(false);
-      // Scroll to beginning when starting
-      setTimeout(() => scrollToCurrentLine(0, true), 100);
+      // Scroll to beginning when starting - immediate
+      setTimeout(() => scrollToCurrentLine(0, true), 10);
     }
   };
 
