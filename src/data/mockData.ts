@@ -28,7 +28,7 @@ export const mockProjects: Project[] = [
     image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
     techStack: ['React', 'TypeScript', 'Python', 'AI/ML', 'FastAPI', 'PostgreSQL', 'Redis', 'WebSocket', 'TailwindCSS'],
     githubUrl: 'https://github.com/prachikotadia/Unified-AI-Personal-Platform',
-    liveUrl: 'https://omnilife-demo.netlify.app',
+    liveUrl: '',
     features: [
       'AI-powered personal finance management',
       'Integrated e-commerce marketplace',
@@ -91,7 +91,7 @@ export const mockProjects: Project[] = [
     image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
     techStack: ['React', 'TypeScript', 'MongoDB', 'Express', 'Tailwind', 'JWT'],
     githubUrl: 'https://github.com/prachikotadia/Expense_Tracker_Full-Stack-Project',
-    liveUrl: 'https://expense-tracker-demo.netlify.app',
+    liveUrl: '',
     features: [
       'User authentication and authorization',
       'Intuitive expense tracking dashboard',
@@ -112,7 +112,7 @@ export const mockProjects: Project[] = [
     image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
     techStack: ['JavaScript', 'React', 'FastAPI', 'PostgreSQL', 'Docker', 'JWT'],
     githubUrl: 'https://github.com/prachikotadia/Task-Manager',
-    liveUrl: 'https://task-manager-demo.netlify.app',
+    liveUrl: '',
     features: [
       'Microservices architecture',
       'JWT-based authentication',
@@ -133,7 +133,7 @@ export const mockProjects: Project[] = [
     image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
     techStack: ['React', 'TailwindCSS', 'Framer Motion', 'TypeScript'],
     githubUrl: 'https://github.com/prachikotadia/Portfolio',
-    liveUrl: 'https://prachikotadia.netlify.app',
+    liveUrl: '',
     features: [
       'Apple-inspired design language',
       'Smooth animations with Framer Motion',
@@ -175,7 +175,7 @@ export const mockProjects: Project[] = [
     image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
     techStack: ['Python', 'MySQL', 'Bootstrap', 'Admin Panel'],
     githubUrl: 'https://github.com/prachikotadia/Content_Management_System-',
-    liveUrl: 'https://cms-demo.netlify.app',
+    liveUrl: '',
     features: [
       'Admin authentication and authorization',
       'Content creation and editing tools',
@@ -649,7 +649,7 @@ export const sideProjects: SideProject[] = [
     description: 'A custom blog engine built with Next.js and MDX for technical writing.',
     techStack: ['Next.js', 'MDX', 'Tailwind CSS', 'Vercel'],
     githubUrl: 'https://github.com',
-    liveUrl: 'https://blog.example.com',
+    liveUrl: '',
     category: 'Web Development',
     status: 'active'
   },
