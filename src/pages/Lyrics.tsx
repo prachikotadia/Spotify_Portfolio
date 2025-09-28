@@ -439,7 +439,7 @@ const Lyrics = () => {
       </div>
 
       {/* Media Player Interface - Spotify Style */}
-      <div className="fixed bottom-0 left-0 right-0 bg-[#1E3A8A] px-6 py-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-[#1E3A8A] px-6 py-4 z-50">
         {/* Progress Bar */}
         <div className="flex items-center gap-4 mb-6">
           <span className="text-white text-sm font-medium">{formatTime(currentTime)}</span>
@@ -455,7 +455,7 @@ const Lyrics = () => {
         </div>
 
         {/* Playback Controls */}
-        <div className="flex items-center justify-center gap-6 mb-4">
+        <div className="flex items-center justify-center gap-6 mb-4 relative z-10">
           <Button 
             variant="ghost" 
             size="icon" 
@@ -471,16 +471,22 @@ const Lyrics = () => {
           >
             <SkipBack className="w-4 h-4" />
           </Button>
-          <Button 
-            className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+          <button 
+            className="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl border-2 border-white relative z-20"
             onClick={handlePlayPause}
+            style={{ 
+              backgroundColor: 'white', 
+              color: 'black',
+              minWidth: '64px',
+              minHeight: '64px'
+            }}
           >
             {isPlaying ? (
-              <Pause className="w-5 h-5 text-black" />
+              <Pause className="w-7 h-7 text-black" />
             ) : (
-              <Play className="w-5 h-5 text-black ml-0.5" />
+              <Play className="w-7 h-7 text-black ml-0.5" />
             )}
-          </Button>
+          </button>
           <Button 
             variant="ghost" 
             size="icon" 
