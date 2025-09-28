@@ -16,9 +16,9 @@ const SpotifyTopBar = () => {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800"
     >
-      <div className="flex items-center justify-between px-4 py-3">
-        {/* Navigation Arrows */}
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between px-2 sm:px-4 py-3">
+        {/* Navigation Arrows - Hidden on mobile */}
+        <div className="hidden sm:flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
@@ -38,12 +38,12 @@ const SpotifyTopBar = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="flex-1 max-w-md mx-4">
+        <div className="flex-1 max-w-md mx-2 sm:mx-4">
           <div className="relative">
             <input
               type="text"
               placeholder="What do you want to play?"
-              className="w-full bg-white text-black placeholder-gray-500 px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full bg-white text-black placeholder-gray-500 px-3 sm:px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
             />
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
               <SearchIcon className="w-4 h-4 text-gray-500" />
@@ -52,14 +52,14 @@ const SpotifyTopBar = () => {
         </div>
 
         {/* User Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setShowNotificationPopup(true)}
             className="w-8 h-8 text-gray-400 hover:text-white hover:bg-gray-800 rounded-full"
           >
-            <Bell className="w-5 h-5" />
+            <Bell className="w-4 h-4 sm:w-5 sm:h-5" />
           </Button>
           <Button
             variant="ghost"
@@ -67,20 +67,20 @@ const SpotifyTopBar = () => {
             onClick={() => setShowSettingsPopup(true)}
             className="w-8 h-8 text-gray-400 hover:text-white hover:bg-gray-800 rounded-full"
           >
-            <Settings className="w-5 h-5" />
+            <Settings className="w-4 h-4 sm:w-5 sm:h-5" />
           </Button>
           
           {/* User Profile */}
           <Button
             variant="ghost"
             onClick={() => navigate('/profile')}
-            className="flex items-center gap-2 px-3 py-2 bg-black/70 hover:bg-gray-800 rounded-full text-white"
+            className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-2 bg-black/70 hover:bg-gray-800 rounded-full text-white"
           >
-            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center">
               <span className="text-black font-bold text-xs">PK</span>
             </div>
-            <span className="text-sm font-medium">Prachi Kotadia</span>
-            <ChevronDown className="w-4 h-4" />
+            <span className="text-xs sm:text-sm font-medium hidden sm:block">Prachi Kotadia</span>
+            <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />
           </Button>
         </div>
       </div>

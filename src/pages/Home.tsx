@@ -74,7 +74,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black flex">
+    <div className="min-h-screen bg-black lg:flex">
       {/* Spotify Sidebar - Desktop Only */}
       <SpotifySidebar />
       
@@ -84,7 +84,7 @@ const Home = () => {
         <SpotifyTopBar />
         
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-[#000000] relative">
+        <div className="flex-1 overflow-y-auto bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-[#000000] relative pb-20 lg:pb-0">
           {/* Animated Background Elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-20 left-10 w-32 h-32 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>

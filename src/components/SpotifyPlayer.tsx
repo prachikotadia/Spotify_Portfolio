@@ -24,8 +24,8 @@ const SpotifyPlayer = () => {
     >
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         {/* Track Info */}
-        <div className="flex items-center gap-3 flex-1 min-w-0">
-          <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-700 rounded-md overflow-hidden flex-shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+          <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-green-700 rounded-md overflow-hidden flex-shrink-0">
             <img
               src={currentTrack.image}
               alt={currentTrack.title}
@@ -33,7 +33,7 @@ const SpotifyPlayer = () => {
             />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="text-white text-sm font-medium truncate">{currentTrack.title}</div>
+            <div className="text-white text-xs sm:text-sm font-medium truncate">{currentTrack.title}</div>
             <div className="text-gray-400 text-xs truncate">{currentTrack.artist}</div>
           </div>
           <motion.button
@@ -42,20 +42,20 @@ const SpotifyPlayer = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <Heart className={`w-4 h-4 ${isLiked ? 'fill-current' : ''}`} />
+            <Heart className={`w-3 h-3 sm:w-4 sm:h-4 ${isLiked ? 'fill-current' : ''}`} />
           </motion.button>
         </div>
 
         {/* Player Controls */}
-        <div className="flex flex-col items-center gap-2 flex-1 max-w-md">
+        <div className="flex flex-col items-center gap-1 sm:gap-2 flex-1 max-w-md">
           {/* Control Buttons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <motion.button
               className="text-gray-400 hover:text-white transition-colors"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Shuffle className="w-4 h-4" />
+              <Shuffle className="w-3 h-3 sm:w-4 sm:h-4" />
             </motion.button>
             
             <motion.button
@@ -63,16 +63,16 @@ const SpotifyPlayer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <SkipBack className="w-5 h-5" />
+              <SkipBack className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.button>
             
             <motion.button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center hover:scale-105 transition-transform"
+              className="w-6 h-6 sm:w-8 sm:h-8 bg-white text-black rounded-full flex items-center justify-center hover:scale-105 transition-transform"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {isPlaying ? <Pause className="w-4 h-4 ml-0.5" /> : <Play className="w-4 h-4 ml-0.5" />}
+              {isPlaying ? <Pause className="w-3 h-3 sm:w-4 sm:h-4 ml-0.5" /> : <Play className="w-3 h-3 sm:w-4 sm:h-4 ml-0.5" />}
             </motion.button>
             
             <motion.button
@@ -80,7 +80,7 @@ const SpotifyPlayer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <SkipForward className="w-5 h-5" />
+              <SkipForward className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.button>
             
             <motion.button
@@ -88,7 +88,7 @@ const SpotifyPlayer = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Repeat className="w-4 h-4" />
+              <Repeat className="w-3 h-3 sm:w-4 sm:h-4" />
             </motion.button>
           </div>
 
@@ -108,7 +108,7 @@ const SpotifyPlayer = () => {
         </div>
 
         {/* Volume & Device Controls */}
-        <div className="flex items-center gap-2 flex-1 justify-end">
+        <div className="hidden sm:flex items-center gap-2 flex-1 justify-end">
           <motion.button
             className="text-gray-400 hover:text-white transition-colors"
             whileHover={{ scale: 1.1 }}
