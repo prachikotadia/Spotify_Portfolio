@@ -247,6 +247,14 @@ const Home = () => {
                 description: 'Programming & Tools'
               },
               { 
+                name: 'Courses', 
+                gradient: 'from-emerald-500 to-teal-500',
+                image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=400&fit=crop&crop=center',
+                link: '/courses',
+                count: '12 Courses',
+                description: 'Academic Learning'
+              },
+              { 
                 name: 'About Me', 
                 gradient: 'from-pink-500 to-rose-500',
                 image: '/assets/image copy 7.png',

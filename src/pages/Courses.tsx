@@ -61,7 +61,23 @@ const Courses = () => {
       rating: 4.7,
       students: 950,
       category: 'Mobile Development',
-      skills: ['Flutter', 'React Native', 'iOS', 'Android', 'Cross-platform', 'UI/UX']
+      skills: ['Flutter', 'React Native', 'iOS', 'Android', 'Cross-platform', 'UI/UX'],
+      learned: [
+        'Mastered Flutter framework for cross-platform mobile development',
+        'Built responsive UI components and navigation systems',
+        'Implemented state management with Provider and Bloc patterns',
+        'Integrated APIs and database connectivity in mobile apps'
+      ],
+      projects: [
+        'News Mobile App with real-time updates',
+        'Battleship Game with multiplayer functionality',
+        'Flashcards App with quiz features'
+      ],
+      achievements: [
+        'Developed 3+ production-ready mobile applications',
+        'Achieved 4.7/5 rating in course evaluations',
+        'Built cross-platform apps for iOS and Android'
+      ]
     },
     {
       id: 3,
@@ -73,7 +89,20 @@ const Courses = () => {
       rating: 4.9,
       students: 800,
       category: 'Database',
-      skills: ['SQL', 'Indexing', 'Query Optimization', 'Data Modeling', 'Performance', 'Scalability']
+      skills: ['SQL', 'Indexing', 'Query Optimization', 'Data Modeling', 'Performance', 'Scalability'],
+      learned: [
+        'Mastered B+-tree indexing and query optimization techniques',
+        'Learned database performance tuning and scalability',
+        'Implemented efficient data storage and retrieval systems'
+      ],
+      projects: [
+        'High Performance Database Indexing Framework',
+        'Query optimization for large-scale datasets'
+      ],
+      achievements: [
+        'Built efficient database indexing system',
+        'Achieved 4.9/5 rating in advanced database concepts'
+      ]
     },
     {
       id: 4,
@@ -85,7 +114,20 @@ const Courses = () => {
       rating: 4.6,
       students: 1100,
       category: 'Management',
-      skills: ['Agile', 'Waterfall', 'Scheduling', 'Resource Allocation', 'Team Collaboration', 'Leadership']
+      skills: ['Agile', 'Waterfall', 'Scheduling', 'Resource Allocation', 'Team Collaboration', 'Leadership'],
+      learned: [
+        'Mastered Agile and Waterfall project management methodologies',
+        'Learned project scheduling and resource allocation techniques',
+        'Developed team collaboration and leadership skills'
+      ],
+      projects: [
+        'Project planning and execution strategies',
+        'Team coordination and stakeholder management'
+      ],
+      achievements: [
+        'Successfully managed multiple software projects',
+        'Achieved 4.6/5 rating in project management skills'
+      ]
     },
     {
       id: 5,
@@ -314,6 +356,10 @@ const Courses = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.05 }}
               className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 px-4 py-3 hover:bg-[#282828] group cursor-pointer border-b border-gray-800 last:border-b-0"
+              onClick={() => {
+                setSelectedCourse(course);
+                setIsModalOpen(true);
+              }}
             >
               {/* Mobile Layout */}
               <div className="sm:hidden">
