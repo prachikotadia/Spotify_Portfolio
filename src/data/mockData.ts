@@ -692,7 +692,7 @@ export const mockCertificates = [
     title: 'Coding Interview Preparation',
     issuer: 'Meta (Coursera)',
     date: '2023',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg',
+    image: '/assets/meta-logo.png',
     skills: ['Data Structures', 'Algorithms', 'Interview Strategy', 'Problem Solving'],
     link: 'https://coursera.org/verify/B6DU13XTR6AT',
     description: 'Comprehensive preparation for technical coding interviews.',
