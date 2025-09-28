@@ -30,7 +30,6 @@ import NotFound from "./pages/NotFound";
 import BottomNavigation from "./components/BottomNavigation";
 import LoadingScreen from "./components/LoadingScreen";
 import GoogleAnalytics from "./components/GoogleAnalytics";
-import SentryErrorTracking from "./components/SentryErrorTracking";
 import PerformanceMonitor from "./components/PerformanceMonitor";
 
 const queryClient = new QueryClient();
@@ -56,7 +55,6 @@ const App = () => {
           <div className="min-h-screen bg-background">
             {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
             <GoogleAnalytics />
-            <SentryErrorTracking />
             <PerformanceMonitor />
             <Routes>
               <Route path="/" element={<Home isLoading={isLoading} />} />

@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { trackPerformance } from './SentryErrorTracking';
 import { PERFORMANCE_THRESHOLDS } from '@/config/analytics';
 
 const PerformanceMonitor = () => {
@@ -15,11 +14,13 @@ const PerformanceMonitor = () => {
           const firstPaint = performance.getEntriesByName('first-paint')[0]?.startTime || 0;
           const firstContentfulPaint = performance.getEntriesByName('first-contentful-paint')[0]?.startTime || 0;
           
-          // Track performance metrics
-          trackPerformance('Page Load Time', loadTime);
-          trackPerformance('DOM Content Loaded', domContentLoaded);
-          trackPerformance('First Paint', firstPaint);
-          trackPerformance('First Contentful Paint', firstContentfulPaint);
+          // Log performance metrics to console
+          console.log('Performance Metrics:', {
+            'Page Load Time': loadTime,
+            'DOM Content Loaded': domContentLoaded,
+            'First Paint': firstPaint,
+            'First Contentful Paint': firstContentfulPaint
+          });
           
           // Track if performance is below threshold
           if (loadTime > PERFORMANCE_THRESHOLDS.PAGE_LOAD_TIME) {
@@ -37,9 +38,9 @@ const PerformanceMonitor = () => {
         resources.forEach((resource: PerformanceResourceTiming) => {
           const loadTime = resource.responseEnd - resource.startTime;
           
-          // Track slow resources
+          // Log slow resources
           if (loadTime > 1000) { // 1 second
-            trackPerformance(`Slow Resource: ${resource.name}`, loadTime);
+            console.warn(`Slow Resource: ${resource.name} (${loadTime}ms)`);
           }
         });
       }
@@ -57,7 +58,7 @@ const PerformanceMonitor = () => {
         const interactionTime = performance.now() - interactionStart;
         
         if (interactionTime > PERFORMANCE_THRESHOLDS.INTERACTION_TIME) {
-          trackPerformance('Slow Interaction', interactionTime);
+          console.warn(`Slow Interaction: ${interactionTime}ms`);
         }
       };
       
@@ -86,8 +87,10 @@ const PerformanceMonitor = () => {
     // Track memory usage (if available)
     if ('memory' in performance) {
       const memory = (performance as any).memory;
-      trackPerformance('Memory Used', memory.usedJSHeapSize);
-      trackPerformance('Memory Total', memory.totalJSHeapSize);
+      console.log('Memory Usage:', {
+        'Memory Used': memory.usedJSHeapSize,
+        'Memory Total': memory.totalJSHeapSize
+      });
     }
     
   }, []);

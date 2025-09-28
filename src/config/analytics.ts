@@ -3,15 +3,11 @@ export const ANALYTICS_CONFIG = {
   // Google Analytics
   GA_TRACKING_ID: (typeof process !== 'undefined' && process.env?.REACT_APP_GA_TRACKING_ID) || 'G-FBLPRHSMDL',
   
-  // Sentry
-  SENTRY_DSN: (typeof process !== 'undefined' && process.env?.REACT_APP_SENTRY_DSN) || 'YOUR_SENTRY_DSN_HERE',
-  
   // Environment
   ENVIRONMENT: (typeof process !== 'undefined' && process.env?.NODE_ENV) || 'development',
   
   // Analytics Settings
   ENABLE_ANALYTICS: (typeof process !== 'undefined' && process.env?.NODE_ENV === 'production') || false,
-  ENABLE_ERROR_TRACKING: true,
   ENABLE_PERFORMANCE_TRACKING: true,
   
   // Custom Events
