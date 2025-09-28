@@ -116,78 +116,96 @@ const Lyrics = () => {
     }
   }, [currentLineIndex, isManualScrolling, scrollToCurrentLine]);
 
-  // Text-to-speech functionality
+  // Text-to-speech functionality - line by line sync
   const startSpeech = (fromTime = 0) => {
     if ('speechSynthesis' in window) {
-      const fullText = `I am a passionate Software Engineer who loves building creative and practical solutions that make an impact. My journey started with curiosity about how technology shapes everyday life, and it quickly grew into a strong focus on software systems, web apps, and scalable solutions. I enjoy solving problems with a balance of logic and creativity, always striving for clean code and thoughtful design. Along the way, I have worked on projects that challenged me to think deeper about performance, usability, and user experience. I believe technology should feel seamless and intuitive, and that's the standard I aim for in my work. Outside of coding, I like exploring new ideas, learning continuously, and keeping up with the latest in tech. What excites me most is the opportunity to keep improving, collaborating, and pushing the boundaries of what software can do.`;
+      // Find which line to start from based on time
+      const startLineIndex = lyricsData.findIndex(line => 
+        fromTime >= line.progress && fromTime < line.progress + line.duration
+      );
       
-      // Calculate text position based on time
-      const textLength = fullText.length;
-      const timePerChar = totalTime / textLength;
-      const startChar = Math.floor(fromTime / timePerChar);
-      const textToSpeak = fullText.substring(startChar);
-      
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      utterance.rate = 0.8; // Slightly slower for better comprehension
-      utterance.pitch = 1.0;
-      utterance.volume = 1.0; // Maximum volume
-      
-      // Wait for voices to load, then try to use a female voice
-      const speakWithVoice = () => {
-        const voices = speechSynthesis.getVoices();
-        console.log('Available voices:', voices.map(v => v.name)); // Debug log
-        
-        // Try to find a good voice (prefer female voices)
-        const preferredVoice = voices.find(voice => 
-          voice.name.includes('Female') || 
-          voice.name.includes('Samantha') || 
-          voice.name.includes('Karen') ||
-          voice.name.includes('Susan') ||
-          voice.name.includes('Zira') ||
-          voice.name.includes('Hazel') ||
-          voice.name.includes('Microsoft') ||
-          voice.name.includes('Google')
-        );
-        
-        if (preferredVoice) {
-          utterance.voice = preferredVoice;
-          console.log('Using voice:', preferredVoice.name); // Debug log
-        } else if (voices.length > 0) {
-          utterance.voice = voices[0];
-          console.log('Using default voice:', voices[0].name); // Debug log
-        }
-        
-        speechRef.current = utterance;
-        
-        utterance.onend = () => {
-          setIsPlaying(false);
-          setCurrentTime(totalTime);
-          setReadProgress(100);
-        };
-        
-        utterance.onerror = (event) => {
-          console.error('Speech synthesis error:', event.error);
-          alert('Audio playback failed. Please check your browser audio settings and try again.');
-        };
-        
-        // Try to speak
-        try {
-          speechSynthesis.speak(utterance);
-          console.log('Speech synthesis started'); // Debug log
-        } catch (error) {
-          console.error('Error starting speech synthesis:', error);
-          alert('Audio playback failed. Please check your browser audio settings and try again.');
-        }
-      };
-      
-      // Wait for voices to load
-      if (speechSynthesis.getVoices().length === 0) {
-        speechSynthesis.addEventListener('voiceschanged', speakWithVoice, { once: true });
+      if (startLineIndex === -1) {
+        // If no line found, start from beginning
+        speakLineByLine(0);
       } else {
-        speakWithVoice();
+        speakLineByLine(startLineIndex);
       }
     } else {
       alert('Text-to-speech is not supported in this browser.');
+    }
+  };
+
+  // Speak line by line for perfect sync
+  const speakLineByLine = (startIndex: number) => {
+    if (startIndex >= lyricsData.length) {
+      setIsPlaying(false);
+      setCurrentTime(totalTime);
+      setReadProgress(100);
+      return;
+    }
+
+    const currentLine = lyricsData[startIndex];
+    const utterance = new SpeechSynthesisUtterance(currentLine.text);
+    utterance.rate = 0.8; // Slightly slower for better comprehension
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0; // Maximum volume
+    
+    // Wait for voices to load, then try to use a female voice
+    const speakWithVoice = () => {
+      const voices = speechSynthesis.getVoices();
+      console.log('Available voices:', voices.map(v => v.name)); // Debug log
+      
+      // Try to find a good voice (prefer female voices)
+      const preferredVoice = voices.find(voice => 
+        voice.name.includes('Female') || 
+        voice.name.includes('Samantha') || 
+        voice.name.includes('Karen') ||
+        voice.name.includes('Susan') ||
+        voice.name.includes('Zira') ||
+        voice.name.includes('Hazel') ||
+        voice.name.includes('Microsoft') ||
+        voice.name.includes('Google')
+      );
+      
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+        console.log('Using voice:', preferredVoice.name); // Debug log
+      } else if (voices.length > 0) {
+        utterance.voice = voices[0];
+        console.log('Using default voice:', voices[0].name); // Debug log
+      }
+      
+      speechRef.current = utterance;
+      
+      utterance.onend = () => {
+        // Move to next line after current line finishes
+        if (isPlaying && !isPaused) {
+          setTimeout(() => {
+            speakLineByLine(startIndex + 1);
+          }, 100); // Small delay between lines
+        }
+      };
+      
+      utterance.onerror = (event) => {
+        console.error('Speech synthesis error:', event.error);
+        alert('Audio playback failed. Please check your browser audio settings and try again.');
+      };
+      
+      // Try to speak
+      try {
+        speechSynthesis.speak(utterance);
+        console.log('Speaking line:', currentLine.text); // Debug log
+      } catch (error) {
+        console.error('Error starting speech synthesis:', error);
+        alert('Audio playback failed. Please check your browser audio settings and try again.');
+      }
+    };
+    
+    // Wait for voices to load
+    if (speechSynthesis.getVoices().length === 0) {
+      speechSynthesis.addEventListener('voiceschanged', speakWithVoice, { once: true });
+    } else {
+      speakWithVoice();
     }
   };
 
@@ -253,6 +271,27 @@ const Lyrics = () => {
       }
     };
   }, [isPlaying, isPaused, currentTime, totalTime, updateCurrentLine]);
+
+  // Sync current line with speech synthesis
+  useEffect(() => {
+    if (isPlaying && !isPaused) {
+      // Update current line based on which line is being spoken
+      const currentLine = lyricsData.findIndex(line => 
+        currentTime >= line.progress && currentTime < line.progress + line.duration
+      );
+      
+      if (currentLine !== -1 && currentLine !== currentLineIndex) {
+        setCurrentLineIndex(currentLine);
+        
+        // Auto-scroll to current line if not manually scrolling
+        if (!isManualScrolling) {
+          setTimeout(() => {
+            scrollToCurrentLine(currentLine, true);
+          }, 100);
+        }
+      }
+    }
+  }, [currentTime, isPlaying, isPaused, currentLineIndex, isManualScrolling, scrollToCurrentLine]);
 
   // Add scroll event listener
   useEffect(() => {
