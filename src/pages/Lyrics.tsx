@@ -62,7 +62,7 @@ const Lyrics = () => {
       const targetScrollTop = lineTop - (containerHeight / 2) + (lineHeight / 2);
       
       if (smooth) {
-        // Faster, more responsive scroll
+        // Smooth scroll with better timing
         container.scrollTo({
           top: targetScrollTop,
           behavior: 'smooth'
@@ -111,7 +111,7 @@ const Lyrics = () => {
         // Immediate scroll for faster response
         setTimeout(() => {
           scrollToCurrentLine(currentLine, true);
-        }, 50); // Small delay to ensure DOM is updated
+        }, 100); // Increased delay for better DOM update
       }
     }
   }, [currentLineIndex, isManualScrolling, scrollToCurrentLine]);
@@ -186,7 +186,7 @@ const Lyrics = () => {
       }
       intervalRef.current = setInterval(() => {
         setCurrentTime(prev => {
-          const newTime = prev + 0.2; // Update every 200ms for faster sync
+          const newTime = prev + 0.1; // Update every 100ms for smoother sync
           const progress = (newTime / totalTime) * 100;
           setReadProgress(progress);
           
@@ -201,7 +201,7 @@ const Lyrics = () => {
           }
           return newTime;
         });
-      }, 200); // Update every 200ms for faster, more responsive sync
+      }, 100); // Update every 100ms for smoother sync
     } else if (!isPlaying) {
       stopSpeech();
       if (intervalRef.current) {
@@ -405,29 +405,36 @@ const Lyrics = () => {
               const isCurrent = currentLineIndex === index;
               const isUpcoming = currentLineIndex < index;
               
-              // Text color logic
+              // Text color and styling logic
               let textColor = 'text-white/40'; // Grey for upcoming
-              if (isRead) textColor = 'text-white'; // White for read
-              if (isCurrent) textColor = 'text-white'; // White bold for current
+              let fontWeight = line.isBold ? 'font-bold' : 'font-normal';
+              
+              if (isRead) {
+                textColor = 'text-white'; // White for read
+                fontWeight = line.isBold ? 'font-bold' : 'font-normal';
+              }
+              
+              if (isCurrent) {
+                textColor = 'text-white'; // White for current
+                fontWeight = 'font-bold'; // Always bold for current
+              }
               
               return (
                 <motion.div 
                   key={index}
                   data-line-index={index}
-                  className={`text-2xl leading-relaxed transition-all duration-500 ease-in-out ${textColor} ${
-                    line.isBold ? 'font-bold' : 'font-normal'
-                  } ${isCurrent ? 'font-bold' : ''}`}
+                  className={`text-2xl leading-relaxed transition-all duration-300 ease-in-out ${textColor} ${fontWeight}`}
                   animate={{
-                    opacity: isCurrent ? 1 : isRead ? 0.8 : 0.4,
-                    scale: isCurrent ? 1.05 : 1,
-                    y: isCurrent ? -3 : 0
+                    opacity: isCurrent ? 1 : isRead ? 0.9 : 0.4,
+                    scale: isCurrent ? 1.02 : 1,
+                    y: isCurrent ? -2 : 0
                   }}
                   transition={{
-                    duration: 0.5,
+                    duration: 0.3,
                     ease: "easeInOut"
                   }}
                   style={{
-                    textShadow: isCurrent ? '0 0 20px rgba(255, 255, 255, 0.3)' : 'none'
+                    textShadow: isCurrent ? '0 0 15px rgba(255, 255, 255, 0.2)' : 'none'
                   }}
                 >
                   <p className="mb-1">{line.text}</p>
