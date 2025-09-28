@@ -589,13 +589,12 @@ const Home = () => {
             
             <div className="flex flex-wrap gap-2 group-hover:gap-3 transition-all duration-500">
               {[
-                "Python", "JavaScript", "TypeScript", "C++", "C", "Dart", "SQL", "Shell Scripting", "HTML/CSS", "Node.js",
-                "React", "HTML5/CSS3", "JWT & OAuth2", "WebSockets", "REST API", "PWA", "Responsive Design", "Animations & UX",
-                "PostgreSQL", "DynamoDB", "AWS Lambda", "Redis", "MySQL", "CRUD Operations", "AWS", "Microservices",
-                "Linux", "GStreamer", "CarPlay", "Vulkan", "Trace32", "Memory Management", "Debugging Tools", "Event-Driven Architecture",
-                "Flutter", "OpenAI API", "LangChain", "NLP", "Recommendation Systems", "Chatbots", "Text Processing",
-                "Git/GitHub", "Docker", "CI/CD", "Monitoring & Logging", "SonarQube", "Perf", "Postman", "Swagger/OpenAPI",
-                "Vite", "JMeter", "Locust", "Error Handling"
+                "Python", "JavaScript", "TypeScript", "Dart", "SQL",
+                "React", "HTML5/CSS3", "JWT & OAuth2", "WebSockets", "REST API", "Responsive Design", "Animations & UX",
+                "PostgreSQL", "MySQL", "CRUD Operations", "AWS", "Microservices",
+                "Memory Management", "Debugging Tools",
+                "CI/CD", "Postman", "Swagger/OpenAPI",
+                "Error Handling"
               ].map((skill, index) => (
                 <motion.div
                   key={index}

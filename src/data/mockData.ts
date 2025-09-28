@@ -716,7 +716,7 @@ export const mockCertificates = [
     title: 'Foundations of Project Management',
     issuer: 'Google (Coursera)',
     date: '2023',
-    image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=400&fit=crop&crop=center',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop&crop=center',
     skills: ['Project Planning', 'Stakeholder Management', 'Agile', 'Scrum'],
     link: 'https://coursera.org/verify/5TH1FGFD1ZHJ',
     description: 'Essential project management skills and methodologies.',
