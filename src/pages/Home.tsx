@@ -506,6 +506,12 @@ const Home = () => {
                         className="w-full h-full object-cover rounded-xl"
                       />
                     </div>
+                    {/* Professional Award Icon */}
+                    <div className="absolute top-1 left-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center shadow-lg border border-yellow-300">
+                      <svg className="w-4 h-4 text-yellow-800" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    </div>
                     {/* Play Button Overlay */}
                     <div className="absolute bottom-1 right-1 w-6 h-6 bg-black rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <Play className="w-3 h-3 text-white ml-0.5" />

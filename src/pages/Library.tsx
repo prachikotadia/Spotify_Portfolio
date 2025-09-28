@@ -245,12 +245,20 @@ const Library = () => {
               {/* Mobile Layout */}
               <div className="sm:hidden">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-12 h-12 rounded overflow-hidden bg-gradient-to-br from-green-500 to-green-700 flex-shrink-0">
+                  <div className="relative w-12 h-12 rounded overflow-hidden bg-gradient-to-br from-green-500 to-green-700 flex-shrink-0">
                     <img
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover"
                     />
+                    {/* Professional Award Icon for Certificates */}
+                    {activeTab === 'certificates' && (
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center shadow-lg border border-yellow-300">
+                        <svg className="w-2.5 h-2.5 text-yellow-800" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                      </div>
+                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-white font-medium text-sm truncate group-hover:text-green-400 transition-colors">
@@ -380,6 +388,14 @@ const Library = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
+                {/* Professional Award Icon for Certificates */}
+                {activeTab === 'certificates' && (
+                  <div className="absolute top-2 left-2 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center shadow-lg border border-yellow-300">
+                    <svg className="w-4 h-4 text-yellow-800" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  </div>
+                )}
                 {activeTab === 'certificates' && (item as any).link ? (
                   <div className="absolute bottom-3 right-3">
                     <Button
