@@ -139,7 +139,7 @@ const Courses = () => {
     {
       id: 11,
       name: 'Software Quality Management',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=400&fit=crop&crop=center',
+      image: '/assets/software-quality-management.png',
       description: 'Focused on software testing, defect prevention, and assurance strategies. Learned how to enforce quality standards throughout the SDLC.',
       duration: '3 months',
       level: 'Advanced',
