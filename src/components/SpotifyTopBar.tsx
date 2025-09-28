@@ -79,7 +79,7 @@ const SpotifyTopBar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed top-0 left-0 w-screen h-screen bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed top-0 left-0 w-screen h-screen lg:left-64 lg:w-[calc(100vw-16rem)] bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowNotificationPopup(false)}
           >
             <motion.div
@@ -111,7 +111,7 @@ const SpotifyTopBar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed top-0 left-0 w-screen h-screen bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed top-0 left-0 w-screen h-screen lg:left-64 lg:w-[calc(100vw-16rem)] bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowSettingsPopup(false)}
           >
             <motion.div
