@@ -67,6 +67,7 @@ const Library = () => {
       navigate(`/project/${item.id}`);
     } else if (activeTab === 'certificates') {
       navigate(`/certificate/${item.id}`);
+    }
   };
 
   const getItemType = (item: any) => {
@@ -267,7 +268,7 @@ const Library = () => {
                 <div className="flex items-center justify-between text-xs text-gray-400">
                   <div className="flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
-                    <span>{item.date || '2024'}</span>
+                    <span>{activeTab === 'certificates' ? (item as any).date : (item as any).dateCompleted || '2024'}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Star className="w-3 h-3 text-yellow-400" />
@@ -326,7 +327,7 @@ const Library = () => {
                 </div>
                 <div className="col-span-1 flex items-center text-gray-400 text-sm">
                   <Calendar className="w-4 h-4 mr-1" />
-                  {item.date || item.year || '2024'}
+                  {activeTab === 'certificates' ? (item as any).date : (item as any).dateCompleted || '2024'}
                 </div>
                 <div className="col-span-1 flex items-center gap-1 flex-wrap">
                   {activeTab === 'certificates' && (item as any).link && (
