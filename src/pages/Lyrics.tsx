@@ -12,6 +12,7 @@ const Lyrics = () => {
   const [readProgress, setReadProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isManualScrolling, setIsManualScrolling] = useState(false);
   const [userScrollPosition, setUserScrollPosition] = useState(0);
   const lyricsRef = useRef<HTMLDivElement>(null);
@@ -21,30 +22,30 @@ const Lyrics = () => {
   const autoScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastScrollTimeRef = useRef<number>(0);
 
-  // Lyrics data with timing
+  // Lyrics data with word-by-word timing
   const lyricsData = [
-    { text: "I am a passionate Software Engineer", progress: 0, duration: 3, isBold: true },
-    { text: "who loves building creative and practical solutions", progress: 3, duration: 4, isBold: true },
-    { text: "that make an impact.", progress: 7, duration: 2, isBold: true },
-    { text: "My journey started with curiosity", progress: 9, duration: 3, isBold: true },
-    { text: "about how technology shapes everyday life,", progress: 12, duration: 4, isBold: true },
-    { text: "and it quickly grew into a strong focus", progress: 16, duration: 4, isBold: true },
-    { text: "on software systems, web apps, and scalable solutions.", progress: 20, duration: 5, isBold: true },
-    { text: "I enjoy solving problems", progress: 25, duration: 3, isBold: false },
-    { text: "with a balance of logic and creativity,", progress: 28, duration: 4, isBold: false },
-    { text: "always striving for clean code and thoughtful design.", progress: 32, duration: 5, isBold: false },
-    { text: "Along the way, I have worked on projects", progress: 37, duration: 4, isBold: false },
-    { text: "that challenged me to think deeper", progress: 41, duration: 3, isBold: false },
-    { text: "about performance, usability, and user experience.", progress: 44, duration: 5, isBold: false },
-    { text: "I believe technology should feel", progress: 49, duration: 3, isBold: false },
-    { text: "seamless and intuitive,", progress: 52, duration: 3, isBold: false },
-    { text: "and that's the standard I aim for in my work.", progress: 55, duration: 5, isBold: false },
-    { text: "Outside of coding, I like exploring new ideas,", progress: 60, duration: 4, isBold: false },
-    { text: "learning continuously,", progress: 64, duration: 2, isBold: false },
-    { text: "and keeping up with the latest in tech.", progress: 66, duration: 4, isBold: false },
-    { text: "What excites me most is the opportunity", progress: 70, duration: 4, isBold: false },
-    { text: "to keep improving, collaborating,", progress: 74, duration: 3, isBold: false },
-    { text: "and pushing the boundaries of what software can do.", progress: 77, duration: 5, isBold: false }
+    { text: "I am a passionate Software Engineer", words: ["I", "am", "a", "passionate", "Software", "Engineer"], isBold: true },
+    { text: "who loves building creative and practical solutions", words: ["who", "loves", "building", "creative", "and", "practical", "solutions"], isBold: true },
+    { text: "that make an impact.", words: ["that", "make", "an", "impact."], isBold: true },
+    { text: "My journey started with curiosity", words: ["My", "journey", "started", "with", "curiosity"], isBold: true },
+    { text: "about how technology shapes everyday life,", words: ["about", "how", "technology", "shapes", "everyday", "life,"], isBold: true },
+    { text: "and it quickly grew into a strong focus", words: ["and", "it", "quickly", "grew", "into", "a", "strong", "focus"], isBold: true },
+    { text: "on software systems, web apps, and scalable solutions.", words: ["on", "software", "systems,", "web", "apps,", "and", "scalable", "solutions."], isBold: true },
+    { text: "I enjoy solving problems", words: ["I", "enjoy", "solving", "problems"], isBold: false },
+    { text: "with a balance of logic and creativity,", words: ["with", "a", "balance", "of", "logic", "and", "creativity,"], isBold: false },
+    { text: "always striving for clean code and thoughtful design.", words: ["always", "striving", "for", "clean", "code", "and", "thoughtful", "design."], isBold: false },
+    { text: "Along the way, I have worked on projects", words: ["Along", "the", "way,", "I", "have", "worked", "on", "projects"], isBold: false },
+    { text: "that challenged me to think deeper", words: ["that", "challenged", "me", "to", "think", "deeper"], isBold: false },
+    { text: "about performance, usability, and user experience.", words: ["about", "performance,", "usability,", "and", "user", "experience."], isBold: false },
+    { text: "I believe technology should feel", words: ["I", "believe", "technology", "should", "feel"], isBold: false },
+    { text: "seamless and intuitive,", words: ["seamless", "and", "intuitive,"], isBold: false },
+    { text: "and that's the standard I aim for in my work.", words: ["and", "that's", "the", "standard", "I", "aim", "for", "in", "my", "work."], isBold: false },
+    { text: "Outside of coding, I like exploring new ideas,", words: ["Outside", "of", "coding,", "I", "like", "exploring", "new", "ideas,"], isBold: false },
+    { text: "learning continuously,", words: ["learning", "continuously,"], isBold: false },
+    { text: "and keeping up with the latest in tech.", words: ["and", "keeping", "up", "with", "the", "latest", "in", "tech."], isBold: false },
+    { text: "What excites me most is the opportunity", words: ["What", "excites", "me", "most", "is", "the", "opportunity"], isBold: false },
+    { text: "to keep improving, collaborating,", words: ["to", "keep", "improving,", "collaborating,"], isBold: false },
+    { text: "and pushing the boundaries of what software can do.", words: ["and", "pushing", "the", "boundaries", "of", "what", "software", "can", "do."], isBold: false }
   ];
 
   // Smooth auto-scroll to center current line
@@ -116,44 +117,49 @@ const Lyrics = () => {
     }
   }, [currentLineIndex, isManualScrolling, scrollToCurrentLine]);
 
-  // Text-to-speech functionality - line by line sync
+  // Text-to-speech functionality - word by word sync
   const startSpeech = (fromTime = 0) => {
     if ('speechSynthesis' in window) {
-      // Find which line to start from based on time
-      const startLineIndex = lyricsData.findIndex(line => 
-        fromTime >= line.progress && fromTime < line.progress + line.duration
-      );
-      
-      if (startLineIndex === -1) {
-        // If no line found, start from beginning
-        speakLineByLine(0);
-      } else {
-        speakLineByLine(startLineIndex);
-      }
+      // Start from beginning
+      speakWordByWord(0, 0);
     } else {
       alert('Text-to-speech is not supported in this browser.');
     }
   };
 
-  // Speak line by line for perfect sync
-  const speakLineByLine = (startIndex: number) => {
-    if (startIndex >= lyricsData.length) {
+  // Speak word by word for perfect sync
+  const speakWordByWord = (lineIndex: number, wordIndex: number) => {
+    if (lineIndex >= lyricsData.length) {
       setIsPlaying(false);
       setCurrentTime(totalTime);
       setReadProgress(100);
       return;
     }
 
-    const currentLine = lyricsData[startIndex];
-    const utterance = new SpeechSynthesisUtterance(currentLine.text);
-    utterance.rate = 0.8; // Slightly slower for better comprehension
+    const currentLine = lyricsData[lineIndex];
+    if (wordIndex >= currentLine.words.length) {
+      // Move to next line
+      setCurrentLineIndex(lineIndex + 1);
+      setCurrentWordIndex(0);
+      setTimeout(() => {
+        speakWordByWord(lineIndex + 1, 0);
+      }, 200); // Small delay between lines
+      return;
+    }
+
+    const currentWord = currentLine.words[wordIndex];
+    const utterance = new SpeechSynthesisUtterance(currentWord);
+    utterance.rate = 0.7; // Slower for word-by-word
     utterance.pitch = 1.0;
     utterance.volume = 1.0; // Maximum volume
+    
+    // Update current word for highlighting
+    setCurrentLineIndex(lineIndex);
+    setCurrentWordIndex(wordIndex);
     
     // Wait for voices to load, then try to use a female voice
     const speakWithVoice = () => {
       const voices = speechSynthesis.getVoices();
-      console.log('Available voices:', voices.map(v => v.name)); // Debug log
       
       // Try to find a good voice (prefer female voices)
       const preferredVoice = voices.find(voice => 
@@ -169,20 +175,18 @@ const Lyrics = () => {
       
       if (preferredVoice) {
         utterance.voice = preferredVoice;
-        console.log('Using voice:', preferredVoice.name); // Debug log
       } else if (voices.length > 0) {
         utterance.voice = voices[0];
-        console.log('Using default voice:', voices[0].name); // Debug log
       }
       
       speechRef.current = utterance;
       
       utterance.onend = () => {
-        // Move to next line after current line finishes
+        // Move to next word after current word finishes
         if (isPlaying && !isPaused) {
           setTimeout(() => {
-            speakLineByLine(startIndex + 1);
-          }, 100); // Small delay between lines
+            speakWordByWord(lineIndex, wordIndex + 1);
+          }, 50); // Small delay between words
         }
       };
       
@@ -194,7 +198,6 @@ const Lyrics = () => {
       // Try to speak
       try {
         speechSynthesis.speak(utterance);
-        console.log('Speaking line:', currentLine.text); // Debug log
       } catch (error) {
         console.error('Error starting speech synthesis:', error);
         alert('Audio playback failed. Please check your browser audio settings and try again.');
@@ -355,10 +358,6 @@ const Lyrics = () => {
       if (isPaused) {
         resumeSpeech();
         setIsPaused(false);
-        // Resume auto-scroll if not manually scrolling
-        if (!isManualScrolling) {
-          setTimeout(() => scrollToCurrentLine(currentLineIndex, true), 50);
-        }
       } else {
         pauseSpeech();
         setIsPaused(true);
@@ -373,6 +372,7 @@ const Lyrics = () => {
       setIsPlaying(true);
       setIsPaused(false);
       setCurrentLineIndex(0);
+      setCurrentWordIndex(0);
       setIsManualScrolling(false);
       // Scroll to beginning when starting - immediate
       setTimeout(() => scrollToCurrentLine(0, true), 10);
@@ -484,25 +484,13 @@ const Lyrics = () => {
               const isCurrent = currentLineIndex === index;
               const isUpcoming = currentLineIndex < index;
               
-              // Text color and styling logic
-              let textColor = 'text-white/40'; // Grey for upcoming
-              let fontWeight = line.isBold ? 'font-bold' : 'font-normal';
-              
-              if (isRead) {
-                textColor = 'text-white'; // White for read
-                fontWeight = line.isBold ? 'font-bold' : 'font-normal';
-              }
-              
-              if (isCurrent) {
-                textColor = 'text-white'; // White for current
-                fontWeight = 'font-bold'; // Always bold for current
-              }
-              
               return (
                 <motion.div 
                   key={index}
                   data-line-index={index}
-                  className={`text-2xl leading-relaxed transition-all duration-300 ease-in-out ${textColor} ${fontWeight}`}
+                  className={`text-2xl leading-relaxed transition-all duration-300 ease-in-out ${
+                    isCurrent ? 'text-white' : isRead ? 'text-white' : 'text-white/40'
+                  } ${line.isBold ? 'font-bold' : 'font-normal'}`}
                   animate={{
                     opacity: isCurrent ? 1 : isRead ? 0.9 : 0.4,
                     scale: isCurrent ? 1.02 : 1,
@@ -516,7 +504,43 @@ const Lyrics = () => {
                     textShadow: isCurrent ? '0 0 15px rgba(255, 255, 255, 0.2)' : 'none'
                   }}
                 >
-                  <p className="mb-1">{line.text}</p>
+                  <p className="mb-1">
+                    {line.words.map((word, wordIndex) => {
+                      const isCurrentWord = isCurrent && wordIndex === currentWordIndex;
+                      const isReadWord = isCurrent && wordIndex < currentWordIndex;
+                      const isUpcomingWord = isCurrent && wordIndex > currentWordIndex;
+                      
+                      return (
+                        <motion.span
+                          key={wordIndex}
+                          className={`transition-all duration-200 ${
+                            isCurrentWord 
+                              ? 'text-white font-bold' 
+                              : isReadWord 
+                                ? 'text-white' 
+                                : isUpcomingWord 
+                                  ? 'text-white/40' 
+                                  : isRead 
+                                    ? 'text-white' 
+                                    : 'text-white/40'
+                          }`}
+                          animate={{
+                            scale: isCurrentWord ? 1.1 : 1,
+                            opacity: isCurrentWord ? 1 : isReadWord ? 0.9 : 0.6
+                          }}
+                          transition={{
+                            duration: 0.2,
+                            ease: "easeInOut"
+                          }}
+                          style={{
+                            textShadow: isCurrentWord ? '0 0 10px rgba(255, 255, 255, 0.3)' : 'none'
+                          }}
+                        >
+                          {word}{' '}
+                        </motion.span>
+                      );
+                    })}
+                  </p>
                 </motion.div>
               );
             })}
