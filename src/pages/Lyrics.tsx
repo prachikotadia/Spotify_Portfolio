@@ -117,45 +117,23 @@ const Lyrics = () => {
     }
   }, [currentLineIndex, isManualScrolling, scrollToCurrentLine]);
 
-  // Text-to-speech functionality - word by word sync
+  // Text-to-speech functionality - natural flow with word highlighting
   const startSpeech = (fromTime = 0) => {
     if ('speechSynthesis' in window) {
-      // Start from beginning
-      speakWordByWord(0, 0);
+      // Start with full text for natural speech flow
+      speakNaturally();
     } else {
       alert('Text-to-speech is not supported in this browser.');
     }
   };
 
-  // Speak word by word for perfect sync
-  const speakWordByWord = (lineIndex: number, wordIndex: number) => {
-    if (lineIndex >= lyricsData.length) {
-      setIsPlaying(false);
-      setCurrentTime(totalTime);
-      setReadProgress(100);
-      return;
-    }
-
-    const currentLine = lyricsData[lineIndex];
-    if (wordIndex >= currentLine.words.length) {
-      // Move to next line
-      setCurrentLineIndex(lineIndex + 1);
-      setCurrentWordIndex(0);
-      setTimeout(() => {
-        speakWordByWord(lineIndex + 1, 0);
-      }, 50); // Much faster delay between lines (3x faster)
-      return;
-    }
-
-    const currentWord = currentLine.words[wordIndex];
-    const utterance = new SpeechSynthesisUtterance(currentWord);
-    utterance.rate = 2.1; // 3x faster (0.7 * 3 = 2.1)
+  // Speak naturally while highlighting words
+  const speakNaturally = () => {
+    const fullText = lyricsData.map(line => line.text).join(' ');
+    const utterance = new SpeechSynthesisUtterance(fullText);
+    utterance.rate = 0.9; // Natural speaking rate
     utterance.pitch = 1.0;
-    utterance.volume = 1.0; // Maximum volume
-    
-    // Update current word for highlighting
-    setCurrentLineIndex(lineIndex);
-    setCurrentWordIndex(wordIndex);
+    utterance.volume = 1.0;
     
     // Wait for voices to load, then try to use a female voice
     const speakWithVoice = () => {
@@ -182,12 +160,9 @@ const Lyrics = () => {
       speechRef.current = utterance;
       
       utterance.onend = () => {
-        // Move to next word after current word finishes
-        if (isPlaying && !isPaused) {
-          setTimeout(() => {
-            speakWordByWord(lineIndex, wordIndex + 1);
-          }, 10); // Much faster delay between words (3x faster)
-        }
+        setIsPlaying(false);
+        setCurrentTime(totalTime);
+        setReadProgress(100);
       };
       
       utterance.onerror = (event) => {
@@ -198,6 +173,8 @@ const Lyrics = () => {
       // Try to speak
       try {
         speechSynthesis.speak(utterance);
+        // Start word highlighting simulation
+        startWordHighlighting();
       } catch (error) {
         console.error('Error starting speech synthesis:', error);
         alert('Audio playback failed. Please check your browser audio settings and try again.');
@@ -210,6 +187,46 @@ const Lyrics = () => {
     } else {
       speakWithVoice();
     }
+  };
+
+  // Simulate word highlighting with natural timing
+  const startWordHighlighting = () => {
+    let lineIndex = 0;
+    let wordIndex = 0;
+    
+    const highlightNextWord = () => {
+      if (lineIndex >= lyricsData.length || !isPlaying) {
+        return;
+      }
+      
+      const currentLine = lyricsData[lineIndex];
+      if (wordIndex >= currentLine.words.length) {
+        // Move to next line
+        lineIndex++;
+        wordIndex = 0;
+        if (lineIndex < lyricsData.length) {
+          setCurrentLineIndex(lineIndex);
+          setCurrentWordIndex(0);
+          // Auto-scroll to current line
+          if (!isManualScrolling) {
+            setTimeout(() => scrollToCurrentLine(lineIndex, true), 100);
+          }
+        }
+      } else {
+        // Highlight current word
+        setCurrentLineIndex(lineIndex);
+        setCurrentWordIndex(wordIndex);
+        wordIndex++;
+      }
+      
+      // Continue highlighting
+      if (isPlaying && !isPaused) {
+        setTimeout(highlightNextWord, 150); // Natural word timing
+      }
+    };
+    
+    // Start highlighting
+    highlightNextWord();
   };
 
   const stopSpeech = () => {
