@@ -764,7 +764,7 @@ export const mockCertificates = [
     title: 'What is Data Science?',
     issuer: 'IBM (Coursera)',
     date: '2023',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
+    image: '/assets/ibm-logo.png',
     skills: ['Data Science Basics', 'Big Data', 'Business Use Cases', 'Analytics'],
     link: 'https://coursera.org/verify/6ZVETUKCLJDI',
     description: 'Introduction to data science concepts and applications.',
