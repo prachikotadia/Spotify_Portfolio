@@ -3,6 +3,9 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Play, Shuffle, Clock, Bell, Heart, Star, TrendingUp, Award, MessageSquare, Plus, MoreHorizontal, Briefcase, Code, GraduationCap, BookOpen } from 'lucide-react';
 import SpotifyLogo from '@/components/SpotifyLogo';
+import SpotifySidebar from '@/components/SpotifySidebar';
+import SpotifyTopBar from '@/components/SpotifyTopBar';
+import SpotifyPlayer from '@/components/SpotifyPlayer';
 
 // Spotify-style icons as SVG components
 const HomeIcon = () => (
@@ -71,18 +74,28 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-[#000000] pb-20 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-24 h-24 bg-green-400/5 rounded-full blur-2xl animate-bounce"></div>
-        <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-green-600/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-40 right-1/3 w-28 h-28 bg-green-300/10 rounded-full blur-2xl animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-500/3 rounded-full blur-3xl animate-pulse"></div>
-      </div>
+    <div className="min-h-screen bg-black flex">
+      {/* Spotify Sidebar - Desktop Only */}
+      <SpotifySidebar />
+      
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col">
+        {/* Spotify Top Bar */}
+        <SpotifyTopBar />
+        
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-[#000000] relative">
+          {/* Animated Background Elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-20 left-10 w-32 h-32 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute top-40 right-20 w-24 h-24 bg-green-400/5 rounded-full blur-2xl animate-bounce"></div>
+            <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-green-600/5 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-40 right-1/3 w-28 h-28 bg-green-300/10 rounded-full blur-2xl animate-bounce"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-green-500/3 rounded-full blur-3xl animate-pulse"></div>
+          </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
+          {/* Main Content */}
+          <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
         {/* Featured Profile Image with Enhanced Effects */}
         <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -201,7 +214,7 @@ const Home = () => {
               onClick={() => navigate('/search')}
               className="w-10 h-10 bg-gray-800/50 border border-gray-700 rounded-full hover:bg-gray-700/50 text-white hover:text-white transition-all duration-200"
             >
-              <SearchIcon className="w-5 h-5" />
+              <SearchIcon />
             </Button>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -644,8 +657,12 @@ const Home = () => {
           </div>
         </motion.div>
 
+          </div>
+        </div>
+        
+        {/* Spotify Player */}
+        <SpotifyPlayer />
       </div>
-
     </div>
   );
 };

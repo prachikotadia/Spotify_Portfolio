@@ -6,11 +6,11 @@ import { Badge } from '@/components/ui/badge';
 
 const About = () => {
   const personalInfo = {
-    name: 'Your Name',
+    name: 'Prachi Kotadia',
     title: 'Software Engineer',
-    location: 'San Francisco, CA',
-    email: 'your.email@example.com',
-    experience: '5+ years',
+    location: 'Chicago, IL',
+    email: 'iprachikotadia@gmail.com',
+    experience: '3+ years',
     availability: 'Available for opportunities',
     bio: 'Passionate full-stack developer with 5+ years of experience building scalable web applications. I love creating innovative solutions and contributing to open source projects. When I\'m not coding, you can find me exploring new technologies, writing technical blogs, or hiking in the mountains.',
     values: [
@@ -34,7 +34,6 @@ const About = () => {
     { label: 'Projects Completed', value: '50+' },
     { label: 'Years Experience', value: '5+' },
     { label: 'Technologies', value: '20+' },
-    { label: 'Happy Clients', value: '30+' }
   ];
 
   return (
