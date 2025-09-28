@@ -1,16 +1,16 @@
 // Analytics Configuration
 export const ANALYTICS_CONFIG = {
   // Google Analytics
-  GA_TRACKING_ID: process.env.REACT_APP_GA_TRACKING_ID || 'G-XXXXXXXXXX',
+  GA_TRACKING_ID: (typeof process !== 'undefined' && process.env?.REACT_APP_GA_TRACKING_ID) || 'G-XXXXXXXXXX',
   
   // Sentry
-  SENTRY_DSN: process.env.REACT_APP_SENTRY_DSN || 'YOUR_SENTRY_DSN_HERE',
+  SENTRY_DSN: (typeof process !== 'undefined' && process.env?.REACT_APP_SENTRY_DSN) || 'YOUR_SENTRY_DSN_HERE',
   
   // Environment
-  ENVIRONMENT: process.env.NODE_ENV || 'development',
+  ENVIRONMENT: (typeof process !== 'undefined' && process.env?.NODE_ENV) || 'development',
   
   // Analytics Settings
-  ENABLE_ANALYTICS: process.env.NODE_ENV === 'production',
+  ENABLE_ANALYTICS: (typeof process !== 'undefined' && process.env?.NODE_ENV === 'production') || false,
   ENABLE_ERROR_TRACKING: true,
   ENABLE_PERFORMANCE_TRACKING: true,
   

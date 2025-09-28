@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // Google Analytics configuration
-const GA_TRACKING_ID = 'G-XXXXXXXXXX'; // Replace with your actual Google Analytics ID
+const GA_TRACKING_ID = (typeof process !== 'undefined' && process.env?.REACT_APP_GA_TRACKING_ID) || 'G-XXXXXXXXXX'; // Replace with your actual Google Analytics ID
 
 // Initialize Google Analytics
 export const initGA = () => {

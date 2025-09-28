@@ -2,20 +2,21 @@ import * as Sentry from '@sentry/react';
 import { useEffect } from 'react';
 
 // Sentry configuration
-const SENTRY_DSN = 'YOUR_SENTRY_DSN_HERE'; // Replace with your actual Sentry DSN
+const SENTRY_DSN = (typeof process !== 'undefined' && process.env?.REACT_APP_SENTRY_DSN) || 'YOUR_SENTRY_DSN_HERE'; // Replace with your actual Sentry DSN
 
 // Initialize Sentry
 export const initSentry = () => {
   Sentry.init({
     dsn: SENTRY_DSN,
-    environment: process.env.NODE_ENV || 'development',
+    environment: (typeof process !== 'undefined' && process.env?.NODE_ENV) || 'development',
     tracesSampleRate: 1.0,
     integrations: [
       new Sentry.BrowserTracing(),
     ],
     beforeSend(event) {
       // Filter out development errors in production
-      if (process.env.NODE_ENV === 'production') {
+      const isProduction = (typeof process !== 'undefined' && process.env?.NODE_ENV === 'production');
+      if (isProduction) {
         return event;
       }
       return null;
