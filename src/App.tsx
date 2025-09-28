@@ -53,7 +53,7 @@ const App = () => {
           <div className="min-h-screen bg-background">
             {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Home isLoading={isLoading} />} />
               <Route path="/search" element={<Search />} />
               <Route path="/library" element={<Library />} />
               <Route path="/profile" element={<Profile />} />

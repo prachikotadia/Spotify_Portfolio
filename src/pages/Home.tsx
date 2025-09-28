@@ -60,7 +60,11 @@ import {
 } from '@/data/mockData';
 import type { Project } from '@/data/mockData';
 
-const Home = () => {
+interface HomeProps {
+  isLoading?: boolean;
+}
+
+const Home = ({ isLoading = false }: HomeProps) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const navigate = useNavigate();
 
@@ -75,13 +79,13 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-black lg:flex">
-      {/* Spotify Sidebar - Desktop Only */}
-      <SpotifySidebar />
+      {/* Spotify Sidebar - Desktop Only, hide during loading */}
+      {!isLoading && <SpotifySidebar />}
       
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
-        {/* Spotify Top Bar */}
-        <SpotifyTopBar />
+        {/* Spotify Top Bar - Only show after loading */}
+        {!isLoading && <SpotifyTopBar />}
         
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-[#000000] relative pb-20 lg:pb-0">
@@ -660,8 +664,8 @@ const Home = () => {
           </div>
         </div>
         
-        {/* Spotify Player */}
-        <SpotifyPlayer />
+        {/* Spotify Player - Only show after loading */}
+        {!isLoading && <SpotifyPlayer />}
       </div>
     </div>
   );
