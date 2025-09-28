@@ -137,14 +137,14 @@ const SpotifySidebar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed top-0 left-0 w-screen h-screen bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed top-0 left-0 w-screen h-screen bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowCreatePopup(false)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
+              className="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-3">
@@ -169,14 +169,14 @@ const SpotifySidebar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed top-0 left-0 w-screen h-screen bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed top-0 left-0 w-screen h-screen bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowFavoritesPopup(false)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
+              className="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-3">
@@ -210,14 +210,14 @@ const SpotifySidebar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed top-0 left-0 w-screen h-screen bg-black/30 backdrop-blur-sm flex items-center justify-center z-50"
+            className="fixed top-0 left-0 w-screen h-screen bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
             onClick={() => setShowDownloadPopup(false)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
+              className="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-4 max-w-xs mx-4 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-3">
