@@ -91,7 +91,8 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
           {/* Progress bar */}
           <motion.div
-           
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
             transition={{ duration: 2, ease: "easeInOut" }}
             className="absolute bottom-10 left-0 right-0 mx-8 h-1 bg-gradient-to-r from-green-500 to-green-400 rounded-full"
           />
