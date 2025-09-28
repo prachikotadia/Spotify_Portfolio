@@ -325,32 +325,32 @@ const Home = () => {
             {[
               {
                 name: 'Data Structures & Algorithms',
-                image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=400&fit=crop&crop=center',
+                image: '/assets/data-structures-algorithms.png',
                 description: 'Mastered arrays, trees, graphs, and sorting/searching algorithms'
               },
               {
                 name: 'Mobile Application Development',
-                image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop&crop=center',
+                image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
                 description: 'Built intuitive, responsive, and cross-platform apps'
               },
               {
                 name: 'Advanced Database Organization',
-                image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=400&fit=crop&crop=center',
+                image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
                 description: 'Focused on indexing strategies and query optimization'
               },
               {
                 name: 'Software Project Management',
-                image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop&crop=center',
+                image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
                 description: 'Studied Agile and Waterfall methodologies'
               },
               {
                 name: 'Big Data Technology',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center',
+                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
                 description: 'Worked with distributed systems and big data frameworks'
               },
               {
                 name: 'Computer Networks',
-                image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center',
+                image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&h=400&fit=crop&crop=center&auto=format&q=80',
                 description: 'Explored OSI and TCP/IP models, data transmission'
               }
             ].map((course, index) => (
@@ -504,8 +504,8 @@ const Home = () => {
                         src={cert.image}
                         alt={cert.title}
                         className="w-full h-full object-cover rounded-xl"
-                      />
-                    </div>
+                />
+              </div>
                     {/* Professional Award Icon */}
                     <div className="absolute top-1 left-1 w-6 h-6 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center shadow-lg border border-yellow-300">
                       <svg className="w-4 h-4 text-yellow-800" fill="currentColor" viewBox="0 0 24 24">
