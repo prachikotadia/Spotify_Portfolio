@@ -26,7 +26,6 @@ import CertificateDetail from "./pages/CertificateDetail";
 import EducationDetail from "./pages/EducationDetail";
 import ExperienceDetail from "./pages/ExperienceDetail";
 import Courses from "./pages/Courses";
-import Schedule from "./pages/Schedule";
 import NotFound from "./pages/NotFound";
 import BottomNavigation from "./components/BottomNavigation";
 import LoadingScreen from "./components/LoadingScreen";
@@ -84,7 +83,6 @@ const App = () => {
               <Route path="/education/:id" element={<EducationDetail />} />
               <Route path="/experience/:id" element={<ExperienceDetail />} />
               <Route path="/courses" element={<Courses />} />
-              <Route path="/schedule" element={<Schedule />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

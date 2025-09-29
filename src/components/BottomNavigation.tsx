@@ -38,13 +38,6 @@ const WorkIcon = () => (
 );
 
 
-// Schedule/Calendar icon
-const ScheduleIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
-    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
-  </svg>
-);
-
 // Exact Spotify Radio icon
 const SkillIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
@@ -69,7 +62,6 @@ const BottomNavigation = () => {
   ];
 
   const rightNavItems = [
-    { name: 'Schedule', path: '/schedule', icon: ScheduleIcon },
     { name: 'Skill', path: '/skills', icon: SkillIcon },
     { name: 'Profile', path: '/profile', icon: UserIcon },
   ];
